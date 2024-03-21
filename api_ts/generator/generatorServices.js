@@ -5,6 +5,8 @@
 
 const fs = require('fs');
 const path = require('path');
+const { throwError, catchError } = require('./helpers/customError');
+const { clear } = require('console');
 const basePath = path.join(__dirname, '..');
 
 const getFilePath = (name = "", type = "js", directory = "generator") => {
@@ -16,18 +18,35 @@ function UpFirst(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-async function generateJSFile(name, directory = "") {
-  const jsCode = ``;
 
+
+async function generateFile(name, directory = "", jsCode = "", type = "ts") {
+
+  await catchError((resolve, reject) => {
+
+    const filePath = directory + "/" + name + "." + type;
+
+    fs.writeFile(filePath, jsCode, function (err) {
+      if (err) reject(['generate_file', 500, 'An error occurred while generating the file: ' + name])
+      else resolve();
+    });
+
+  }, 1);
+}
+
+
+
+async function deleteJSFile(name, directory = "") {
   const filePath = directory + "/" + name + ".js";
 
-  fs.writeFile(filePath, jsCode, function (err) {
-    if (err) {
-      console.error('An error occurred while generating the file:', err);
-    } else {
-      console.log(filePath, 'was generated in services path.');
-    }
-  });
+  await catchError((resolve, reject) => {
+
+    fs.unlink(filePath, function (err) {
+      if (err) reject(['delete_file', 500, 'An error occurred while deleting the file: ' + name]);
+      else resolve('the route was deleted.');
+    });
+
+  }, 1);
 }
 
 async function addContent(startTag, endTag, lineToAdd, filePath, returnToExists = false) {
@@ -187,7 +206,7 @@ async function replaceTag(tagToReplace, newTag, filePath) {
   });
 }
 
-module.exports = { getFilePath, generateJSFile, addContent, deleteContent, deleteTagsAndContent, replaceTag };
+module.exports = { getFilePath, generateFile, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag };
 
 // const main = async () => {
 //   const filePath = getFilePath("veamos");
