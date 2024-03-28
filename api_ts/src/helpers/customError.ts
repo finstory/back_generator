@@ -1,5 +1,9 @@
 class CustomError extends Error {
-  constructor(type, status, payload) {
+  type: string;
+  status: number;
+  payload: any;
+
+  constructor(type: string, status: number, payload: any) {
     super();
     this.type = type;
     this.status = status;
@@ -8,9 +12,8 @@ class CustomError extends Error {
   }
 }
 
-
-function throwError(type, status, payload) {
+function throwError(type: string, status: number, payload: any): never {
   throw new CustomError(type, status, payload);
 }
 
-module.exports = throwError;
+export { throwError, CustomError };

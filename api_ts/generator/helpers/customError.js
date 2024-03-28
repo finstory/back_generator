@@ -36,9 +36,9 @@ const catchError = async (callback, timer = 1, msgTimerError) => {
 }
 
 const printError = (error) => {
-  if (error.payload)
+  if (error && error.payload)
     printMsg(`${error.payload} (${error.type})`, "error");
-  else console.log(error);
+  else printMsg(error, "error");
 }
 
 module.exports = { throwError, catchError, printError };

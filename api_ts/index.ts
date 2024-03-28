@@ -9,11 +9,17 @@ const { conn } = db;
 // const server2 = require("./src/app/app.ts");
 // const { conn } = require("./src/app/db.js");
 
-// Syncing all the models at once.s
-
-conn.sync({ force: false }).then(() => {
+if (true) {
+  //not include database
   const PORT = process.env.PORT || 3000;
   server.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
   });
-});
+} else {
+  conn.sync({ force: false }).then(() => {
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT, () => {
+      console.log(`Servidor escuchando en el puerto ${PORT}`);
+    });
+  });
+}

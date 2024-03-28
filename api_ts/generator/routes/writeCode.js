@@ -4,14 +4,37 @@ const short = shortUUID();
 
 const compiler = {};
 
-compiler.moduleRouteCode = (routeModule) => {
-    const code = `
-//GR-START
+compiler.routeIndexCode = () => {
+    const code =
+        `import { Router } from "express";
 
-//GR-END`
+        //GR-IMPORT
+
+
+        //GR
+        
+        export const routes = Router();
+        
+        routes.use("/users", Users);
+        `
 
     return code;
 }
+
+compiler.moduleRouteCode = (routeModule) => {
+    const code =
+        `import { Router } from "express";
+import { Request, Response, NextFunction } from "express";
+import { controllers } from "./controllers";
+
+const router = Router();
+
+//GR-ENDPOINT
+//GR`
+
+    return code;
+}
+
 compiler.endpointCode = (typeReq, endpoint, routeModule, endpointList = [], params) => {
     let controllerName;
 
@@ -22,11 +45,9 @@ compiler.endpointCode = (typeReq, endpoint, routeModule, endpointList = [], para
     controllerName = typeReq + UpFirst(routeModule);
     if (params) controllerName += "By" + UpFirst(params);
 
-    
-    const code = `
-//GRE-${short.new()}
-router.${typeReq}("${endpoint}", ${controllerName});
-//GRE`;
+
+    const code = `//GRE-${short.new()}
+router.${typeReq}("${endpoint}", controllers.${controllerName});`;
 
     return code;
 }

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import * as I from "../interfaces/controllers/IUserControllers";
+import * as I from "../interfaces/controllers/IUserControllers.js";
 import { Request, Response, NextFunction } from "express";
-import db from "../app/db";
-import { service } from "../services/serivce";
+import db from "../app/db.js";
+import { service } from "../services/serivce.js";
 
 const servicio = require("../services/servicio.js");
 
@@ -21,7 +21,7 @@ controllers.userGet = async (req, res) => {
 };
 
 router.get("/", controllers.userGet);
-
+//       
 // const usersGet = async (req: I.usersGetReq, res: I.usersGetRes) => {
 //   // const params = req.params.name;
 //   const { id_team, parametro2 } = req.query;
