@@ -23,5 +23,4 @@ export interface usersGetRes
     id: string;
   }> {}
 
-
 //$ END userGet_request

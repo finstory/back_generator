@@ -16,4 +16,12 @@ function sendError(res: Response, error: CustomError) {
   });
 }
 
-export { send, sendError };
+const wrapperError = (fn: any) => async (req: Request, res: Response) => {
+  try {
+    await fn(req, res);
+  } catch (error) {
+    sendError(res, error);
+  }
+};
+
+export { send, sendError, wrapperError };

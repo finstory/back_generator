@@ -1,0 +1,26 @@
+@mixin font_M_PLUS($color: primary, $size : normal, $weight : semibold) {
+    font-family: 'M PLUS Rounded 1c';
+    font-size: map-get($font_size, $size);
+    font-weight: $weight;
+    color: map-get($text_color, $color);
+}
+
+@mixin font_Inter($color: primary, $size : normal, $weight : semibold) {
+    font-family: 'Inter';
+    font-size: map-get($font_size, $size);
+    font-weight: $weight;
+}
+
+@mixin font($color: primary, $size : normal, $weight : semibold, $type: K2D) {
+    font-family: $type;
+    font-size: map-get($font_size, $size);
+    font-weight: $weight;
+    color: map-get($text_color, $color);
+}
+
+@mixin font_extra($height: normal, $spacing: normal, $align: center, $transform: none) {
+    line-height: $height;
+    letter-spacing: $spacing;
+    text-align: $align;
+    text-transform: $transform;
+}

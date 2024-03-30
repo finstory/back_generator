@@ -1,0 +1,56 @@
+@import "../../base";
+@import "../../utilities/gradient";
+@import "../../utilities/font";
+@import "../../utilities/border";
+
+.item {
+    @include dim_width();
+    @include flex(space-between, center);
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    animation: opacity 0.5s alternate;
+
+    &:hover {
+        background-color: var(--normal-green-color);
+        color: var(--white-color);
+    }
+
+    .wrap {
+        @include flex(flex-start, center, row, 2rem);
+
+        .icon {
+            @include dim_width(6rem);
+            @include dim_height(6rem);
+            @include flex();
+            border-radius: 50%;
+            border: 1px solid var(--light-blue-color);
+        }
+
+        .info {
+            @include flex(center, flex-start, column, 0.4rem);
+
+
+            .name {
+                @include font_Inter(base, normal, bold);
+            }
+
+            .active_range {
+                @include font_Inter(base, small, semibold);
+            }
+        }
+    }
+
+    .value {
+        @include font_Inter(base, normal, bold);
+    }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

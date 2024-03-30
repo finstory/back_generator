@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
-import * as I from "../interfaces/controllers/IUserControllers.js";
+import * as I from "../models/UserInterface";
 
-class ModelControllers {
+class UserBase {
   /**
    * @param ENDPOINT - /users/:id
    * @param TYPE - GET
@@ -15,6 +15,6 @@ class ModelControllers {
   async userPost(req: Request, res: Response) {}
 }
 
-const controllers = new ModelControllers();
+const controllers = new UserBase();
 
 export default controllers;
