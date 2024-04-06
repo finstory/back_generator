@@ -5,6 +5,7 @@
       "@generator/*": ["generator/*"]
     },
     "esModuleInterop": true,
-    "module": "commonjs"
+    "module": "commonjs",
+    "resolveJsonModule": true
   }
 }

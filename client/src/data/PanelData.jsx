@@ -1,26 +1,11 @@
-export default [
-
-    {
-        id: 1,
-        size: "normal",
-        comp: "Soy un panel de Temperatura."
-    },
-    {
-        id: 1,
-        size: "normal",
-        comp: "Soy un panel de Temperatura."
-    },
-    {
-        id: 1,
-        size: "normal",
-        comp: "Soy un panel de Temperatura."
-    },
-    {
-        id: 1,
-        size: "normal",
-        comp: "Soy un panel de Temperatura."
-    }
-
-]
-
-
+[
+  {
+    id: 1,
+    name: "Facundo",
+    lastName: "Perez",
+    email: "facu@hotmail.com",
+    phone: "123456",
+    address: "Av. Siempre Viva 123",
+    city: "Springfield",
+  },
+];

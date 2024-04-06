@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "sdsd@gmail.com",
+    "phone": [
+      "pepito",
+      2323,
+      true,
+      {
+        "type": "work",
+        "number": "0987654321"
+      }
+    ]
+  }
+]

@@ -21,6 +21,7 @@ type usersGet_body = {
 export interface usersGetRes
   extends Response<{
     id: string;
+    name: string;
   }> {}
 
 //$ END userGet_request

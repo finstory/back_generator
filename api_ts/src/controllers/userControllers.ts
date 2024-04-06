@@ -1,5 +1,6 @@
 import controller from "../interfaces/controllers/bases/UserBase";
 import { send } from "../helpers/managerController";
+import { throwError } from "../helpers/customError";
 
 //% GET - /users/:id
 controller.userGet = async ({ params, query, body }, res) => {

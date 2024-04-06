@@ -1,8 +1,16 @@
-@mixin font_M_PLUS($color: primary, $size : normal, $weight : semibold) {
+@mixin font_M_PLUS($size : normal, $weight : semibold, $color: base) {
     font-family: 'M PLUS Rounded 1c';
     font-size: map-get($font_size, $size);
+
+    @if($color == base) {
+        color: var(--white-color);
+    }
+
+    @else {
+        color: $color;
+    }
+
     font-weight: $weight;
-    color: map-get($text_color, $color);
 }
 
 @mixin font_Inter($color: primary, $size : normal, $weight : semibold) {

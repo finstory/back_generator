@@ -6,6 +6,10 @@ import path from "path";
 import cors from "cors";
 
 import { routes } from "../routes/index";
+import { createAllPaths } from "../helpers/pathManager";
+
+//% Initial Methods:
+createAllPaths();
 
 const server: Express = express();
 server.use(cors());
