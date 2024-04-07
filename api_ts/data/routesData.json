@@ -40,13 +40,13 @@
     ]
   },
   {
-    "module": "auth",
+    "module": "newau",
     "routesList": [
       {
-        "id": "2a7d2740-d118-4d22-966a-ca81066f00b8",
+        "id": "353e5d5a-0807-47ef-8e21-2",
         "endpoint": "/register",
-        "method": "get",
-        "nameController": "getAuthRegister"
+        "method": "post",
+        "nameController": "getBrand"
       }
     ]
   }

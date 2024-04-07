@@ -8,9 +8,35 @@ class CustomError extends Error {
   }
 }
 
-
-function throwError(type, status, payload) {
-  throw new CustomError(type, status, payload);
+class CatchError extends Error {
+  constructor(name) {
+    super();
+    this.name = name;
+    this.wasCatch = true;
+    Error.captureStackTrace(this, this.constructor);
+  }
 }
 
-module.exports = throwError;
+
+function throwError(type, status, payload = "Error in request.", checkError = true) {
+  if (checkError) throw new CustomError(type, status, payload);
+  else return;
+}
+
+function catchError(object, condition) {
+  const nameCondition = Object.keys(object)[0];
+  if (condition) throw new CatchError(nameCondition);
+  else return;
+}
+
+function checkIsCathError(error) {
+  if (error.wasCatch) return;
+  else throw error;
+}
+
+// function throwError(type, payload, status, checkError = true) {
+//   if (checkError) throw new CustomError(type, status, payload);
+//   else return;
+// }
+
+module.exports = { throwError, catchError, checkIsCathError };

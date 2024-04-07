@@ -1,5 +1,5 @@
 const axios = require("axios");
-const throwError = require("./customError");
+const {throwError} = require("./customError");
 
 const api = axios.create({
   baseURL: "https://us-central1-esencia-app.cloudfunctions.net/",

@@ -1,29 +1,29 @@
-const { findUserByEmail, createUser } = require("../services/userServices");
-const { sendResponse, sendError } = require("../helpers/managerController");
-const controller = {};
+// const { findUserByEmail, createUser } = require("../services/userServices");
+// const { sendResponse, sendError } = require("../helpers/managerController");
+// const controller = {};
 
-//GET ALL //
-controller.usersGet = async (req, res) => {
-  try {
-    const email = req.params.email;
-    const result = await findUserByEmail(email);
+// //GET ALL //
+// controller.usersGet = async (req, res) => {
+//   try {
+//     const email = req.params.email;
+//     const result = await findUserByEmail(email);
 
-    sendResponse(res, 200, "Router added.");
-  } catch (error) {
-    sendError(res, error);
-  }
-};
+//     sendResponse(res, 200, "Router added.");
+//   } catch (error) {
+//     sendError(res, error);
+//   }
+// };
 
-controller.usersPost = async (req, res) => {
-  try {
-    const { user } = req.body;
-    console.log(user);
-    const result = await createUser(user);
-    sendResponse(res, 200, result);
-  } catch (error) {
-    sendError(res, error);
-  }
-};
+// controller.usersPost = async (req, res) => {
+//   try {
+//     const { user } = req.body;
+//     console.log(user);
+//     const result = await createUser(user);
+//     sendResponse(res, 200, result);
+//   } catch (error) {
+//     sendError(res, error);
+//   }
+// };
 
 // controller.userScrumGet = async (req, res) => {
 //   try {
@@ -87,4 +87,4 @@ controller.usersPost = async (req, res) => {
 //     throw error;
 //   }
 // };
-module.exports = controller;
+// module.exports = controller;
