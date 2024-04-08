@@ -7,7 +7,7 @@ const getAbsolutePath = (relativePath: string) => {
 
 export const createAllPaths = () => {
   const dataPath = getAbsolutePath("../../data/paths.json");
-  console.log(dataPath);
+
   const paths = [
     {
       src: getAbsolutePath("../../src"),
@@ -21,4 +21,3 @@ export const createAllPaths = () => {
     }
   });
 };
-

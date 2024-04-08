@@ -5,9 +5,11 @@ export const BorderGradient = ({
   color,
   className,
   borderSize = "2px",
+  onClick = () => {},
 }) => {
   return (
     <div
+      onClick={onClick}
       className={`border_gradient ${className}`}
       style={{
         display: "flex",

@@ -19,6 +19,7 @@ class CatchError extends Error {
 
 
 function throwError(type, status, payload = "Error in request.", checkError = true) {
+  // console.log(checkError, payload)
   if (checkError) throw new CustomError(type, status, payload);
   else return;
 }

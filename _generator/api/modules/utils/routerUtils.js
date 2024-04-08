@@ -4,6 +4,8 @@ const getEndpointNames = (endpoint, underscore = false) => {
     const parts = endpoint.split("/");
     let endpointList = [];
     let params = "";
+    
+    if (endpoint === "/") return { endpointList, params };
 
     for (let i = 1; i < parts.length; i++) {
         if (parts[i].startsWith(":")) {

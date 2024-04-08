@@ -29,7 +29,6 @@ router.get("/all", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { routeModule, endpoint, method, nameController } = req.body;
-
     await createRoute(routeModule, endpoint, method, nameController);
 
     sendResponse(res, 200, "Endpoint added.");
@@ -43,7 +42,7 @@ router.post("/module", async (req, res) => {
     const { routeModule } = req.body;
     await createRouteModule(routeModule);
 
-    sendResponse(res, 200, "Route module created.");
+    sendResponse(res, 200, `Route module ${routeModule} created.`);
   } catch (error) {
     sendError(res, error);
   }
@@ -63,6 +62,8 @@ router.patch("/module", async (req, res) => {
 router.patch("/", async (req, res) => {
   try {
     const { id, routeModule, newEndpoint, newMethod, newControllerName } = req.body;
+
+    console.log(routeModule)
     await editRoute(id, routeModule, newEndpoint, newMethod, newControllerName);
 
     sendResponse(res, 200, "Endpoint edited.");

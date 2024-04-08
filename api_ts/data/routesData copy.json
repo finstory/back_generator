@@ -40,13 +40,19 @@
     ]
   },
   {
-    "module": "rama",
+    "module": "newau",
     "routesList": [
       {
-        "id": "a88c3053-fe64-416f-a35a-f55d1de91bea",
-        "endpoint": "/test",
+        "id": "353e5d5a-0807-47ef-8e21-6f3762ff6513",
+        "endpoint": "/register",
         "method": "get",
-        "nameController": "getRamaTest"
+        "nameController": "getBrand"
+      },
+      {
+        "id": "353e5d5a-0807-47ef-8e21-2",
+        "endpoint": "/register",
+        "method": "post",
+        "nameController": "getBrand"
       }
     ]
   }
