@@ -84,7 +84,7 @@ services.editRouteModule = async (routeModule, newRouteModule) => {
 };
 
 services.editRoute = async (id, routeModule, newEndpoint, newMethod, newControllerName) => {
-  f
+
   const routeList = await services.getAllRoutes();
   const moduleGetting = routeList.find((route) => route.module === routeModule);
   throwError("bad_request", 400, "Route module name is required.", !routeModule);

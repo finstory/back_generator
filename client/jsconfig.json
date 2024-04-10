@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../",
+    "module": "es6",
+    "target": "es6",
+    "jsx": "preserve",
+    "paths": {
+      // "@/*": ["./src/*"],
+      // "@sass/*": ["./src/assets/sass/*"]
+    }
+  }
+}

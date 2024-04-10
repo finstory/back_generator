@@ -11,7 +11,7 @@ type usersGet_params = {
 
 type usersGet_query = {
   id_team: string;
-  parametro2: number;
+  name: string;
 };
 
 type usersGet_body = {
@@ -20,7 +20,6 @@ type usersGet_body = {
 
 export interface usersGetRes
   extends Response<{
-    id: string;
     name: string;
   }> {}
 

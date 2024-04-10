@@ -4,7 +4,7 @@ import { EndpointEditor } from "./EndpointEditor";
 import useToast from "./../../../hooks/useToast";
 
 export const Endpoint = ({ scss, item, routeModule }) => {
-  const { deleteRouteModule } = useRouteServices();
+  const { deleteEndpoint } = useRouteServices();
   const { alertConfirm } = useToast();
   const [editMode, setEditMode] = useState(false);
   return (
@@ -35,7 +35,7 @@ export const Endpoint = ({ scss, item, routeModule }) => {
               const option = await alertConfirm(
                 "Are you sure you want to delete this item?"
               );
-              if (option) deleteRouteModule(routeModule);
+              if (option) deleteEndpoint(item.id, routeModule);
             }}
           >
             <img

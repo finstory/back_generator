@@ -29,16 +29,11 @@ body {
 
 
     --white-color: #F2F2F2;
-    --hover-blue-color: #333A48;
-    --normal-blue-color: #1c2434;
-    --strong-blue-color: #01192E;
-    --light-blue-color: #E2E8F0;
-    --bg-blue-color: #CCD8E3;
-    --off-light-blue-color: #8A99AF;
 
     --text-primary-color: #2FABCF;
-
-    --strong-green-color: #358F8F;
+    
+    --off-green-color: rgba(103, 141, 193, 0.648);
+    --strong-green-color: #286d66;
     --hover-green-color: #1addc689;
     --normal-green-color: #3EE6B4;
     --gray-color: #3D3D3D;
@@ -77,16 +72,18 @@ body {
 
 /* SCROLL */
 ::-webkit-scrollbar {
-    width: 1.5rem;
+    width: 1.2rem;
 }
 
 ::-webkit-scrollbar-track {
     // -webkit-box-shadow: inset 0 0 6px rgba(196, 196, 196, 0.813);
-    background-color: #1c1c1c;
+    // background-color: #1c1c1c;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #1f8282;
+    border: 1px solid var(--text-primary-color);
+    background-color: #1c1c1c;
+    border-radius: 10px;
 }
 
 p {

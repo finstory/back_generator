@@ -3,9 +3,7 @@ import scss from "../../../assets/sass/pages/routes.module.scss";
 import useRouteServices from "../../../services/useRouteServices";
 import { BorderGradient } from "../../../utilities/BorderGradient";
 import { DoubleBorderGradient } from "../../../utilities/DoubleBorderGradient";
-import useToast from "../../../hooks/useToast";
-import { RouteModule } from "./RouteModule";
-import { RouteModuleEditor } from "./RouteModuleEditor";
+import { RouteModuleEditor, RouteModule } from "./_index";
 
 export const EndpointPanel = () => {
   const {
@@ -18,7 +16,7 @@ export const EndpointPanel = () => {
     <DoubleBorderGradient
       effectHeight="51rem"
       effect={true}
-      className={scss.routes_panel}
+      className={scss.endpoint_panel}
       borderRadius="2rem"
       borderSize="2px"
       borderBetween="2px"
@@ -38,7 +36,12 @@ export const EndpointPanel = () => {
         </div>
 
         <div className={scss.endpoint_dir}>
-          <RouteModuleEditor scss={scss} active={activeAddRoute} mode={"add"} />
+          <RouteModuleEditor
+            scss={scss}
+            active={activeAddRoute}
+            mode={"add"}
+            setEditMode={setActiveAddRoute}
+          />
 
           {endpointList.map((route) => (
             <RouteModule key={route.module} scss={scss} route={route} />

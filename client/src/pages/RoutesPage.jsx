@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import useRouteServices from "../services/useRouteServices";
-import { EndpointPanel } from "../components/Routes/EndpointPanel/EndpointPanel";
+import { EndpointPanel } from "../components/Routes/EndpointPanel/_index";
+import { RequestPanel } from "../components/Routes/RequestPanel/RequestPanel";
+
+
 
 export const RoutesPage = () => {
   const { getAllRoutes } = useRouteServices();
@@ -11,7 +14,8 @@ export const RoutesPage = () => {
 
   return (
     <div className={"main_container"}>
-      <EndpointPanel />
+      <RequestPanel />
+      {/* <EndpointPanel /> */}
     </div>
   );
 };

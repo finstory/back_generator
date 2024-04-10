@@ -32,8 +32,8 @@ export const RouteModuleEditor = ({
         reset();
       } else {
         editRouteModule(moduleName, name);
-        setEditMode(false);
       }
+      setEditMode(false);
     }
   };
 
@@ -59,7 +59,7 @@ export const RouteModuleEditor = ({
           />
         </div>
         <button className={scss.save_btn} type="submit">
-          {mode === "add" ? "Add" : "Save"}
+          {mode === "add" ? "Add" : "Edit"}
         </button>
       </form>
     </div>

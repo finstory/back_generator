@@ -3,7 +3,7 @@
 @import "../utilities/font";
 @import "../utilities/border";
 
-.routes_panel {
+.endpoint_panel {
     @include dim_width(50rem);
     @include dim_height(65rem);
     @include flex(center, center);
@@ -26,6 +26,7 @@
             @include dim_width();
             @include dim_height(6.5rem);
             @include flex();
+            @include font_M_PLUS(medium, 400);
             padding: 2rem;
             border-bottom: 1px solid var(--gray-color);
 
@@ -61,6 +62,8 @@
             @include dim_width();
             @include dim_height(calc(100% - 6.5rem));
             @include flex(flex-start, center, column);
+            overflow-y: scroll;
+            padding: 1rem;
 
             .module {
                 @include dim_width();
@@ -87,7 +90,7 @@
 
                     .input_wrap {
                         @include flex($gap: 1rem);
-                        @include dim_width(34rem);
+                        @include dim_width(32rem);
                         @include dim_height();
 
                         transition: 0.2s linear;
@@ -317,6 +320,122 @@
     }
 }
 
+.request_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+
+    box-shadow: 0px 0px 40px #66fbdb1d;
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column, 1rem);
+        padding: 1rem;
+        border-radius: 2rem;
+        @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+        animation: fadeIn 0.2s ease-in forwards;
+
+        .title {
+            position: relative;
+            @include dim_width();
+            @include dim_height(6.5rem);
+            @include flex();
+            @include font_M_PLUS(medium, 400);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-color);
+
+            p {
+                @include gradient(primary);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                @include font_M_PLUS(medium, 500);
+
+                &::selection {
+                    -webkit-text-fill-color: var(--text-primary-color);
+                }
+            }
+
+        }
+
+        .props_list {
+            @include dim_width();
+            @include flex(flex-start, center, row, 1.7rem, wrap);
+            @include font_M_PLUS(normal, semibold);
+            padding: 1rem 2rem;
+            @include gradient(black_bg);
+            border-radius: 2rem;
+            border-bottom: 1px solid var(--gray-color);
+            animation: fadeIn 0.2s ease-in forwards;
+
+            .prop {
+                @include flex(center, center);
+                padding: .5rem 1rem;
+                border-radius: 1rem;
+                background-color: transparent;
+                border: 0;
+                cursor: pointer;
+                transition: 0.2s linear;
+
+                &.request_type {
+                    border: 1px solid #30AA9B;
+
+                    &:hover {
+                        background-color: #30aa9cbb;
+                    }
+                }
+
+                &.controller {
+                    border: 1px solid #1A45DD;
+
+                    &:hover {
+                        background-color: #1a44dd78;
+
+                    }
+                }
+
+                &.middleware {
+                    p {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    border: 1px solid #5030AA;
+
+                    &:hover {
+                        background-color: #5130aa98;
+
+                    }
+                }
+
+                p {
+                    @include font_M_PLUS(normal, 300);
+                    color: var(--white-color);
+                }
+
+            }
+
+            .description {
+                @include dim_width();
+                @include dim_height(auto);
+                @include flex(flex-start, center);
+                @include font_M_PLUS(normal, semibold);
+                padding: 1rem;
+                border-radius: 2rem;
+                animation: fadeIn 0.2s ease-in forwards;
+
+                p {
+                    @include font_M_PLUS(normal, 300);
+                    color: var(--white-color);
+                }
+            }
+        }
+
+    }
+}
+
 
 @keyframes fadeIn {
     from {
@@ -347,6 +466,7 @@
     --off-light-blue-color: #8A99AF;
 
     --text-primary-color: #2FABCF;
+
 
     --strong-green-color: #358F8F;
     --hover-green-color: #1addc689;

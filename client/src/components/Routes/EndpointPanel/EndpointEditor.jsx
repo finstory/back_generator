@@ -79,7 +79,7 @@ export const EndpointEditor = ({
       </select>
 
       <button className={scss.save_btn} type="submit">
-        {mode === "add" ? "Add" : "Save"}
+        {mode === "add" ? "Add" : "Edit"}
       </button>
     </form>
   );

@@ -63,7 +63,6 @@ router.patch("/", async (req, res) => {
   try {
     const { id, routeModule, newEndpoint, newMethod, newControllerName } = req.body;
 
-    console.log(routeModule)
     await editRoute(id, routeModule, newEndpoint, newMethod, newControllerName);
 
     sendResponse(res, 200, "Endpoint edited.");

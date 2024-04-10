@@ -16,7 +16,15 @@ const useRouteServices = () => {
 
   services.getAllRoutes = async () => {
     const response = await api.get("endpoint/all");
-    setRoute({ endpointList: response.data.reverse() });
+    setRoute({
+      endpointList: response.data.reverse().map((route) => {
+        return {
+          ...route,
+          routesList: route.routesList.reverse()
+        }
+      })
+    });
+
   };
 
   services.createRouteModule = async (routeModule) => {
@@ -44,6 +52,16 @@ const useRouteServices = () => {
   services.deleteRouteModule = async (routeModule) => {
     try {
       const response = await api.delete("endpoint/module", { data: { routeModule } });
+      if (response) await services.getAllRoutes();
+      printAlert(response.data);
+    } catch (error) {
+      printAlert(error.response.data.payload || error.massage, "error");
+    }
+  };
+
+  services.deleteEndpoint = async (id, routeModule) => {
+    try {
+      const response = await api.delete("endpoint", { data: { id, routeModule } });
       if (response) await services.getAllRoutes();
       printAlert(response.data);
     } catch (error) {

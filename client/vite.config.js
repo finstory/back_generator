@@ -5,12 +5,18 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-
+  compilerOptions: {
+    baseUrl: "./src",
+    paths: {
+      "_index.js": ["components/_index.js"]
+    }
+  },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@sass': path.resolve(__dirname, 'src/assets/sass'),
-    },
+
+    alias: [{ find: '@sass', replacement: path.resolve(__dirname, 'src/assets/sass') },
+
+    { find: '@', replacement: path.resolve(__dirname, './src') },
+    ]
   },
 
 })
