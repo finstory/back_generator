@@ -347,16 +347,16 @@
             padding: 2rem;
             border-bottom: 1px solid var(--gray-color);
 
-            p {
-                @include gradient(primary);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                @include font_M_PLUS(medium, 500);
+            // p {
+            //     @include gradient(primary);
+            //     -webkit-background-clip: text;
+            //     -webkit-text-fill-color: transparent;
+            //     @include font_M_PLUS(medium, 500);
 
-                &::selection {
-                    -webkit-text-fill-color: var(--text-primary-color);
-                }
-            }
+            //     &::selection {
+            //         -webkit-text-fill-color: var(--text-primary-color);
+            //     }
+            // }
 
         }
 
@@ -366,7 +366,7 @@
             @include font_M_PLUS(normal, semibold);
             padding: 1rem 2rem;
             @include gradient(black_bg);
-            border-radius: 2rem;
+            // border-radius: 2rem;
             border-bottom: 1px solid var(--gray-color);
             animation: fadeIn 0.2s ease-in forwards;
 
@@ -383,15 +383,15 @@
                     border: 1px solid #30AA9B;
 
                     &:hover {
-                        background-color: #30aa9cbb;
+                        background-color: #30aa9c57;
                     }
                 }
 
                 &.controller {
-                    border: 1px solid #1A45DD;
+                    border: 1px solid #196ecf;
 
                     &:hover {
-                        background-color: #1a44dd78;
+                        background-color: #1a89dd4f;
 
                     }
                 }
@@ -405,7 +405,7 @@
                     border: 1px solid #5030AA;
 
                     &:hover {
-                        background-color: #5130aa98;
+                        background-color: #5130aa57;
 
                     }
                 }
@@ -421,18 +421,128 @@
                 @include dim_width();
                 @include dim_height(auto);
                 @include flex(flex-start, center);
-                @include font_M_PLUS(normal, semibold);
-                padding: 1rem;
-                border-radius: 2rem;
+                @include font_M_PLUS(normal);
                 animation: fadeIn 0.2s ease-in forwards;
 
                 p {
-                    @include font_M_PLUS(normal, 300);
-                    color: var(--white-color);
+                    color: var(--off-gray-color);
                 }
             }
         }
 
+        .request_bar {
+            @include dim_width();
+            @include flex(flex-start, center, row, 1.6rem);
+            padding: 1rem 2rem;
+            padding-bottom: 2rem;
+            border-radius: 1rem;
+            border-bottom: 1px solid var(--gray-color);
+
+            .search {
+                @include dim_width(40rem);
+                @include dim_height(3rem);
+                @include flex(center, center);
+
+                input {
+                    @include dim_width();
+                    @include dim_height();
+                    border-radius: 1rem;
+                    border: 1px solid var(--off-gray-color);
+                    padding: 0 1rem;
+                    color: var(--white-color);
+                    background-color: transparent;
+                    transition: border 0.2s linear;
+
+                    &::placeholder {}
+
+                    &:focus {
+                        border: 1px solid var(--text-primary-color);
+                        outline: none;
+                    }
+                }
+            }
+
+            .submit_btn {
+                @include dim_width(7rem);
+                @include dim_height(3rem);
+                @include flex();
+                border-radius: 1rem;
+                cursor: pointer;
+                transition: 0.2s linear;
+
+                :hover {
+                    transition: 0.2s linear;
+                    @include gradient(primary);
+
+                    p {
+                        background-color: transparent;
+                    }
+                }
+
+
+            }
+        }
+
+        .data_manager {
+            @include dim_width();
+            @include flex(center, center, column, 1rem);
+            @include font_M_PLUS(normal, 400);
+            color: var(--off-white-color);
+
+            nav {
+                @include dim_width();
+                @include flex(flex-start, center, row, 3rem);
+                @include font_M_PLUS(normal, semibold);
+                padding: 1rem 2rem;
+
+                p {
+                    color: var(--off-gray-color);
+                    cursor: pointer;
+
+                }
+
+            }
+
+            .properties {
+                @include dim_width();
+                @include flex(flex-start, center, column, 1rem);
+                padding: 1rem 2rem;
+
+                .header {
+                    @include dim_width();
+                    @include dim_height(4rem);
+                    @include dim_width();
+                    @include flex(flex-start, center, row);
+
+                    padding-left: 1rem;
+                    border-bottom: 1px solid var(--gray-color);
+
+                    p {
+                        text-align: start;
+                        @include dim_width(33%);
+                    }
+                }
+
+                .prop {
+                    @include dim_width();
+                    @include dim_height(4rem);
+                    @include flex(flex-start, center, row);
+                    padding-left: 1rem;
+                    background-color: transparent;
+                    border-bottom: 1px solid var(--gray-color);
+                    transition: 0.2s linear;
+
+                    p {
+                        text-align: start;
+                        @include dim_width(33%);
+                        cursor: pointer;
+                    }
+                }
+
+
+
+            }
+        }
     }
 }
 

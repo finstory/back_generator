@@ -1,6 +1,7 @@
 import React from 'react';
 import {DoubleBorderGradient} from '../../../utilities/DoubleBorderGradient';
 import scss from '../../../assets/sass/pages/routes.module.scss';
+import {BorderGradient} from '../../../utilities/BorderGradient';
 
 export const RequestPanel = () => {
   return (
@@ -42,10 +43,65 @@ export const RequestPanel = () => {
 
         </div>
 
-        <div className={scss.request_manager}>
-          {' '}
-          content{' '}
+        <form className={scss.request_bar}>
+
+          <div className={scss.search}>
+            <input
+              type="text"
+              placeholder="Input your path..."
+              value={'/my_acount/:139?name:facu'}
+            />
+          </div>
+
+          <BorderGradient
+            className={scss.submit_btn}
+            borderSize="2px"
+            onClick={() => {}}
+          >
+            <p>SEND</p>
+          </BorderGradient>
+
+        </form>
+
+        <div className={scss.data_manager}>
+          <nav>
+            <p>PARAMS</p>
+            <p>QUERY</p>
+            <p style={{color: 'var(--text-primary-color)'}}>BODY</p>
+          </nav>
+
+          <div className={scss.properties}>
+            <div className={scss.header}>
+              <p>KEY</p>
+              <p>VALUE</p>
+              <p>TYPE</p>
+            </div>
+
+            <div className={scss.prop}>
+              <div className={scss.mark} />
+              <p>id_team</p>
+              <p>139</p>
+              <p>number</p>
+            </div>
+
+            <div className={scss.prop}>
+              <div className={scss.mark} />
+              <p>name</p>
+              <p>facu</p>
+              <p>string</p>
+            </div>
+
+            <div className={scss.prop}>
+              <div className={scss.mark} />
+              <p>user</p>
+              <p>{'obect{}'}</p>
+              <p>User</p>
+            </div>
+
+          </div>
+
         </div>
+
       </div>
 
     </DoubleBorderGradient>
