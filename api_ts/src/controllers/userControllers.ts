@@ -1,5 +1,18 @@
 import controller from "../interfaces/controllers/bases/UserBase";
 import { throwError } from "../helpers/customError";
+import { Request, Response } from "express";
+
+// type Params = { id: string };
+// type Body = { rama: string };
+
+// const controllers = {
+//   async userGet({ params, query, body }: Request, res: Response) {},
+// };
+
+// controllers.userGet = async (req: Request<Params, {}, Body, {}>, res) => {
+//   // const { id } = req.params;
+//   // const params: Params = { id };
+// };
 
 //% GET - /users/:id
 controller.userGet = async ({ params, query, body }, res) => {

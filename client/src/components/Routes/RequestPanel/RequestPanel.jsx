@@ -65,9 +65,9 @@ export const RequestPanel = () => {
 
         <div className={scss.data_manager}>
           <nav>
-            <p>PARAMS</p>
-            <p>QUERY</p>
-            <p style={{color: 'var(--text-primary-color)'}}>BODY</p>
+            <li>PARAMS</li>
+            <li>QUERY</li>
+            <li style={{color: 'var(--text-primary-color)'}}>BODY</li>
           </nav>
 
           <div className={scss.properties}>
@@ -93,14 +93,22 @@ export const RequestPanel = () => {
 
             <div className={scss.prop}>
               <div className={scss.mark} />
-              <p>user</p>
-              <p>{'obect{}'}</p>
-              <p>User</p>
+              <p style={{color: 'var(--text-primary-color)'}}>user</p>
+              <p style={{color: 'var(--text-primary-color)'}}>{'obect{}'}</p>
+              <p style={{color: 'var(--text-primary-color)'}}>User</p>
             </div>
 
           </div>
 
         </div>
+
+        <BorderGradient
+          className={scss.view_in_vsc}
+          borderSize="2px"
+          onClick={() => {}}
+        >
+          <p>VIEW EN VSC</p>
+        </BorderGradient>
 
       </div>
 

@@ -14,8 +14,8 @@ export const RoutesPage = () => {
 
   return (
     <div className={"main_container"}>
+      <EndpointPanel />
       <RequestPanel />
-      {/* <EndpointPanel /> */}
     </div>
   );
 };

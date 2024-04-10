@@ -470,7 +470,7 @@
                 cursor: pointer;
                 transition: 0.2s linear;
 
-                :hover {
+                &:hover {
                     transition: 0.2s linear;
                     @include gradient(primary);
 
@@ -495,7 +495,8 @@
                 @include font_M_PLUS(normal, semibold);
                 padding: 1rem 2rem;
 
-                p {
+                li {
+                    list-style: none;
                     color: var(--off-gray-color);
                     cursor: pointer;
 
@@ -542,6 +543,26 @@
 
 
             }
+        }
+
+        .view_in_vsc {
+            @include dim_width(10.5rem);
+            @include dim_height(3rem);
+            @include flex(center, center);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: 0.2s linear;
+
+
+            &:hover {
+                transition: 0.2s linear;
+                @include gradient(primary);
+
+                p {
+                    background-color: transparent;
+                }
+            }
+
         }
     }
 }
