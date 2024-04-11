@@ -3,6 +3,6 @@
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[javascriptreact]": {
-        "editor.defaultFormatter": "schroeter.prettier-vscode-space-parenthesis"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }

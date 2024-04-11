@@ -2,6 +2,8 @@
 export const useManagerText = () => {
     const compiler = {};
 
+    //crea una opcion para poner todas las letras y solo las letras que recibas en mayusuclas, ejemplo: /hellS_ds  => /HELLOS_DS
+
     compiler.upperCaseList = (list) => {
         return list.map((string) => string[0].toUpperCase() + string.substring(1));
     };

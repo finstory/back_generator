@@ -5,8 +5,6 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export const routeReducer = {
   endpointList: [],
-  error_login: false,
-  logged: false,
 };
 
 const useRouteServices = () => {

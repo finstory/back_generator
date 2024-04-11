@@ -365,9 +365,7 @@
             @include flex(flex-start, center, row, 1.7rem, wrap);
             @include font_M_PLUS(normal, semibold);
             padding: 1rem 2rem;
-            @include gradient(black_bg);
             // border-radius: 2rem;
-            border-bottom: 1px solid var(--gray-color);
             animation: fadeIn 0.2s ease-in forwards;
 
             .prop {
@@ -433,10 +431,9 @@
         .request_bar {
             @include dim_width();
             @include flex(flex-start, center, row, 1.6rem);
-            padding: 1rem 2rem;
-            padding-bottom: 2rem;
+            padding: 2rem 2rem;
             border-radius: 1rem;
-            border-bottom: 1px solid var(--gray-color);
+            border-top: 1px solid var(--gray-color);
 
             .search {
                 @include dim_width(40rem);

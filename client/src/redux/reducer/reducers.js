@@ -2,7 +2,7 @@
 import { authReducer } from "../../services/useAuthServices";
 import { homeReducer } from "../../services/useHomeServices";
 import { routeReducer } from "../../services/useRouteServices";
-
+import { requestReducer } from "../../services/useRequestServices";
 //$
 
 const reducers = {};
@@ -11,6 +11,7 @@ const reducers = {};
 reducers.auth = authReducer;
 reducers.home = homeReducer;
 reducers.route = routeReducer;
+reducers.request = requestReducer;
 
 //$
 
