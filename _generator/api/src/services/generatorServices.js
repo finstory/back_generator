@@ -5,11 +5,11 @@
 
 const fs = require("fs");
 const path = require("path");
-const { throwError, catchError } = require("./helpers/customError");
+const { throwError, catchError } = require("../helpers/customError");
 const { clear } = require("console");
 const basePath = path.join(__dirname, "..");
 
-const getFilePath = (name = "", type = "js", directory = "generator") => {
+const getFilePath = (name = "", type = "js", directory = "modules") => {
   const basePath = path.join(__dirname, "..");
   return basePath + "/" + directory + "/" + name + "." + type;
 };
@@ -21,7 +21,7 @@ function UpFirst(str) {
 async function generateFile(name, directory = "", jsCode = "", type = "ts") {
   await catchError((resolve, reject) => {
     const filePath = directory + "/" + name + "." + type;
-
+    console.log(filePath);
     fs.writeFile(filePath, jsCode, function (err) {
       if (err)
         reject([
@@ -35,7 +35,7 @@ async function generateFile(name, directory = "", jsCode = "", type = "ts") {
 }
 
 async function deleteJSFile(name, directory = "") {
-  const filePath = directory + "/" + name + ".js";
+  const filePath = directory + "/" + name + ".ts";
 
   await catchError((resolve, reject) => {
     fs.unlink(filePath, function (err) {
@@ -45,29 +45,28 @@ async function deleteJSFile(name, directory = "") {
           500,
           "An error occurred while deleting the file: " + name,
         ]);
-      else resolve("the route was deleted.");
+      else resolve();
     });
   }, 1);
 }
 
 async function addContent(
   startTag,
-  endTag,
   lineToAdd,
   filePath,
   returnToExists = false
 ) {
-  // Leer el contenido del archivo
+
+  // console.log({ startTag, lineToAdd, filePath, })
 
   await catchError((resolve, reject) => {
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
-        if (err)
-          reject([
-            "add_content",
-            500,
-            "An error occurred while reading the file: " + filePath,
-          ]);
+        reject([
+          "add_content",
+          500,
+          "An error occurred while reading the file: " + filePath,
+        ]);
         return;
       }
 
@@ -146,8 +145,9 @@ async function deleteContent(startTag, endTag, filePath) {
   });
 }
 
-async function deleteTagsAndContent(startTag, endTag, filePath) {
+async function deleteTagsAndContent(startTag, endTag, filePath, secondEndTag) {
   // Leer el contenido del archivo
+  let activeSecondTry = false;
   await new Promise((resolve, reject) => {
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
@@ -185,10 +185,30 @@ async function deleteTagsAndContent(startTag, endTag, filePath) {
           reject();
           return;
         }
+        activeSecondTry = true;
         resolve();
       });
     });
   });
+
+
+}
+
+async function getFile(filePath, jsonFormat = false) {
+  let getData = await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+      }
+      resolve(data);
+    });
+  }).then((data) => {
+    if (!jsonFormat) return JSON.parse(data);
+    else return data;
+  });
+
+  return getData;
 }
 
 async function replaceTag(tagToReplace, newTag, filePath) {
@@ -225,6 +245,7 @@ module.exports = {
   deleteContent,
   deleteTagsAndContent,
   replaceTag,
+  getFile,
 };
 
 // const main = async () => {

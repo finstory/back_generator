@@ -9,6 +9,7 @@ const { getEndpointNames } = require("../../modules/Utils/routerUtils");
 const pathData = getPath("data");
 const pathRoutes = getPath("routes");
 const services = {};
+addServices("routes", services);
 
 services.getAllRoutes = async () => {
   return await getFile(pathData + "/routesData.json");
@@ -19,7 +20,7 @@ services.createRouteModule = async (routeModule) => {
   const moduleGetting = routeList.find((route) => route.module === routeModule);
 
   throwError("bad_request", 400, "Route module name is required.", !routeModule);
-  throwError("bad_request", 400, "Route module already exists.", !!moduleGetting);
+  throwError("bad_request", 400, "Route module already exists.", moduleGetting !== undefined);
 
   routeList.push({ module: routeModule, routesList: [] });
 
@@ -28,7 +29,7 @@ services.createRouteModule = async (routeModule) => {
   printMsg(`Route module ${routeModule} created.`);
 };
 
-services.createRoute = async (routeModule, endpoint, method, nameController) => {
+services.createRoute = async (routeModule, endpoint, method, controllerName) => {
 
   const routeList = await services.getAllRoutes();
   const moduleGet = routeList.find((route) => route.module === routeModule);
@@ -36,7 +37,7 @@ services.createRoute = async (routeModule, endpoint, method, nameController) => 
   throwError("bad_request", 400, "Route module name is required.", !routeModule);
   throwError("bad_request", 400, "Route module not exists.", moduleGet === undefined);
 
-  const controllerExist = moduleGet.routesList.find((route) => route.nameController === nameController);
+  const controllerExist = moduleGet.routesList.find((route) => route.controllerName === controllerName);
 
   throwError("bad_request", 400, "Controller name already exists.", controllerExist !== undefined);
 
@@ -44,7 +45,7 @@ services.createRoute = async (routeModule, endpoint, method, nameController) => 
 
   throwError("bad_request", 400, `Endpoint: '${method} - ${endpoint}' already exists.`, endpointExist !== undefined);
 
-  const newController = generateControllerName(routeModule, endpoint, method);
+  const newController = services.generateControllerName(routeModule, endpoint, method);
 
   routeList.forEach((route) => {
 
@@ -53,7 +54,12 @@ services.createRoute = async (routeModule, endpoint, method, nameController) => 
         id: uuidv4(),
         endpoint,
         method,
-        nameController: nameController ? nameController : newController,
+        description: "Write a description here...",
+        controllerName: controllerName ? controllerName : newController,
+        middlewares: ["Token", "+"],
+        params: {},
+        query: [],
+        body: [],
       });
 
   });
@@ -94,7 +100,7 @@ services.editRoute = async (id, routeModule, newEndpoint, newMethod, newControll
 
   throwError("bad_request", 400, `Endpoint not found.`, !routeGetting);
 
-  const newController = generateControllerName(routeModule, newEndpoint, newMethod);
+  const newController = services.generateControllerName(routeModule, newEndpoint, newMethod);
 
   routeList.forEach((route) => {
 
@@ -103,8 +109,9 @@ services.editRoute = async (id, routeModule, newEndpoint, newMethod, newControll
         if (route.id === id) {
           route.endpoint = newEndpoint ? newEndpoint : route.endpoint;
           route.method = newMethod ? newMethod : route.method;
-          route.nameController = newControllerName ? newControllerName : newController;
+          route.controllerName = newControllerName ? newControllerName : newController;
         }
+        return route;
       });
 
   });
@@ -159,7 +166,7 @@ services.deleteRouteModule = async (routeModule) => {
 
 //? microservices
 
-const generateControllerName = (routeModule, endpoint, method) => {
+services.generateControllerName = (routeModule, endpoint, method) => {
 
   let controllerName;
   const { endpointList, params } = getEndpointNames(endpoint, false);

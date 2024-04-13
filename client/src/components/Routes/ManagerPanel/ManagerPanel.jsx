@@ -9,7 +9,7 @@ export const ManagerPanel = () => {
     <DoubleBorderGradient
       effectHeight="51rem"
       effect={true}
-      className={scss.routes_panel}
+      className={scss.manager_panel}
       borderRadius="2rem"
       borderSize="2px"
       borderBetween="2px"

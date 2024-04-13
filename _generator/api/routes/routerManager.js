@@ -9,7 +9,7 @@ const {
   deleteTagsAndContent,
   replaceTag,
   deleteJSFile,
-} = require("../generatorServices");
+} = require("../src/services/generatorServices");
 const { UpFirst, textColor, printMsg } = require("../helpers/wordsManager");
 const {
   endpointCode,
@@ -25,15 +25,15 @@ const main = async () => {
   //  await compiler.creteRouterFile("user");
   //  await compiler.addRouter("/profile", "post", "products");
   //  await compiler.addRouter("/:id", "get", "user");
-//    await compiler.addRouter("/email/:email", "delete", "user");
- await deleteTagsAndContent(
-    '//GRE-6yYRmUj1jxcSdTNB7892oX',"//GRE",
+  //    await compiler.addRouter("/email/:email", "delete", "user");
+  await deleteTagsAndContent(
+    '//GRE-6yYRmUj1jxcSdTNB7892oX', "//GRE",
     "generator/routes/userRoutes.ts"
   );
-//   await deleteContent(
-//     '//GRE-6yYRmUj1jxcSdTNB7892oX',"//GRE",
-//     "generator/routes/userRoutes.ts"
-//   );
+  //   await deleteContent(
+  //     '//GRE-6yYRmUj1jxcSdTNB7892oX',"//GRE",
+  //     "generator/routes/userRoutes.ts"
+  //   );
 };
 
 compiler.createRouteIndex = async (endpoint = "/", typeReq, routeModule) => {

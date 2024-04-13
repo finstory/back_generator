@@ -1,18 +1,11 @@
+const { printMsg } = require("./wordsManager");
+
 class CustomError extends Error {
   constructor(type, status, payload) {
     super();
     this.type = type;
     this.status = status;
     this.payload = payload;
-    Error.captureStackTrace(this, this.constructor);
-  }
-}
-
-class CatchError extends Error {
-  constructor(name) {
-    super();
-    this.name = name;
-    this.wasCatch = true;
     Error.captureStackTrace(this, this.constructor);
   }
 }
@@ -24,20 +17,30 @@ function throwError(type, status, payload = "Error in request.", checkError = tr
   else return;
 }
 
-function catchError(object, condition) {
-  const nameCondition = Object.keys(object)[0];
-  if (condition) throw new CatchError(nameCondition);
-  else return;
+const catchError = async (callback, timer = 1, msgTimerError) => {
+  let setTimer;
+
+  await new Promise((resolve, reject) => {
+    callback(resolve, reject);
+
+    setTimer = setTimeout(() => {
+      if (msgTimerError) reject(new Error(msgTimerError));
+      else reject(new Error("Timeout in process..."));
+    }, timer * 1000);
+
+  })
+    .then((msg) => { if (msg) console.log(msg); clearTimeout(setTimer); })
+    .catch((err) => {
+      clearTimeout(setTimer);
+      if (err[1] && err[2]) throwError(err[0], err[1], err[2]);
+      else throw err;
+    })
 }
 
-function checkIsCathError(error) {
-  if (error.wasCatch) return;
-  else throw error;
+const printError = (error) => {
+  if (error && error.payload)
+    printMsg(`${error.payload} (${error.type})`, "error");
+  else printMsg(error, "error");
 }
 
-// function throwError(type, payload, status, checkError = true) {
-//   if (checkError) throw new CustomError(type, status, payload);
-//   else return;
-// }
-
-module.exports = { throwError, catchError, checkIsCathError };
+module.exports = { throwError, catchError, printError };

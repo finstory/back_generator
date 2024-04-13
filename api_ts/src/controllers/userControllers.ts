@@ -14,9 +14,30 @@ import { Request, Response } from "express";
 //   // const params: Params = { id };
 // };
 
+const dataLeng = [
+  {
+    id: 2,
+    status: 404,
+    message: {
+      spanish: "Usuario no encontrado",
+      english: "User not found",
+    },
+  },
+];
+
 //% GET - /users/:id
 controller.userGet = async ({ params, query, body }, res) => {
   const data = { name: query.name };
+
+  // const lenguage: string = "spanish";
+
+  // let message: string = "";
+  // let message2: string = "";
+  // if (lenguage === "english") message = "User not found";
+
+  // if (lenguage === "spanish") message = "Usuario no encontrado";
+
+  // throwError("not_found", 404, message2);
 
   res.status(200).json(data);
 };

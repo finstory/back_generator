@@ -1,28 +1,21 @@
 import React from "react";
 import axios from "axios";
 import { useRedux } from "../redux/reducer/useRedux";
-import controller from './../../../api_ts/src/controllers/userControllers';
+import controller from "./../../../api_ts/src/controllers/userControllers";
 
 export const requestReducer = {
     bar_url: "/my_acount/:139?name:facu",
-
+    route_module_target: "user",
     endpoint_target: {
         id: "7Z2i38fAsbPT8Lfuf7iyF9",
-        endpoint: "/jeje",
+        endpoint: "/",
         description: "Get the user's account information from the database.",
         method: "get",
-        nameController: "getProductJeje",
+        controllerName: "getProductJeje",
         middlewares: ["Token", "+"],
-        params:
-            { key: "id", value: "139" },
-        query: [
-            { key: "name", value: "facu" },
-        ],
-        body: [
-            { key: "id", value: "139", type: "number", },
-            { key: "name", value: "facu", type: "string", },
-            { key: "user", value: "obect{}", type: "User", },
-        ]
+        params: {},
+        query: [],
+        body: [],
     },
 };
 
@@ -31,7 +24,15 @@ export const useRequestServices = () => {
     const { request, setRequest } = services;
 
     // Add your services (or redux actions)...
+    // module_target
 
+    services.setRouteModuleTarget = (routeModule) => {
+        setRequest({ route_module_target: routeModule }, "SET_ROUTE_TARGET");
+    };
+
+    services.setEndpointTarget = (item) => {
+        setRequest({ endpoint_target: item }, "SET_ENDPOINT_TARGET");
+    };
 
     return services;
 };

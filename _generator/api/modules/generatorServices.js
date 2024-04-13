@@ -52,7 +52,6 @@ async function deleteJSFile(name, directory = "") {
 
 async function addContent(
   startTag,
-  endTag,
   lineToAdd,
   filePath,
   returnToExists = false

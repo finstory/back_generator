@@ -33,7 +33,8 @@ export const EndpointEditor = ({
           item.id,
           routeModule,
           values.route_name,
-          values.request_type
+          values.request_type,
+          item.controllerName
         );
       } else {
         addEndpoint(routeModule, values.route_name, values.request_type);

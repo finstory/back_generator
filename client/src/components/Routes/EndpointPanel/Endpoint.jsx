@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import useRouteServices from "../../../services/useRouteServices";
 import { EndpointEditor } from "./EndpointEditor";
 import useToast from "./../../../hooks/useToast";
+import { useRequestServices } from "../../../services/useRequestServices";
 
 export const Endpoint = ({ scss, item, routeModule }) => {
   const { deleteEndpoint } = useRouteServices();
+  const { setEndpointTarget, setRouteModuleTarget } = useRequestServices();
   const { alertConfirm } = useToast();
   const [editMode, setEditMode] = useState(false);
   return (
@@ -20,8 +22,16 @@ export const Endpoint = ({ scss, item, routeModule }) => {
       ) : (
         <div key={item.id} className={scss.endpoint}>
           <div className={scss.marker}></div>
-          {item.endpoint.toUpperCase()}
-          <span> - </span> {item.method.toUpperCase()}
+          <div
+            className={scss.name}
+            onClick={() => {
+              setRouteModuleTarget(routeModule);
+              setEndpointTarget(item);
+            }}
+          >
+            {item.endpoint.toUpperCase()}
+            <span> - </span> {item.method.toUpperCase()}
+          </div>
           <div className={scss.action_btn}>
             <img
               src="https://res.cloudinary.com/dz9smi3nc/image/upload/v1712557540/Generator/Icons/icons8-editar-100_1_fe45dg.png"
@@ -35,7 +45,8 @@ export const Endpoint = ({ scss, item, routeModule }) => {
               const option = await alertConfirm(
                 "Are you sure you want to delete this item?"
               );
-              if (option) deleteEndpoint(item.id, routeModule);
+              if (option)
+                deleteEndpoint(item.id, routeModule, item.controllerName);
             }}
           >
             <img

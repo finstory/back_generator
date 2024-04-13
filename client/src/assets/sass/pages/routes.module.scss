@@ -9,7 +9,7 @@
     @include flex(center, center);
     border-radius: 1rem;
 
-    box-shadow: 0px 0px 40px #66fbdb1d;
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
 
     .panel {
         @include dim_width();
@@ -326,7 +326,7 @@
     @include flex(center, center);
     border-radius: 1rem;
 
-    box-shadow: 0px 0px 40px #66fbdb1d;
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
 
     .panel {
         @include dim_width();
@@ -344,8 +344,13 @@
             @include dim_height(6.5rem);
             @include flex();
             @include font_M_PLUS(medium, 400);
+
             padding: 2rem;
             border-bottom: 1px solid var(--gray-color);
+
+            span {
+                @include color_request_type();
+            }
 
             // p {
             //     @include gradient(primary);
@@ -370,6 +375,7 @@
 
             .prop {
                 @include flex(center, center);
+                @include color_request_type(false);
                 padding: .5rem 1rem;
                 border-radius: 1rem;
                 background-color: transparent;
@@ -377,13 +383,11 @@
                 cursor: pointer;
                 transition: 0.2s linear;
 
-                &.request_type {
-                    border: 1px solid #30AA9B;
 
-                    &:hover {
-                        background-color: #30aa9c57;
-                    }
-                }
+
+
+
+
 
                 &.controller {
                     border: 1px solid #196ecf;
@@ -482,7 +486,7 @@
 
         .data_manager {
             @include dim_width();
-            @include flex(center, center, column, 1rem);
+            @include flex(center, center, column, 2rem);
             @include font_M_PLUS(normal, 400);
             color: var(--off-white-color);
 
@@ -493,10 +497,27 @@
                 padding: 1rem 2rem;
 
                 li {
+                    position: relative;
                     list-style: none;
-                    color: var(--off-gray-color);
+                    color: var(--white-color);
                     cursor: pointer;
+                    transition: 0.2s linear;
 
+                    .is_null {
+                        position: absolute;
+                        bottom: -1rem;
+                        right: -1rem;
+                        @include font_M_PLUS(little, 600);
+                        color: var(--normal-green-color);
+                    }
+
+                    &:hover {
+                        color: var(--text-primary-color);
+                    }
+
+                    &.active {
+                        color: var(--text-primary-color) !important;
+                    }
                 }
 
             }
@@ -561,6 +582,27 @@
             }
 
         }
+    }
+}
+
+.manager_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column, 1rem);
+        padding: 1rem;
+        border-radius: 2rem;
+        @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+        animation: fadeIn 0.2s ease-in forwards;
+
     }
 }
 

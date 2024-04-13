@@ -38,7 +38,8 @@
     "redux": "^5.0.1",
     "redux-thunk": "^2.4.2",
     "sass": "^1.71.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vscode": "^1.1.37"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

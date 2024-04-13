@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { addRouter } = require("../../modules/routes/routerManager");
 const { sendResponse, sendError } = require("../helpers/managerController");
-const { getFile } = require("../../modules/generatorServices");
 const getPath = require("../helpers/getPath");
 const {
   createRouteModule,
@@ -11,7 +10,14 @@ const {
   editRoute,
   deleteRoute,
   deleteRouteModule,
-} = require("../services/routesSerivces");
+  generateControllerName,
+} = require("../services/routeServices");
+const { createControllerFile,
+  deleteControllerFile,
+  addController,
+  editController,
+  deleteController
+} = require("../services/controllerServices");
 const { printMsg } = require("../../modules/helpers/wordsManager");
 
 const router = Router();
@@ -28,8 +34,11 @@ router.get("/all", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { routeModule, endpoint, method, nameController } = req.body;
-    await createRoute(routeModule, endpoint, method, nameController);
+    const { routeModule, endpoint, method, controllerName } = req.body;
+    const newControllerName = controllerName ? controllerName : generateControllerName(routeModule, endpoint, method);
+
+    await createRoute(routeModule, endpoint, method, controllerName);
+    await addController(routeModule, newControllerName);
 
     sendResponse(res, 200, "Endpoint added.");
   } catch (error) {
@@ -40,7 +49,9 @@ router.post("/", async (req, res) => {
 router.post("/module", async (req, res) => {
   try {
     const { routeModule } = req.body;
+
     await createRouteModule(routeModule);
+    await createControllerFile(routeModule);
 
     sendResponse(res, 200, `Route module ${routeModule} created.`);
   } catch (error) {
@@ -61,9 +72,11 @@ router.patch("/module", async (req, res) => {
 
 router.patch("/", async (req, res) => {
   try {
-    const { id, routeModule, newEndpoint, newMethod, newControllerName } = req.body;
+    const { id, routeModule, newEndpoint, newMethod, controllerName } = req.body;
+    const newControllerName = generateControllerName(routeModule, newEndpoint, newMethod);
 
-    await editRoute(id, routeModule, newEndpoint, newMethod, newControllerName);
+    await editRoute(id, routeModule, newEndpoint, newMethod);
+    await editController(routeModule, controllerName, newControllerName);
 
     sendResponse(res, 200, "Endpoint edited.");
   } catch (error) {
@@ -73,9 +86,10 @@ router.patch("/", async (req, res) => {
 
 router.delete("/", async (req, res) => {
   try {
-    const { routeModule, id } = req.body;
+    const { routeModule, id, controllerName, includeController = false } = req.body;
 
     await deleteRoute(id, routeModule);
+    if (includeController) await deleteController(routeModule, controllerName);
 
     sendResponse(res, 200, "Endpoint deleted.");
   } catch (error) {
@@ -88,7 +102,7 @@ router.delete("/module", async (req, res) => {
     const { routeModule } = req.body;
 
     await deleteRouteModule(routeModule);
-
+    // await deleteControllerFile(routeModule);
     sendResponse(res, 200, "Route module deleted.");
   } catch (error) {
     sendError(res, error);

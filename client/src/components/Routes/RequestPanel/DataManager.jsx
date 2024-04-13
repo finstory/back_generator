@@ -1,44 +1,101 @@
-import React from 'react';
+import React, { useState } from "react";
 
-export const DataManager = ({scss}) => {
+export const DataManager = ({ scss, item }) => {
+  const [menuSelected, setMenuSelected] = useState("params");
+
+  const switchMenu = (menu) => {
+    setMenuSelected(menu);
+  };
+
   return (
     <div className={scss.data_manager}>
       <nav>
-        <li>PARAMS</li>
-        <li>QUERY</li>
-        <li style={{color: 'var(--text-primary-color)'}}>BODY</li>
+        <li
+          className={menuSelected === "params" ? scss.active : ""}
+          style={
+            Object.keys(item.params).length === 0
+              ? { color: "var(--off-gray-color)" }
+              : {}
+          }
+          onClick={() => switchMenu("params")}
+        >
+          {Object.keys(item.params).length === 0 && (
+            <div className={scss.is_null}>NULL</div>
+          )}
+          PARAMS
+        </li>
+
+        <li
+          className={menuSelected === "query" ? scss.active : ""}
+          onClick={() => switchMenu("query")}
+          style={
+            item.query.length === 0 ? { color: "var(--off-gray-color)" } : {}
+          }
+        >
+          {item.query.length === 0 && <div className={scss.is_null}>NULL</div>}
+          QUERY
+        </li>
+
+        <li
+          className={menuSelected === "body" ? scss.active : ""}
+          onClick={() => switchMenu("body")}
+          style={
+            item.body.length === 0 ? { color: "var(--off-gray-color)" } : {}
+          }
+        >
+          {item.body.length === 0 && <div className={scss.is_null}>NULL</div>}
+          BODY
+        </li>
       </nav>
 
       <div className={scss.properties}>
-        <div className={scss.header}>
-          <p>KEY</p>
-          <p>VALUE</p>
-          <p>TYPE</p>
-        </div>
+        {menuSelected === "params" || menuSelected === "query" ? (
+          <>
+            <div className={scss.header}>
+              <p style={{ width: "50%" }}>KEY</p>
+              <p style={{ width: "50%" }}>VALUE</p>
+            </div>
 
-        <div className={scss.prop}>
-          <div className={scss.mark} />
-          <p>id_team</p>
-          <p>139</p>
-          <p>number</p>
-        </div>
+            {menuSelected === "params" ? (
+              <>
+                {Object.keys(item.params).length !== 0 && (
+                  <div className={scss.prop}>
+                    <div className={scss.mark}></div>
+                    <p style={{ width: "50%" }}>{item.params.key}</p>
+                    <p style={{ width: "50%" }}>{item.params.value}</p>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {item.query.map((query) => (
+                  <div className={scss.prop} key={query.key}>
+                    <div className={scss.mark}></div>
+                    <p style={{ width: "50%" }}>{query.key}</p>
+                    <p style={{ width: "50%" }}>{query.value}</p>
+                  </div>
+                ))}
+              </>
+            )}
+          </>
+        ) : (
+          <div className={scss.header}>
+            <p>KEY</p>
+            <p>VALUE</p>
+            <p>TYPE</p>
+          </div>
+        )}
 
-        <div className={scss.prop}>
-          <div className={scss.mark} />
-          <p>name</p>
-          <p>facu</p>
-          <p>string</p>
-        </div>
-
-        <div className={scss.prop}>
-          <div className={scss.mark} />
-          <p style={{color: 'var(--text-primary-color)'}}>user</p>
-          <p style={{color: 'var(--text-primary-color)'}}>{'obect{}'}</p>
-          <p style={{color: 'var(--text-primary-color)'}}>User</p>
-        </div>
-
+        {menuSelected === "body" &&
+          item.body.map((body) => (
+            <div className={scss.prop} key={body.key}>
+              <div className={scss.mark}></div>
+              <p>{body.key}</p>
+              <p>{body.value}</p>
+              <p>{body.type}</p>
+            </div>
+          ))}
       </div>
-
     </div>
   );
 };
