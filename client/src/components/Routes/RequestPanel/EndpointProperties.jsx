@@ -1,14 +1,16 @@
 import React from "react";
 import { useManagerText } from "../../../hooks/useManagerText";
 import { getPath } from "../../../../helpers/getPath";
+import useRouteServices from "../../../services/useRouteServices";
 
 export const EndpointProperties = ({ scss, item, routeModule }) => {
   const { firsUpperCase } = useManagerText();
+  const { getControllerIndex } = useRouteServices();
+  const openInVSC = async () => {
+    const index = await getControllerIndex(routeModule, item.controllerName);
+    const file_path = getPath("controllers") + `/${routeModule}Controllers.ts`;
 
-  const openInVSC = () => {
-    const file_path =
-      getPath("controllers") + `/${routeModule}Controllers.ts`;
-    window.open(`vscode://file/${file_path}:${10}:${10}`);
+    window.open(`vscode://file/${file_path}:${index}:12`);
   };
 
   return (

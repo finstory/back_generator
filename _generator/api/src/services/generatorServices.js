@@ -18,11 +18,11 @@ function UpFirst(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-async function generateFile(name, directory = "", jsCode = "", type = "ts") {
+async function generateFile(name, directory = "", code = "", type = "ts") {
   await catchError((resolve, reject) => {
     const filePath = directory + "/" + name + "." + type;
     console.log(filePath);
-    fs.writeFile(filePath, jsCode, function (err) {
+    fs.writeFile(filePath, code, function (err) {
       if (err)
         reject([
           "generate_file",
@@ -237,6 +237,62 @@ async function replaceTag(tagToReplace, newTag, filePath) {
   });
 }
 
+async function findLineInText(textToSearch, filePath) {
+  const lineGetting = await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+        return;
+      }
+
+      let result;
+      const lines = data.split('\n');
+
+      for (let index = 0; index < lines.length; index++) {
+
+        if (lines[index].includes(textToSearch)) {
+          result = { lineIndex: index + 1 };
+          break;
+        }
+      }
+      resolve(result);
+    });
+  });
+  return lineGetting;
+}
+
+async function findLinesWithTexts(textList = [], filePath) {
+  const linesWithTexts = await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+        return;
+      }
+
+      const linesMatch = [];
+      const lines = data.split('\n');
+
+      textList.forEach((item) => {
+        for (let index = 0; index < lines.length; index++) {
+
+          if (lines[index].includes(item.text)) {
+            linesMatch.push({ id: item.id, lineIndex: index + 1 });
+            break;
+          }
+
+        }
+      }
+      );
+
+      resolve(linesMatch);
+    });
+  });
+  return linesWithTexts;
+}
+
+
 module.exports = {
   getFilePath,
   generateFile,
@@ -246,61 +302,11 @@ module.exports = {
   deleteTagsAndContent,
   replaceTag,
   getFile,
+  findLinesWithTexts,
+  findLineInText
 };
 
 // const main = async () => {
-//   const filePath = getFilePath("veamos");
-//   const tagsStart = `//GCI-54`;
-//   const tagEnd = `//GCI`;
-//   // await deleteContent(
-//   //   tagsStart,
-//   //   tagEnd,
-//   //   filePath,
-//   // );
-
-//   const nameC = "users";
-//   const typeReq = "Get";
-
-//   // await addContent(
-//   //   `//GCI-START`,
-//   //   `//GCI-START`,
-//   //   `
-//   //   //GCI-${parseInt(Math.random()*122)}
-//   //   ${nameC}${typeReq}: async (req: I.usersGetReq, res: I.usersGetRes) => { },
-//   //   //GCI`,
-//   //   filePath,
-//   // );
-
-//   // await deleteTagsAndContent(
-//   //   `//GCI-30`,
-//   //   `//GCI`,
-//   //   filePath,
-//   // );
-
-//   // await deleteTagsAndContent(
-//   //   `//GCI-51`,
-//   //   `//GCI`,
-//   //   filePath,
-//   // );
-
-//   await addContent(
-//     tagsStart,
-//     tagEnd,
-//     `console.log('hello word')`,
-//     filePath,
-//   );
-
-//   // await replaceTag(
-//   //   `userGet:`,
-//   //   `productGet:`,
-//   //   filePath
-//   // );
-
-//   // await replaceTag(
-//   //   `userGet:`,
-//   //   `productGet:`,
-//   //   filePath
-//   // );
-
+//   console.log(await findLinesWithTexts([{ id: "putAuthProduct", text: "controller.putAuthProduct" }, { id: "const", text: "const" }], "D:/Programacion_Extra/Node_ts/_generator/api/src/services/authControllers.ts"))
 // }
 // main();

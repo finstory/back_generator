@@ -5,7 +5,7 @@ const getPath = require("../helpers/getPath");
 const { generateFile, getFile } = require("../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag } = require("./generatorServices");
+const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText } = require("./generatorServices");
 
 const pathData = getPath("data");
 const pathControllers = getPath("controllers");
@@ -71,14 +71,31 @@ services.deleteController = async (routeModule, controllerName) => {
 
 }
 
+services.getIndexController = async (routeModule, controllerName) => {
+    const filePath = pathControllers + `/${routeModule}controllers.ts`;
+
+    const textToFind = `controller.${controllerName}`;
+
+    const data = await findLineInText(textToFind, filePath);
+    return data;
+};
+
+services.getAllIndexControllers = async (controllersList, controllerName) => {
+    const filePath = pathControllers + `/${controllerName}controllers.ts`;
+
+    const textListToFind = controllersList.map(string => {
+        return { id: string, text: `controller.${string}` }
+    });
+
+    const data = await findLinesWithTexts(textListToFind, filePath);
+    return data;
+};
 
 
-//  services.createControllerFile("auth");
-// services.deleteControllerFile("auth");
-// services.addController("auth", "getAuthLogin");
+
 const main = async () => {
     try {
-         await services.createControllerFile("auth");
+        await services.createControllerFile("auth");
         // await services.addController("auth", "getAuthLogin");
         await services.addController("facu", "getAuthFacu");
         // await services.editController("auth", "getAuthLogin", "facu");

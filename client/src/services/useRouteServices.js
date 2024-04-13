@@ -1,11 +1,10 @@
 import useToast from "../hooks/useToast";
 import { useRedux } from "../redux/reducer/useRedux";
 import api from "./../../helpers/axios";
-import toast, { Toaster } from 'react-hot-toast';
-import controller from './../../../api_ts/src/controllers/userControllers';
 
 export const routeReducer = {
-  endpointList: [],
+  endpoint_list: [],
+  controllers_list: [],
 };
 
 const useRouteServices = () => {
@@ -17,7 +16,7 @@ const useRouteServices = () => {
   services.getAllRoutes = async () => {
     const response = await api.get("endpoint/all");
     setRoute({
-      endpointList: response.data.reverse().map((route) => {
+      endpoint_list: response.data.reverse().map((route) => {
         return {
           ...route,
           routesList: route.routesList.reverse()
@@ -91,6 +90,12 @@ const useRouteServices = () => {
     } catch (error) {
       printAlert(error.response.data.payload || error.massage, "error");
     }
+  }
+
+  services.getControllerIndex = async (routeModule, controllerName) => {
+
+    const response = await api.get("controller/line", { params: { routeModule, controllerName } });
+    return response.data.lineIndex;
   }
 
   return services;

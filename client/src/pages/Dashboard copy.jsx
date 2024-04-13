@@ -9,7 +9,7 @@ import AceEditor from "react-ace";
 
 export const Dashboard = () => {
   const {
-    route: { endpointList },
+    route: { endpoint_list },
     getAllRoutes,
   } = useRouteServices();
 
@@ -47,7 +47,7 @@ export const Dashboard = () => {
           </div>
 
           <div className="endpoint_dir">
-            {endpointList.map((route) => (
+            {endpoint_list.map((route) => (
               <div key={route.module} className="module">
                 <div className="module_name">
                   <div className="marker"></div> {route.module.toUpperCase()}

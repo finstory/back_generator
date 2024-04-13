@@ -18,10 +18,7 @@ const { createControllerFile,
   editController,
   deleteController
 } = require("../services/controllerServices");
-const { printMsg } = require("../../modules/helpers/wordsManager");
-
 const router = Router();
-const pathRoutes = getPath("routes");
 
 router.get("/all", async (req, res) => {
   try {

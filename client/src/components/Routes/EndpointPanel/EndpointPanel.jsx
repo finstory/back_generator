@@ -8,19 +8,19 @@ import { useRequestServices } from "../../../services/useRequestServices";
 
 export const EndpointPanel = () => {
   const {
-    route: { endpointList },
+    route: { endpoint_list },
   } = useRouteServices();
   const { setRouteModuleTarget, setEndpointTarget } = useRequestServices();
 
   const [activeAddRoute, setActiveAddRoute] = useState(false);
 
   useEffect(() => {
-    if (endpointList.length === 0 || typeof endpointList === "object") return;
+    if (endpoint_list.length === 0 || typeof endpoint_list === "object") return;
     {
-      setRouteModuleTarget(endpointList[0].module);
-      setEndpointTarget(endpointList[0].routesList[0]);
+      setRouteModuleTarget(endpoint_list[0].module);
+      setEndpointTarget(endpoint_list[0].routesList[0]);
     }
-  }, [endpointList]);
+  }, [endpoint_list]);
 
   return (
     <DoubleBorderGradient
@@ -53,7 +53,7 @@ export const EndpointPanel = () => {
             setEditMode={setActiveAddRoute}
           />
 
-          {endpointList.map((route) => (
+          {endpoint_list.map((route) => (
             <RouteModule key={route.module} scss={scss} route={route} />
           ))}
         </div>

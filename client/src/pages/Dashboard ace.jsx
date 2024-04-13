@@ -15,7 +15,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 export const Dashboard = () => {
   // const {
-  //   route: { endpointList },
+  //   route: { endpoint_list },
   //   getAllRoutes,
   // } = useRouteServices();
 

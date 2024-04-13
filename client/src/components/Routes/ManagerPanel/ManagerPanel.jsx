@@ -36,7 +36,7 @@ export const ManagerPanel = () => {
         setEditMode={setActiveAddRoute}
       />
 
-      {endpointList.map((route) => (
+      {endpoint_list.map((route) => (
         <RouteModule key={route.module} scss={scss} route={route} />
       ))}
     </div> */}
