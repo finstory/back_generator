@@ -1,15 +1,22 @@
-import controller from "./interfaces";
-import { throwError } from "../helpers/customError";
-import { Request, Response } from "express";
+//sOY u8ser
 
-//$C_START
-
-//% GET -/USERS/:ID
-controller.userGet = async ({ params, query, body }, res) => {
-  const data = { name: query.name };
+//Get asdasd
+controller.asdasd2 = async ({ params, query, body }, res) => {
+  const data: any = { controllerName: "getAuthProduct" };
 
   res.status(200).json(data);
 };
 
-//#controller.
-export default controller;
+//Post -78
+controller.asdasd = async ({ params, query, body }, res) => {
+  const data: any = { controllerName: "getAuthProduct" };
+
+  res.status(200).json(data);
+};
+
+//Delete
+controller.putAuthProduct = async ({ params, query, body }, res) => {
+  const data: any = { controllerName: "getAuthProduct" };
+
+  res.status(200).json(data);
+};

@@ -292,6 +292,113 @@ async function findLinesWithTexts(textList = [], filePath) {
   return linesWithTexts;
 }
 
+async function addContentAboveLine(startTag, lineToAdd, filePath) {
+  // Leer el contenido del archivo
+  await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+        return;
+      }
+
+      // Encontrar la posición del startTag
+      const startIndex = data.indexOf(startTag);
+      if (startIndex === -1) {
+        console.error("Start tag not found in the file.");
+        reject();
+        return;
+      }
+
+      // Insertar la línea antes del primer tag
+      const insertIndex = startIndex;
+      const newContent =
+        data.slice(0, insertIndex) + lineToAdd + "\n" + data.slice(insertIndex);
+
+      // Escribir el nuevo contenido en el archivo
+      fs.writeFile(filePath, newContent, "utf8", (err) => {
+        if (err) {
+          console.error("An error occurred while writing to the file:", err);
+          reject();
+          return;
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+async function removeLineByTag(tag, filePath) {
+  // Leer el contenido del archivo
+  await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+        return;
+      }
+
+      // Encontrar la posición del tag
+      const startIndex = data.indexOf(tag);
+      if (startIndex === -1) {
+        // console.error("Tag not found in the file.");
+        reject();
+        return;
+      }
+
+      // Encontrar la posición del final de la línea
+      let endIndex = data.indexOf("\n", startIndex);
+      if (endIndex === -1) {
+        endIndex = data.length;
+      }
+
+      // Eliminar la línea que contiene el tag
+      const contentBeforeTag = data.slice(0, startIndex);
+      const contentAfterTag = data.slice(endIndex + 1);
+      const newContent = contentBeforeTag + contentAfterTag;
+
+      // Escribir el nuevo contenido en el archivo
+      fs.writeFile(filePath, newContent, "utf8", (err) => {
+        if (err) {
+          console.error("An error occurred while writing to the file:", err);
+          reject();
+          return;
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+async function removeLinesByTagsList(tagsList, filePath) {
+  // Leer el contenido del archivo
+  await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+        return;
+      }
+
+      // Eliminar todas las líneas que contienen los tags de la lista
+      let newContent = data;
+      tagsList.forEach((tag) => {
+        const lines = newContent.split('\n');
+        newContent = lines.filter(line => !line.includes(tag)).join('\n');
+      });
+      // Escribir el nuevo contenido en el archivo
+      fs.writeFile(filePath, newContent, "utf8", (err) => {
+        if (err) {
+          console.error("An error occurred while writing to the file:", err);
+          reject();
+          return;
+        }
+        resolve();
+      });
+    });
+  });
+}
+
 
 module.exports = {
   getFilePath,
@@ -303,10 +410,29 @@ module.exports = {
   replaceTag,
   getFile,
   findLinesWithTexts,
-  findLineInText
+  findLineInText,
+  addContentAboveLine,
+  removeLinesByTagsList
 };
 
-// const main = async () => {
-//   console.log(await findLinesWithTexts([{ id: "putAuthProduct", text: "controller.putAuthProduct" }, { id: "const", text: "const" }], "D:/Programacion_Extra/Node_ts/_generator/api/src/services/authControllers.ts"))
-// }
+const main = async () => {
+  const lineToAdd = `//Get - /users/:id`
+  const path = "D:/Programacion_Extra/Node_ts/_generator/api/src/services/authControllers.ts";
+  await addContentAboveLine("controller.putAuthProduct", lineToAdd, path);
+  0
+  const tagsListToDelete = [
+    "//Get",
+    "//Post",
+    "//Put",
+    "//Patch",
+    "//Delete",
+  ]
+
+  await removeLinesByTagsList(tagsListToDelete, path);
+  await addContentAboveLine("controller.putAuthProduct", lineToAdd, path);
+
+
+
+}
+
 // main();

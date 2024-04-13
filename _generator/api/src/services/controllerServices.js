@@ -5,7 +5,7 @@ const getPath = require("../helpers/getPath");
 const { generateFile, getFile } = require("../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText } = require("./generatorServices");
+const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList } = require("./generatorServices");
 
 const pathData = getPath("data");
 const pathControllers = getPath("controllers");
@@ -33,8 +33,7 @@ services.deleteControllerFile = async (routeModule) => {
 
 services.addController = async (routeModule, controllerName) => {
 
-    const code = `   
-//% GET - /users/:id
+    const code = `
 controller.${controllerName} = async ({ params, query, body }, res) => {
   const data: any = {controllerName: '${controllerName}'};
     
@@ -92,6 +91,62 @@ services.getAllIndexControllers = async (controllersList, controllerName) => {
 };
 
 
+services.addEndpointComments = async (routeModuleList) => {
+
+    for (let i = 0; i < routeModuleList.length; i++) {
+        const routeModule = routeModuleList[i];
+        const filePath = pathControllers + `/${routeModule.module}controllers.ts`;
+
+        for (let j = 0; j < routeModule.routesList.length; j++) {
+            const route = routeModule.routesList[j];
+            const controllerName = route.controllerName;
+
+            const endpointName = route.endpoint === "/" ? "" : route.endpoint;
+            const lineToAdd = `//${UpFirst(route.method)} - /${routeModule.module}${endpointName}`;
+            await addContentAboveLine(`controller.${controllerName}`, lineToAdd, filePath);
+        }
+    }
+
+};
+
+const main2 = async () => {
+    const lineToAdd = `//Get - /users/:id`
+    const path = "D:/Programacion_Extra/Node_ts/_generator/api/src/services/authControllers.ts";
+    await addContentAboveLine("controller.putAuthProduct", lineToAdd, path);
+    0
+    const tagsListToDelete = [
+        "//Get",
+        "//Post",
+        "//Put",
+        "//Patch",
+        "//Delete",
+    ]
+
+    await removeLinesByTagsList(tagsListToDelete, path);
+    await addContentAboveLine("controller.putAuthProduct", lineToAdd, path);
+
+
+
+}
+
+services.removeEndpointComments = async (routeModuleList) => {
+
+    for (let i = 0; i < routeModuleList.length; i++) {
+        const routeModule = routeModuleList[i];
+        const filePath = pathControllers + `/${routeModule.module}controllers.ts`;
+        const tagsListToDelete = [
+            "//Get",
+            "//Post",
+            "//Put",
+            "//Patch",
+            "//Delete",
+        ]
+        await removeLinesByTagsList(tagsListToDelete, filePath);
+    }
+
+};
+
+// services.addEndpointComments();
 
 const main = async () => {
     try {
