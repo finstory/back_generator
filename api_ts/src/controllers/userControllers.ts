@@ -1,17 +1,12 @@
-import controller from "../interfaces/controllers/users/_index";
+import controller from "../interfaces/controllers/user/_index";
 import { throwError } from "../helpers/customError";
+//$C_START
 
-//% GET - /users/:id
-controller.userGet = async ({ params, query, body }, res) => {
-  const data = { name: "John", id: 1 };
-
+//Get - /user/all
+controller.getUserAll = async ({ params, query, body }, res) => {
+  const data: any = {controllerName: 'getUserAll'};
+    
   res.status(200).json(data);
-};
-
-//% POST - /users
-controller.userPost = async ({ params, query, body }, res) => {
-  const result = { id: 2 };
-  res.status(200).json(result);
 };
 
 export default controller;

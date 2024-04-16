@@ -34,6 +34,20 @@ async function generateFile(name, directory = "", code = "", type = "ts") {
   }, 1);
 }
 
+async function renameFile(oldName, newName, directory = "", type = "ts") {
+  const oldFilePath = directory + "/" + oldName + "." + type;
+  const newFilePath = directory + "/" + newName + "." + type;
+
+  await catchError((resolve, reject) => {
+    fs.rename(oldFilePath, newFilePath, function (err) {
+      if (err)
+        reject(err);
+      else
+        resolve();
+    });
+  }, 1);
+}
+
 async function deleteJSFile(name, directory = "") {
   const filePath = directory + "/" + name + ".ts";
 
@@ -440,7 +454,6 @@ async function replaceTagByLine(tag, lineCode, filePath) {
       const contentBeforeTag = data.slice(0, startIndex);
       const contentAfterTag = data.slice(endIndex + 1);
       const newContent = contentBeforeTag + `${lineCode}\n` + contentAfterTag;
-
       // Escribir el nuevo contenido en el archivo
       fs.writeFile(filePath, newContent, "utf8", (err) => {
         if (err) {
@@ -499,7 +512,8 @@ module.exports = {
   findLinesWithTexts,
   findLineInText,
   addContentAboveLine,
-  removeLinesByTagsList
+  removeLinesByTagsList,
+  renameFile,
 };
 
 const main = async () => {

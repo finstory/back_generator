@@ -11,7 +11,7 @@ routesData.forEach((routeData) => {
   routeData.routesList.forEach((route) => {
     routes[route.method](
       `/${routeData.module}${route.endpoint}`,
-      wrapperError(controller.userGet)
+      wrapperError(controller[route.controllerName])
     );
   });
 });

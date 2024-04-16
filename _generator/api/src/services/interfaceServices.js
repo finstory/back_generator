@@ -5,7 +5,7 @@ const getPath = require("../helpers/getPath");
 const { generateFile, getFile, generateFolder } = require("../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, removeLineByTag, replaceTagByLine } = require("./generatorServices");
+const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, removeLineByTag, replaceTagByLine, renameFile } = require("./generatorServices");
 
 const pathData = getPath("data");
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
@@ -38,6 +38,7 @@ services.addControllerInterface = async (routeModule, controllerName) => {
 services.editControllerInterface = async (routeModule, controllerName, newControllerName) => {
   await editImportFromIndexController(routeModule, controllerName, newControllerName);
   await editPrototypeFromIndexController(routeModule, controllerName, newControllerName);
+  await renameControllerInterface(routeModule, controllerName, newControllerName);
 }
 
 services.removeControllerInterface = async (routeModule, controllerName) => {
@@ -84,6 +85,13 @@ const body: body = {
   await generateFile(controllerName, path, code);
 };
 
+
+const renameControllerInterface = async (routeModule, controllerName, newControllerName) => {
+  const directory = `${pathControllerInterfaces}/${routeModule}`;
+  renameFile(controllerName, newControllerName, directory);
+}
+
+
 const removeControllerInterface = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}`;
 
@@ -124,9 +132,9 @@ const addPrototypeFromIndexController = async (routeModule, controllerName) => {
 const editPrototypeFromIndexController = async (routeModule, controllerName, newControllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
   const tagsStart = `async ${controllerName}`;
-  const code = `  async ${controllerName}(req: ${UpFirst(newControllerName)}.Req, res: ${UpFirst(newControllerName)}.Res) { }`
+  const code = `async ${newControllerName}(req: ${UpFirst(newControllerName)}.Req, res: ${UpFirst(newControllerName)}.Res) { }`
 
-  await replaceTagByLine(tagsStart, code, path);
+  await replaceTagByLine(tagsStart, code, path, true);
 };
 
 const removePrototypeFromIndexController = async (routeModule, controllerName) => {
@@ -135,6 +143,7 @@ const removePrototypeFromIndexController = async (routeModule, controllerName) =
 
   await removeLineByTag(tagsStart, path);
 }
+
 
 
 module.exports = services;

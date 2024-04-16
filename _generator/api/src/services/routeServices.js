@@ -9,7 +9,7 @@ const { getEndpointNames } = require("../../modules/Utils/routerUtils");
 const pathData = getPath("data");
 const pathRoutes = getPath("routes");
 const services = {};
-addServices("routes", services);
+addServices("route", services);
 
 services.getAllRoutes = async () => {
   return await getFile(pathData + "/routesData.json");

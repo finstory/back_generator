@@ -9,7 +9,7 @@ const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndConte
 
 const pathData = getPath("data");
 const pathControllers = getPath("controllers");
-
+const pathControllerInterfaces = getPath("interfaces", "/controllers");
 const services = {};
 addServices("controllers", services);
 
@@ -43,17 +43,10 @@ controller.${controllerName} = async ({ params, query, body }, res) => {
 
 };
 
-
 services.editController = async (routeModule, controllerName, newControllerName) => {
     const startTag = `controller.${controllerName}`;
 
-    await replaceTag(startTag, "controller." + newControllerName, pathControllers + "/" + routeModule + "Controllers.ts")
-
-    const startImportTag = `import controller from`;
-    const importCode = `import controller from "../interfaces/controllers/${routeModule}/_index";`;
-    const importPath = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-    
-    await replaceTagByLine(startImportTag, importCode, importPath);
+    await replaceTag(startTag, "controller." + newControllerName, pathControllers + "/" + routeModule + "Controllers.ts");
 }
 
 services.deleteController = async (routeModule, controllerName) => {
@@ -130,20 +123,17 @@ services.removeEndpointComments = async (routeModuleList) => {
 
 };
 
-
-services.editIndexController = async (moduleList = ["facu", "auth"]) => {
+services.editIndexController = async () => {
     const path = `${pathControllers}`;
-
+    const moduleList = await getServices("route").getAllRoutes();
+    console.log(moduleList)
     let importGenerated = "";
     let controllerGenerated = "";
 
-    for (let i = 0; i < moduleList.length; i++) {
-        importGenerated += `import ${moduleList[i]} from "./${moduleList[i]}Controllers";\n`;
-    }
-
-    for (let i = 0; i < moduleList.length; i++) {
-        controllerGenerated += `...${moduleList[i]},\n`;
-    }
+    moduleList.forEach(item => {
+        importGenerated += `import ${item.module} from "./${item.module}Controllers";\n`;
+        controllerGenerated += `...${item.module},\n`;
+    });
 
     const code = `${importGenerated}
 const controllers = {
@@ -154,14 +144,5 @@ export default controllers;`;
     await generateFile("_index", path, code);
 };
 
-
-const main = async () => {
-    try {
-        await services.editIndexController(["auth"]);
-    } catch (error) {
-        console.log(error);
-    }
-}
- main();
 
 module.exports = services;
