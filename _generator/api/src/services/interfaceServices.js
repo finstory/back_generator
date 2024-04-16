@@ -5,16 +5,14 @@ const getPath = require("../helpers/getPath");
 const { generateFile, getFile, generateFolder } = require("../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, removeLineByTag } = require("./generatorServices");
+const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, removeLineByTag, replaceTagByLine } = require("./generatorServices");
 
 const pathData = getPath("data");
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
 
 const services = {};
 
-//% SERVICES TO FILE CONTROLLER INDEX
-
-services.createControllerInterfacesBase = async (routeModule) => {
+services.createIndexController = async (routeModule) => {
   const path = `${pathControllerInterfaces}/${routeModule}`;
   const code = `//$IMPORT_START
 
@@ -31,37 +29,26 @@ export default controllers;
   await generateFile("_index", path, code);
 };
 
-services.addImportFromIndex = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `//$IMPORT_START`;
-  const code = `import * as ${UpFirst(controllerName)} from "./${controllerName}";`
-
-  await addContent(tagsStart, code, path);
-};
-
-services.removeImportFromIndex = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `import * as ${UpFirst(controllerName)}`;
-
-  await removeLineByTag(tagsStart, path, false);
+services.addControllerInterface = async (routeModule, controllerName) => {
+  await addImportFromIndexController(routeModule, controllerName);
+  await addPrototypeFromIndexController(routeModule, controllerName);
+  await createControllerInterface(routeModule, controllerName);
 }
 
-services.addControllerInterfacesFromIndex = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `//$CONTROLLER_START`;
-  const code = `\nasync ${controllerName} (req: ${UpFirst(controllerName)}.Req, res: ${UpFirst(controllerName)}.Res) {}`
-
-  await addContent(tagsStart, code, path);
-};
-
-services.removeControllerInterfacesFromIndex = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `async ${controllerName}`;
-
-  await removeLineByTag(tagsStart, path);
+services.editControllerInterface = async (routeModule, controllerName, newControllerName) => {
+  await editImportFromIndexController(routeModule, controllerName, newControllerName);
+  await editPrototypeFromIndexController(routeModule, controllerName, newControllerName);
 }
 
-services.createControllerInterface = async (routeModule, controllerName) => {
+services.removeControllerInterface = async (routeModule, controllerName) => {
+  await removeImportFromIndexController(routeModule, controllerName);
+  await removePrototypeFromIndexController(routeModule, controllerName);
+  await removeControllerInterface(routeModule, controllerName);
+}
+
+//% microservices :
+
+const createControllerInterface = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}`;
   const code = `import { Request, Response } from "express";
 export interface Req extends Request<params, {}, body, query> {}
@@ -97,27 +84,76 @@ const body: body = {
   await generateFile(controllerName, path, code);
 };
 
-services.removeControllerInterface = async (routeModule, controllerName) => {
+const removeControllerInterface = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}`;
 
   await deleteJSFile(controllerName, path);
 }
 
-//% SERVICES TO CONTROLLERS INTERFACE
+const addImportFromIndexController = async (routeModule, controllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = `//$IMPORT_START`;
+  const code = `import * as ${UpFirst(controllerName)} from "./${controllerName}";`
+
+  await addContent(tagsStart, code, path);
+};
+
+const editImportFromIndexController = async (routeModule, controllerName, newControllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = `import * as ${UpFirst(controllerName)}`;
+  const code = `import * as ${UpFirst(newControllerName)} from "./${newControllerName}"`
+
+  await replaceTagByLine(tagsStart, code, path);
+};
+
+const removeImportFromIndexController = async (routeModule, controllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = `import * as ${UpFirst(controllerName)}`;
+
+  await removeLineByTag(tagsStart, path, false);
+}
+
+const addPrototypeFromIndexController = async (routeModule, controllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = `//$CONTROLLER_START`;
+  const code = `\nasync ${controllerName} (req: ${UpFirst(controllerName)}.Req, res: ${UpFirst(controllerName)}.Res) {}`
+
+  await addContent(tagsStart, code, path);
+};
+
+const editPrototypeFromIndexController = async (routeModule, controllerName, newControllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = `async ${controllerName}`;
+  const code = `  async ${controllerName}(req: ${UpFirst(newControllerName)}.Req, res: ${UpFirst(newControllerName)}.Res) { }`
+
+  await replaceTagByLine(tagsStart, code, path);
+};
+
+const removePrototypeFromIndexController = async (routeModule, controllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = `async ${controllerName}`;
+
+  await removeLineByTag(tagsStart, path);
+}
+
+
+module.exports = services;
 
 const main = async () => {
   try {
-    // await services.createControllerInterfacesBase("buenas");
-    // await services.addImportFromIndex("buenas", "userGet");
-    // await services.addImportFromIndex("buenas", "userPost");
-    // await services.addControllerInterfacesFromIndex("buenas", "userGet");
+    await services.createControllerInterfacesBase("buenas");
+    await services.addImportFromIndex("buenas", "userGet");
+    await services.addControllerInterfacesFromIndex("buenas", "userGet");
+    await services.editImportFromIndex("buenas", "userGet", "getAllUser");
+    await services.editControllerInterfacesFromIndex("buenas", "userGet", "getAllUser");
+
     // await services.addControllerInterfacesFromIndex("buenas", "userPost");
-   await services.createControllerInterface("buenas", "userGet");
-    // await services.createControllerInterface("buenas", "userPost");
-     await services.removeControllerInterface("buenas", "userGet");
+    // await services.createControllerInterface("buenas", "userGet");
+    // // await services.createControllerInterface("buenas", "userPost");
+    // await services.removeControllerInterface("buenas", "userGet");
   } catch (error) {
     console.log(error);
   }
 };
 
-main();
+// main();

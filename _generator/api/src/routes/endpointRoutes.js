@@ -18,6 +18,9 @@ const { createControllerFile,
   editController,
   deleteController
 } = require("../services/controllerServices");
+
+const interfaceS = require("../services/interfaceServices");
+
 const router = Router();
 
 router.get("/all", async (req, res) => {
@@ -36,6 +39,7 @@ router.post("/", async (req, res) => {
 
     await createRoute(routeModule, endpoint, method, controllerName);
     await addController(routeModule, newControllerName);
+    
 
     sendResponse(res, 200, "Endpoint added.");
   } catch (error) {
@@ -49,6 +53,7 @@ router.post("/module", async (req, res) => {
 
     await createRouteModule(routeModule);
     await createControllerFile(routeModule);
+    await interfaceS.createIndexController(routeModule);
 
     sendResponse(res, 200, `Route module ${routeModule} created.`);
   } catch (error) {

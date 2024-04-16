@@ -365,7 +365,7 @@ async function addContentAboveLine(startTag, lineToAdd, filePath) {
     });
   });
 }
-// se debe eliminar la linea pero tambien el espacio en blanco que queda
+
 async function removeLineByTag(tag, filePath, deleteSpace = true) {
   // Leer el contenido del archivo
   await new Promise((resolve, reject) => {
@@ -396,6 +396,50 @@ async function removeLineByTag(tag, filePath, deleteSpace = true) {
       const contentBeforeTag = data.slice(0, startIndex + (deleteSpace ? -1 : 0));
       const contentAfterTag = data.slice(endIndex + 1);
       const newContent = contentBeforeTag + contentAfterTag;
+
+      // Escribir el nuevo contenido en el archivo
+      fs.writeFile(filePath, newContent, "utf8", (err) => {
+        if (err) {
+          console.error("An error occurred while writing to the file:", err);
+          reject();
+          return;
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+async function replaceTagByLine(tag, lineCode, filePath) {
+  // Leer el contenido del archivo
+  await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.error("An error occurred while reading the file:", err);
+        reject();
+        return;
+      }
+
+      // Encontrar la posición del tag
+      const startIndex = data.indexOf(tag);
+      if (startIndex === -1) {
+        console.error("Tag not found in the file.");
+        reject();
+        return;
+      }
+
+      // Encontrar la posición del final de la línea
+      let endIndex = data.indexOf("\n", startIndex);
+      if (endIndex === -1) {
+        console.error("End of line not found after tag.");
+        reject();
+        return;
+      }
+
+      // Eliminar la línea y el espacio en blanco que queda
+      const contentBeforeTag = data.slice(0, startIndex);
+      const contentAfterTag = data.slice(endIndex + 1);
+      const newContent = contentBeforeTag + `${lineCode}\n` + contentAfterTag;
 
       // Escribir el nuevo contenido en el archivo
       fs.writeFile(filePath, newContent, "utf8", (err) => {
@@ -450,6 +494,7 @@ module.exports = {
   deleteContent,
   deleteTagsAndContent,
   replaceTag,
+  replaceTagByLine,
   getFile,
   findLinesWithTexts,
   findLineInText,

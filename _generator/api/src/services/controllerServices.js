@@ -5,7 +5,7 @@ const getPath = require("../helpers/getPath");
 const { generateFile, getFile } = require("../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList } = require("./generatorServices");
+const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, replaceTagByLine } = require("./generatorServices");
 
 const pathData = getPath("data");
 const pathControllers = getPath("controllers");
@@ -15,10 +15,8 @@ addServices("controllers", services);
 
 services.createControllerFile = async (routeModule) => {
 
-    const code = `import controller from "./interfaces";
+    const code = `import controller from "../interfaces/controllers/${routeModule}/_index";
 import { throwError } from "../helpers/customError";
-import { Request, Response } from "express";
-    
 //$C_START
 
 export default controller;`;
@@ -50,6 +48,12 @@ services.editController = async (routeModule, controllerName, newControllerName)
     const startTag = `controller.${controllerName}`;
 
     await replaceTag(startTag, "controller." + newControllerName, pathControllers + "/" + routeModule + "Controllers.ts")
+
+    const startImportTag = `import controller from`;
+    const importCode = `import controller from "../interfaces/controllers/${routeModule}/_index";`;
+    const importPath = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+    
+    await replaceTagByLine(startImportTag, importCode, importPath);
 }
 
 services.deleteController = async (routeModule, controllerName) => {
@@ -109,26 +113,6 @@ services.addEndpointComments = async (routeModuleList) => {
 
 };
 
-const main2 = async () => {
-    const lineToAdd = `//Get - /users/:id`
-    const path = "D:/Programacion_Extra/Node_ts/_generator/api/src/services/authControllers.ts";
-    await addContentAboveLine("controller.putAuthProduct", lineToAdd, path);
-    0
-    const tagsListToDelete = [
-        "//Get",
-        "//Post",
-        "//Put",
-        "//Patch",
-        "//Delete",
-    ]
-
-    await removeLinesByTagsList(tagsListToDelete, path);
-    await addContentAboveLine("controller.putAuthProduct", lineToAdd, path);
-
-
-
-}
-
 services.removeEndpointComments = async (routeModuleList) => {
 
     for (let i = 0; i < routeModuleList.length; i++) {
@@ -146,18 +130,38 @@ services.removeEndpointComments = async (routeModuleList) => {
 
 };
 
-// services.addEndpointComments();
+
+services.editIndexController = async (moduleList = ["facu", "auth"]) => {
+    const path = `${pathControllers}`;
+
+    let importGenerated = "";
+    let controllerGenerated = "";
+
+    for (let i = 0; i < moduleList.length; i++) {
+        importGenerated += `import ${moduleList[i]} from "./${moduleList[i]}Controllers";\n`;
+    }
+
+    for (let i = 0; i < moduleList.length; i++) {
+        controllerGenerated += `...${moduleList[i]},\n`;
+    }
+
+    const code = `${importGenerated}
+const controllers = {
+${controllerGenerated}};
+
+export default controllers;`;
+
+    await generateFile("_index", path, code);
+};
+
 
 const main = async () => {
     try {
-        await services.createControllerFile("auth");
-        // await services.addController("auth", "getAuthLogin");
-        await services.addController("facu", "getAuthFacu");
-        // await services.editController("auth", "getAuthLogin", "facu");
-        //   await services.deleteController("auth", "facu");
+        await services.editIndexController(["auth"]);
     } catch (error) {
         console.log(error);
     }
 }
+ main();
 
 module.exports = services;

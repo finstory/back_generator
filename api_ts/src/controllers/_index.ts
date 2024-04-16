@@ -1,9 +1,7 @@
-import user from "./userControllers";
-import facu from "./facuControllers";
+import auth from "./authControllers";
 
 const controllers = {
-  ...user,
-  ...facu,
+...auth,
 };
 
 export default controllers;
