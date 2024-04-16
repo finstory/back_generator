@@ -1,6 +1,7 @@
 import { Router } from "express";
 import routesData from "../../data/routesData.json";
-import controller from "../controllers/userControllers";
+import controller from "../controllers/_index";
+// import controller from "src/controllers/userControllers";
 import { wrapperError } from "../helpers/managerController";
 //$ Import Models of Routes.
 

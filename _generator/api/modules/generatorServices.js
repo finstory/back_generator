@@ -231,8 +231,22 @@ async function replaceTag(tagToReplace, newTag, filePath) {
   });
 }
 
+async function generateFolder(name, filePath) {
+  await catchError((resolve, reject) => {
+    fs.mkdir(filePath + "/" + name, { recursive: true }, (err) => {
+      if (err) {
+        console.error("An error occurred while creating the folder:", err);
+        reject();
+        return;
+      }
+      resolve();
+    });
+  });
+}
+
 module.exports = {
   getFilePath,
+  generateFolder,
   generateFile,
   addContent,
   deleteJSFile,

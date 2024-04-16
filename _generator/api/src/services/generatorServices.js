@@ -21,7 +21,7 @@ function UpFirst(str) {
 async function generateFile(name, directory = "", code = "", type = "ts") {
   await catchError((resolve, reject) => {
     const filePath = directory + "/" + name + "." + type;
-    console.log(filePath);
+
     fs.writeFile(filePath, code, function (err) {
       if (err)
         reject([
@@ -144,6 +144,44 @@ async function deleteContent(startTag, endTag, filePath) {
     });
   });
 }
+//funcion que edita todo el contentido entre las tags start y end, pero no las elimina, solo edita lo que hay entre medio:
+async function editContentBetweenTags(startTag, endTag, newContent, filePath) {
+  await new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+
+      // Find the position of the startTag
+      const startIndex = data.indexOf(startTag);
+      if (startIndex === -1) {
+        return reject(new Error(`Start tag not found: ${startTag}`));
+      }
+
+      // Find the position of the endTag after the startTag
+      const endIndex = data.indexOf(endTag, startIndex + startTag.length);
+      if (endIndex === -1) {
+        return reject(new Error(`End tag not found: ${endTag}`));
+      }
+
+      // Replace the content between startTag and endTag
+      const contentBeforeTags = data.slice(0, startIndex + startTag.length);
+      const contentAfterTags = data.slice(endIndex);
+      const updatedContent = contentBeforeTags + "\n" + newContent + contentAfterTags;
+
+      // Write the new content to the file
+      fs.writeFile(filePath, updatedContent, "utf8", (err) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+
+
 
 async function deleteTagsAndContent(startTag, endTag, filePath, secondEndTag) {
   // Leer el contenido del archivo
@@ -327,8 +365,8 @@ async function addContentAboveLine(startTag, lineToAdd, filePath) {
     });
   });
 }
-
-async function removeLineByTag(tag, filePath) {
+// se debe eliminar la linea pero tambien el espacio en blanco que queda
+async function removeLineByTag(tag, filePath, deleteSpace = true) {
   // Leer el contenido del archivo
   await new Promise((resolve, reject) => {
     fs.readFile(filePath, "utf8", (err, data) => {
@@ -341,7 +379,7 @@ async function removeLineByTag(tag, filePath) {
       // Encontrar la posición del tag
       const startIndex = data.indexOf(tag);
       if (startIndex === -1) {
-        // console.error("Tag not found in the file.");
+        console.error("Tag not found in the file.");
         reject();
         return;
       }
@@ -349,11 +387,13 @@ async function removeLineByTag(tag, filePath) {
       // Encontrar la posición del final de la línea
       let endIndex = data.indexOf("\n", startIndex);
       if (endIndex === -1) {
-        endIndex = data.length;
+        console.error("End of line not found after tag.");
+        reject();
+        return;
       }
 
-      // Eliminar la línea que contiene el tag
-      const contentBeforeTag = data.slice(0, startIndex);
+      // Eliminar la línea y el espacio en blanco que queda
+      const contentBeforeTag = data.slice(0, startIndex + (deleteSpace ? -1 : 0));
       const contentAfterTag = data.slice(endIndex + 1);
       const newContent = contentBeforeTag + contentAfterTag;
 
@@ -403,7 +443,9 @@ async function removeLinesByTagsList(tagsList, filePath) {
 module.exports = {
   getFilePath,
   generateFile,
+  removeLineByTag,
   addContent,
+  editContentBetweenTags,
   deleteJSFile,
   deleteContent,
   deleteTagsAndContent,

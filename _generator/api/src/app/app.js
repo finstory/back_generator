@@ -11,6 +11,7 @@ const path = require("path");
 require("./db.js");
 require("pg");
 require("../helpers/keyPress.js");
+require("../services/interfaceServices.js");
 //$ END.
 
 const server = express();

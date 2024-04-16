@@ -6,8 +6,17 @@ const v = new GlobalKeyboardListener();
 let checkCtrl = false;
 let checkAlt = false;
 let checkEndpointsComments = false;
+let noActive = true;
 
 v.addListener(function (e, down) {
+  listenerCtrl(e, down);
+  listenerAlt(e, down);
+  listenerW(e, down);
+  listenerE(e, down);
+});
+
+
+const listenerCtrl = function (e, down) {
   let timeout;
   if (e.scanCode === 162 && down) {
     checkCtrl = true;
@@ -16,10 +25,9 @@ v.addListener(function (e, down) {
       clearTimeout(timeout);
     }, 400);
   }
+};
 
-});
-
-v.addListener(function (e, down) {
+const listenerAlt = function (e, down) {
   let timeout;
   if (e.scanCode === 164 && down) {
     checkAlt = true;
@@ -28,13 +36,9 @@ v.addListener(function (e, down) {
       clearTimeout(timeout);
     }, 400);
   }
+};
 
-});
-
-let noActive = true;
-
-v.addListener(function (e, down) {
-
+const listenerW = function (e, down) {
   let timeout;
   if (e.scanCode !== 162 && e.scanCode !== 164)
     if (e.scanCode === 69 && !checkEndpointsComments)
@@ -51,10 +55,9 @@ v.addListener(function (e, down) {
         }, 400);
 
       }
-});
+};
 
-v.addListener(function (e, down) {
-
+const listenerE = function (e, down) {
   let timeout;
   if (e.scanCode !== 162 && e.scanCode !== 164)
     if (e.scanCode === 87)
@@ -71,7 +74,7 @@ v.addListener(function (e, down) {
         }, 400);
 
       }
-});
+};
 
 calledOnce = function (e) {
   v.removeListener(calledOnce);
