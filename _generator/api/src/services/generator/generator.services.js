@@ -5,7 +5,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { throwError, catchError } = require("../helpers/customError");
+const { throwError, catchError } = require("../../helpers/customError");
 const { clear } = require("console");
 const basePath = path.join(__dirname, "..");
 
@@ -159,7 +159,7 @@ async function deleteContent(startTag, endTag, filePath) {
   });
 }
 //funcion que edita todo el contentido entre las tags start y end, pero no las elimina, solo edita lo que hay entre medio:
-async function editContentBetweenTags(startTag, endTag, newContent, filePath) {
+async function editContentBetweenTags(startTag, endTag, newContent, filePath, spaceToInsert = true) {
   await new Promise((resolve, reject) => {
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
@@ -181,7 +181,8 @@ async function editContentBetweenTags(startTag, endTag, newContent, filePath) {
       // Replace the content between startTag and endTag
       const contentBeforeTags = data.slice(0, startIndex + startTag.length);
       const contentAfterTags = data.slice(endIndex);
-      const updatedContent = contentBeforeTags + "\n" + newContent + contentAfterTags;
+      const space = spaceToInsert ? "\n" : "";
+      const updatedContent = contentBeforeTags + space + newContent + contentAfterTags;
 
       // Write the new content to the file
       fs.writeFile(filePath, updatedContent, "utf8", (err) => {

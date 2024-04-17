@@ -1,10 +1,10 @@
 //$IMPORT_START
-import * as GetUserAll from "./getUserAll";
+import * as GetUser from "./getUser";
 
 class Controllers {
 //$CONTROLLER_START
 
-async getUserAll (req: GetUserAll.Req, res: GetUserAll.Res) {}
+async getUser (req: GetUser.Req, res: GetUser.Res) {}
 
 }
 

@@ -12,7 +12,7 @@ export const requestReducer = {
         method: "get",
         controllerName: "getProductJeje",
         middlewares: ["Token", "+"],
-        params: {},
+        params: [],
         query: [],
         body: [],
     },

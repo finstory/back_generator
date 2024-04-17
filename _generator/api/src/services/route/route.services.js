@@ -1,10 +1,10 @@
-const { throwError, catchError, checkIsCathError } = require("../helpers/customError");
-const { getServices, addServices } = require(".");
+const { throwError, catchError, checkIsCathError } = require("../../helpers/customError");
+const { getServices, addServices } = require("..");
 const { v4: uuidv4 } = require("uuid");
-const getPath = require("../helpers/getPath");
-const { generateFile, getFile } = require("../../modules/generatorServices");
-const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
-const { getEndpointNames } = require("../../modules/Utils/routerUtils");
+const getPath = require("../../helpers/getPath");
+const { generateFile, getFile } = require("../../../modules/generatorServices");
+const { printMsg, UpFirst } = require("../../../modules/helpers/wordsManager");
+const { getEndpointNames } = require("../../../modules/Utils/routerUtils");
 
 const pathData = getPath("data");
 const pathRoutes = getPath("routes");
@@ -57,9 +57,10 @@ services.createRoute = async (routeModule, endpoint, method, controllerName) => 
         description: "Write a description here...",
         controllerName: controllerName ? controllerName : newController,
         middlewares: ["Token", "+"],
-        params: {},
+        params: [],
         query: [],
         body: [],
+        response_body: []
       });
 
   });
@@ -164,6 +165,26 @@ services.deleteRouteModule = async (routeModule) => {
   printMsg(`Route module ${routeModule} deleted.`);
 };
 
+services.editRouteTypes = async (routeModule, controllerName, newTypesList) => {
+  const routeGetting = await services.getAllRoutes();
+  const routeList = routeGetting.find((route) => route.module === routeModule);
+
+  throwError("bad_request", 400, "Route module name is required.", !routeModule);
+  throwError("bad_request", 400, "Route module not found.", routeList === undefined);
+
+  const controllerGetting = routeList.routesList.find((route) => route.controllerName === controllerName);
+
+  throwError("bad_request", 400, `Controller not found.`, !controllerGetting);
+
+  controllerGetting.params = newTypesList.params ? newTypesList.params : controllerGetting.params;
+  controllerGetting.query = newTypesList.query ? newTypesList.query : controllerGetting.query;
+  controllerGetting.body = newTypesList.body ? newTypesList.body : controllerGetting.body;
+  controllerGetting.response_body = newTypesList.response_body ? newTypesList.response_body : controllerGetting.response_body;
+
+  await generateFile("routesData", pathData, JSON.stringify(routeGetting), "json");
+
+  printMsg(`Route types for ${controllerName} edited.`);
+}
 
 //? microservices
 
@@ -182,5 +203,27 @@ services.generateControllerName = (routeModule, endpoint, method) => {
   return controllerName;
 }
 
+
+const main = async () => {
+  try {
+    const typesList = {
+      params: [
+        { key: 'id', type: 'string', optional: false, value: '123' },
+        { key: 'look', type: 'User', optional: false, value: 'asdasdasd' },
+      ],
+      query: [
+        { key: 'name', type: 'string', optional: false, value: 'asdasdasd' },
+        { key: 'email', type: 'User', optional: true, value: null }
+      ],
+      body: [],
+      response_body: [{ key: 'facu', type: 'User', optional: true, value: null }]
+    };
+
+    await services.editRouteTypes("user", "getUser", typesList);
+  } catch (error) {
+    catchError(error);
+  }
+};
+// main();
 
 module.exports = services;

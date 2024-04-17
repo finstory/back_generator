@@ -1,11 +1,11 @@
-const { throwError, catchError, checkIsCathError } = require("../helpers/customError");
-const { getServices, addServices } = require(".");
+const { throwError, catchError, checkIsCathError } = require("../../helpers/customError");
+const { getServices, addServices } = require("..");
 const { v4: uuidv4 } = require("uuid");
-const getPath = require("../helpers/getPath");
-const { generateFile, getFile } = require("../../modules/generatorServices");
-const { printMsg, UpFirst } = require("../../modules/helpers/wordsManager");
-const { getEndpointNames } = require("../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, replaceTagByLine } = require("./generatorServices");
+const getPath = require("../../helpers/getPath");
+const { generateFile, getFile } = require("../../../modules/generatorServices");
+const { printMsg, UpFirst } = require("../../../modules/helpers/wordsManager");
+const { getEndpointNames } = require("../../../modules/Utils/routerUtils");
+const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, replaceTagByLine } = require("../generator/generator.services");
 
 const pathData = getPath("data");
 const pathControllers = getPath("controllers");
@@ -126,7 +126,6 @@ services.removeEndpointComments = async (routeModuleList) => {
 services.editIndexController = async () => {
     const path = `${pathControllers}`;
     const moduleList = await getServices("route").getAllRoutes();
-    console.log(moduleList)
     let importGenerated = "";
     let controllerGenerated = "";
 
@@ -143,6 +142,9 @@ export default controllers;`;
 
     await generateFile("_index", path, code);
 };
+
+
+//% Request Editor
 
 
 module.exports = services;

@@ -2,11 +2,11 @@ import controller from "../interfaces/controllers/user/_index";
 import { throwError } from "../helpers/customError";
 //$C_START
 
-//Get - /user/all
-controller.getUserAll = async ({ params, query, body }, res) => {
-  const data: any = {controllerName: 'getUserAll'};
-    
+controller.getUser = async ({ params, query, body }, res) => {
+  const data: any = { controllerName: "getUser" };
+
   res.status(200).json(data);
 };
 
+//Get - /user/all
 export default controller;

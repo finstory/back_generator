@@ -1,1 +1,25 @@
-[{"module":"auth","routesList":[{"id":"ace89ed9-2e16-4f2d-bc83-3a08c4428ac8","endpoint":"/login","method":"post","description":"Write a description here...","controllerName":"postAuthLogin","middlewares":["Token","+"],"params":{},"query":[],"body":[]}]},{"module":"user","routesList":[{"id":"2bf74df2-c9b4-4a02-b2e0-bd43da574b14","endpoint":"/all","method":"get","description":"Write a description here...","controllerName":"getUserAll","middlewares":["Token","+"],"params":{},"query":[],"body":[]}]}]
+[
+  {
+    "module": "user",
+    "routesList": [
+      {
+        "id": "f69f2cae-241c-4bff-9184-de64ef0647e6",
+        "endpoint": "/",
+        "method": "get",
+        "description": "Write a description here...",
+        "controllerName": "getUser",
+        "middlewares": ["Token", "+"],
+        "params": [
+          { "key": "pepe", "type": "string", "optional": true },
+          { "key": "look", "type": "User", "optional": false }
+        ],
+        "query": [
+          { "key": "name", "type": "string", "optional": false },
+          { "key": "email", "type": "User", "optional": true }
+        ],
+        "body": [{ "key": "myUser", "type": "User", "optional": false }],
+        "response_body": []
+      }
+    ]
+  }
+]

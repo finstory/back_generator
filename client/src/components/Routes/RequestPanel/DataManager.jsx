@@ -13,15 +13,11 @@ export const DataManager = ({ scss, item }) => {
         <li
           className={menuSelected === "params" ? scss.active : ""}
           style={
-            Object.keys(item.params).length === 0
-              ? { color: "var(--off-gray-color)" }
-              : {}
+            item.params.length === 0 ? { color: "var(--off-gray-color)" } : {}
           }
           onClick={() => switchMenu("params")}
         >
-          {Object.keys(item.params).length === 0 && (
-            <div className={scss.is_null}>NULL</div>
-          )}
+          {item.params.length === 0 && <div className={scss.is_null}>NULL</div>}
           PARAMS
         </li>
 
@@ -58,13 +54,13 @@ export const DataManager = ({ scss, item }) => {
 
             {menuSelected === "params" ? (
               <>
-                {Object.keys(item.params).length !== 0 && (
-                  <div className={scss.prop}>
+                {item.params.map((params) => (
+                  <div className={scss.prop} key={params.key}>
                     <div className={scss.mark}></div>
-                    <p style={{ width: "50%" }}>{item.params.key}</p>
-                    <p style={{ width: "50%" }}>{item.params.value}</p>
+                    <p style={{ width: "50%" }}>{params.key}</p>
+                    <p style={{ width: "50%" }}>{params.value}</p>
                   </div>
-                )}
+                ))}
               </>
             ) : (
               <>

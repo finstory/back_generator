@@ -1,6 +1,6 @@
 const { GlobalKeyboardListener } = require('node-global-key-listener');
-const { addEndpointComments, removeEndpointComments } = require('../services/controllerServices');
-const { getAllRoutes } = require('../services/routeServices');
+const { addEndpointComments, removeEndpointComments } = require('../services/controller/controller.services');
+const { getAllRoutes } = require('../services/route/route.services');
 
 const v = new GlobalKeyboardListener();
 let checkCtrl = false;

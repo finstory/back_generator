@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const { sendResponse, sendError } = require("../helpers/managerController");
-const { getIndexController, addEndpointComments, removeEndpointComments } = require("../services/controllerServices");
-const { getAllRoutes } = require("../services/routeServices");
+const { getIndexController, addEndpointComments, removeEndpointComments } = require("../services/controller/controller.services");
+const { getAllRoutes, editRouteTypes } = require("../services/route/route.services");
+const { editControllerTypes, reloadControllerTypes } = require("../services/interface/interface.services");
 const router = Router();
 
 router.get("/line", async (req, res) => {
@@ -37,5 +38,30 @@ router.delete("/view_lines_in_code", async (req, res) => {
         sendError(res, error);
     }
 });
+
+router.post("/reload_types", async (req, res) => {
+    try {
+        const { routeModule, controllerName } = req.body;
+        await reloadControllerTypes(routeModule, controllerName);
+        sendResponse(res, 200, `Types reload for ${controllerName} from VSC.`);
+    } catch (error) {
+        sendError(res, error);
+    }
+});
+
+router.post("/types", async (req, res) => {
+    try {
+
+        const { routeModule, controllerName, newTypesList } = req.body;
+        await editControllerTypes(routeModule, controllerName, newTypesList);
+        await editRouteTypes(routeModule, controllerName, newTypesList);
+
+        sendResponse(res, 200, `Types updated for ${controllerName}.`);
+
+    } catch (error) {
+        sendError(res, error);
+    }
+});
+
 
 module.exports = router;

@@ -21,7 +21,7 @@ function UpFirst(str) {
 async function generateFile(name, directory = "", jsCode = "", type = "ts") {
   await catchError((resolve, reject) => {
     const filePath = directory + "/" + name + "." + type;
-    console.log(filePath);
+  
     fs.writeFile(filePath, jsCode, function (err) {
       if (err)
         reject([

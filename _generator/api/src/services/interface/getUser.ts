@@ -1,12 +1,20 @@
-import { Request, Response } from "express";
-export interface Req extends Request<params, {}, body, query> {}
-export interface Res extends Response<response_body> {}
+import { User } from "./../../../../../test/api";
 
 //REQUEST TYPES:
 
-type params = {
+interface User {
   id: string;
-  last_name: string;
+  last_name: {
+    id: number;
+  };
+}
+
+type params = {
+  //KEY_1
+  id: string;
+  //KEY_2
+  user: User;
+  //END
 };
 
 type query = {

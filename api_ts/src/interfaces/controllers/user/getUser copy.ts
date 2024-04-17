@@ -4,23 +4,39 @@ export interface Res extends Response<response_body> {}
 
 //REQUEST TYPES:
 
+interface User {
+  name: string;
+  id: number;
+}
+
 type params = {
-  id: string;
-  last_name: string;
+  //KEY
+  id?: string;
+  //KEY
+  user: User;
+  //END
 };
 
 type query = {
+  //KEY
   id_team: string;
+  //KEY
   name: string;
+  //END
 };
 
 type body = {
-  team: {};
+  //KEY
+  team: object;
+  //END
 };
 
 type response_body = {
+  //KEY
   name: string;
+  //KEY
   id: number;
+  //END
 };
 
 //BODY TO SEND:

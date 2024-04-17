@@ -2,10 +2,10 @@ const { Router } = require("express");
 const { addRouter } = require("../../modules/routes/routerManager");
 const { sendResponse, sendError } = require("../helpers/managerController");
 const getPath = require("../helpers/getPath");
-const routerS = require("../services/routeServices");
-const controllerS = require("../services/controllerServices");
+const routerS = require("../services/route/route.services");
+const controllerS = require("../services/controller/controller.services");
 
-const interfaceS = require("../services/interfaceServices");
+const interfaceS = require("../services/interface/interface.services");
 
 const router = Router();
 
