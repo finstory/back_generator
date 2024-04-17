@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import { ModelToEdit } from "./ModelToEdit";
+import { useRequestServices } from "../../../services/useRequestServices";
 
-export const DataManager = ({ scss, item }) => {
+export const DataManager = ({ scss, item, routeModule }) => {
   const [menuSelected, setMenuSelected] = useState("params");
-
+  const [editorModal, setEditorModal] = useState({
+    open: false,
+    key: "",
+    value: "",
+    menuSelected: "",
+  });
   const switchMenu = (menu) => {
     setMenuSelected(menu);
+  };
+
+  const onPressValue = (key, value) => {
+    setEditorModal({ open: true, key, value, menuSelected });
   };
 
   return (
@@ -44,45 +55,34 @@ export const DataManager = ({ scss, item }) => {
         </li>
       </nav>
 
+      <ModelToEdit
+        scss={scss}
+        editorModal={editorModal}
+        setEditorModal={setEditorModal}
+        routeModule={routeModule}
+        menuSelected={menuSelected}
+        item={item}
+      />
+
       <div className={scss.properties}>
-        {menuSelected === "params" || menuSelected === "query" ? (
-          <>
-            <div className={scss.header}>
-              <p style={{ width: "50%" }}>KEY</p>
-              <p style={{ width: "50%" }}>VALUE</p>
-            </div>
+        <div className={scss.header}>
+          <p>KEY</p>
+          <p>VALUE</p>
+          <p>TYPE</p>
+        </div>
 
-            {menuSelected === "params" ? (
-              <>
-                {item.params.map((params) => (
-                  <div className={scss.prop} key={params.key}>
-                    <div className={scss.mark}></div>
-                    <p style={{ width: "50%" }}>{params.key}</p>
-                    <p style={{ width: "50%" }}>{params.value}</p>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <>
-                {item.query.map((query) => (
-                  <div className={scss.prop} key={query.key}>
-                    <div className={scss.mark}></div>
-                    <p style={{ width: "50%" }}>{query.key}</p>
-                    <p style={{ width: "50%" }}>{query.value}</p>
-                  </div>
-                ))}
-              </>
-            )}
-          </>
-        ) : (
-          <div className={scss.header}>
-            <p>KEY</p>
-            <p>VALUE</p>
-            <p>TYPE</p>
+        {item[menuSelected].map((item) => (
+          <div className={scss.prop} key={item.key}>
+            <div className={scss.mark}></div>
+            <p>{item.key}</p>
+            <p onClick={() => onPressValue(item.key, item.value)}>
+              {item.value}
+            </p>
+            <p>{item.type}</p>
           </div>
-        )}
+        ))}
 
-        {menuSelected === "body" &&
+        {/* {menuSelected === "body" &&
           item.body.map((body) => (
             <div className={scss.prop} key={body.key}>
               <div className={scss.mark}></div>
@@ -90,7 +90,7 @@ export const DataManager = ({ scss, item }) => {
               <p>{body.value}</p>
               <p>{body.type}</p>
             </div>
-          ))}
+          ))} */}
       </div>
     </div>
   );

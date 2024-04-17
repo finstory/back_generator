@@ -1,23 +1,17 @@
 [
   {
-    "module": "user",
+    "module": "auth",
     "routesList": [
       {
-        "id": "f69f2cae-241c-4bff-9184-de64ef0647e6",
-        "endpoint": "/",
+        "id": "0b1c4e22-4c93-47ee-8120-4a4e56d8b509",
+        "endpoint": "/facu",
         "method": "get",
         "description": "Write a description here...",
-        "controllerName": "getUser",
+        "controllerName": "getAuthFacu",
         "middlewares": ["Token", "+"],
-        "params": [
-          { "key": "pepe", "type": "string", "optional": true },
-          { "key": "look", "type": "User", "optional": false }
-        ],
-        "query": [
-          { "key": "name", "type": "string", "optional": false },
-          { "key": "email", "type": "User", "optional": true }
-        ],
-        "body": [{ "key": "myUser", "type": "User", "optional": false }],
+        "params": [],
+        "query": [],
+        "body": [],
         "response_body": []
       }
     ]

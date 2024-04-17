@@ -499,7 +499,7 @@
                 li {
                     position: relative;
                     list-style: none;
-                    color: var(--white-color);
+                    color: var(--off-gray-color);
                     cursor: pointer;
                     transition: 0.2s linear;
 
@@ -581,6 +581,89 @@
                 }
             }
 
+        }
+
+        .modal_to_edit {
+            z-index: 30;
+            position: absolute;
+            top: 25rem;
+
+            @include flex(center, center, column);
+            @include gradient(black_bg);
+            padding: 1rem;
+            border-radius: 2rem;
+
+            border: 1px solid var(--text-primary-color);
+            opacity: .9;
+
+            .title {
+                @include dim_width();
+                @include flex(center, center);
+                @include font_M_PLUS(semi_large, 450);
+                color: var(--text-primary-color);
+            }
+
+            .textarea_wrap {
+                padding: 1rem;
+
+                textarea {
+                    @include dim_width(auto, auto, 40rem);
+                    // @include dim_height(auto, auto, 3rem);
+                    @include flex(center, center);
+                    @include font_extra(medium, 300);
+                    text-align: center;
+                    line-height: 2rem;
+                    // resize: both;
+                    // padding: 1rem;
+                    padding-top: 2rem;
+                    color: var(--white-color);
+                    border-radius: 1rem;
+                    @include gradient(black_bg);
+
+                    &:focus {
+                        outline: none !important;
+                        border: 1px solid var(--text-primary-color);
+                    }
+                }
+            }
+
+            .btn_group {
+                @include dim_width();
+                @include flex(center, center, row, 1rem);
+                padding: 1rem;
+
+                button {
+                    @include dim_height(3rem);
+                    @include flex(center, center);
+                    @include font_M_PLUS(normal, 400);
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    background-color: transparent;
+                    cursor: pointer;
+                    transition: 0.2s linear;
+                    border: none;
+
+                    transition: 0.2s linear;
+
+                    &.cancel {
+                        border: 1px solid var(--off-gray-color);
+
+                        &:hover {
+                            background-color: var(--off-gray-color);
+                        }
+                    }
+
+                    &.edit {
+                        border: 1px solid var(--text-primary-color);
+
+                        &:hover {
+                            background-color: var(--text-primary-color);
+                        }
+                    }
+
+
+                }
+            }
         }
     }
 }

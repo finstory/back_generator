@@ -46,7 +46,11 @@ export const RequestPanel = () => {
         />
         <RequestBar scss={scss} />
 
-        <DataManager scss={scss} item={endpoint_target} />
+        <DataManager
+          scss={scss}
+          item={endpoint_target}
+          routeModule={route_module_target}
+        />
 
         <BorderGradient
           className={scss.view_in_vsc}

@@ -1,4 +1,5 @@
 const { addServices, getServices } = require("..");
+const { generateFolder } = require("../../../modules/generatorServices");
 const getPath = require("../../helpers/getPath");
 const { getFile, generateFile, editContentBetweenTags } = require("../generator/generator.services");
 const ms = require("./interface.microservices");
@@ -21,8 +22,8 @@ const controllers = new Controllers();
 
 export default controllers;
 `;
-  await ms.generateFolder(routeModule, pathControllerInterfaces);
-  await ms.generateFile("_index", path, code);
+  await generateFolder(routeModule, pathControllerInterfaces);
+  await generateFile("_index", path, code);
 };
 
 services.addControllerInterface = async (routeModule, controllerName) => {

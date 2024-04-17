@@ -26,9 +26,17 @@
     color: map-get($text_color, $color);
 }
 
-@mixin font_extra($height: normal, $spacing: normal, $align: center, $transform: none) {
-    line-height: $height;
-    letter-spacing: $spacing;
-    text-align: $align;
-    text-transform: $transform;
+@mixin font_extra($size : normal, $weight : semibold, $color: base){
+    font-family: 'Inter';
+    font-size: map-get($font_size, $size);
+
+    @if($color == base) {
+        color: var(--white-color);
+    }
+
+    @else {
+        color: $color;
+    }
+
+    font-weight: $weight;
 }
