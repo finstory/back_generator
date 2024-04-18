@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@generator/*": ["generator/*"]
+    },
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "resolveJsonModule": true
+  },
+  "plugins": [
+    {
+      "transform": "ts-auto-mock/transformer",
+      "cacheBetweenTests": false
+    }
+  ]
+}

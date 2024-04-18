@@ -1,21 +1,31 @@
 import React, { useState } from "react";
 import { ModelToEdit } from "./ModelToEdit";
 import { useRequestServices } from "../../../services/useRequestServices";
+import { useManagerText } from "../../../hooks/useManagerText";
 
 export const DataManager = ({ scss, item, routeModule }) => {
+  const { firsUpperCase } = useManagerText();
   const [menuSelected, setMenuSelected] = useState("params");
   const [editorModal, setEditorModal] = useState({
     open: false,
     key: "",
     value: "",
+    optional: false,
     menuSelected: "",
   });
   const switchMenu = (menu) => {
     setMenuSelected(menu);
   };
 
-  const onPressValue = (key, value) => {
-    setEditorModal({ open: true, key, value, menuSelected });
+  const onPressValue = (key, value, optional, propToEdit) => {
+    setEditorModal({
+      open: true,
+      key,
+      value,
+      optional,
+      menuSelected,
+      propToEdit,
+    });
   };
 
   return (
@@ -71,26 +81,39 @@ export const DataManager = ({ scss, item, routeModule }) => {
           <p>TYPE</p>
         </div>
 
-        {item[menuSelected].map((item) => (
-          <div className={scss.prop} key={item.key}>
+        {item[menuSelected].map((obj) => (
+          <div key={obj.id} className={scss.prop}>
             <div className={scss.mark}></div>
-            <p>{item.key}</p>
-            <p onClick={() => onPressValue(item.key, item.value)}>
-              {item.value}
-            </p>
-            <p>{item.type}</p>
+            <div
+              className={scss.column}
+              onClick={() =>
+                onPressValue(obj.key, obj.value, obj.optional, "key")
+              }
+            >
+              <p>{obj.key}</p>
+            </div>
+            <div
+              className={scss.column}
+              onClick={() =>
+                onPressValue(obj.key, obj.value, obj.optional, "value")
+              }
+            >
+              <p className={obj.value ? "" : scss.is_null}>
+                {obj.value ? obj.value : "NULL"}
+              </p>
+            </div>
+            <div className={`${scss.column} ${scss.column_type}`}>
+              <p className={scss[obj.type]}>{obj.type}</p>
+              <div
+                className={`${scss.optional} ${
+                  !obj.optional ? scss.active : ""
+                }`}
+              >
+                ?
+              </div>
+            </div>
           </div>
         ))}
-
-        {/* {menuSelected === "body" &&
-          item.body.map((body) => (
-            <div className={scss.prop} key={body.key}>
-              <div className={scss.mark}></div>
-              <p>{body.key}</p>
-              <p>{body.value}</p>
-              <p>{body.type}</p>
-            </div>
-          ))} */}
       </div>
     </div>
   );

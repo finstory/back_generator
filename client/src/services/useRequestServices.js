@@ -47,14 +47,17 @@ export const useRequestServices = () => {
         setRequest({ endpoint_target: item }, "SET_ENDPOINT_TARGET");
     };
 
-    services.editControllerTypes = async (routeModule, targetSelected, item, newType) => {
-        console.log(routeModule)
+    services.editControllerTypes = async (routeModule, targetSelected, item, newType, propToEdit) => {
+
         const newTypesList = { params: item.params, query: item.query, body: item.body, response_body: item.response_body };
 
         for (const key in item)
             if (key === targetSelected)
                 newTypesList[key].map(obj => {
-                    if (obj.key === newType.key) obj.value = newType.value;
+                    if (obj.key === newType.key) {
+                        if (propToEdit === "key") obj.key = newType.value;
+                        if (propToEdit === "value") obj.value = newType.value;
+                    }
                 })
 
         const response = await api.post("controller/types", { routeModule, controllerName: item.controllerName, newTypesList });

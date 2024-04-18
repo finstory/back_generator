@@ -5,30 +5,31 @@ export interface Res extends Response<response_body> {}
 //REQUEST TYPES:
 
 type params = {
-  //KEY
+//KEY
   email?: string;
-  //END
+//END
 };
 
 type query = {
-  //KEY
+//KEY
   name: string;
-  //KEY
+//KEY
   email?: User;
-  //KEY
+//KEY
   email: number;
-  //KEY
+//KEY
   email?: boolean;
-  //END
+//END
 };
 
 type body = {
-  //END
+//END
 };
 
 type response_body = {
-  email: number;
-  facu?: [];
+//KEY
+  facu?: User;
+//END
 };
 
 //BODY TO SEND:

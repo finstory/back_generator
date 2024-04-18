@@ -1,10 +1,14 @@
 const { underscoreToUpperCase } = require("../helpers/wordsManager");
 
 const getEndpointNames = (endpoint, underscore = false) => {
-    const parts = endpoint.split("/");
+    let parts = endpoint.split("/");
+
+    if (parts[1] && parts[1].startsWith(":"))
+        return { endpointList: [], params: parts[1].substring(1) };
+
+
     let endpointList = [];
     let params = "";
-    
     if (endpoint === "/") return { endpointList, params };
 
     for (let i = 1; i < parts.length; i++) {

@@ -13,28 +13,35 @@ export const ModelToEdit = ({
 }) => {
   const { editControllerTypes } = useRequestServices();
   const { getAllRoutes } = useRouteServices();
-  const { open, key, value } = editorModal;
+  const { open, key = "", value = "", propToEdit, optional } = editorModal;
   const textareaRef = useRef(null);
   const containerRef = useRef(null);
+
   const { values, handleInputChange, reset } = useForm({
-    request_value: value ? value : "",
+    request_value: propToEdit === "value" ? value : key,
   });
 
   const onPressEdit = async (value) => {
-    await editControllerTypes(routeModule, menuSelected, item, {
-      key,
-      value,
-    });
+    if (values.request_value === "" && value === "") return;
+    await editControllerTypes(
+      routeModule,
+      menuSelected,
+      item,
+      { key, value },
+      propToEdit
+    );
     await getAllRoutes();
     setEditorModal({ ...editorModal, open: false });
   };
 
   useEffect(() => {
-    if (open) {
+    if (open && propToEdit) {
       textareaRef.current.focus();
-      textareaRef.current.value = value;
+
+      if (key && propToEdit === "key") textareaRef.current.value = key;
+      if (value && propToEdit === "value") textareaRef.current.value = value;
     }
-  }, [open]);
+  }, [open, propToEdit]);
 
   const handleEscapePress = (event) => {
     if (event.key === "Escape") {
@@ -61,43 +68,83 @@ export const ModelToEdit = ({
     };
   }, [containerRef.current]);
 
-  if (open && value)
-    return (
-      <div className={scss.modal_to_edit} ref={containerRef}>
-        <div className={scss.title}>{key}</div>
-        <div className={scss.textarea_wrap}>
-          <textarea
-            ref={textareaRef}
-            type="text"
-            name="request_value"
-            placeholder={value}
-            onChange={handleInputChange}
-            value={values.request_value}
-          />
+  if (open)
+    if (propToEdit === "value")
+      return (
+        <div className={scss.modal_to_edit} ref={containerRef}>
+          <div className={scss.title}>{key}</div>
+          <div className={scss.textarea_wrap}>
+            <textarea
+              ref={textareaRef}
+              type="text"
+              name="request_value"
+              placeholder={value}
+              onChange={handleInputChange}
+              value={values.request_value}
+            />
+          </div>
+          <div className={scss.btn_group}>
+            <button
+              className={scss.cancel}
+              onClick={() => {
+                setEditorModal({
+                  open: false,
+                  key: "",
+                  value: "",
+                  menuSelected: "",
+                });
+              }}
+            >
+              CANCEL
+            </button>
+            <button
+              onClick={() => {
+                onPressEdit(values.request_value);
+              }}
+              className={scss.edit}
+            >
+              EDIT
+            </button>
+          </div>
         </div>
-        <div className={scss.btn_group}>
-          <button
-            className={scss.cancel}
-            onClick={() => {
-              setEditorModal({
-                open: false,
-                key: "",
-                value: "",
-                menuSelected: "",
-              });
-            }}
-          >
-            CANCEL
-          </button>
-          <button
-            onClick={() => {
-              onPressEdit(values.request_value);
-            }}
-            className={scss.edit}
-          >
-            EDIT
-          </button>
+      );
+    else if (propToEdit === "key")
+      return (
+        <div className={scss.modal_to_edit} ref={containerRef}>
+          <div className={scss.textarea_wrap}>
+            <textarea
+              className={scss.edit_title}
+              ref={textareaRef}
+              type="text"
+              name="request_value"
+              onChange={handleInputChange}
+              value={values.request_value}
+            />
+          </div>
+          <div className={scss.btn_group}>
+            <button
+              className={scss.cancel}
+              onClick={() => {
+                setEditorModal({
+                  open: false,
+                  key: "",
+                  value: "",
+                  menuSelected: "",
+                });
+              }}
+            >
+              CANCEL
+            </button>
+
+            <button
+              onClick={() => {
+                onPressEdit(values.request_value);
+              }}
+              className={scss.edit}
+            >
+              EDIT
+            </button>
+          </div>
         </div>
-      </div>
-    );
+      );
 };

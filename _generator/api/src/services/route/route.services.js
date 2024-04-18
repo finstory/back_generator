@@ -193,7 +193,7 @@ services.generateControllerName = (routeModule, endpoint, method) => {
   let controllerName;
   const { endpointList, params } = getEndpointNames(endpoint, false);
 
-
+console.log(endpointList,params)
   for (let i = 0; i < endpointList.length; i++)
     routeModule += UpFirst(endpointList[i]);
 

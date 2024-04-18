@@ -508,7 +508,7 @@
                         bottom: -1rem;
                         right: -1rem;
                         @include font_M_PLUS(little, 600);
-                        color: var(--normal-green-color);
+                        color: var(--null-color);
                     }
 
                     &:hover {
@@ -539,6 +539,7 @@
                     p {
                         text-align: start;
                         @include dim_width(33%);
+
                     }
                 }
 
@@ -551,11 +552,54 @@
                     border-bottom: 1px solid var(--gray-color);
                     transition: 0.2s linear;
 
-                    p {
-                        text-align: start;
+                    .column {
                         @include dim_width(33%);
+                        @include flex(space-between, center);
                         cursor: pointer;
+
+                        &.column_type {
+                            color: var(--text-primary-color);
+                        }
+
+                        &:hover {
+                            p {
+                                color: var(--text-primary-color);
+                            }
+                        }
+
+                        .string {
+                            color: var(--normal-green-color);
+                        }
+
+                        .number {
+                            color: #cf9219;
+                        }
+                        .boolean {
+                            color: #cf1919;
+                        }
+
+                        .is_null {
+                            @include font_M_PLUS(little, 600);
+                            color: var(--null-color);
+                        }
+
+                        .optional {
+                            @include dim_width(1.5rem);
+                            @include dim_height(1.5rem);
+                            font-size: 1rem;
+                            @include flex(center, center);
+                            border-radius: 1rem;
+                            border: 1px solid var(--off-gray-color);
+                            color: var(--off-gray-color);
+
+                            &.active {
+                                color: var(--white-color);
+                                border: 1px solid var(--normal-green-color);
+                                background-color: var(--hover-green-color)
+                            }
+                        }
                     }
+
                 }
 
 
@@ -605,7 +649,9 @@
 
             .textarea_wrap {
                 padding: 1rem;
-
+                z-index: 337777;
+                
+                
                 textarea {
                     @include dim_width(auto, auto, 40rem);
                     // @include dim_height(auto, auto, 3rem);
@@ -619,6 +665,11 @@
                     color: var(--white-color);
                     border-radius: 1rem;
                     @include gradient(black_bg);
+
+                    &.edit_title {
+                        @include font_M_PLUS(semi_large, 450);
+                        color: var(--text-primary-color);
+                    }
 
                     &:focus {
                         outline: none !important;
@@ -717,7 +768,7 @@
     --light-blue-color: #E2E8F0;
     --bg-blue-color: #CCD8E3;
     --off-light-blue-color: #8A99AF;
-
+    --null-color: #7b2020;
     --text-primary-color: #2FABCF;
 
 

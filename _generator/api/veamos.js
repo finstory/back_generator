@@ -1,30 +1,33 @@
+const parser = require('@babel/parser');
+const traverse = require('@babel/traverse').default;
 
-//$ GENERATE CODE
-console.log('hello world')
-console.log("hello asd234234")
-//$
+// Código TypeScript como string
+const codigoTS = `//HELLO
 
-//$ GENERATE C23
-console.log('hello world')
-console.log("hello asd234234")
-//$
+const controller:any = {};
 
-//GC-54
-controllers.productGet = async (req, res) => {
-    console.log('hello word')
-    const { id_team, parametro2 } = req.query;
-
-    const result = service();
-    res.json(result);
+controller.getAuth = async ({ params, query, body }, res) => {
+  const data: any = {controllerName: 'getAuth'};
+    
+  res.status(200).json(data);
 };
-//GC
 
-const controllers = { //GCI-START
+const getNombre = (): string => {
+  return 'Juan';
+};`;
+// Parse the code
+const ast = parser.parse(codigoTS, {
+    sourceType: 'module',
+    plugins: ['typescript'],
+});
 
 
-//GCI-54
-console.log('hello word') 
+const inicio = 35; // Posición inicial del código a imprimir
+const fin = 186; // Posición final del código a imprimir (justo antes de "};")
 
+// Extraer el código entre las posiciones inicial y final
+const codigoImprimir = codigoTS.substring(inicio, fin);
 
-
-};
+// Imprimir el código extraído
+console.log('Código a imprimir:');
+console.log(codigoImprimir);

@@ -8,7 +8,7 @@ export const useManagerText = () => {
         return list.map((string) => string[0].toUpperCase() + string.substring(1));
     };
 
-    compiler.firsUpperCase = (string) => {
+    compiler.firsUpperCase = (string = "") => {
         return string[0].toUpperCase() + string.slice(1);
     };
 

@@ -1,0 +1,18 @@
+import server from "./src/app/app";
+import db from "./src/app/db";
+const { conn } = db;
+
+if (true) {
+  //not include database
+  const PORT = process.env.PORT || 3000;
+  server.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+  });
+} else {
+  conn.sync({ force: false }).then(() => {
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT, () => {
+      console.log(`Servidor escuchando en el puerto ${PORT}`);
+    });
+  });
+}
