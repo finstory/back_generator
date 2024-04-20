@@ -9,7 +9,13 @@ const path = require("path");
 
 //% Load DB.
 require("../helpers/keyPress.js");
-require("../newServices/generator/ast.services.js");
+const fsServices = require("../newServices/generator/fs.services.js");
+const astServices = require("../newServices/generator/ast.services.js");
+const generatorServices = require("../newServices/generator/generator.services.js");
+// const S = require("../utils/service/injector.js");
+// S.addService("generator", generatorServices);
+// S.addService("ast", astServices);
+
 //$ END.
 
 const server = express();

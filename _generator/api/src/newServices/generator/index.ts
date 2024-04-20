@@ -1,11 +1,10 @@
-const controller = {
-  testFunction: () => {},
-};
-const text: string = "sdasda";
+//<IMPORT>
+import auth from "./authControllers";
+import facu from "./facuControllers";
 
-controller.testFunction = () => {
-  console.log("Hello, world!");
+const controllers = {
+...auth,
+...facu,
 };
 
-//testing
-const ready = "YES";
+export default controllers;
