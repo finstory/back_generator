@@ -2,15 +2,14 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const routes = require("../routes/index.js");
+const routes = require("../routes/_index.js");
 const path = require("path");
 
 //$ LOAD ESSENTIAL METHODS.
 
 //% Load DB.
-require("./db.js");
-require("pg");
 require("../helpers/keyPress.js");
+require("../newServices/generator/ast.services.js");
 //$ END.
 
 const server = express();

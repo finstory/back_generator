@@ -1,0 +1,28 @@
+[
+    {
+        "type": "Group",
+        "name": "src",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "DqaRsoIM5leuJZjd",
+        "iconColor": "rgb(173, 255, 47)"
+    },
+    {
+        "type": "Group",
+        "name": "app",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "wdPiWGJEhgOfcFKA"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\api_new\\src\\services",
+        "parent_id": "DqaRsoIM5leuJZjd",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\api_new\\src\\services",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Q2i5aENqyjnVodSC"
+    }
+]

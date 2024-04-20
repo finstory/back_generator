@@ -1,1 +1,0 @@
-[{"module":"auth","routesList":[{"id":"24b8ff63-1ae2-4d8e-b5b5-875428480264","endpoint":"/:email","method":"get","description":"Write a description here...","controllerName":"getAuthByEmail","middlewares":["Token","+"],"params":[],"query":[],"body":[],"response_body":[]}]}]

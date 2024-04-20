@@ -4,5 +4,6 @@
     },
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "favorites.sortDirection": "ASC"
 }
