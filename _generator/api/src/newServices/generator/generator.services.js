@@ -13,7 +13,21 @@ services.addCodeAfterTag = async ({ filePath, tagName, codeToAdd, addSpace = fal
     await S.fs.createFile(filePath, textCode);
 }
 
+services.removeFunctionProperty = async ({ filePath, compilerName, propName }) => {
+    let textCode = await S.fs.getFile(filePath);
+    const pos = S.ast.getPosFunctionProperty(textCode, compilerName, propName);
 
+    textCode = removeCodeBetweenPos(textCode, pos);
+    await S.fs.createFile(filePath, textCode);
+}
+
+services.removeImport = async ({ filePath, importName }) => {
+    let textCode = await S.fs.getFile(filePath);
+    const pos = S.ast.getPosImport(textCode, importName);
+
+    textCode = removeCodeBetweenPos(textCode, pos,false);
+    await S.fs.createFile(filePath, textCode);
+};
 
 //% microservices :
 
@@ -22,13 +36,17 @@ const insertCodeAfterPosition = (textCode, codeToAdd, pos, addSpace) => {
 
 }
 
+const removeCodeBetweenPos = (textCode, pos, removeDownLine = true, removeUpLine = true) => {
+    const numUp = removeDownLine ? (- 1) : 0;
+    const numDown = removeUpLine ? 1 : 0;
+    let codeGetting = textCode.slice(0, pos.start + numUp) + textCode.slice(pos.end + numDown);
+    return codeGetting;
+}
+
 const main = async () => {
-    const options = {
-        filePath: "D:/Programacion_Extra/Node_ts/_generator/api/src/test.ts",
-        tagName: 'ADD',
-        codeToAdd: 'codigo',
-        addSpace: false
-    };
-    services.addCodeAfterTag(options);
+
+    const path = "D:/Programacion_Extra/Node_ts/_generator/api/src/newServices/generator/index.ts";
+
+    await services.removeImport({ filePath: path, importName: "controller" });
 }
 main()

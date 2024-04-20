@@ -3,6 +3,7 @@ const parser = require('@babel/parser');
 const { S, addServices } = require('../../utils/service/injector');
 const traverse = require('@babel/traverse').default;
 const { transformFromAst } = require('@babel/core');
+const { throwError } = require('../../helpers/customError');
 const services = {};
 addServices("ast", services);
 
@@ -19,15 +20,17 @@ const astToTextCode = (ast) => {
     const { code } = transformFromAst(ast, null, {
         retainLines: true,
         comments: true,
+        plugins: ['@babel/plugin-transform-typescript'],
     });
 
     return code;
 };
 
 //% COMMENTS :
-services.getCommentPosition = (textCode, comment) => {
+services.getPosComment = (textCode, comment) => {
+    let pos = {};
     const ast = codeToAst(textCode);
-    const pos = { start: null, end: null };
+
     traverse(ast, {
         enter(path) {
             const commentsList = path.node.leadingComments;
@@ -40,7 +43,8 @@ services.getCommentPosition = (textCode, comment) => {
         },
     });
 
-    return pos;
+    if (Object.keys(pos).length > 0) return pos;
+    else return throwError("not_found", 404, `Comment ${comment} not found in code.`);
 }
 
 //% IMPORTS :
@@ -64,7 +68,8 @@ services.editImport = (textCode, importName, newImportPath, newImportName) => {
 
 }
 
-services.removeImport = (textCode, importName) => {
+services.getPosImport = (textCode, importName) => {
+    let pos = {};
     const ast = codeToAst(textCode);
 
     traverse(ast, {
@@ -72,15 +77,15 @@ services.removeImport = (textCode, importName) => {
             const identifierGetting = path.node.specifiers[0]?.local;
 
             if (identifierGetting.name === importName) {
-                path.remove();
+                pos.start = path.node.start;
+                pos.end = path.node.end;
             }
         }
     });
 
-    const textCodeEdited = astToTextCode(ast);
-
-    return textCodeEdited;
-}
+    if (Object.keys(pos).length > 0) return pos;
+    else return throwError("not_found", 404, `Import ${importName} not found in code.`);
+};
 
 //% VARS :
 
@@ -109,6 +114,50 @@ services.replaceCompilerBody = (textCode, name, newPropsList = ["auth", "product
     console.log(textCodeEdited);
 }
 
+//% FUNCTIONS :
+
+services.editFunctionProperty = (textCode, compilerName, propName, newPropName) => {
+    const ast = codeToAst(textCode);
+    traverse(ast, {
+        ExpressionStatement: (path) => {
+            const expression = path.node.expression;
+
+            if (
+                expression.type === "AssignmentExpression"
+                && expression.left.object.name === compilerName
+                && expression.left.property.name === propName
+            )
+                expression.left.property.name = newPropName;
+
+        }
+    });
+
+    const textCodeEdited = astToTextCode(ast);
+};
+
+services.getPosFunctionProperty = (textCode, compilerName, propName) => {
+    const pos = { start: null, end: null };
+    const ast = codeToAst(textCode);
+    traverse(ast, {
+        ExpressionStatement: (path) => {
+            const expression = path.node.expression;
+
+            if (
+                expression.type === "AssignmentExpression"
+                && expression.left.object.name === compilerName
+                && expression.left.property.name === propName
+            ) {
+                pos.start = path.node.start;
+                pos.end = path.node.end;
+            }
+
+        }
+    });
+
+    return pos;
+};
+
+
 const main = async () => {
     const options = {
         filePath: "D:/Programacion_Extra/Node_ts/_generator/api/src/test.ts",
@@ -121,11 +170,27 @@ const main = async () => {
     const code = `
     //bay
     const axios = require("axios");
-    const controllers = {};
+    const controller = {};
+
+    controller.patchFacu = async ({ params, query, body }, res) => {
+        const data: any = {controllerName: 'patchFacu'};
+        
+        res.status(200).json(data);
+    };
+
+    //yes
+    controller.other = async ({ params, query, body }, res) => {
+        const data: any = {controllerName: 'patchFacu'};
+        
+        res.status(200).json(data);
+    };
+
     //hello
     `;
 
-    services.replaceCompilerBody(code, "controllers", ["facu", "auth"]);
+    // services.editFunctionProperty(code, "controller", "other", "joojojoF");
+
+    // services.replaceCompilerBody(code, "controllers", ["facu", "auth"]);
     // services.removeImport(code, "controller");
 
     // services.editImport(code, "controller", "./jeje", "vaa");
