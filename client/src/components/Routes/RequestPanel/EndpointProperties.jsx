@@ -7,10 +7,13 @@ export const EndpointProperties = ({ scss, item, routeModule }) => {
   const { firsUpperCase } = useManagerText();
   const { getControllerIndex } = useRouteServices();
   const openInVSC = async () => {
-    const index = await getControllerIndex(routeModule, item.controllerName);
+    const { index, right } = await getControllerIndex(
+      routeModule,
+      item.controllerName
+    );
     const file_path = getPath("controllers") + `/${routeModule}Controllers.ts`;
-
-    window.open(`vscode://file/${file_path}:${index}:12`);
+    console.log({ index, right });
+    window.open(`vscode://file/${file_path}:${index}:${right}`);
   };
 
   return (

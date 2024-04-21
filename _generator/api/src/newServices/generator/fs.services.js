@@ -2,27 +2,29 @@ const fs = require("fs");
 const path = require("path");
 const { addServices } = require("../../utils/service/injector");
 const { throwError, catchError } = require("../../helpers/customError");
-// const { clear } = require("console");
+
 const services = {};
 addServices("fs", services);
 
-// const filePath = directory + "/" + name + "." + type;
 
 services.getFile = async (filePath, jsonFormat = true) => {
-  let getData = await new Promise((resolve, reject) => {
+  const textCode = await catchError((resolve, reject) => {
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
-        console.error("An error occurred while reading the file:", err);
-        reject();
+        reject([
+          "file_system",
+          404,
+          "File not found"
+        ]);
       }
       resolve(data);
     });
-  }).then((data) => {
-    if (!jsonFormat) return JSON.parse(data);
-    else return data;
-  });
-
-  return getData;
+  })
+    .then((data) => {
+      if (!jsonFormat) return JSON.parse(data);
+      else return data;
+    }, 1);
+  return textCode;
 }
 
 services.createFile = async (filePath, code = "") => {

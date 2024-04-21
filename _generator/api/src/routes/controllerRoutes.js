@@ -3,12 +3,15 @@ const { sendResponse, sendError } = require("../helpers/managerController");
 const { getIndexController, addEndpointComments, removeEndpointComments } = require("../services/controller/controller.services");
 const { getAllRoutes, editRouteTypes } = require("../services/route/route.services");
 const { editControllerTypes, reloadControllerTypes } = require("../services/interface/interface.services");
+const { S } = require("../utils/service/injector");
 const router = Router();
 
 router.get("/line", async (req, res) => {
     try {
         const { routeModule, controllerName } = req.query;
-        const list = await getIndexController(routeModule, controllerName);
+
+        const list = await S.controller.getPosController(routeModule, controllerName);
+
         sendResponse(res, 200, list);
     } catch (error) {
         sendError(res, error);

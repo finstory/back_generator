@@ -20,7 +20,7 @@ function throwError(type, status, payload = "Error in request.", checkError = tr
 const catchError = async (callback, timer = 1, msgTimerError) => {
   let setTimer;
 
-  await new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     callback(resolve, reject);
 
     setTimer = setTimeout(() => {
@@ -29,7 +29,7 @@ const catchError = async (callback, timer = 1, msgTimerError) => {
     }, timer * 1000);
 
   })
-    .then((msg) => { if (msg) console.log(msg); clearTimeout(setTimer); })
+    .then((data) => { clearTimeout(setTimer); return data; })
     .catch((err) => {
       clearTimeout(setTimer);
       if (err[1] && err[2]) throwError(err[0], err[1], err[2]);

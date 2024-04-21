@@ -8,10 +8,12 @@ const path = require("path");
 //$ LOAD ESSENTIAL METHODS.
 
 //% Load DB.
-require("../helpers/keyPress.js");
+// require("../helpers/keyPress.js");
 const fsServices = require("../newServices/generator/fs.services.js");
 const astServices = require("../newServices/generator/ast.services.js");
 const generatorServices = require("../newServices/generator/generator.services.js");
+const routeServices = require("../newServices/route/route.services.js");
+const controllerServices = require("../newServices/controller/controller.services.js");
 // const S = require("../utils/service/injector.js");
 // S.addService("generator", generatorServices);
 // S.addService("ast", astServices);

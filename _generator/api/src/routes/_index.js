@@ -1,10 +1,9 @@
 const { Router } = require("express");
 
-const Users = require("./userRoutes");
 const Endpoint = require("./endpointRoutes");
 const Controller = require("./controllerRoutes");
 const router = Router();
-router.use("/users", Users);
+
 router.use("/endpoint", Endpoint);
 router.use("/controller", Controller);
 

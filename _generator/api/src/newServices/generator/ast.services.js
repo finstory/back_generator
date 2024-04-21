@@ -20,13 +20,14 @@ const astToTextCode = (ast) => {
     const { code } = transformFromAst(ast, null, {
         retainLines: true,
         comments: true,
-        plugins: ['@babel/plugin-transform-typescript'],
+        // plugins: ['@babel/plugin-transform-typescript'],
     });
 
     return code;
 };
 
 //% COMMENTS :
+
 services.getPosComment = (textCode, comment) => {
     let pos = {};
     const ast = codeToAst(textCode);
@@ -48,6 +49,7 @@ services.getPosComment = (textCode, comment) => {
 }
 
 //% IMPORTS :
+
 services.editImport = (textCode, importName, newImportPath, newImportName) => {
     const ast = codeToAst(textCode);
 
@@ -95,7 +97,6 @@ services.replaceCompilerBody = (textCode, name, newPropsList = ["auth", "product
         VariableDeclaration: (path) => {
             if (path.node.declarations[0].id.name === name) {
                 // path.node.declarations[0].init.properties = newBody;
-                const propsList = path.node.declarations[0].init.properties;
                 const newProps = newPropsList.map(prop => ({
                     type: 'SpreadElement',
                     argument: {
@@ -111,13 +112,14 @@ services.replaceCompilerBody = (textCode, name, newPropsList = ["auth", "product
     });
 
     const textCodeEdited = astToTextCode(ast);
-    console.log(textCodeEdited);
+    return textCodeEdited;
 }
 
 //% FUNCTIONS :
 
 services.editFunctionProperty = (textCode, compilerName, propName, newPropName) => {
     const ast = codeToAst(textCode);
+    let ok = false;
     traverse(ast, {
         ExpressionStatement: (path) => {
             const expression = path.node.expression;
@@ -126,18 +128,22 @@ services.editFunctionProperty = (textCode, compilerName, propName, newPropName) 
                 expression.type === "AssignmentExpression"
                 && expression.left.object.name === compilerName
                 && expression.left.property.name === propName
-            )
+            ) {
                 expression.left.property.name = newPropName;
-
+                ok = true;
+            }
         }
     });
-
+    if (!ok) throwError("not_found", 404, `function ${propName} not found in code.`);
     const textCodeEdited = astToTextCode(ast);
+    return textCodeEdited;
 };
 
 services.getPosFunctionProperty = (textCode, compilerName, propName) => {
     const pos = { start: null, end: null };
     const ast = codeToAst(textCode);
+    let ok = false;
+
     traverse(ast, {
         ExpressionStatement: (path) => {
             const expression = path.node.expression;
@@ -149,72 +155,33 @@ services.getPosFunctionProperty = (textCode, compilerName, propName) => {
             ) {
                 pos.start = path.node.start;
                 pos.end = path.node.end;
+                ok = true;
             }
 
         }
     });
-
+    if (!ok) throwError("not_found", 404, `function '${propName}' not found in code.`);
     return pos;
 };
 
 
 const main = async () => {
-    const options = {
-        filePath: "D:/Programacion_Extra/Node_ts/_generator/api/src/test.ts",
-        tagName: 'ADD',
-        codeToAdd: 'codigo',
-        addSpace: false
-    };
-    // services.addCodeAfterTag(options);
+    try {
+        const options = {
+            filePath: "D:/Programacion_Extra/Node_ts/_generator/api/src/test.ts",
+            tagName: 'ADD',
+            codeToAdd: 'codigo',
+            addSpace: false
+        };
+        // services.addCodeAfterTag(options);
 
-    const code = `
-    //bay
-    const axios = require("axios");
-    const controller = {};
-
-    controller.patchFacu = async ({ params, query, body }, res) => {
-        const data: any = {controllerName: 'patchFacu'};
-        
-        res.status(200).json(data);
-    };
-
-    //yes
-    controller.other = async ({ params, query, body }, res) => {
-        const data: any = {controllerName: 'patchFacu'};
-        
-        res.status(200).json(data);
-    };
-
-    //hello
-    `;
-
-    // services.editFunctionProperty(code, "controller", "other", "joojojoF");
-
-    // services.replaceCompilerBody(code, "controllers", ["facu", "auth"]);
-    // services.removeImport(code, "controller");
-
-    // services.editImport(code, "controller", "./jeje", "vaa");
+        const path = "D:/Programacion_Extra/Node_ts/api_ts/src/controllers/testControllers.ts";
+        services.getPosFunctionProperty(path, "controller", "getUser");
+    } catch (error) {
+        console.log(error.message)
+    }
 }
 
-main();
-
-// console.log(addCodeAfterTag(code, 'ADD',"facundo"));
-
-// traverse(ast, {
-
-//     VariableDeclaration: (path) => {
-//         // console.log(path.node.declarations[0].init)
-//         if (path.node.declarations[0].id.name === "fn")
-//             path.remove()
-//         // path.node.declarations[0].id.name = "other";
-
-//     }
-// });
-
-
-// const { code: newCode } = require('@babel/core').transformFromAst(ast, null, {
-//     retainLines: true
-// });
-// console.log(newCode)
+// main();
 
 module.exports = services;

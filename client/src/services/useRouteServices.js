@@ -95,7 +95,7 @@ const useRouteServices = () => {
   services.getControllerIndex = async (routeModule, controllerName) => {
 
     const response = await api.get("controller/line", { params: { routeModule, controllerName } });
-    return response.data.lineIndex;
+    return response.data;
   }
 
   return services;
