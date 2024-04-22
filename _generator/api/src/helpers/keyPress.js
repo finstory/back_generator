@@ -8,12 +8,13 @@ let checkAlt = false;
 let checkEndpointsComments = false;
 let noActive = true;
 
-v.addListener(function (e, down) {
-  listenerCtrl(e, down);
-  listenerAlt(e, down);
-  listenerW(e, down);
-  listenerE(e, down);
-});
+v.addListener(function (e, down) { });
+// v.addListener(function (e, down) {
+//   listenerCtrl(e, down);
+//   listenerAlt(e, down);
+//   listenerW(e, down);
+//   listenerE(e, down);
+// });
 
 
 const listenerCtrl = function (e, down) {
@@ -79,7 +80,7 @@ const listenerE = function (e, down) {
 calledOnce = function (e) {
   v.removeListener(calledOnce);
 };
-v.addListener(calledOnce);
+// v.addListener(calledOnce);
 
 
 const activeCommentsAboutEndpoints = async () => {
@@ -102,3 +103,14 @@ const removeCommentsAboutEndpoints = async () => {
     console.log(error);
   }
 }
+
+// const gkm = require('gkm');
+
+// gkm.events.on('key.*', data => {
+//     const button = data[0];
+//   console.log(button);
+//     if (button === 'Escape') {
+//         console.log('Escaped');
+//         process.exit();
+//     }
+// });

@@ -39,6 +39,12 @@ services.removeFunctionProperty = async (filePath, compilerName, propName) => {
     await S.fs.createFile(filePath, textCode);
 }
 
+services.renameImport = async (filePath, importName, newImportName) => {
+    let textCode = await S.fs.getFile(filePath);
+    textCode = S.ast.editImport(textCode, importName, null, newImportName);
+    await S.fs.createFile(filePath, textCode);
+};
+
 services.removeImport = async (filePath, importName) => {
     let textCode = await S.fs.getFile(filePath);
     const pos = S.ast.getPosImport(textCode, importName);
