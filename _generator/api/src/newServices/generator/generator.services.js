@@ -1,8 +1,8 @@
 
-const { addServices, S } = require("../../utils/service/injector");
+const S = require("../../utils/service/injector");
 const { throwError, catchError } = require("../../helpers/customError");
 const services = {};
-addServices("generator", services);
+S.add("generator", services);
 
 
 services.addCodeAfterTag = async (filePath, tagName, codeToAdd, addSpace = false) => {

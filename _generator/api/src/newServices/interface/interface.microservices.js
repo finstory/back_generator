@@ -2,7 +2,7 @@ const getPath = require("../../helpers/getPath");
 const { generateFile } = require("../../../modules/generatorServices");
 const { UpFirst } = require("../../../modules/helpers/wordsManager");
 const { addContent, deleteJSFile, removeLineByTag, replaceTagByLine, renameFile } = require("../generator/generator.services");
-const { S } = require("../../utils/service/injector");
+const S = require("../../utils/service/injector");
 
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
 

@@ -2,13 +2,13 @@ const { throwError, catchError } = require("../../helpers/customError");
 const { v4: uuidv4 } = require("uuid");
 const { printMsg, UpFirst } = require("../../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../../modules/Utils/routerUtils");
-const { S, addServices } = require("../../utils/service/injector");
+const S = require("../../utils/service/injector");
 const getPath = require("../../helpers/getPath");
 
 const pathData = getPath("data", "/routesData.json");
 const services = {};
 
-addServices("route", services);
+S.add("route", services);
 
 services.getAllRoutes = async () => {
   return await S.fs.getFile(pathData, false);

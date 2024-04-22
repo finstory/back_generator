@@ -1,11 +1,11 @@
 const fs = require('fs');
 const parser = require('@babel/parser');
-const { S, addServices } = require('../../utils/service/injector');
+const S = require('../../utils/service/injector');
 const traverse = require('@babel/traverse').default;
 const { transformFromAst } = require('@babel/core');
 const { throwError } = require('../../helpers/customError');
 const services = {};
-addServices("ast", services);
+S.add("ast", services);
 
 //% AST :
 

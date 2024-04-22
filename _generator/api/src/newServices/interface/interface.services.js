@@ -1,13 +1,14 @@
 
 const { generateFolder } = require("../../../modules/generatorServices");
 const getPath = require("../../helpers/getPath");
-const { S, addServices } = require("../../utils/service/injector");
+const S = require("../../utils/service/injector");
 const { getFile, generateFile, editContentBetweenTags } = require("../generator/generator.services");
 const ms = require("./interface.microservices");
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
 
 const services = {};
-addServices("interface", services);
+S.add("interface", services);
+// addServices("interface", services);
 
 //% Manager Controllers Interfaces
 
@@ -176,4 +177,4 @@ const other = async () => {
   }
 }
 
- other();
+other();

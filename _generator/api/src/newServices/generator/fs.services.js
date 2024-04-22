@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const { addServices } = require("../../utils/service/injector");
+const S = require("../../utils/service/injector");
 const { throwError, catchError } = require("../../helpers/customError");
 
 const services = {};
-addServices("fs", services);
+S.add("fs", services);
 
 
 services.getFile = async (filePath, jsonFormat = true) => {

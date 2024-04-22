@@ -1,3 +1,4 @@
+
 const S = {
     ast: {
         getPosComment: (textCode, comment) => { },
@@ -43,7 +44,10 @@ const S = {
         deleteController: async (routeModule, controllerName) => { },
         getPosController: async (routeModule, controllerName) => { },
         reloadIndexController: async () => { },
-    }
+    },
+    add: (name, services) => {
+        S[name] = services;
+    },
 };
 
 const getServices = (name) => {
@@ -54,4 +58,4 @@ const addServices = (name, services) => {
     S[name] = services;
 };
 
-module.exports = { S, getServices, addServices };
+module.exports = S;

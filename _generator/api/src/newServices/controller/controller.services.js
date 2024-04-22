@@ -2,12 +2,12 @@ const { throwError, catchError, checkIsCathError } = require("../../helpers/cust
 const getPath = require("../../helpers/getPath");
 const { printMsg, UpFirst } = require("../../../modules/helpers/wordsManager");
 const { addContentAboveLine, removeLinesByTagsList } = require("../generator/generator.services");
-const { S, addServices } = require("../../utils/service/injector");
+const S = require("../../utils/service/injector");
 
 const controllersPath = getPath("controllers");
 const controllerInterfacesPath = getPath("interfaces", "/controllers");
 const services = {};
-addServices("controller", services);
+S.add("controller", services);
 
 services.createControllerFile = async (routeModule) => {
     const filePath = getControllerPath(routeModule);
