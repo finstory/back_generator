@@ -17,15 +17,13 @@ services.createIndexController = async (routeModule) => {
   const filePath = `${folderPath}/_index.ts`;
   const code = `//<IMPORTS>
 
-class Controllers {
-  //<CONTROLLERS>
-
-}
-
-const controllers = new Controllers();
-
-export default controllers;
-`;
+  class Controllers {
+    //<CONTROLLERS>
+  }
+  
+  const controllers = new Controllers();
+  
+  export default controllers;`;
   await S.fs.createFolder(folderPath);
   await S.fs.createFile(filePath, code);
 };
@@ -177,4 +175,4 @@ const other = async () => {
   }
 }
 
-other();
+// other();

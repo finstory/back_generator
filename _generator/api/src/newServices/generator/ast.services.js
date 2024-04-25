@@ -4,6 +4,7 @@ const S = require('../../utils/service/injector');
 const traverse = require('@babel/traverse').default;
 const { transformFromAst } = require('@babel/core');
 const { throwError } = require('../../helpers/customError');
+const { UpFirst } = require('../../helpers/wordsManager');
 const services = {};
 S.add("ast", services);
 
@@ -34,13 +35,29 @@ services.getPosComment = (textCode, comment) => {
 
     traverse(ast, {
         enter(path) {
-            const commentsList = path.node.leadingComments;
-            commentsList?.forEach(obj => {
-                if (obj.value === comment) {
+            const leadingCommentsList = path.node.leadingComments;
+            const innerCommentsList = path.node.innerComments;
+
+            let uniqueValues = [];
+
+            leadingCommentsList?.forEach(obj => {
+                
+                if (obj.value === comment && !uniqueValues.includes(obj.value)) {
                     pos.start = obj.start;
                     pos.end = obj.end;
                 }
+                uniqueValues.push(obj.value);
             });
+
+            innerCommentsList?.forEach(obj => {
+                console.log(!uniqueValues.includes(obj.value))
+                if (obj.value === comment && !uniqueValues.includes(obj.value)) {
+                    pos.start = obj.start;
+                    pos.end = obj.end;
+                }
+                uniqueValues.push(obj.value);
+            });
+
         },
     });
 
@@ -91,7 +108,7 @@ services.getPosImport = (textCode, importName) => {
 
 //% VARS :
 
-services.replaceCompilerBody = (textCode, name, newPropsList = ["auth", "products"]) => {
+services.replaceCompilerBody = (textCode, name, newPropsList = []) => {
     const ast = codeToAst(textCode);
     traverse(ast, {
         VariableDeclaration: (path) => {
@@ -169,7 +186,7 @@ services.getPosFunctionProperty = (textCode, compilerName, propName) => {
 
 services.editClassMethod = (textCode, className, methodName, newMethodName, argsList = "request_method") => {
     if (argsList === "request_method") {
-        const newQualifiedName = newMethodName ? newMethodName : methodName;
+        const newQualifiedName = newMethodName ? UpFirst(newMethodName) : UpFirst(methodName);
         argsList = [
             { name: "req", newQualifiedName },
             { name: "res", newQualifiedName }
@@ -245,12 +262,12 @@ const main = async () => {
         const textCode = await S.fs.getFile("D:/Programacion_Extra/Node_ts/_generator/api/src/newServices/generator/index.ts");
 
         const codeGetting = services.getPosClassMethod(textCode, "Controllers", "getAuth");
-  
+
     } catch (error) {
         console.log(error.message)
     }
 }
 
- main();
+main();
 
 module.exports = services;

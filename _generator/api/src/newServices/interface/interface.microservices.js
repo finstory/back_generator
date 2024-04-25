@@ -49,8 +49,7 @@ ms.addImportFromIndexController = async (routeModule, controllerName) => {
   const filePath = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
   const tagsStart = "<IMPORTS>";
   const code = `import * as ${UpFirst(controllerName)} from "./${controllerName}";`
-
-  await S.generator.addCodeAfterTag(filePath, tagsStart, code, true);
+  await S.generator.addCodeAfterTag(filePath, tagsStart, code, false);
 };
 
 ms.editImportFromIndexController = async (routeModule, controllerName, newControllerName) => {
@@ -65,30 +64,37 @@ ms.removeImportFromIndexController = async (routeModule, controllerName) => {
 
 ms.addPrototypeFromIndexController = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `//$CONTROLLER_START`;
-  const code = `\nasync ${controllerName} (req: ${UpFirst(controllerName)}.Req, res: ${UpFirst(controllerName)}.Res) {}`
-
-  await addContent(tagsStart, code, path);
+  const tag = "<CONTROLLERS>";
+  const code = `async ${controllerName}(req: ${UpFirst(controllerName)}.Req, res: ${UpFirst(controllerName)}.Res) {}`;
+  await S.generator.addCodeAfterTag(path, tag, code, false);
 };
 
 ms.editPrototypeFromIndexController = async (routeModule, controllerName, newControllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `async ${controllerName}`;
-  const code = `async ${newControllerName}(req: ${UpFirst(newControllerName)}.Req, res: ${UpFirst(newControllerName)}.Res) { }`
-
-  await replaceTagByLine(tagsStart, code, path, true);
+  await S.generator.renameClassMethod(path, "Controllers", controllerName, newControllerName, "request_method");
 };
 
 ms.removePrototypeFromIndexController = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `async ${controllerName}`;
-
-  await removeLineByTag(tagsStart, path);
+  await S.generator.removeClassMethod(path, "Controllers", controllerName);
 }
 
 const main = async () => {
-  // await ms.addImportFromIndexController("koko", "getTest");
-  //  await ms.removeImportFromIndexController("auth", "getAuthByEmail");
+  try {
+    // await ms.editPrototypeFromIndexController("auth", "getAuthByUserName", "putName");
+
+    await ms.addImportFromIndexController("auth", "getAuthByEmail");
+    // await ms.addPrototypeFromIndexController("auth", "getAuthByUserName");
+    // await ms.addPrototypeFromIndexController("auth", "geronimo");
+    // await ms.addPrototypeFromIndexController("auth", "getAuthByUserName");
+    // await ms.addPrototypeFromIndexController("auth", "getAuthByUserName");
+    // await ms.removePrototypeFromIndexController("auth", "geronimo");
+    // await ms.addPrototypeFromIndexController("auth", "other");
+    // await ms.addImportFromIndexController("koko", "getTest");
+    //  await ms.removeImportFromIndexController("auth", "getAuthByEmail");
+  } catch (error) {
+    console.log(error.message)
+  }
 }
 
 main();

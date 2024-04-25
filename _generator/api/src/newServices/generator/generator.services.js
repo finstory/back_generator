@@ -6,16 +6,19 @@ S.add("generator", services);
 
 
 services.addCodeAfterTag = async (filePath, tagName, codeToAdd, addSpace = false) => {
-    let textCode = await S.fs.getFile(filePath);
-    const pos = S.ast.getPosComment(textCode, tagName);
-    textCode = insertCodeAfterPosition(textCode, codeToAdd, pos, addSpace);
-
-    await S.fs.createFile(filePath, textCode);
+   try {
+     let textCode = await S.fs.getFile(filePath);
+     const pos = S.ast.getPosComment(textCode, tagName);
+     textCode = insertCodeAfterPosition(textCode, codeToAdd, pos, addSpace);
+     await S.fs.createFile(filePath, textCode);
+   } catch (error) {
+    //  console.log(error)
+   }
 }
 
-services.renameFunctionProperty = async (filePath, compilerName, propName, newPropName) => {
+services.renameFunctionProperty = async (filePath, compilerName, propName, newPropName, propsList) => {
     const textCode = await S.fs.getFile(filePath);
-    const newTextCode = S.ast.editFunctionProperty(textCode, compilerName, propName, newPropName);
+    const newTextCode = S.ast.editFunctionProperty(textCode, compilerName, propName, newPropName, propsList);
     await S.fs.createFile(filePath, newTextCode);
 }
 
@@ -59,6 +62,20 @@ services.replaceCompiledImport = async (filePath, importName, importList) => {
     await S.fs.createFile(filePath, newTextCode);
 };
 
+services.renameClassMethod = async (filePath, className, methodName, newMethodName, argsList) => {
+    let textCode = await S.fs.getFile(filePath);
+    const newTextCode = S.ast.editClassMethod(textCode, className, methodName, newMethodName, argsList);
+    await S.fs.createFile(filePath, newTextCode);
+}
+
+services.removeClassMethod = async (filePath, className, methodName) => {
+    let textCode = await S.fs.getFile(filePath);
+    const pos = S.ast.getPosClassMethod(textCode, className, methodName);
+    textCode = removeCodeBetweenPos(textCode, pos, false, true);
+    await S.fs.createFile(filePath, textCode);
+}
+
+
 //% microservices :
 
 const insertCodeAfterPosition = (textCode, codeToAdd, pos, addSpace) => {
@@ -75,10 +92,13 @@ const removeCodeBetweenPos = (textCode, pos, removeDownLine = true, removeUpLine
 
 const main = async () => {
 
-    const path = "D:/Programacion_Extra/Node_ts/api_ts/src/controllers/testControllers.ts";
-    await services.renameFunctionProperty(path, "controller", "getUser", "post");
+    const path = "D:/Programacion_Extra/Node_ts/_generator/api/src/newServices/generator/index.ts";
+    // await services.renameFunctionProperty(path, "controller", "getUser", "post");
 
+    // await services.renameClassMethod(path, "Controllers", "getAuth", "putName");
+
+    // await services.removeClassMethod(path, "Controllers", "getAuth");
     // await services.replaceCompiledImport({ filePath: path, importName: "controllers", importList: ["controller"] })
     // await services.removeImport({ filePath: path, importName: "service" });
 }
-// main()
+main()

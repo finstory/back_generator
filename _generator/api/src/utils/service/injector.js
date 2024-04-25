@@ -4,9 +4,11 @@ const S = {
         getPosComment: (textCode, comment) => { },
         editImport: (textCode, importName, newImportName, newImportPath) => { },
         getPosImport: (textCode, importName) => { },
-        replaceCompilerBody: (textCode, name, newPropsList = ["auth", "products"]) => { },
+        replaceCompilerBody: (textCode, name, newPropsList = []) => { },
         editFunctionProperty: (textCode, compilerName, propName, newPropName) => { },
         getPosFunctionProperty: (textCode, compilerName, propName) => { },
+        editClassMethod: (textCode, className, methodName, newMethodName, argsList) => { },
+        getPosClassMethod: (textCode, className, methodName) => { }
     },
     fs: {
         getFile: async (filePath, jsonFormat = true) => { },
@@ -19,11 +21,13 @@ const S = {
     },
     generator: {
         getLineFunctionProperty: async (filePath, compilerName, controllerName) => { },
+        renameClassMethod: async (filePath, className, methodName, newMethodName, argsList) => { },
         renameFunctionProperty: async (filePath, compilerName, propName, newPropName) => { },
         renameImport: async (filePath, importName, newImportName, newImportPath) => { },
         addCodeAfterTag: async (filePath, tagName, codeToAdd, addSpace = false) => { },
         removeFunctionProperty: async (filePath, compilerName, propName) => { },
         removeImport: async (filePath, importName) => { },
+        removeClassMethod : async (filePath, className, methodName) => { },
         replaceCompiledImport: async (filePath, importName, importList) => { },
     },
     route: {
