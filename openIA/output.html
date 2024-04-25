@@ -1,0 +1,79 @@
+<!-- Para ayudarte a crear un diseño visual similar al de la imagen proporcionada
+usando HTML y CSS, aquí tienes un ejemplo básico de cómo podrías estructurar los
+elementos y aplicar estilos. Esta es una simplificación y no replicará todos los
+detalles, pero te será útil como punto de partida. ```html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tarjeta de Presentación</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0a192f;
+      }
+      .card {
+        width: 260px;
+        height: 400px;
+        background: linear-gradient(145deg, #006064, #26c6da);
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+      }
+      .banner {
+        height: 30%;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .content {
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 18px;
+      }
+      .picture {
+        width: 60px;
+        height: 60px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        margin: 10px auto;
+      }
+      p {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="banner">
+        <div class="picture"></div>
+        <h1>WHO WE ARE</h1>
+        <p>EXACCLY?</p>
+      </div>
+      <div class="content">
+        <p>Creative solutions for your web design and development needs.</p>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- ``` ### Detalles del Código: - **HTML**: Define la estructura básica utilizando
+elementos `div` para crear una tarjeta. - **CSS**: Encargado de estilizar la
+tarjeta. Usa gradientes para el fondo, `box-shadow` para darle profundidad, y
+estilos para centrar y distribuir el contenido. Puedes ajustar colores, tamaño y
+tipografías según lo necesites para hacer que sea más fiel al diseño del
+ejemplo. Utiliza imágenes, iconos, y otros recursos gráficos para enriquecer el
+diseño final. -->

@@ -2,7 +2,7 @@
 const S = {
     ast: {
         getPosComment: (textCode, comment) => { },
-        editImport: (textCode, importName, newImportPath, newImportName) => { },
+        editImport: (textCode, importName, newImportName, newImportPath) => { },
         getPosImport: (textCode, importName) => { },
         replaceCompilerBody: (textCode, name, newPropsList = ["auth", "products"]) => { },
         editFunctionProperty: (textCode, compilerName, propName, newPropName) => { },
@@ -20,6 +20,7 @@ const S = {
     generator: {
         getLineFunctionProperty: async (filePath, compilerName, controllerName) => { },
         renameFunctionProperty: async (filePath, compilerName, propName, newPropName) => { },
+        renameImport: async (filePath, importName, newImportName, newImportPath) => { },
         addCodeAfterTag: async (filePath, tagName, codeToAdd, addSpace = false) => { },
         removeFunctionProperty: async (filePath, compilerName, propName) => { },
         removeImport: async (filePath, importName) => { },
@@ -50,12 +51,5 @@ const S = {
     },
 };
 
-const getServices = (name) => {
-    return S[name];
-};
-
-const addServices = (name, services) => {
-    S[name] = services;
-};
 
 module.exports = S;

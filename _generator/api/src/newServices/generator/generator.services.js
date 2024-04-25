@@ -39,9 +39,9 @@ services.removeFunctionProperty = async (filePath, compilerName, propName) => {
     await S.fs.createFile(filePath, textCode);
 }
 
-services.renameImport = async (filePath, importName, newImportName) => {
+services.renameImport = async (filePath, importName, newImportName, newPathName) => {
     let textCode = await S.fs.getFile(filePath);
-    textCode = S.ast.editImport(textCode, importName, null, newImportName);
+    textCode = S.ast.editImport(textCode, importName, newImportName, newPathName);
     await S.fs.createFile(filePath, textCode);
 };
 

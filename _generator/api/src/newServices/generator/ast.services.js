@@ -50,7 +50,7 @@ services.getPosComment = (textCode, comment) => {
 
 //% IMPORTS :
 
-services.editImport = (textCode, importName, newImportPath, newImportName) => {
+services.editImport = (textCode, importName, newImportName, newImportPath) => {
     const ast = codeToAst(textCode);
 
     traverse(ast, {
@@ -164,6 +164,74 @@ services.getPosFunctionProperty = (textCode, compilerName, propName) => {
     return pos;
 };
 
+//% CLASS :
+
+
+services.editClassMethod = (textCode, className, methodName, newMethodName, argsList = "request_method") => {
+    if (argsList === "request_method") {
+        const newQualifiedName = newMethodName ? newMethodName : methodName;
+        argsList = [
+            { name: "req", newQualifiedName },
+            { name: "res", newQualifiedName }
+        ]
+    }
+
+    const ast = codeToAst(textCode);
+    let ok = false;
+    traverse(ast, {
+        ClassDeclaration: (path) => {
+            if (path.node.id.name === className) {
+
+                const methodsList = path.node.body;
+
+                methodsList.body.forEach(method => {
+                    if (method.key.name === methodName) {
+                        method.key.name = newMethodName;
+                        ok = true;
+
+                        if (argsList && argsList.length > 0) {
+                            method.params.forEach((param) => {
+                                argsList.forEach(arg => {
+
+                                    if (param.name === arg.name)
+                                        param.typeAnnotation.typeAnnotation.typeName.left.name = arg.newQualifiedName;
+
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    });
+    if (!ok) throwError("not_found", 404, `function ${methodName} not found in code.`);
+    const textCodeEdited = astToTextCode(ast);
+    return textCodeEdited;
+};
+
+services.getPosClassMethod = (textCode, className, methodName) => {
+    const pos = { start: null, end: null };
+    const ast = codeToAst(textCode);
+    let ok = false;
+
+    traverse(ast, {
+        ClassDeclaration: (path) => {
+            if (path.node.id.name === className) {
+
+                const methodsList = path.node.body;
+                methodsList.body.forEach(method => {
+                    if (method.key.name === methodName) {
+                        pos.start = method.start;
+                        pos.end = method.end;
+                        ok = true;
+                    }
+                });
+            }
+        }
+    });
+    if (!ok) throwError("not_found", 404, `function ${methodName} not found in code.`);
+    return pos;
+};
 
 const main = async () => {
     try {
@@ -174,14 +242,15 @@ const main = async () => {
             addSpace: false
         };
         // services.addCodeAfterTag(options);
+        const textCode = await S.fs.getFile("D:/Programacion_Extra/Node_ts/_generator/api/src/newServices/generator/index.ts");
 
-        const path = "D:/Programacion_Extra/Node_ts/api_ts/src/controllers/testControllers.ts";
-        services.getPosFunctionProperty(path, "controller", "getUser");
+        const codeGetting = services.getPosClassMethod(textCode, "Controllers", "getAuth");
+  
     } catch (error) {
         console.log(error.message)
     }
 }
 
-// main();
+ main();
 
 module.exports = services;

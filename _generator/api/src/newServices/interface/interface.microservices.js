@@ -3,6 +3,7 @@ const { generateFile } = require("../../../modules/generatorServices");
 const { UpFirst } = require("../../../modules/helpers/wordsManager");
 const { addContent, deleteJSFile, removeLineByTag, replaceTagByLine, renameFile } = require("../generator/generator.services");
 const S = require("../../utils/service/injector");
+const { lowerCaseToFirstLetter } = require("../../../helpers/wordsManager");
 
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
 
@@ -36,14 +37,12 @@ ms.createControllerInterface = async (routeModule, controllerName) => {
 
 ms.renameControllerInterface = async (routeModule, controllerName, newControllerName) => {
   const directory = `${pathControllerInterfaces}/${routeModule}`;
-  renameFile(controllerName, newControllerName, directory);
+  await S.fs.renameFile(controllerName, newControllerName, directory);
 }
 
-
 ms.removeControllerInterface = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}`;
-
-  await deleteJSFile(controllerName, path);
+  const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
+  await S.fs.deleteFile(path);
 }
 
 ms.addImportFromIndexController = async (routeModule, controllerName) => {
@@ -56,17 +55,12 @@ ms.addImportFromIndexController = async (routeModule, controllerName) => {
 
 ms.editImportFromIndexController = async (routeModule, controllerName, newControllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `import * as ${UpFirst(controllerName)}`;
-  const code = `import * as ${UpFirst(newControllerName)} from "./${newControllerName}"`
-
-  await replaceTagByLine(tagsStart, code, path);
+  await S.generator.renameImport(path, UpFirst(controllerName), UpFirst(newControllerName), `./${newControllerName}`);
 };
 
 ms.removeImportFromIndexController = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `import * as ${UpFirst(controllerName)}`;
-
-  await removeLineByTag(tagsStart, path, false);
+  await S.generator.removeImport(path, UpFirst(controllerName));
 }
 
 ms.addPrototypeFromIndexController = async (routeModule, controllerName) => {
@@ -91,5 +85,12 @@ ms.removePrototypeFromIndexController = async (routeModule, controllerName) => {
 
   await removeLineByTag(tagsStart, path);
 }
+
+const main = async () => {
+  // await ms.addImportFromIndexController("koko", "getTest");
+  //  await ms.removeImportFromIndexController("auth", "getAuthByEmail");
+}
+
+main();
 
 module.exports = ms;

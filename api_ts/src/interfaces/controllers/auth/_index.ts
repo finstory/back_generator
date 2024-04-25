@@ -1,13 +1,14 @@
 //$IMPORT_START
-import * as GetAuth from "./getAuth";
+import * as GetTest from "./getTest";
 import * as GetAuthByEmail from "./getAuthByEmail";
+import * as SetTest from "./getTest";
 
 class Controllers {
-//$CONTROLLER_START
+  //$CONTROLLER_START
 
-async getAuth (req: GetAuth.Req, res: GetAuth.Res) {}
+  async getAuth(req: GetTest.Req, res: GetTest.Res) {}
 
-async getAuthByEmail (req: GetAuthByEmail.Req, res: GetAuthByEmail.Res) {}
+  async getAuthByEmail(req: GetAuthByEmail.Req, res: GetAuthByEmail.Res) {}
 
 }
 
