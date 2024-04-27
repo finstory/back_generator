@@ -5,6 +5,7 @@ const traverse = require('@babel/traverse').default;
 const { transformFromAst } = require('@babel/core');
 const { throwError } = require('../../helpers/customError');
 const { UpFirst } = require('../../helpers/wordsManager');
+const ts = require('typescript');
 const services = {};
 S.add("ast", services);
 
@@ -41,7 +42,7 @@ services.getPosComment = (textCode, comment) => {
             let uniqueValues = [];
 
             leadingCommentsList?.forEach(obj => {
-                
+
                 if (obj.value === comment && !uniqueValues.includes(obj.value)) {
                     pos.start = obj.start;
                     pos.end = obj.end;
@@ -250,24 +251,114 @@ services.getPosClassMethod = (textCode, className, methodName) => {
     return pos;
 };
 
+//% INTERFACES & TYPES :
+
+services.addTypes = (textCode, typeName, newType = { key, type, elementType, optional, value }) => {
+    const ast = codeToAst(textCode);
+    let ok = false;
+
+    traverse(ast, {
+        TSTypeAliasDeclaration: (path) => {
+            if (path.node.id.name === typeName) {
+                path.node.typeAnnotation.members.push({
+                    type: 'ObjectTypeProperty',
+                    key: {
+                        type: 'Identifier',
+                        name: `\n  ${newType.key}${newType.optional ? "?" : ""}`,
+                    },
+                    value: {
+                        type: 'TSTypeReference',
+                        typeName: {
+                            type: 'Identifier',
+                            name: `${newType.type}${newType.elementType === "array" ? "[]" : ""};`,
+                        }
+                    }
+                });
+                ok = true;
+
+            }
+        }
+    })
+
+    if (!ok) throwError("not_found", 404, `type ${typeName} not found in code.`);
+
+    const textCodeEdited = astToTextCode(ast);
+    return textCodeEdited;
+
+}
+
+services.editTypes = (textCode, typeName, newType = { prevKey, key, type, elementType, optional, value }) => {
+    const ast = codeToAst(textCode);
+    let ok = false;
+
+    traverse(ast, {
+        TSTypeAliasDeclaration: (path) => {
+            if (path.node.id.name === typeName) {
+                path.node.typeAnnotation.members.forEach((member) => {
+                    if (member.key.name === newType.prevKey) {
+                        member.optional = newType.optional;
+                        member.key.name = newType.key;
+                        member.typeAnnotation.typeAnnotation =
+                        {
+                            "type": "TSTypeReference",
+                            "typeName": {
+                                "type": "Identifier",
+                                "name": `${newType.type}${newType.elementType === "array" ? "[]" : ""}`,
+                            },
+                        }
+                    }
+                });
+                ok = true;
+
+            }
+        }
+    })
+
+    if (!ok) throwError("not_found", 404, `type ${typeName} not found in code.`);
+
+    const textCodeEdited = astToTextCode(ast);
+    return textCodeEdited;
+
+}
+
+services.getPosTypes = (textCode, typeName, key) => {
+    const pos = { start: null, end: null };
+    const ast = codeToAst(textCode);
+    let ok = false;
+
+    traverse(ast, {
+        TSTypeAliasDeclaration: (path) => {
+            if (path.node.id.name === typeName) {
+                path.node.typeAnnotation.members.forEach((member) => {
+                    if (member.key.name === key) {
+                        pos.start = member.start;
+                        pos.end = member.end;
+                        ok = true;
+                    }
+                });
+            }
+        }
+    });
+
+    if (!ok) throwError("not_found", 404, `type ${typeName} not found in code.`);
+    return pos;
+}
+
 const main = async () => {
     try {
-        const options = {
-            filePath: "D:/Programacion_Extra/Node_ts/_generator/api/src/test.ts",
-            tagName: 'ADD',
-            codeToAdd: 'codigo',
-            addSpace: false
-        };
-        // services.addCodeAfterTag(options);
-        const textCode = await S.fs.getFile("D:/Programacion_Extra/Node_ts/_generator/api/src/newServices/generator/index.ts");
 
-        const codeGetting = services.getPosClassMethod(textCode, "Controllers", "getAuth");
+        const textCode = await S.fs.getFile("D:/Programacion_Extra/Node_ts/_generator/api/src/newServices/generator/index.ts")
 
+        const newType = { prevKey: "name", key: 'user', type: 'string', elementType: "", optional: false, value: { id: 2, name: "facu" } }
+        // const newTextCode = await services.addTypes(textCode, "params", newType);
+        const newTextCode = await services.getPosTypes(textCode, "params", "user");
+
+        console.log(newTextCode);
     } catch (error) {
         console.log(error.message)
     }
 }
 
-main();
+// main();
 
 module.exports = services;

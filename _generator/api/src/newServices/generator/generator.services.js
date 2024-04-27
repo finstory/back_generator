@@ -6,14 +6,14 @@ S.add("generator", services);
 
 
 services.addCodeAfterTag = async (filePath, tagName, codeToAdd, addSpace = false) => {
-   try {
-     let textCode = await S.fs.getFile(filePath);
-     const pos = S.ast.getPosComment(textCode, tagName);
-     textCode = insertCodeAfterPosition(textCode, codeToAdd, pos, addSpace);
-     await S.fs.createFile(filePath, textCode);
-   } catch (error) {
-    //  console.log(error)
-   }
+    try {
+        let textCode = await S.fs.getFile(filePath);
+        const pos = S.ast.getPosComment(textCode, tagName);
+        textCode = insertCodeAfterPosition(textCode, codeToAdd, pos, addSpace);
+        await S.fs.createFile(filePath, textCode);
+    } catch (error) {
+        //  console.log(error)
+    }
 }
 
 services.renameFunctionProperty = async (filePath, compilerName, propName, newPropName, propsList) => {
@@ -74,6 +74,31 @@ services.removeClassMethod = async (filePath, className, methodName) => {
     textCode = removeCodeBetweenPos(textCode, pos, false, true);
     await S.fs.createFile(filePath, textCode);
 }
+
+
+//% TYPES :
+
+services.addType = async (filePath, typeName, newType = { prevKey, key, type, elementType, optional, value }) => {
+    let textCode = await S.fs.getFile(filePath);
+    const newTextCode = S.ast.addTypes(textCode, typeName, newType);
+
+    await S.fs.createFile(filePath, newTextCode);
+}
+
+services.renameType = async (filePath, typeName, newType = { prevKey, key, type, elementType, optional, value }) => {
+    let textCode = await S.fs.getFile(filePath);
+    const newTextCode = S.ast.editTypes(textCode, typeName, newType);
+    await S.fs.createFile(filePath, newTextCode);
+}
+
+services.removeType = async (filePath, typeName, key) => {
+    let textCode = await S.fs.getFile(filePath);
+    const pos = S.ast.getPosTypes(textCode, typeName, key);
+    console.log(pos)
+    textCode = removeCodeBetweenPos(textCode, pos, false, true);
+    await S.fs.createFile(filePath, textCode);
+}
+
 
 
 //% microservices :

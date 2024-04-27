@@ -82,40 +82,20 @@ const getControllerTypes = async (routeModule, controllerName) => {
 
 }
 
-services.editControllerTypes = async (routeModule, controllerName, newTypesList) => {
+services.addControllerType = async (routeModule, controllerName, requestType, newType = { prevKey, key, type, elementType, optional, value }) => {
   const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
-  const settingsTypes = [
-    { typeTo: "params", startTag: "type params", endTag: "type query" },
-    { typeTo: "query", startTag: "type query", endTag: "type body" },
-    { typeTo: "body", startTag: "type body", endTag: "type response_body" },
-    { typeTo: "response_body", startTag: "type response_body", endTag: "//BODY" }
-  ];
-
-
-  for (const item in newTypesList) {
-    let newContent = ` = {\n`;
-    const { startTag, endTag, typeTo } = settingsTypes.find(obj => obj.typeTo === item);
-    const typesList = newTypesList[item];
-
-    for (let i = 0; i < typesList.length; i++) {
-      const { key, type, optional } = typesList[i];
-
-      newContent += `//KEY\n  ${key}${optional ? '?' : ''}: ${type};\n`;
-    }
-    newContent += '//END\n};\n\n';
-
-    await editContentBetweenTags(startTag, endTag, newContent, path, false);
-  }
-
-
+  await S.generator.addType(path, requestType, newType);
 }
 
-services.reloadControllerTypes = async (routeModule, controllerName) => {
-  const typesList = await getControllerTypes(routeModule, controllerName);
-  console.log(typesList)
-  await getServices("route").editRouteTypes(routeModule, controllerName, typesList);
+services.renameControllerType = async (routeModule, controllerName, requestType, newType = { prevKey, key, type, elementType, optional, value }) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
+  await S.generator.renameType(path, requestType, newType);
 }
 
+services.removeControllerType = async (routeModule, controllerName, requestType, key) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
+  await S.generator.removeType(path, requestType, key);
+}
 const getAllTypes = (paramsText) => {
   const paramsLines = paramsText.split('\n');
   let result = [];
@@ -169,10 +149,13 @@ const main = async () => {
 const other = async () => {
 
   try {
-    await services.createIndexController("koko");
+    const newType = { prevKey: "users", key: 'fern', type: "some", elementType: "array", optional: false, value: { id: 2, name: "facu" } };
+    // await services.addControllerType("auth", "patchAuth", "query", newType);
+    // await services.renameControllerType("auth", "patchAuth", "query", newType);
+    await services.removeControllerType("auth", "patchAuth", "params", "fern");
   } catch (error) {
     console.log(error.message);
   }
 }
 
-// other();
+other();

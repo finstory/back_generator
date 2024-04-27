@@ -1,6 +1,9 @@
 
 const S = {
     ast: {
+        addTypes: (textCode, typeName, newType = { key, type, elementType, optional, value }) => { },
+        editTypes: (textCode, typeName, newType = { prevKey, key, type, elementType, optional, value }) => { },
+        getPosTypes: (textCode, typeName, key) => { },
         getPosComment: (textCode, comment) => { },
         editImport: (textCode, importName, newImportName, newImportPath) => { },
         getPosImport: (textCode, importName) => { },
@@ -19,7 +22,11 @@ const S = {
         deleteFile: async (filePath) => { },
         deleteFolder: async (folderPath) => { },
     },
+
     generator: {
+        addType: async (filePath, typeName, newType = { key, type, elementType, optional, value }) => { },
+        renameType: async (filePath, typeName, newType = { prevKey, key, type, elementType, optional, value }) => { },
+        removeType: async (filePath, typeName, key) => { },
         getLineFunctionProperty: async (filePath, compilerName, controllerName) => { },
         renameClassMethod: async (filePath, className, methodName, newMethodName, argsList) => { },
         renameFunctionProperty: async (filePath, compilerName, propName, newPropName) => { },
@@ -27,7 +34,7 @@ const S = {
         addCodeAfterTag: async (filePath, tagName, codeToAdd, addSpace = false) => { },
         removeFunctionProperty: async (filePath, compilerName, propName) => { },
         removeImport: async (filePath, importName) => { },
-        removeClassMethod : async (filePath, className, methodName) => { },
+        removeClassMethod: async (filePath, className, methodName) => { },
         replaceCompiledImport: async (filePath, importName, importList) => { },
     },
     route: {

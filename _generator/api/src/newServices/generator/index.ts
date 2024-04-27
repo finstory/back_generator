@@ -1,17 +1,28 @@
-//$IMPORT_START
-import * as GetTest from "./getTest";
-import * as GetAuthByEmail from "./getAuthByEmail";
-import * as SetTest from "./getTest";
+import { Request, Response } from "express";
+export interface Req extends Request<params, {}, body, query> {}
+export interface Res extends Response<response_body> {}
 
-class Controllers {
-  //$CONTROLLER_START
-
-  async getAuth(req: GetAuth.Req, res: GetAuth.Res) {}
-
-  async getAuthByEmail(req: GetAuthByEmail.Req, res: GetAuthByEmail.Res) {}
-
+interface User {
+  id: number;
 }
 
-const controllers = new Controllers();
+//REQUEST TYPES:
 
-export default controllers;
+type params = {
+  id: number;
+  get: string;
+  user: string;
+  hello: string[];
+};
+
+type query = {
+};
+
+type body = {
+};
+
+type response_body = {
+};
+
+//BODY TO SEND:
+const body: body = {};
