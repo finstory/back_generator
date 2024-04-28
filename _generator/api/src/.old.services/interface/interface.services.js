@@ -1,37 +1,35 @@
-
+const { addServices, getServices } = require("..");
 const { generateFolder } = require("../../../modules/generatorServices");
 const getPath = require("../../helpers/getPath");
-const S = require("../../utils/service/injector");
 const { getFile, generateFile, editContentBetweenTags } = require("../generator/generator.services");
 const ms = require("./interface.microservices");
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
 
 const services = {};
-S.add("interface", services);
-// addServices("interface", services);
-
+addServices("interface", services);
 //% Manager Controllers Interfaces
 
 services.createIndexController = async (routeModule) => {
-  const folderPath = `${pathControllerInterfaces}/${routeModule}`;
-  const filePath = `${folderPath}/_index.ts`;
-  const code = `//<IMPORTS>
+  const path = `${pathControllerInterfaces}/${routeModule}`;
+  const code = `//$IMPORT_START
 
-  class Controllers {
-    //<CONTROLLERS>
-  }
-  
-  const controllers = new Controllers();
-  
-  export default controllers;`;
-  await S.fs.createFolder(folderPath);
-  await S.fs.createFile(filePath, code);
+class Controllers {
+//$CONTROLLER_START
+
+}
+
+const controllers = new Controllers();
+
+export default controllers;
+`;
+  await generateFolder(routeModule, pathControllerInterfaces);
+  await generateFile("_index", path, code);
 };
 
 services.addControllerInterface = async (routeModule, controllerName) => {
   await ms.addImportFromIndexController(routeModule, controllerName);
-  // await ms.addPrototypeFromIndexController(routeModule, controllerName);
-  // await ms.createControllerInterface(routeModule, controllerName);
+  await ms.addPrototypeFromIndexController(routeModule, controllerName);
+  await ms.createControllerInterface(routeModule, controllerName);
 }
 
 services.editControllerInterface = async (routeModule, controllerName, newControllerName) => {
@@ -82,20 +80,40 @@ const getControllerTypes = async (routeModule, controllerName) => {
 
 }
 
-services.addControllerType = async (routeModule, controllerName, requestType, newType = { prevKey, key, type, elementType, optional, value }) => {
+services.editControllerTypes = async (routeModule, controllerName, newTypesList) => {
   const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
-  await S.generator.addType(path, requestType, newType);
+  const settingsTypes = [
+    { typeTo: "params", startTag: "type params", endTag: "type query" },
+    { typeTo: "query", startTag: "type query", endTag: "type body" },
+    { typeTo: "body", startTag: "type body", endTag: "type response_body" },
+    { typeTo: "response_body", startTag: "type response_body", endTag: "//BODY" }
+  ];
+
+
+  for (const item in newTypesList) {
+    let newContent = ` = {\n`;
+    const { startTag, endTag, typeTo } = settingsTypes.find(obj => obj.typeTo === item);
+    const typesList = newTypesList[item];
+
+    for (let i = 0; i < typesList.length; i++) {
+      const { key, type, optional } = typesList[i];
+
+      newContent += `//KEY\n  ${key}${optional ? '?' : ''}: ${type};\n`;
+    }
+    newContent += '//END\n};\n\n';
+
+    await editContentBetweenTags(startTag, endTag, newContent, path, false);
+  }
+
+
 }
 
-services.renameControllerType = async (routeModule, controllerName, requestType, newType = { prevKey, key, type, elementType, optional, value }) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
-  await S.generator.renameType(path, requestType, newType);
+services.reloadControllerTypes = async (routeModule, controllerName) => {
+  const typesList = await getControllerTypes(routeModule, controllerName);
+  console.log(typesList)
+  await getServices("route").editRouteTypes(routeModule, controllerName, typesList);
 }
 
-services.removeControllerType = async (routeModule, controllerName, requestType, key) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
-  await S.generator.removeType(path, requestType, key);
-}
 const getAllTypes = (paramsText) => {
   const paramsLines = paramsText.split('\n');
   let result = [];
@@ -146,16 +164,4 @@ const main = async () => {
   }
 };
 
-const other = async () => {
-
-  try {
-    const newType = { prevKey: "users", key: 'fern', type: "some", elementType: "array", optional: false, value: { id: 2, name: "facu" } };
-    // await services.addControllerType("auth", "patchAuth", "query", newType);
-    // await services.renameControllerType("auth", "patchAuth", "query", newType);
-    await services.removeControllerType("auth", "patchAuth", "params", "fern");
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-other();
+// main();

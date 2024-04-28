@@ -255,7 +255,6 @@ services.getPosClassMethod = (textCode, className, methodName) => {
 
 services.addTypes = (textCode, typeName, newType = { key, type, elementType, optional, value }) => {
     const ast = codeToAst(textCode);
-    let ok = false;
 
     traverse(ast, {
         TSTypeAliasDeclaration: (path) => {
@@ -270,12 +269,11 @@ services.addTypes = (textCode, typeName, newType = { key, type, elementType, opt
                         type: 'TSTypeReference',
                         typeName: {
                             type: 'Identifier',
-                            name: `${newType.type}${newType.elementType === "array" ? "[]" : ""};`,
+                            name: `${newType.type}${newType.elementType === "array" ? "[]" : ""}`,
                         }
                     }
                 });
                 ok = true;
-
             }
         }
     })

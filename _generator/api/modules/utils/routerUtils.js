@@ -1,8 +1,9 @@
 const { underscoreToUpperCase } = require("../helpers/wordsManager");
 
 const getEndpointNames = (endpoint, underscore = false) => {
-    let parts = endpoint.split("/");
-
+    let modifiedEndpoint = endpoint.replace(/_/g, "/");
+    let parts = modifiedEndpoint.split("/");
+    
     if (parts[1] && parts[1].startsWith(":"))
         return { endpointList: [], params: parts[1].substring(1) };
 
@@ -20,11 +21,11 @@ const getEndpointNames = (endpoint, underscore = false) => {
         }
     }
     if (endpointList.length === 0 || endpointList[0] === "") endpointList = undefined;
+    endpointList = endpointList.filter(item => item !== "");
     if (params === "") params = undefined;
 
     return { endpointList, params };
 };
-
 
 
 module.exports = { getEndpointNames };

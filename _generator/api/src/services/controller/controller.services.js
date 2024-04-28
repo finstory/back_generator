@@ -1,98 +1,94 @@
 const { throwError, catchError, checkIsCathError } = require("../../helpers/customError");
-const { getServices, addServices } = require("..");
-const { v4: uuidv4 } = require("uuid");
 const getPath = require("../../helpers/getPath");
-const { generateFile, getFile } = require("../../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../../modules/helpers/wordsManager");
-const { getEndpointNames } = require("../../../modules/Utils/routerUtils");
-const { getFilePath, addContent, deleteJSFile, deleteContent, deleteTagsAndContent, replaceTag, findLinesWithTexts, findLineInText, addContentAboveLine, removeLinesByTagsList, replaceTagByLine } = require("../generator/generator.services");
+const { addContentAboveLine, removeLinesByTagsList } = require("../generator/generator.services");
+const S = require("../../utils/service/injector");
 
-const pathData = getPath("data");
-const pathControllers = getPath("controllers");
-const pathControllerInterfaces = getPath("interfaces", "/controllers");
+const controllersPath = getPath("controllers");
+const controllerInterfacesPath = getPath("interfaces", "/controllers");
 const services = {};
-addServices("controllers", services);
+S.add("controller", services);
 
 services.createControllerFile = async (routeModule) => {
+    const filePath = getControllerPath(routeModule);
 
-    const code = `import controller from "../interfaces/controllers/${routeModule}/_index";
+    const code = `//<IMPORTS>
+import controller from "../interfaces/controllers/${routeModule}/_index";
 import { throwError } from "../helpers/customError";
-//$C_START
+
+//<CONTROLLERS>
 
 export default controller;`;
 
-    await generateFile(routeModule + "Controllers", pathControllers, code);
+    await S.fs.createFile(filePath, code);
 
 };
 
 services.deleteControllerFile = async (routeModule) => {
-    await deleteJSFile(routeModule + "Controllers", pathControllers);
+    const filePath = getControllerPath(routeModule);
+    await S.fs.deleteFile(filePath);
+
 };
 
 services.addController = async (routeModule, controllerName) => {
-
+    const filePath = getControllerPath(routeModule);
+    const tagName = "<CONTROLLERS>";
     const code = `
 controller.${controllerName} = async ({ params, query, body }, res) => {
-  const data: any = {controllerName: '${controllerName}'};
+  const data: any = { controllerName: "${controllerName}" };
     
   res.status(200).json(data);
 };`;
-    // routeModule + "Controllers"
-    const startTag = "//$C_START";
-    await addContent(startTag, code, pathControllers + "/" + routeModule + "Controllers.ts");
 
+    await S.generator.addCodeAfterTag(filePath, tagName, code);
 };
 
-services.editController = async (routeModule, controllerName, newControllerName) => {
-    const startTag = `controller.${controllerName}`;
+services.renameController = async (routeModule, controllerName, newControllerName) => {
+    const filePath = getControllerPath(routeModule);
 
-    await replaceTag(startTag, "controller." + newControllerName, pathControllers + "/" + routeModule + "Controllers.ts");
+    await S.generator.renameFunctionProperty(filePath, "controller", controllerName, newControllerName);
 }
 
 services.deleteController = async (routeModule, controllerName) => {
-    const startTag = `controller.${controllerName}`;
-    const endTag = `controller.`;
-
-    await deleteTagsAndContent(startTag, endTag, pathControllers + "/" + routeModule + "Controllers.ts")
-
-        .catch(async (error) => {
-
-            const startTag = `controller.${controllerName}`;
-            const endTag = `export default`;
-
-            await deleteTagsAndContent(startTag, endTag, pathControllers + "/" + routeModule + "Controllers.ts");
-
-        });
-
-
+    const filePath = getControllerPath(routeModule);
+    await S.generator.removeFunctionProperty(filePath, "controller", controllerName);
 }
 
-services.getIndexController = async (routeModule, controllerName) => {
-    const filePath = pathControllers + `/${routeModule}controllers.ts`;
+services.getPosController = async (routeModule, controllerName) => {
+    const filePath = getControllerPath(routeModule);
 
-    const textToFind = `controller.${controllerName}`;
+    const indexGetting = await S.generator.getLineFunctionProperty(filePath, "controller", controllerName);
 
-    const data = await findLineInText(textToFind, filePath);
-    return data;
+    return indexGetting;
 };
 
-services.getAllIndexControllers = async (controllersList, controllerName) => {
-    const filePath = pathControllers + `/${controllerName}controllers.ts`;
+services.reloadIndexController = async () => {
 
-    const textListToFind = controllersList.map(string => {
-        return { id: string, text: `controller.${string}` }
+    const moduleList = await S.route.getAllRoutes();
+    let importGenerated = "";
+    let controllerGenerated = "";
+
+    moduleList.forEach(item => {
+        importGenerated += `import ${item.module} from "./${item.module}Controllers";\n`;
+        controllerGenerated += `...${item.module},\n`;
     });
 
-    const data = await findLinesWithTexts(textListToFind, filePath);
-    return data;
+    const code = `${importGenerated}
+const controllers = {
+${controllerGenerated}};
+
+export default controllers;`;
+
+    await S.fs.replaceFile(`${controllersPath}/_index.ts`, code);
 };
+
 
 
 services.addEndpointComments = async (routeModuleList) => {
 
     for (let i = 0; i < routeModuleList.length; i++) {
         const routeModule = routeModuleList[i];
-        const filePath = pathControllers + `/${routeModule.module}controllers.ts`;
+        const filePath = controllersPath + `/${routeModule.module}controllers.ts`;
 
         for (let j = 0; j < routeModule.routesList.length; j++) {
             const route = routeModule.routesList[j];
@@ -110,7 +106,7 @@ services.removeEndpointComments = async (routeModuleList) => {
 
     for (let i = 0; i < routeModuleList.length; i++) {
         const routeModule = routeModuleList[i];
-        const filePath = pathControllers + `/${routeModule.module}controllers.ts`;
+        const filePath = controllersPath + `/${routeModule.module}controllers.ts`;
         const tagsListToDelete = [
             "//Get",
             "//Post",
@@ -123,28 +119,28 @@ services.removeEndpointComments = async (routeModuleList) => {
 
 };
 
-services.editIndexController = async () => {
-    const path = `${pathControllers}`;
-    const moduleList = await getServices("route").getAllRoutes();
-    let importGenerated = "";
-    let controllerGenerated = "";
 
-    moduleList.forEach(item => {
-        importGenerated += `import ${item.module} from "./${item.module}Controllers";\n`;
-        controllerGenerated += `...${item.module},\n`;
-    });
-
-    const code = `${importGenerated}
-const controllers = {
-${controllerGenerated}};
-
-export default controllers;`;
-
-    await generateFile("_index", path, code);
-};
 
 
 //% Request Editor
 
+const getControllerPath = (routeModule) => {
+    return `${controllersPath}/${routeModule}Controllers.ts`;
+};
 
+const main = async () => {
+    try {
+        // await services.createControllerFile("test");
+        // await services.addController("test", "getUser");
+        // await services.addController("test", "testController");
+        // await services.renameController("test", "getUser", "getEmail");
+        // await services.deleteController("test", "getEmail");}
+        // console.log(await services.getIndexController("test", "getEmail"))
+        // services.editIndexController();
+    } catch (error) {
+        // console.log(error)
+    }
+
+}
+main();
 module.exports = services;

@@ -4,23 +4,14 @@ import { Request, Response } from "express";
   
   //REQUEST TYPES:
   
-  type params = {
-    //END
-  };
+  type params = {};
   
-  type query = {
-    //END
-  };
+  type query = {};
   
-  type body = {
-    //END
-  };
+  type body = {};
   
-  type response_body = {
-    //END
-  };
+  type response_body = {};
   
   //BODY TO SEND:
   
-  const body: body = {
-  };
+  const body: body = {};

@@ -1,4 +1,3 @@
-
 const S = {
     ast: {
         addTypes: (textCode, typeName, newType = { key, type, elementType, optional, value }) => { },
@@ -22,7 +21,6 @@ const S = {
         deleteFile: async (filePath) => { },
         deleteFolder: async (folderPath) => { },
     },
-
     generator: {
         addType: async (filePath, typeName, newType = { key, type, elementType, optional, value }) => { },
         renameType: async (filePath, typeName, newType = { prevKey, key, type, elementType, optional, value }) => { },
@@ -45,7 +43,9 @@ const S = {
         editRoute: async (id, routeModule, newEndpoint, newMethod, newControllerName) => { },
         deleteRoute: async (id, routeModule) => { },
         deleteRouteModule: async (routeModule) => { },
-        editRouteTypes: async (routeModule, controllerName, newTypesList) => { },
+        addRouteTypes: async (routeModule, controllerName, requestType, newType) => { },
+        editRouteTypes: async (routeModule, controllerName, requestType, newType) => { },
+        removeRouteTypes: async (routeModule, controllerName, requestType, key) => { },
         generateControllerName: (routeModule, endpoint, method) => { }
     },
     controller: {
@@ -57,10 +57,19 @@ const S = {
         getPosController: async (routeModule, controllerName) => { },
         reloadIndexController: async () => { },
     },
+    interface: {
+        createIndexController: async (routeModule) => { },
+        addControllerInterface: async (routeModule, controllerName) => { },
+        editControllerInterface: async (routeModule, controllerName, newControllerName) => { },
+        removeControllerInterface: async (routeModule, controllerName) => { },
+        addControllerTypes: async (routeModule, controllerName, requestType, newType = { prevKey, key, type, elementType, optional, value }) => { },
+        renameControllerTypes: async (routeModule, controllerName, requestType, newType = { prevKey, key, type, elementType, optional, value }) => { },
+        removeControllerTypes: async (routeModule, controllerName, requestType, key) => { },
+        renameIndexController: async (routeModule, newRouteModule) => { },
+    },
     add: (name, services) => {
         S[name] = services;
     },
 };
-
 
 module.exports = S;

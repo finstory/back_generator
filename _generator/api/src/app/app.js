@@ -9,15 +9,12 @@ const path = require("path");
 
 //% Load DB.
 // require("../helpers/keyPress.js");
-const fsServices = require("../newServices/generator/fs.services.js");
-const astServices = require("../newServices/generator/ast.services.js");
-const generatorServices = require("../newServices/generator/generator.services.js");
-const routeServices = require("../newServices/route/route.services.js");
-const controllerServices = require("../newServices/controller/controller.services.js");
-const interfaceServices = require("../newServices/interface/interface.services.js");
-// const S = require("../utils/service/injector.js");
-// S.addService("generator", generatorServices);
-// S.addService("ast", astServices);
+const fsServices = require("../services/generator/fs.services.js");
+const astServices = require("../services/generator/ast.services.js");
+const generatorServices = require("../services/generator/generator.services.js");
+const routeServices = require("../services/route/route.services.js");
+const controllerServices = require("../services/controller/controller.services.js");
+const interfaceServices = require("../services/interface/interface.services.js");
 
 //$ END.
 

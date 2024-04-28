@@ -1,17 +1,18 @@
-const { throwError, catchError } = require("../../helpers/customError");
+const { throwError, catchError, checkIsCathError } = require("../../helpers/customError");
+const { getServices, addServices } = require("..");
 const { v4: uuidv4 } = require("uuid");
+const getPath = require("../../helpers/getPath");
+const { generateFile, getFile } = require("../../../modules/generatorServices");
 const { printMsg, UpFirst } = require("../../../modules/helpers/wordsManager");
 const { getEndpointNames } = require("../../../modules/Utils/routerUtils");
-const S = require("../../utils/service/injector");
-const getPath = require("../../helpers/getPath");
 
-const pathData = getPath("data", "/routesData.json");
+const pathData = getPath("data");
+const pathRoutes = getPath("routes");
 const services = {};
-
-S.add("route", services);
+addServices("route", services);
 
 services.getAllRoutes = async () => {
-  return await S.fs.getFile(pathData, false);
+  return await getFile(pathData + "/routesData.json");
 };
 
 services.createRouteModule = async (routeModule) => {
@@ -23,7 +24,7 @@ services.createRouteModule = async (routeModule) => {
 
   routeList.push({ module: routeModule, routesList: [] });
 
-  await S.fs.createFile(pathData, JSON.stringify(routeList));
+  await generateFile("routesData", pathData, JSON.stringify(routeList), "json");
 
   printMsg(`Route module ${routeModule} created.`);
 };
@@ -64,7 +65,8 @@ services.createRoute = async (routeModule, endpoint, method, controllerName) => 
 
   });
 
-  await S.fs.createFile(pathData, JSON.stringify(routeList));
+  await generateFile("routesData", pathData, JSON.stringify(routeList), "json");
+
   printMsg(`Route ${method} - ${endpoint} added.`);
 };
 
@@ -83,7 +85,8 @@ services.editRouteModule = async (routeModule, newRouteModule) => {
 
   });
 
-  await S.fs.createFile(pathData, JSON.stringify(routeList));
+  await generateFile("routesData", pathData, JSON.stringify(routeList), "json");
+
   printMsg(`Route module ${routeModule} edited to ${newRouteModule}.`);
 };
 
@@ -114,7 +117,7 @@ services.editRoute = async (id, routeModule, newEndpoint, newMethod, newControll
 
   });
 
-  await S.fs.createFile(pathData, JSON.stringify(routeList));
+  await generateFile("routesData", pathData, JSON.stringify(routeList), "json");
 
   printMsg(`Route ${newMethod} - ${newEndpoint} edited.`);
 };
@@ -139,7 +142,7 @@ services.deleteRoute = async (id, routeModule) => {
 
     });
 
-    await S.fs.createFile(pathData, JSON.stringify(routeList));
+    await generateFile("routesData", pathData, JSON.stringify(routeList), "json");
 
     printMsg(`Route ${routeGetting.method} - ${routeGetting.endpoint} deleted.`);
   } catch (error) {
@@ -157,12 +160,11 @@ services.deleteRouteModule = async (routeModule) => {
 
   const newRouteList = routeList.filter((route) => route.module !== routeModule);
 
-  await S.fs.createFile(pathData, JSON.stringify(newRouteList));
+  await generateFile("routesData", pathData, JSON.stringify(newRouteList), "json");
 
   printMsg(`Route module ${routeModule} deleted.`);
 };
 
-//!REMAKE
 services.editRouteTypes = async (routeModule, controllerName, newTypesList) => {
   const routeGetting = await services.getAllRoutes();
   const routeList = routeGetting.find((route) => route.module === routeModule);
@@ -191,6 +193,7 @@ services.generateControllerName = (routeModule, endpoint, method) => {
   let controllerName;
   const { endpointList, params } = getEndpointNames(endpoint, false);
 
+console.log(endpointList,params)
   for (let i = 0; i < endpointList.length; i++)
     routeModule += UpFirst(endpointList[i]);
 

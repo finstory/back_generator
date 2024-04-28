@@ -3,101 +3,100 @@ const { generateFile } = require("../../../modules/generatorServices");
 const { UpFirst } = require("../../../modules/helpers/wordsManager");
 const { addContent, deleteJSFile, removeLineByTag, replaceTagByLine, renameFile } = require("../generator/generator.services");
 const S = require("../../utils/service/injector");
+const { lowerCaseToFirstLetter } = require("../../../helpers/wordsManager");
 
 const pathControllerInterfaces = getPath("interfaces", "/controllers");
 
-const microservice = {};
+const ms = {};
 
+ms.createControllerInterface = async (routeModule, controllerName) => {
 
-microservice.createControllerInterface = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}`;
+  const filePath = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
+
   const code = `import { Request, Response } from "express";
   export interface Req extends Request<params, {}, body, query> {}
   export interface Res extends Response<response_body> {}
   
   //REQUEST TYPES:
   
-  type params = {
-    //END
-  };
+  type params = {};
   
-  type query = {
-    //END
-  };
+  type query = {};
   
-  type body = {
-    //END
-  };
+  type body = {};
   
-  type response_body = {
-    //END
-  };
+  type response_body = {};
   
   //BODY TO SEND:
   
-  const body: body = {
-  };`;
+  const body: body = {};`;
 
-  await generateFile(controllerName, path, code);
+  await S.fs.createFile(filePath, code);
 };
 
 
-microservice.renameControllerInterface = async (routeModule, controllerName, newControllerName) => {
+ms.renameControllerInterface = async (routeModule, controllerName, newControllerName) => {
   const directory = `${pathControllerInterfaces}/${routeModule}`;
-  renameFile(controllerName, newControllerName, directory);
+  await S.fs.renameFile(controllerName, newControllerName, directory);
 }
 
-
-microservice.removeControllerInterface = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}`;
-
-  await deleteJSFile(controllerName, path);
+ms.removeControllerInterface = async (routeModule, controllerName) => {
+  const path = `${pathControllerInterfaces}/${routeModule}/${controllerName}.ts`;
+  await S.fs.deleteFile(path);
 }
 
-microservice.addImportFromIndexController = async (routeModule, controllerName) => {
-  const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `//$IMPORT_START`;
+ms.addImportFromIndexController = async (routeModule, controllerName) => {
+  const filePath = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
+  const tagsStart = "<IMPORTS>";
   const code = `import * as ${UpFirst(controllerName)} from "./${controllerName}";`
-
-  await addContent(tagsStart, code, path);
+  await S.generator.addCodeAfterTag(filePath, tagsStart, code, false);
 };
 
-microservice.editImportFromIndexController = async (routeModule, controllerName, newControllerName) => {
+ms.editImportFromIndexController = async (routeModule, controllerName, newControllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `import * as ${UpFirst(controllerName)}`;
-  const code = `import * as ${UpFirst(newControllerName)} from "./${newControllerName}"`
-
-  await replaceTagByLine(tagsStart, code, path);
+  await S.generator.renameImport(path, UpFirst(controllerName), UpFirst(newControllerName), `./${newControllerName}`);
 };
 
-microservice.removeImportFromIndexController = async (routeModule, controllerName) => {
+ms.removeImportFromIndexController = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `import * as ${UpFirst(controllerName)}`;
-
-  await removeLineByTag(tagsStart, path, false);
+  await S.generator.removeImport(path, UpFirst(controllerName));
 }
 
-microservice.addPrototypeFromIndexController = async (routeModule, controllerName) => {
+ms.addPrototypeFromIndexController = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `//$CONTROLLER_START`;
-  const code = `\nasync ${controllerName} (req: ${UpFirst(controllerName)}.Req, res: ${UpFirst(controllerName)}.Res) {}`
-
-  await addContent(tagsStart, code, path);
+  const tag = "<CONTROLLERS>";
+  const code = `async ${controllerName}(req: ${UpFirst(controllerName)}.Req, res: ${UpFirst(controllerName)}.Res) {}`;
+  await S.generator.addCodeAfterTag(path, tag, code, false);
 };
 
-microservice.editPrototypeFromIndexController = async (routeModule, controllerName, newControllerName) => {
+ms.editPrototypeFromIndexController = async (routeModule, controllerName, newControllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `async ${controllerName}`;
-  const code = `async ${newControllerName}(req: ${UpFirst(newControllerName)}.Req, res: ${UpFirst(newControllerName)}.Res) { }`
-
-  await replaceTagByLine(tagsStart, code, path, true);
+  await S.generator.renameClassMethod(path, "Controllers", controllerName, newControllerName, "request_method");
 };
 
-microservice.removePrototypeFromIndexController = async (routeModule, controllerName) => {
+ms.removePrototypeFromIndexController = async (routeModule, controllerName) => {
   const path = `${pathControllerInterfaces}/${routeModule}/_index.ts`;
-  const tagsStart = `async ${controllerName}`;
-
-  await removeLineByTag(tagsStart, path);
+  await S.generator.removeClassMethod(path, "Controllers", controllerName);
 }
 
-module.exports = microservice;
+const main = async () => {
+  try {
+    // await ms.editPrototypeFromIndexController("auth", "getAuthByUserName", "putName");
+
+    await ms.addImportFromIndexController("auth", "getAuthByEmail");
+    // await ms.addPrototypeFromIndexController("auth", "getAuthByUserName");
+    // await ms.addPrototypeFromIndexController("auth", "geronimo");
+    // await ms.addPrototypeFromIndexController("auth", "getAuthByUserName");
+    // await ms.addPrototypeFromIndexController("auth", "getAuthByUserName");
+    // await ms.removePrototypeFromIndexController("auth", "geronimo");
+    // await ms.addPrototypeFromIndexController("auth", "other");
+    // await ms.addImportFromIndexController("koko", "getTest");
+    //  await ms.removeImportFromIndexController("auth", "getAuthByEmail");
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+main();
+
+module.exports = ms;
