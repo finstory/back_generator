@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DoubleBorderGradient } from "../../../utilities/DoubleBorderGradient";
 import scss from "../../../assets/sass/pages/routes.module.scss";
 import { BorderGradient } from "../../../utilities/BorderGradient";
@@ -7,12 +7,19 @@ import { RequestBar } from "./RequestBar";
 import { useRequestServices } from "../../../services/useRequestServices";
 import { DataManager } from "./DataManager";
 import { getPath } from "../../../../helpers/getPath";
+import useRouteServices from "../../../services/useRouteServices";
 
 export const RequestPanel = () => {
   const {
     request: { route_module_target, endpoint_target },
   } = useRequestServices();
+  const { endpoints } = useRouteServices();
 
+  useEffect(() => {
+    endpoints.test();
+  }, []);
+
+  // useRoutesEndpoint().test();
   const openInVSC = () => {
     getPath("controllers");
     const file_path =
@@ -55,7 +62,7 @@ export const RequestPanel = () => {
         <BorderGradient
           className={scss.view_in_vsc}
           borderSize="2px"
-          onClick={openInVSC}
+          // onClick={openInVSC}
         >
           <p>OPEN IN VSC</p>
         </BorderGradient>

@@ -11,7 +11,7 @@ export const ModelToEdit = ({
   routeModule,
   menuSelected,
 }) => {
-  const { editControllerTypes } = useRequestServices();
+  const { editControllerTypes, setEndpointTarget } = useRequestServices();
   const { getAllRoutes } = useRouteServices();
   const { open, key = "", value = "", propToEdit, optional } = editorModal;
   const textareaRef = useRef(null);
@@ -20,17 +20,25 @@ export const ModelToEdit = ({
   const { values, handleInputChange, reset } = useForm({
     request_value: propToEdit === "value" ? value : key,
   });
-
-  const onPressEdit = async (value) => {
+  const onPressEdit = async (edit = "value") => {
     if (values.request_value === "" && value === "") return;
+    const newType = {
+      prevKey: editorModal.value,
+      key: propToEdit === "key" ? values.request_value : editorModal.value,
+      type: "string",
+      elementType: "",
+      optional,
+      value: propToEdit === "value" ? values.request_value : editorModal.value,
+    };
+
     await editControllerTypes(
       routeModule,
+      item.controllerName,
       menuSelected,
-      item,
-      { key, value },
-      propToEdit
+      newType
     );
     await getAllRoutes();
+    setEndpointTarget(item);
     setEditorModal({ ...editorModal, open: false });
   };
 

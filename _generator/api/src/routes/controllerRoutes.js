@@ -56,6 +56,7 @@ router.post("/reload_types", async (req, res) => {
 router.post("/types", async (req, res) => {
     try {
         const { routeModule, controllerName, requestType, newType } = req.body;
+
         await S.interface.addControllerTypes(routeModule, controllerName, requestType, newType);
         await S.route.addRouteTypes(routeModule, controllerName, requestType, newType);
         sendResponse(res, 200, `Type '${newType.key}' added in ${requestType} .`);
@@ -80,8 +81,9 @@ router.patch("/types", async (req, res) => {
 router.delete("/types", async (req, res) => {
     try {
         const { routeModule, controllerName, requestType, key } = req.body;
+
         await S.interface.removeControllerTypes(routeModule, controllerName, requestType, key);
-        // await S.route.removeRouteTypes(routeModule, controllerName, requestType, key);
+        await S.route.removeRouteTypes(routeModule, controllerName, requestType, key);
         sendResponse(res, 200, `Type '${controllerName}' removed.`);
     } catch (error) {
         sendError(res, error);

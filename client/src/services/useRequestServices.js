@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useRedux } from "../redux/reducer/useRedux";
 import api from './../../helpers/axios';
+import useToast from "../hooks/useToast";
 
 export const requestReducer = {
     openEditor: false,
@@ -25,6 +26,7 @@ export const requestReducer = {
 };
 
 export const useRequestServices = () => {
+    const { printAlert, alertConfirm } = useToast();
     const services = { ...useRedux("request") };
     const { request, setRequest } = services;
 
@@ -47,21 +49,35 @@ export const useRequestServices = () => {
         setRequest({ endpoint_target: item }, "SET_ENDPOINT_TARGET");
     };
 
-    services.editControllerTypes = async (routeModule, targetSelected, item, newType, propToEdit) => {
+    services.addControllerTypes = async (routeModule, controllerName, requestType, newType) => {
+        try {
+            if (!routeModule && !controllerName && !requestType) return;
 
-        const newTypesList = { params: item.params, query: item.query, body: item.body, response_body: item.response_body };
+            const response = await api.post("controller/types", { routeModule, controllerName, requestType, newType });
+            if (response) printAlert(response.data);
+        } catch (error) {
+            printAlert(error.response.data.payload || error.massage, "error");
+        }
+    }
 
-        for (const key in item)
-            if (key === targetSelected)
-                newTypesList[key].map(obj => {
-                    if (obj.key === newType.key) {
-                        if (propToEdit === "key") obj.key = newType.value;
-                        if (propToEdit === "value") obj.value = newType.value;
-                    }
-                })
+    services.editControllerTypes = async (routeModule, controllerName, requestType, newType) => {
+        try {
+            const response = await api.patch("controller/types", { routeModule, controllerName, requestType, newType });
 
-        const response = await api.post("controller/types", { routeModule, controllerName: item.controllerName, newTypesList });
-        return response.data.lineIndex;
+            if (response) printAlert(response.data);
+            
+        } catch (error) {
+            printAlert(error.response.data.payload || error.massage, "error");
+        }
+    }
+
+    services.deleteControllerTypes = async (routeModule, controllerName, requestType, key) => {
+        try {
+            const response = await api.delete("controller/types", { data: { routeModule, controllerName, requestType, key } });
+            if (response) printAlert(response.data);
+        } catch (error) {
+            printAlert(error.response.data.payload || error.massage, "error");
+        }
     }
 
     return services;

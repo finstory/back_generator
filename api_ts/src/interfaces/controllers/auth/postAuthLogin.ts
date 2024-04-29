@@ -6,9 +6,13 @@ export interface Res extends Response<response_body> {}
 
 type params = {
   names: number[];
+  iuiui: string;
+  key_32: string;
 };
 
-type query = {};
+type query = {
+  key_1: string;
+};
 
 type body = {
   other?: string;
@@ -21,5 +25,5 @@ type response_body = {
 //BODY TO SEND:
 
 const body: body = {
-  other: "hellos",
+  other: "hellos"
 };

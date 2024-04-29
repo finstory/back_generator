@@ -536,6 +536,19 @@
                     padding-left: 1rem;
                     border-bottom: 1px solid var(--gray-color);
 
+                    .add_btn {
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        position: absolute;
+                        right: 3rem;
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                        }
+                    }
+
                     p {
                         text-align: start;
                         @include dim_width(33%);
@@ -552,20 +565,45 @@
                     border-bottom: 1px solid var(--gray-color);
                     transition: 0.2s linear;
 
+                    .remove_btn {
+                        position: absolute;
+                        right: 3rem;
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                            opacity: 0.6;
+                            transition: 0.2s linear;
+
+                            &:hover {
+                                opacity: 1;
+                            }
+                        }
+
+                    }
+
                     .column {
+                        position: relative;
                         @include dim_width(33%);
-                        @include flex(space-between, center);
-                        cursor: pointer;
+                        @include flex(flex-start, center, row, 1rem);
+
+                        p {
+                            cursor: pointer;
+                        }
 
                         &.column_type {
                             color: var(--text-primary-color);
-                        }
 
-                        &:hover {
                             p {
-                                color: var(--text-primary-color);
+                                &:hover {
+                                    color: var(--text-primary-color);
+                                }
                             }
                         }
+
 
                         .string {
                             color: var(--normal-green-color);
@@ -574,6 +612,7 @@
                         .number {
                             color: #cf9219;
                         }
+
                         .boolean {
                             color: #cf1919;
                         }
@@ -586,11 +625,12 @@
                         .optional {
                             @include dim_width(1.5rem);
                             @include dim_height(1.5rem);
-                            font-size: 1rem;
                             @include flex(center, center);
+                            font-size: 1rem;
                             border-radius: 1rem;
                             border: 1px solid var(--off-gray-color);
                             color: var(--off-gray-color);
+                            cursor: pointer;
 
                             &.active {
                                 color: var(--white-color);
@@ -598,6 +638,7 @@
                                 background-color: var(--hover-green-color)
                             }
                         }
+
                     }
 
                 }
@@ -650,8 +691,8 @@
             .textarea_wrap {
                 padding: 1rem;
                 z-index: 337777;
-                
-                
+
+
                 textarea {
                     @include dim_width(auto, auto, 40rem);
                     // @include dim_height(auto, auto, 3rem);

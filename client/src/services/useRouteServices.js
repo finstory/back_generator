@@ -1,6 +1,7 @@
 import useToast from "../hooks/useToast";
 import { useRedux } from "../redux/reducer/useRedux";
 import api from "./../../helpers/axios";
+import endpoints from './../endpoints/useRoutesEndpoint';
 
 export const routeReducer = {
   endpoint_list: [],
@@ -9,9 +10,10 @@ export const routeReducer = {
 
 const useRouteServices = () => {
   const { printAlert, alertConfirm } = useToast();
-
   const { route, setRoute } = { ...useRedux("route") };
-  const services = { route, setRoute };
+  const services = { route, setRoute, endpoints };
+
+  endpoints.patchRoute()
 
   services.getAllRoutes = async () => {
     const response = await api.get("endpoint/all");

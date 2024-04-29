@@ -10,7 +10,7 @@ export const EndpointPanel = () => {
   const {
     route: { endpoint_list },
   } = useRouteServices();
-  const { setRouteModuleTarget, setEndpointTarget } = useRequestServices();
+  const { setRouteModuleTarget, setEndpointTarget } = useRequestServices;
 
   const [activeAddRoute, setActiveAddRoute] = useState(false);
 
