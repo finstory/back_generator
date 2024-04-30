@@ -18,35 +18,21 @@ const Dashboard = () => {
       }
     }
   };
-
-  // const mySelection = {
-  //   get name() {
-  //     return selectorRedux("name");
-  //   },
-  //   get user() {
-  //     return selectorRedux("user");
-  //   },
-  // };
-
-  const mySelection: AuthState = Object.keys(initialState).reduce(
-    (selection, key) => {
-      Object.defineProperty(selection, key, {
-        get() {
-          return selectorRedux(key as keyof AuthState);
-        },
-      });
-      return selection;
-    },
-    {} as AuthState
-  );
-
-  const myName = mySelection.name;
-  console.log(myName);
-  //  const myS = selectorRedux("name");
+  const user= selectorRedux("user");
+  console.log(user);
+  // const myS = selectorRedux("name");
 
   console.log("render");
-
   const dispatch = useDispatch();
+  useEffect(() => {
+    // setUser: (state, action) => {
+    //   state.name = action.payload;
+    // },
+
+    setInterval(() => {
+      dispatch(setUser("FACU" + Math.round(Math.random() * 1000)));
+    }, 1000);
+  }, []);
 
   return (
     <div
@@ -59,18 +45,7 @@ const Dashboard = () => {
         color: "white",
       }}
     >
-      <button
-        onClick={() => {
-          dispatch(
-            setUser({
-              name: "facu",
-              password: Math.round(Math.random() * 1000),
-            })
-          );
-        }}
-      >
-        CAMBIAR NOMBRE
-      </button>
+      <button onClick={() => {}}>FACU</button>
       <button onClick={() => {}}>OTRO</button>
       {/* {myS} */}
       {/* <Home {...{ id: 2 }} />
