@@ -1,6 +1,6 @@
 import { legacy_createStore as createStore } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
-import rootReducer from "./index";
+import rootReducer from "./reducers";
 
 const composeEnhancers = composeWithDevTools({});
 const store = createStore(rootReducer, composeEnhancers());

@@ -1,14 +1,9 @@
-let initialState = {
-  auth: {
-    user: {
-      name: "facu",
-      password: "123",
-    },
-    name: "FACUNDO",
-    token: "",
-    isAuthenticated: false,
-    loading: true,
-  },
+import { authState } from "../services/useAuthService";
+import { userState } from "../services/useUserSerivces";
+
+export let initialState = {
+  user: userState,
+  auth: authState,
 };
 
 const rootReducer = (state = initialState, action) => {

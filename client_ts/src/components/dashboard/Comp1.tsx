@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
-import { mySelection, setReducer } from "../../services/useAuthService";
+import { mySelect, setReducer } from "../../redux/useRedux";
 
 export const Comp1 = () => {
-  const obj = mySelection.user;
-  const { setAuth } = setReducer("auth");
-  const pass = mySelection.user.password;
-
-  useEffect(() => {
-    console.log("hubo cambio");
-  }, [mySelection.user.password]);
-
-  console.log(obj);
+  const setAuth = setReducer("auth");
+  const mySelection = mySelect("auth");
+  const password = mySelection.user.password;
   return (
     <div>
       {" "}
@@ -20,7 +14,7 @@ export const Comp1 = () => {
             {
               user: {
                 name: "facu" + Math.round(Math.random() * 100),
-                password: pass,
+                password,
               },
             },
             "SET_USER"

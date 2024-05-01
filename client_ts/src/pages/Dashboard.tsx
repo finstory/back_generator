@@ -1,18 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  AuthState,
-  initialState,
-  mySelection,
-  setReducer,
-} from "../services/useAuthService";
+import { AuthState } from "../services/useAuthService";
 import { Comp1 } from "../components/dashboard/Comp1";
 import { Comp2 } from "../components/dashboard/Comp2";
 import { useEffect, useState } from "react";
+import { selectorRedux, mySelect } from "../redux/useRedux";
 
 // import { customDispatch, setAuth } from "../redux/slices/auth/auth.silce";
 
 const Dashboard = () => {
+  // const mySelection = selectorRedux("auth", "user");
+
   return (
     <div
       style={{
@@ -35,7 +33,7 @@ const Dashboard = () => {
       >
         CAMBIAR NOMBRE
       </button>
-     
+
       <Comp1 />
       <Comp2 />
     </div>
