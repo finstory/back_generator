@@ -1,12 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import auth from "./slices/auth/auth.silce";
+import { legacy_createStore as createStore } from "redux";
+import { composeWithDevTools } from "@redux-devtools/extension";
+import rootReducer from "./index";
 
-const store = configureStore({
-  reducer: {
-    auth,
-  },
-});
+const composeEnhancers = composeWithDevTools({});
+const store = createStore(rootReducer, composeEnhancers());
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
 export default store;

@@ -1,53 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+
 import {
   AuthState,
   initialState,
-  setUser,
-} from "../redux/slices/auth/auth.silce";
+  mySelection,
+  setReducer,
+} from "../services/useAuthService";
+import { Comp1 } from "../components/dashboard/Comp1";
+import { Comp2 } from "../components/dashboard/Comp2";
+import { useEffect, useState } from "react";
+
+// import { customDispatch, setAuth } from "../redux/slices/auth/auth.silce";
 
 const Dashboard = () => {
-  // const user = useSelector(({ auth }: RootState) => auth.user);
-
-  const selectorRedux = <T extends keyof AuthState>(key: T): AuthState[T] => {
-    for (const initialKey in initialState) {
-      if (initialKey === key) {
-        const state = useSelector(({ auth }: RootState) => auth[key]);
-        return state as AuthState[T];
-      }
-    }
-  };
-
-  // const mySelection = {
-  //   get name() {
-  //     return selectorRedux("name");
-  //   },
-  //   get user() {
-  //     return selectorRedux("user");
-  //   },
-  // };
-
-  const mySelection: AuthState = Object.keys(initialState).reduce(
-    (selection, key) => {
-      Object.defineProperty(selection, key, {
-        get() {
-          return selectorRedux(key as keyof AuthState);
-        },
-      });
-      return selection;
-    },
-    {} as AuthState
-  );
-
-  const myName = mySelection.name;
-  console.log(myName);
-  //  const myS = selectorRedux("name");
-
-  console.log("render");
-
-  const dispatch = useDispatch();
-
   return (
     <div
       style={{
@@ -61,20 +26,18 @@ const Dashboard = () => {
     >
       <button
         onClick={() => {
-          dispatch(
-            setUser({
-              name: "facu",
-              password: Math.round(Math.random() * 1000),
-            })
-          );
+          // dispatch(
+          //   setAuth({
+          //     name: "other",
+          //   })
+          // );
         }}
       >
         CAMBIAR NOMBRE
       </button>
-      <button onClick={() => {}}>OTRO</button>
-      {/* {myS} */}
-      {/* <Home {...{ id: 2 }} />
-      <Testing /> */}
+     
+      <Comp1 />
+      <Comp2 />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 export interface AuthState {
@@ -14,13 +14,29 @@ export interface AuthState {
 
 export const initialState: AuthState = {
   user: {
-    name: "ale203",
+    name: "facu",
     password: "123",
   },
   name: "FACUNDO",
   token: "",
   isAuthenticated: false,
   loading: true,
+};
+
+function fistLetterUpperCase(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export const setReducer = (name: string) => {
+  const dispatch = useDispatch();
+  const setName = "set" + fistLetterUpperCase(name);
+  return {
+    [setName]: (data: any, actionName: string) => {
+      data = { [name]: data };
+      if (actionName) dispatch({ type: actionName, payload: data });
+      else dispatch({ type: Object.keys(data)[0], payload: data });
+    },
+  };
 };
 
 const selectorRedux = <T extends keyof AuthState>(key: T): AuthState[T] => {
