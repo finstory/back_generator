@@ -1,26 +1,45 @@
-import { authState } from "../services/useAuthService";
-import { userState } from "../services/useUserSerivces";
+export interface AuthState {
+  user: {
+    name: string;
+    password: string;
+  };
+  name: string;
+  token: string;
+  isAuthenticated: boolean;
+  loading: boolean;
+}
 
-export let initialState = {
+export const authState: AuthState = {
+  user: {
+    name: "facu",
+    password: "123",
+  },
+  name: "FACUNDO",
+  token: "",
+  isAuthenticated: false,
+  loading: true,
+};
+export interface UserState {
+  credential: {
+    id: number;
+    name: string;
+    password: string;
+  };
+  is_login: true;
+}
+
+export const userState: UserState = {
+  credential: {
+    id: 1657,
+    name: "facu",
+    password: "123",
+  },
+  is_login: true,
+};
+
+let reducers = {
   user: userState,
   auth: authState,
 };
 
-const rootReducer = (state = initialState, action) => {
-  if (action.payload) {
-    //* Nombre de mi Reducer : (ej: "home" (string))
-    const nameReducer = Object.keys(action.payload)[0];
-    //* Objeto Reducer : (ej: state.home (object))
-    const stateReducer = state[nameReducer];
-    //* Reduzco mi payload : (ej: payload.home (object))
-    action.payload = action.payload[nameReducer];
-
-    return { ...state, [nameReducer]: { ...stateReducer, ...action.payload } };
-  } else return { ...state };
-};
-
-// function todos(state = initialState, action) {
-//   return state;
-// }
-
-export default rootReducer;
+export default reducers;

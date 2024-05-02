@@ -1,26 +1,23 @@
 import React, { useEffect } from "react";
-import { mySelect, setReducer } from "../../redux/useRedux";
+import { useDispatch } from "react-redux";
+import store from "../../redux/store";
+
+
 
 export const Comp1 = () => {
-  const setAuth = setReducer("auth");
-  const mySelection = mySelect("auth");
-  const password = mySelection.user.password;
+
+  const dispatch = useDispatch();
+
+  const submitLogout = () => {
+    dispatch({ type: "LOGOUT", payload: { auth: { isLogged: false } } });
+  }
+
+  useEffect(() => { }, []);
+
+
   return (
     <div>
-      {" "}
-      <button
-        onClick={() => {
-          setAuth(
-            {
-              user: {
-                name: "facu" + Math.round(Math.random() * 100),
-                password,
-              },
-            },
-            "SET_USER"
-          );
-        }}
-      >
+      <button onClick={submitLogout}>
         OTRO
       </button>
     </div>

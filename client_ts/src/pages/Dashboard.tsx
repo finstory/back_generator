@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { AuthState } from "../services/useAuthService";
-import { Comp1 } from "../components/dashboard/Comp1";
-import { Comp2 } from "../components/dashboard/Comp2";
 import { useEffect, useState } from "react";
-import { selectorRedux, mySelect } from "../redux/useRedux";
+import { Comp1 } from "../components/dashboard/Comp1";
+import useUserServices from "../services/useUserServices";
+import { useTest } from "../services/useTest";
 
-// import { customDispatch, setAuth } from "../redux/slices/auth/auth.silce";
+// import useUserServices from "../services/useUserServices";
 
 const Dashboard = () => {
-  // const mySelection = selectorRedux("auth", "user");
+  const { changeName } = useUserServices();
+  const { myAction } = useTest();
 
   return (
     <div
@@ -23,19 +23,11 @@ const Dashboard = () => {
       }}
     >
       <button
-        onClick={() => {
-          // dispatch(
-          //   setAuth({
-          //     name: "other",
-          //   })
-          // );
-        }}
-      >
-        CAMBIAR NOMBRE
-      </button>
-
+        onClick={myAction}
+      >ACTION</button>
       <Comp1 />
-      <Comp2 />
+      {/* <Comp1 />
+      <Comp2 /> */}
     </div>
   );
 };

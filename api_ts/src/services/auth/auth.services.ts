@@ -1,3 +1,4 @@
+import db from "src/app/db";
 import S from "../injector";
 
 interface IUser {
@@ -12,5 +13,10 @@ class Services {
 }
 
 const services = new Services();
+
+import { User } from "../../app/db";
+const serv = async () => {
+  const getUser = await User.findOne({ where: {} });
+};
 
 export default services;

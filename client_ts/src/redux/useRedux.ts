@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
-import { initialState } from "./reducers";
 
 function fistLetterUpperCase(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -21,9 +20,10 @@ export const setReducer = (name: string) => {
 
 export const selectorRedux = <K extends keyof RootState>(
   stateKey: K,
-  authKey: keyof RootState[K]
+  authKey: keyof RootState[K],
+  initialState: object
 ): RootState[K][keyof RootState[K]] => {
-  for (const initialKey in initialState[stateKey]) {
+  for (const initialKey in initialState) {
     if (initialKey === authKey) {
       const state = useSelector((state: RootState) => state[stateKey][authKey]);
       return state as RootState[K][keyof RootState[K]];
@@ -31,20 +31,18 @@ export const selectorRedux = <K extends keyof RootState>(
   }
 };
 
-export const mySelect = <K extends keyof RootState>(
-  stateKey: K
+export const useGetReducer = <K extends keyof RootState>(
+  stateKey: K,
+  initialState: object
 ): { [P in keyof RootState[K]]: RootState[K][P] } => {
-  const mySelection = Object.keys(initialState[stateKey]).reduce(
-    (selection, key) => {
-      Object.defineProperty(selection, key, {
-        get() {
-          return selectorRedux(stateKey, key as keyof RootState[K]);
-        },
-      });
-      return selection;
-    },
-    {} as { [P in keyof RootState[K]]: RootState[K][P] }
-  );
+  const mySelection = Object.keys(initialState).reduce((selection, key) => {
+    Object.defineProperty(selection, key, {
+      get() {
+        return selectorRedux(stateKey, key as keyof RootState[K], initialState);
+      },
+    });
+    return selection;
+  }, {} as { [P in keyof RootState[K]]: RootState[K][P] });
 
   return mySelection;
 };

@@ -3,7 +3,6 @@ import "./assets/index.css";
 import { AppMain } from "./router/AppMain";
 import store from "./redux/store";
 
-
 function App() {
   return (
     <Provider store={store}>

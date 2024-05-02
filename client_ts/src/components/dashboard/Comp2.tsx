@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
-import { mySelect } from "../../redux/useRedux";
+import S from "../../services/injector";
+
 
 export const Comp2 = () => {
-  const mySelection = mySelect("auth");
-  useEffect(() => {
-    console.log("EFECTO");
-  }, [mySelection.user.password]);
-
-    console.log("FUERA");
+  const { state: { is_login } } = S.user;
+  console.log("FUERA");
   return <div>C_TWO</div>;
 };
