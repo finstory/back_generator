@@ -8,9 +8,12 @@ const added = <T>(schemaName: string, schema: Schema) => {
 
 const fixSchema = <T>(schemaName: string, schema: Schema) => {
   return {
-    ...model<T>(schemaName, schema),
+    db: model<T>(schemaName, schema),
     create: added<T>(schemaName, schema),
   };
 };
+
+
+
 
 export default fixSchema;

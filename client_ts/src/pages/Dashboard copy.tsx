@@ -5,7 +5,7 @@ import {
   AuthState,
   initialState,
   setUser,
-} from "../redux/slices/auth/auth.silce";
+} from "../redux/stores/auth/auth.silce";
 
 const Dashboard = () => {
   // const user = useSelector(({ auth }: RootState) => auth.user);

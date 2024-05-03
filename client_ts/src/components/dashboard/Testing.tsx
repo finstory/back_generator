@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { countSubject } from "../../hooks/useCustomState";
 
 export const Testing = () => {
   const [myCount, setMyCount] = useState({
@@ -7,18 +6,6 @@ export const Testing = () => {
     useCustomEffect: 0,
   });
 
-  useEffect(() => {
-    const subscription = countSubject.subscribe((countValue) => {
-      //   console.log("count en OtroComponente:", countValue);
-      setMyCount({ ...countValue });
-
-      // Realiza acciones con countValue
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
 
   return (
     <>
@@ -35,8 +22,6 @@ export const Testing = () => {
           color: "white",
         }}
       >
-        <div>STATE :{myCount.useCustomEffect}</div>
-        <div>EFFECT :{myCount.useCustomState}</div>
       </div>
     </>
   );

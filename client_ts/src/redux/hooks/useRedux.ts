@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./store";
+import { RootState } from "../";
 
 function fistLetterUpperCase(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);

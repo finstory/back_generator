@@ -1,18 +1,12 @@
-import reducers from "./reducers";
 
-export let initialState = {
-  ...reducers,
-};
+import { legacy_createStore as createStore } from "redux";
+import { composeWithDevTools } from "@redux-devtools/extension";
+import rootReducer from "./reducers/reducers";
 
-const rootReducer = (state = initialState, action) => {
-  if (action.payload) {
-    const nameReducer = Object.keys(action.payload)[0];
-    const stateReducer = state[nameReducer];
+const composeEnhancers = composeWithDevTools({});
+const store = createStore(rootReducer, composeEnhancers());
 
-    action.payload = action.payload[nameReducer];
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-    return { ...state, [nameReducer]: { ...stateReducer, ...action.payload } };
-  } else return { ...state };
-};
-
-export default rootReducer;
+export default store;

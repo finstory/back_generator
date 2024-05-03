@@ -1,6 +1,5 @@
-import store, { RootState } from "../redux/store";
-import { setReducer } from "./../redux/useRedux";
-import { useSelector } from "react-redux";
+import store, { RootState } from "../redux";
+import { setReducer } from "../redux/hooks/useRedux";
 
 // export interface UserState {
 //   credential: {
@@ -34,8 +33,8 @@ const useUserServices = () => {
   };
 
   const changeName = (name: string) => {
-     const oldCredential =  getStore.user
-    setUser({ credential: {...oldCredential, name: "facu" } }, "CHANGE_NAME");
+    const oldCredential = getStore.user;
+    setUser({ credential: { ...oldCredential, name: "facu" } }, "CHANGE_NAME");
   };
 
   // const state2 = useSelector((state: RootState) => state.user);
