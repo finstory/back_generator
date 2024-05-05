@@ -6,14 +6,13 @@ import S from "../config/services";
 const Dashboard = () => {
   // const authApi = S.auth.api;
   // const { testReducer } = authApiServices();
-
-  const { store: { name }, api: { testReducer } } = S.auth;
+  // const { store: { name }, api: { testReducer } } = S.auth;
 
   useEffect(() => {
-    testReducer("facunsd");
+    // testReducer("facunsd");
   }, []);
-  
-  console.log(name);
+
+  // console.log(name);
 
   return (
     <div
