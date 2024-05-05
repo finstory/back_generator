@@ -1,13 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-
 import { useEffect, useState } from "react";
 import { Comp1 } from "../components/dashboard/Comp1";
-import useUserServices from "../services/useUserServices";
+import S from "../config/services";
 
-// import useUserServices from "../services/useUserServices";
 
 const Dashboard = () => {
-  const { changeName } = useUserServices();
+  // const authApi = S.auth.api;
+  // const { testReducer } = authApiServices();
+
+  const { store: { name }, api: { testReducer } } = S.auth;
+
+  useEffect(() => {
+    testReducer("facunsd");
+  }, []);
+  
+  console.log(name);
 
   return (
     <div
@@ -20,9 +26,7 @@ const Dashboard = () => {
         color: "white",
       }}
     >
-      <button
-
-      >ACTION</button>
+      <button> ACTION </button>
       {/* <Comp1 /> */}
       {/* <Comp1 />
       <Comp2 /> */}

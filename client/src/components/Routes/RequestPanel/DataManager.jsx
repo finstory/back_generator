@@ -142,6 +142,7 @@ export const DataManager = ({ scss, item, routeModule }) => {
             <div className={scss.mark}></div>
             <div className={scss.column}>
               <div
+              title={!obj.optional ? "Optional" : "Required"}
                 className={`${scss.optional} ${
                   !obj.optional ? scss.active : ""
                 }`}

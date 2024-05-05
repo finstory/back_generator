@@ -21,10 +21,9 @@ export const RequestPanel = () => {
 
   // useRoutesEndpoint().test();
   const openInVSC = () => {
-    getPath("controllers");
-    const file_path =
-      getPath("controllers") + `/${route_module_target}Controllers.ts`;
-    window.open(`vscode://file/${file_path}:${lineNumber}:${columnNumber}`);
+    const file_path =`D://Programacion_Extra//Node_ts//api_ts//src//interfaces//controllers//user//postUserCreate.ts`;
+    window.open(`vscode://file/${file_path}:${16}:${6}`);
+
   };
 
   return (
@@ -62,7 +61,7 @@ export const RequestPanel = () => {
         <BorderGradient
           className={scss.view_in_vsc}
           borderSize="2px"
-          // onClick={openInVSC}
+          onClick={openInVSC}
         >
           <p>OPEN IN VSC</p>
         </BorderGradient>
