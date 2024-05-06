@@ -1,0 +1,71 @@
+@import "../../base";
+@import "../../utilities/gradient";
+@import "../../utilities/font";
+@import "../../utilities/border";
+
+.guide_container {
+    position: fixed;
+    @include dim_width();
+    @include dim_height(100%, auto, 80rem);
+    overflow-y: scroll;
+    padding: 16rem;
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+
+    }
+
+    .guide {
+        @include flex(center, flex-start, row, 4rem, wrap, auto);
+        // padding-top: 12rem;
+        animation: opacity 0.5s alternate;
+        // background: linear-gradient(to right, #ff7e5f, #feb47b);
+
+        img {
+            width: 80%;
+        }
+
+        // background-color: bisque;
+
+        .column {
+            flex-basis: 30rem;
+            @include dim_height();
+            @include flex(space-between, flex-start, column);
+
+            .title {
+                @include font_Inter(base, large, bold);
+            }
+
+            p {
+                @include font_Inter(base, normal, semibold);
+                text-align: start;
+                padding: 1rem;
+            }
+
+            &:last-child {
+                @include flex(space-between, flex-end, column);
+
+                p {
+                    text-align: end;
+                }
+
+            }
+        }
+    }
+
+}
+
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

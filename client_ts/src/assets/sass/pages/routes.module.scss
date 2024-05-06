@@ -1,0 +1,821 @@
+@import "../base";
+@import "../utilities/gradient";
+@import "../utilities/font";
+@import "../utilities/border";
+
+.endpoint_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column, 1rem);
+        padding: 1rem;
+        border-radius: 2rem;
+         @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+        animation: fadeIn 0.2s ease-in forwards;
+
+        .title {
+            position: relative;
+            @include dim_width();
+            @include dim_height(6.5rem);
+            @include flex();
+            @include font_M_PLUS(medium, 400);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-color);
+
+            // p {
+            //     @include gradient(primary);
+            //     -webkit-background-clip: text;
+            //     -webkit-text-fill-color: transparent;
+            //     @include font_M_PLUS(medium, 500);
+            // }
+            .add_route {
+                position: absolute;
+                right: 2rem;
+                @include dim_width(3rem);
+                @include dim_height(3rem);
+                @include flex();
+                border-radius: 1rem;
+                cursor: pointer;
+                transition: 0.7s linear;
+
+                :hover {
+                    transition: 0.7s linear;
+                    @include gradient(primary);
+
+                }
+
+
+            }
+
+
+        }
+
+        .endpoint_dir {
+            @include dim_width();
+            @include dim_height(calc(100% - 6.5rem));
+            @include flex(flex-start, center, column);
+            overflow-y: scroll;
+            padding: 1rem;
+
+            .module {
+                @include dim_width();
+                @include dim_height(auto);
+                @include flex(flex-start, flex-start, column, 2rem);
+                padding: 2rem;
+                border-bottom: 1px solid var(--gray-color);
+                animation: fadeIn 0.2s ease-in forwards;
+
+                .module_edit {
+                    @include dim_height(3.5rem);
+                    @include flex($gap: 1.3rem);
+                    color: var(--text-primary-color);
+                    cursor: pointer;
+                    margin-bottom: 1rem;
+                    animation: fadeIn 0.2s ease-in forwards;
+
+                    .marker {
+                        @include dim_width(1.2rem);
+                        @include dim_height(1.2rem);
+                        border-radius: 50%;
+                        background-color: var(--text-primary-color);
+                    }
+
+                    .input_wrap {
+                        @include flex($gap: 1rem);
+                        @include dim_width(32rem);
+                        @include dim_height();
+
+                        transition: 0.2s linear;
+
+                        input {
+                            @include dim_width();
+                            @include dim_height();
+                            border: 1px solid var(--off-gray-color);
+                            border-radius: 1rem;
+                            padding: 0 1rem;
+                            color: var(--white-color);
+                            background-color: transparent;
+
+                            color: var(--text-primary-color);
+                            transition: border 0.2s linear;
+
+                            &::placeholder {
+                                color: var(--off-gray-color);
+                            }
+
+                            &:focus {
+                                border: 1px solid var(--text-primary-color);
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .save_btn {
+                        @include dim_height();
+                        @include flex(center, center);
+
+                        padding: 1rem;
+                        border-radius: 1rem;
+                        border: 1px solid var(--off-gray-color);
+
+                        color: var(--off-gray-color);
+                        @include gradient(black_bg);
+                        cursor: pointer;
+                        transition: border 0.2s linear;
+
+                        &:hover {
+                            // @include gradient(primary);
+                            border: 1px solid var(--text-primary-color);
+                            color: var(--text-primary-color);
+                        }
+                    }
+                }
+
+                .module_name {
+                    @include dim_width();
+                    color: var(--text-primary-color);
+                    @include flex(flex-start, $gap: 1rem);
+
+                    .name {
+                        @include flex($gap: 1rem);
+                        cursor: pointer;
+                    }
+
+                    .marker {
+                        @include dim_width(1rem);
+                        @include dim_height(1rem);
+                        border-radius: 50%;
+                        background-color: var(--text-primary-color);
+
+                    }
+
+                    .action_btn {
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        opacity: 0;
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover {
+                        .action_btn {
+                            opacity: 1;
+                        }
+                    }
+
+
+                }
+
+                .endpoint {
+                    @include flex($gap: 1rem);
+                    cursor: pointer;
+
+                    .marker {
+                        @include dim_width(.8rem);
+                        @include dim_height(.8rem);
+                        transform: rotate(45deg);
+                        background-color: var(--off-gray-color);
+                    }
+
+
+                    .action_btn {
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        opacity: 0;
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover {
+                        .action_btn {
+                            opacity: 1;
+                        }
+                    }
+
+
+                }
+
+                .endpoint_editor {
+                    @include dim_width();
+                    @include dim_height(auto);
+                    @include flex(flex-start, center, row, 1rem);
+
+                    .marker {
+                        @include dim_width(1rem);
+                        @include dim_height(.7rem);
+                        transform: rotate(45deg);
+                        background-color: var(--off-gray-color);
+                    }
+
+                    .request_selector {
+                        @include dim_width(10rem);
+                        @include dim_height(3rem);
+                        @include flex($gap: 1rem);
+                        @include font_M_PLUS(normal, 300);
+                        padding: 0 1rem;
+                        color: var(--white-color);
+                        background-color: transparent;
+                        border-radius: .8rem;
+                        border: 1px solid var(--off-gray-color);
+                        cursor: pointer;
+
+                        &:hover {
+                            color: var(--text-primary-color);
+                            border: 1px solid var(--text-primary-color);
+                        }
+
+                        option {
+                            @include dim_height(2rem);
+                            @include dim_width();
+                            padding: 0 1rem;
+                            border-radius: .8rem;
+                            color: var(--white-color);
+                            background-color: var(--strong-green-color);
+                        }
+                    }
+
+                    .input_wrap {
+                        @include flex($gap: 1rem);
+                        @include dim_width(34rem);
+                        @include dim_height();
+
+                        transition: 0.2s linear;
+
+                        input {
+                            @include dim_width();
+                            @include dim_height();
+                            border: 1px solid var(--off-gray-color);
+                            border-radius: 1rem;
+                            padding: 0 1rem;
+                            color: var(--white-color);
+                            background-color: transparent;
+                            transition: border 0.2s linear;
+
+                            &::placeholder {
+                                color: var(--off-gray-color);
+                            }
+
+                            &:focus {
+                                color: var(--text-primary-color);
+                                border: 1px solid var(--text-primary-color);
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .save_btn {
+                        @include dim_height();
+                        @include flex(center, center);
+
+                        padding: .5rem;
+                        border-radius: 1rem;
+                        border: 1px solid var(--off-gray-color);
+
+                        color: var(--off-gray-color);
+                        @include gradient(black_bg);
+                        cursor: pointer;
+                        transition: border 0.2s linear;
+
+                        &:hover {
+                            // @include gradient(primary);
+                            border: 1px solid var(--text-primary-color);
+                            color: var(--text-primary-color);
+                        }
+                    }
+                }
+
+            }
+
+
+        }
+    }
+
+    .add_route_modal {
+        z-index: 30;
+        position: absolute;
+        top: 0;
+        @include dim_width();
+        @include dim_height(35rem);
+        @include flex(center, center);
+        @include gradient(black_bg);
+        border-radius: 2rem;
+        border-bottom: 1px solid var(--gray-color);
+        opacity: .9;
+    }
+}
+
+.request_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column, 1rem);
+        padding: 1rem;
+        border-radius: 2rem;
+        @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+        animation: fadeIn 0.2s ease-in forwards;
+
+        .title {
+            position: relative;
+            @include dim_width();
+            @include dim_height(6.5rem);
+            @include flex();
+            @include font_M_PLUS(medium, 400);
+
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-color);
+
+            span {
+                @include color_request_type();
+            }
+
+            // p {
+            //     @include gradient(primary);
+            //     -webkit-background-clip: text;
+            //     -webkit-text-fill-color: transparent;
+            //     @include font_M_PLUS(medium, 500);
+
+            //     &::selection {
+            //         -webkit-text-fill-color: var(--text-primary-color);
+            //     }
+            // }
+
+        }
+
+        .props_list {
+            @include dim_width();
+            @include flex(flex-start, center, row, 1.7rem, wrap);
+            @include font_M_PLUS(normal, semibold);
+            padding: 1rem 2rem;
+            // border-radius: 2rem;
+            animation: fadeIn 0.2s ease-in forwards;
+
+            .prop {
+                @include flex(center, center);
+                @include color_request_type(false);
+                padding: .5rem 1rem;
+                border-radius: 1rem;
+                background-color: transparent;
+                border: 0;
+                cursor: pointer;
+                transition: 0.2s linear;
+
+
+
+
+
+
+
+                &.controller {
+                    border: 1px solid #196ecf;
+
+                    &:hover {
+                        background-color: #1a89dd4f;
+
+                    }
+                }
+
+                &.middleware {
+                    p {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    border: 1px solid #5030AA;
+
+                    &:hover {
+                        background-color: #5130aa57;
+
+                    }
+                }
+
+                p {
+                    @include font_M_PLUS(normal, 300);
+                    color: var(--white-color);
+                }
+
+            }
+
+            .description {
+                @include dim_width();
+                @include dim_height(auto);
+                @include flex(flex-start, center);
+                @include font_M_PLUS(normal);
+                animation: fadeIn 0.2s ease-in forwards;
+
+                p {
+                    color: var(--off-gray-color);
+                }
+            }
+        }
+
+        .request_bar {
+            @include dim_width();
+            @include flex(flex-start, center, row, 1.6rem);
+            padding: 2rem 2rem;
+            border-radius: 1rem;
+            border-top: 1px solid var(--gray-color);
+
+            .search {
+                @include dim_width(40rem);
+                @include dim_height(3rem);
+                @include flex(center, center);
+
+                input {
+                    @include dim_width();
+                    @include dim_height();
+                    border-radius: 1rem;
+                    border: 1px solid var(--off-gray-color);
+                    padding: 0 1rem;
+                    color: var(--white-color);
+                    background-color: transparent;
+                    transition: border 0.2s linear;
+
+                    &::placeholder {}
+
+                    &:focus {
+                        border: 1px solid var(--text-primary-color);
+                        outline: none;
+                    }
+                }
+            }
+
+            .submit_btn {
+                @include dim_width(7rem);
+                @include dim_height(3rem);
+                @include flex();
+                border-radius: 1rem;
+                cursor: pointer;
+                transition: 0.2s linear;
+
+                &:hover {
+                    transition: 0.2s linear;
+                    @include gradient(primary);
+
+                    p {
+                        background-color: transparent;
+                    }
+                }
+
+
+            }
+        }
+
+        .data_manager {
+            @include dim_width();
+            @include flex(center, center, column, 2rem);
+            @include font_M_PLUS(normal, 400);
+            color: var(--off-white-color);
+
+            nav {
+                @include dim_width();
+                @include flex(flex-start, center, row, 3rem);
+                @include font_M_PLUS(normal, semibold);
+                padding: 1rem 2rem;
+
+                li {
+                    position: relative;
+                    list-style: none;
+                    color: var(--off-gray-color);
+                    cursor: pointer;
+                    transition: 0.2s linear;
+
+                    .is_null {
+                        position: absolute;
+                        bottom: -1rem;
+                        right: -1rem;
+                        @include font_M_PLUS(little, 600);
+                        color: var(--null-color);
+                    }
+
+                    &:hover {
+                        color: var(--text-primary-color);
+                    }
+
+                    &.active {
+                        color: var(--text-primary-color) !important;
+                    }
+                }
+
+            }
+
+            .properties {
+                @include dim_width();
+                @include flex(flex-start, center, column, 1rem);
+                padding: 1rem 2rem;
+
+                .header {
+                    @include dim_width();
+                    @include dim_height(4rem);
+                    @include dim_width();
+                    @include flex(flex-start, center, row);
+
+                    padding-left: 1rem;
+                    border-bottom: 1px solid var(--gray-color);
+
+                    .add_btn {
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        position: absolute;
+                        right: 3rem;
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                        }
+                    }
+
+                    p {
+                        text-align: start;
+                        @include dim_width(33%);
+
+                    }
+                }
+
+                .prop {
+                    @include dim_width();
+                    @include dim_height(4rem);
+                    @include flex(flex-start, center, row);
+                    padding-left: 1rem;
+                    background-color: transparent;
+                    border-bottom: 1px solid var(--gray-color);
+                    transition: 0.2s linear;
+
+                    .remove_btn {
+                        position: absolute;
+                        right: 3rem;
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                            opacity: 0.6;
+                            transition: 0.2s linear;
+
+                            &:hover {
+                                opacity: 1;
+                            }
+                        }
+
+                    }
+
+                    .column {
+                        position: relative;
+                        @include dim_width(33%);
+                        @include flex(flex-start, center, row, 1rem);
+
+                        p {
+                            cursor: pointer;
+                        }
+
+                        &.column_type {
+                            color: var(--text-primary-color);
+
+                            p {
+                                &:hover {
+                                    color: var(--text-primary-color);
+                                }
+                            }
+                        }
+
+
+                        .string {
+                            color: var(--normal-green-color);
+                        }
+
+                        .number {
+                            color: #cf9219;
+                        }
+
+                        .boolean {
+                            color: #cf1919;
+                        }
+
+                        .is_null {
+                            @include font_M_PLUS(little, 600);
+                            color: var(--null-color);
+                        }
+
+                        .optional {
+                            @include dim_width(1.5rem);
+                            @include dim_height(1.5rem);
+                            @include flex(center, center);
+                            font-size: 1rem;
+                            border-radius: 1rem;
+                            border: 1px solid var(--off-gray-color);
+                            color: var(--off-gray-color);
+                            cursor: pointer;
+
+                            &.active {
+                                color: var(--white-color);
+                                border: 1px solid var(--normal-green-color);
+                                background-color: var(--hover-green-color)
+                            }
+                        }
+
+                    }
+
+                }
+
+
+
+            }
+        }
+
+        .view_in_vsc {
+            @include dim_width(10.5rem);
+            @include dim_height(3rem);
+            @include flex(center, center);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: 0.2s linear;
+
+
+            &:hover {
+                transition: 0.2s linear;
+                @include gradient(primary);
+
+                p {
+                    background-color: transparent;
+                }
+            }
+
+        }
+
+        .modal_to_edit {
+            z-index: 30;
+            position: absolute;
+            top: 25rem;
+
+            @include flex(center, center, column);
+            @include gradient(black_bg);
+            padding: 1rem;
+            border-radius: 2rem;
+
+            border: 1px solid var(--text-primary-color);
+            opacity: .9;
+
+            .title {
+                @include dim_width();
+                @include flex(center, center);
+                @include font_M_PLUS(semi_large, 450);
+                color: var(--text-primary-color);
+            }
+
+            .textarea_wrap {
+                padding: 1rem;
+                z-index: 337777;
+
+
+                textarea {
+                    @include dim_width(auto, auto, 40rem);
+                    // @include dim_height(auto, auto, 3rem);
+                    @include flex(center, center);
+                    @include font_extra(medium, 300);
+                    text-align: center;
+                    line-height: 2rem;
+                    // resize: both;
+                    // padding: 1rem;
+                    padding-top: 2rem;
+                    color: var(--white-color);
+                    border-radius: 1rem;
+                    @include gradient(black_bg);
+
+                    &.edit_title {
+                        @include font_M_PLUS(semi_large, 450);
+                        color: var(--text-primary-color);
+                    }
+
+                    &:focus {
+                        outline: none !important;
+                        border: 1px solid var(--text-primary-color);
+                    }
+                }
+            }
+
+            .btn_group {
+                @include dim_width();
+                @include flex(center, center, row, 1rem);
+                padding: 1rem;
+
+                button {
+                    @include dim_height(3rem);
+                    @include flex(center, center);
+                    @include font_M_PLUS(normal, 400);
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    background-color: transparent;
+                    cursor: pointer;
+                    transition: 0.2s linear;
+                    border: none;
+
+                    transition: 0.2s linear;
+
+                    &.cancel {
+                        border: 1px solid var(--off-gray-color);
+
+                        &:hover {
+                            background-color: var(--off-gray-color);
+                        }
+                    }
+
+                    &.edit {
+                        border: 1px solid var(--text-primary-color);
+
+                        &:hover {
+                            background-color: var(--text-primary-color);
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+.manager_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column, 1rem);
+        padding: 1rem;
+        border-radius: 2rem;
+        @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+        animation: fadeIn 0.2s ease-in forwards;
+
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#root {
+    position: relative;
+    @include dim_height();
+    @include dim_width();
+    @include flex(flex-start, center, column);
+    background-size: cover;
+    background-position: top right;
+    background-repeat: no-repeat;
+
+
+    --white-color: #F2F2F2;
+    --hover-blue-color: #333A48;
+    --normal-blue-color: #1c2434;
+    --strong-blue-color: #01192E;
+    --light-blue-color: #E2E8F0;
+    --bg-blue-color: #CCD8E3;
+    --off-light-blue-color: #8A99AF;
+    --null-color: #7b2020;
+    --text-primary-color: #2FABCF;
+
+
+    --strong-green-color: #358F8F;
+    --hover-green-color: #1addc689;
+    --normal-green-color: #1addc6b1;
+    --gray-color: #3D3D3D;
+    --off-gray-color: #f2f2f26d;
+
+}

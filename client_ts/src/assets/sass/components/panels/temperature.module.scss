@@ -1,0 +1,91 @@
+@import "../../base";
+@import "../../utilities/gradient";
+@import "../../utilities/font";
+@import "../../utilities/border";
+
+.temperature_graph {
+    position: relative;
+    @include dim_width();
+    @include dim_height(40rem);
+    @include flex();
+    padding: 0rem 2rem 1rem 6rem;
+    @include font_Inter(base, normal, semibold);
+    letter-spacing: 1px;
+    color: #767676;
+
+    .color_option {
+        position: absolute;
+        top: 0;
+        @include dim_width();
+        @include dim_height(5rem);
+        @include flex(flex-start, center, row, 2rem);
+        padding: 0 4.8rem;
+        @include font_Inter(base, small, semibold);
+
+        .wrap {
+            @include flex(flex-start)
+        }
+
+        .circle {
+            @include dim_width(1rem);
+            @include dim_height(1rem);
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: aquamarine;
+        }
+    }
+
+    .unit_label {
+        @include dim_width(6rem);
+        @include dim_height();
+        @include flex();
+        position: absolute;
+        left: 0;
+        writing-mode: vertical-rl; // Añadido para mostrar el texto verticalmente
+        transform: rotate(180deg); // Añadido para invertir el texto
+
+
+    }
+
+    .date_label {
+        @include dim_width();
+        @include dim_height(6rem);
+        @include flex(center, center);
+        position: absolute;
+        bottom: 0;
+    }
+
+
+    .graph {
+        @include dim_width(60rem);
+        @include dim_height(30rem);
+
+        // background-color: rgb(148, 93, 56);
+        // clip-path: polygon(0% 100%, 0% 40%, 30% 60%, 68% 40%, 85% 45%, 100% 65%, 100% 100%);
+
+        image {}
+
+        // animation: animateClipPath 5s infinite alternate ease-in-out;
+
+    }
+
+    .content {
+        @include dim_width(60rem);
+        @include dim_height(30rem);
+        clip-path: circle(10px at 0% 100%);
+        position: absolute;
+        background-color: rgb(255, 0, 0);
+
+    }
+}
+
+
+@keyframes animateClipPath {
+    0% {
+        clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%, 0% 50%);
+    }
+
+    100% {
+        clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%, 0% 50%);
+    }
+}

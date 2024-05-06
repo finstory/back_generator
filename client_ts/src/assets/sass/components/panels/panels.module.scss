@@ -1,0 +1,392 @@
+@import "../../base";
+@import "../../utilities/gradient";
+@import "../../utilities/font";
+@import "../../utilities/border";
+
+.custom_panel {
+    position: relative;
+    @include dim_width(66rem);
+
+    @include dim_height(auto, auto, 40rem);
+    @include flex($direction: column);
+    // padding: 3.8rem;
+    border-radius: 1rem;
+    animation: opacity 0.5s alternate;
+
+    .panel_top {
+        @include dim_width();
+        @include dim_height(7rem);
+        @include flex(space-between);
+        padding: 0 2rem;
+        background-color: var(--white-color);
+        border-radius: 1.5rem 1.5rem 0 0;
+
+        .box {
+            @include flex($gap: 2rem);
+
+            .info {
+                @include flex(center, flex-start, column);
+
+                .title {
+                    @include flex(flex-start, center, row, 1rem);
+
+                    p {
+                        @include font_Inter(base, medium, bold);
+
+                    }
+
+                    span {
+                        @include font_Inter(base, normal, semibold);
+                    }
+                }
+
+                .date {
+                    @include font_Inter(base, small, semibold);
+                }
+            }
+        }
+    }
+
+    .panel_selector {
+        @include dim_width();
+        @include flex(flex-start, $gap: 1rem);
+        padding: 1rem 2rem;
+        background-color: var(--white-color);
+
+        button {
+            @include dim_width(15rem);
+            @include dim_height(3rem);
+            @include flex(center, center);
+            @include font_Inter(base, small, bold);
+
+            border-radius: 0.5rem;
+            border: 0;
+            background-color: var(--light-blue-color);
+            color: var(--strong-blue-color);
+            cursor: pointer;
+            transition: 0.2s linear;
+
+
+            &.selected,
+            &:hover {
+                background-color: var(--normal-green-color);
+                color: var(--white-color);
+            }
+
+        }
+    }
+
+    .pin {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        cursor: pointer;
+        transition: 0.2s linear;
+    }
+
+}
+
+
+.small_panel {
+    @include dim_width(30rem);
+    @include dim_height(8rem);
+    @include flex(space-between);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+
+    background-color: var(--white-color);
+    box-shadow: 4px 2px 6px #00000033;
+
+    .info {
+
+        .title {
+            @include font_Inter(base, medium, bold);
+        }
+
+        .value {
+            @include font_Inter(base, medium, bold);
+            color: #de8c59;
+        }
+
+    }
+
+    .icon {
+        @include dim_width(4rem);
+
+
+        img {
+            @include image();
+        }
+    }
+
+}
+
+.number_panel {
+
+    @include dim_width(30rem);
+    @include dim_height(18rem);
+    @include flex(space-between, center, column);
+    padding: 2rem;
+    background-color: var(--white-color);
+    border-radius: 1rem;
+    border: 1px solid var(--light-blue-color);
+    @include font_Inter(base, normal, semibold);
+    box-shadow: 4px 2px 6px #00000033;
+
+    .more_info {
+        @include dim_width();
+        @include flex(space-between, center, row, 1rem);
+        // padding: 0 0.5rem;
+
+        .indicator {
+            @include dim_width();
+            @include flex(flex-start, center, row, 1.4rem);
+            @include font_Inter(base, normal, bold);
+
+            .percent {
+                background-color: #A5FBC7;
+                padding: .5rem .8rem;
+                border-radius: 1rem;
+                color: var(---strong-blue-color);
+                box-shadow: 4px 2px 6px #00000033;
+
+            }
+
+            .when {
+                @include font_Inter(base, normal, bold);
+                @include flex(flex-end, center, row, 1rem);
+                color: var(--hover-blue-color);
+            }
+        }
+
+        .icon {
+            @include flex();
+            cursor: pointer;
+
+        }
+    }
+
+
+    .info {
+        @include dim_width();
+        @include flex(space-between, center, row, 1rem);
+
+
+        .box {
+            @include flex(center, flex-start, column, 1rem);
+        }
+
+        .value {
+            @include font_Inter(base, large, bold);
+            color: var(--strong-green-color);
+
+            span {
+                @include font_Inter(base, normal, bold);
+                color: var(--normal-blue-color);
+            }
+        }
+
+        .name {
+            top: 6rem;
+            @include font_Inter(base, normal, bold);
+            color: var(--strong-blue-color);
+        }
+
+    }
+
+}
+
+.simple_wrap {
+    @include dim_width();
+    @include dim_height(auto, auto, 40rem);
+    background-color: var(--white-color);
+    border-radius: 0 0 1.5rem 1.5rem;
+    @include flex(center, center);
+    overflow: hidden;
+
+    .wrapper {
+        @include dim_width();
+        @include dim_height();
+        @include flex(center, center);
+    }
+
+}
+
+.img_simple_wrap {
+    @include dim_width();
+    @include dim_height(auto, auto, 47rem);
+    border-radius: 0 0 1.5rem 1.5rem;
+    @include flex(center, center);
+    overflow: hidden;
+
+    .wrapper {
+        @include dim_width();
+        @include dim_height();
+        @include flex(center, center, row, 4rem, wrap);
+        padding: 2rem 0;
+
+    }
+
+}
+
+.scrolling_simple_wrap {
+    @include dim_width();
+    @include dim_height(auto, auto, 40rem);
+    background-color: var(--white-color);
+    border-radius: 0 0 1.5rem 1.5rem;
+    @include flex(center, center);
+    overflow: hidden;
+
+    .wrapper {
+        position: relative;
+        @include dim_width();
+        @include dim_height(36rem);
+        @include flex(flex-start, center, column, 1rem);
+        padding: 0 2rem;
+        margin: 2rem;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--light-blue-color);
+
+        }
+    }
+
+}
+
+.semi_large_wrap {
+    @include dim_width();
+    @include dim_height();
+    @include flex(center, center);
+    // padding: 2rem;
+
+    .wrapper {
+        @include dim_width();
+        @include dim_height();
+        @include flex(space-between, center, row, 4rem, wrap, center);
+    }
+
+}
+
+.double_wrap {
+    @include dim_width();
+    @include dim_height();
+    @include flex(center, center, row, 3rem, wrap, center);
+    padding: 4rem 0;
+    background-color: var(--off-gray-color);
+    border-radius: 0 0 1.5rem 1.5rem;
+
+    .wrapper {
+
+        &:nth-child(1) {
+            flex-basis: 96rem;
+            @include dim_height();
+            @include flex(center, center, row, 2.6rem, wrap, center);
+
+        }
+
+        &:nth-child(2) {
+            flex-basis: 30rem;
+            @include dim_height();
+            @include flex(center, center, row, 2.6rem, wrap, center);
+
+
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .custom_panel {
+        max-width: 64rem;
+        ;
+    }
+
+}
+
+@media (max-width: 1900px) {
+
+    .semi_large_wrap {
+
+        .wrapper {
+            @include flex(center, center, row, 4rem, wrap, center);
+        }
+
+    }
+
+}
+
+
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.panel {
+    @include dim_width(auto, 108rem);
+    @include flex(flex-start, flex-start, column, 2rem);
+    margin: 2rem 0;
+    padding: 2rem;
+    background: linear-gradient(#f3f3f3, #f2f2f2);
+    animation: opacity 0.5s alternate;
+
+    border: 1px solid var(--light-blue-color);
+
+    .title {
+        @include dim_width();
+        @include flex(space-between);
+        @include font_Inter(base, large, bold);
+        padding: 1rem 3rem;
+
+        .value {
+            @include font_Inter(base, large, normal);
+        }
+
+        .icon {
+            @include dim_width(4rem);
+
+            img {
+                @include image();
+            }
+        }
+    }
+
+    .alert_content_panel {
+
+        @include dim_width();
+        @include dim_height(27.3rem);
+        @include flex(space-between, center, row);
+        padding-right: 3rem;
+
+
+        .list_values {
+            @include dim_height();
+            padding-top: 2rem;
+            @include flex(center, flex-start, column, 6rem);
+
+            button {
+                padding: 1rem;
+                border-radius: 1rem;
+                border: 1px solid var(--light-blue-color);
+                background-color: #103db923;
+            }
+
+        }
+    }
+
+    .content_panel {
+
+        @include flex(center, flex-start, row, 4rem, wrap);
+        align-content: flex-start;
+    }
+}

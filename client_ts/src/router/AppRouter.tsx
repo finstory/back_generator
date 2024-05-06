@@ -1,10 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
+import { RoutesPage } from "../pages/Routes.page";
+import { TestPage } from "../pages/Test.page";
+
 
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      {/* <Route path="/" element={<RoutesPage />} /> */}
+      <Route path="/" element={<TestPage />} />
     </Routes>
   );
 };
