@@ -38,11 +38,11 @@ const mongoDB = async (callback: () => void, reset: boolean) => {
       console.log(colors.green.bold.italic("Connected to MongoDB"), reset ? colors.red.italic("| Initial dropped") : "");
     })
     .then(() => {
-      setTimeout(() => { callback(); }, 3000);
+      callback();
     })
     .catch((error) => {
-      console.error("Failed to connect to MongoDB:", error);
       console.log(colors.bgRed.italic("Failed to connect to MongoDB"))
+      console.error("Failed to connect to MongoDB:", error);
     });
 };
 

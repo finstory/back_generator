@@ -3,7 +3,6 @@ import Schema from "../../config/mongoDB/schemaManager";
 export interface IEvent {
   name: string;
   description: string;
-
 }
 
 const Event =
