@@ -6,7 +6,8 @@ export interface IUser {
 }
 
 const User =
-  Schema<IUser>({
+  Schema<IUser>(
+    "User", {
     name: { type: String, required: true, immutable: true },
     email: { type: String, required: true },
   })

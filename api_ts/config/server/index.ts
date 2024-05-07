@@ -7,7 +7,6 @@ import cors from "cors";
 
 import { routes } from "../../src/routes/index";
 import { createAllPaths } from "../../src/helpers/pathManager";
-import test from "../../src/test";
 
 //% Initial Methods:
 createAllPaths();

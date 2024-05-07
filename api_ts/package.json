@@ -2,10 +2,10 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "_server.ts",
   "scripts": {
-    "start": "nodemon index.ts",
-    "dev": "tsnd --respawn index.ts"
+    "start": "nodemon _server.ts",
+    "dev": "tsnd --respawn _server.ts"
   },
   "keywords": [],
   "author": "",
