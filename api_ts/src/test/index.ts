@@ -2,11 +2,19 @@ import { Event, IEvent, IProduct, IUser, Product, User } from "../models";
 
 const testMain = async () => {
     try {
-        const newProduct: IProduct = { name: "Rama", email: "Description 1" };
+        const newProduct: IProduct = { name: "dama", email: "Description 1" };
         const createProduct = await Product.create<IProduct>(newProduct);
-        const productGetting = await Product.findOne({ "name": "rama god" });
-    
-        console.log(productGetting.email)
+        // const productGetting = await Product.findOne({ "name": "dama" });
+
+        const updateProduct = await Product.updateOne(
+            { name: "dama" },
+            { $set: { deleted: true, deletedAt: new Date() } }
+        );
+     
+
+        //    console.log(productGetting.$isDeleted() )
+  
+   
     } catch (error) {
         console.log(error.message) 
     }

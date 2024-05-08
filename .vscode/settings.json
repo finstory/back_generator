@@ -5,5 +5,8 @@
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "favorites.sortDirection": "ASC"
+    "favorites.sortDirection": "ASC",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

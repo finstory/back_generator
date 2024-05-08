@@ -5,7 +5,7 @@
   "main": "_server.ts",
   "scripts": {
     "start": "nodemon _server.ts",
-    "dev": "nodemon _server.ts"
+    "dev": "tsnd --respawn _server.ts"
   },
   "keywords": [],
   "author": "",

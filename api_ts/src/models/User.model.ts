@@ -10,6 +10,8 @@ const User =
     "User", {
     name: { type: String, required: true, immutable: true },
     email: { type: String, required: true },
-  })
+  },
+ { timestamps: true}
+)
 
 export default User;

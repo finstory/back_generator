@@ -10,7 +10,8 @@ const Event =
     "Event", {
     name: { type: String, required: true, immutable: true },
     description: { type: String, required: false },
-
-  })
+  }
+  , { timestamps: true } 
+)
 
 export default Event;

@@ -1,13 +1,14 @@
-import Schema from "../../config/mongoDB/schemaManager";
+import Schema, { timeStamp } from "../../config/mongoDB/schemaManager";
 
-export interface IProduct {
+export interface IProduct extends timeStamp {
     name: string;
     email: string;
 }
 
 const Product =
     Schema<IProduct>(
-        "Product", {
+        "Product", 
+        {
         name: {
             type: String, required: true, immutable: true, validate: [
                 {
@@ -24,7 +25,9 @@ const Product =
                 }
             ]
         },
-        email: { type: String, required: true },
-    })
+        email: { type: String, required: true }
+    },
+    { timestamps: true }
+)
 
 export default Product;
