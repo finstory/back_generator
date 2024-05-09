@@ -8,5 +8,8 @@
     "favorites.sortDirection": "ASC",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "cSpell.words": [
+        "panelsd"
+    ]
 }

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 
-interface DoubleBorderGradientProps {
+interface DGBorderProps {
   children: ReactNode;
   className: string;
   color?: string;
@@ -11,7 +11,7 @@ interface DoubleBorderGradientProps {
   effect?: boolean;
 }
 
-export const DoubleBorderGradient = ({
+const DGBorder = ({
   children,
   className,
   color,
@@ -20,7 +20,7 @@ export const DoubleBorderGradient = ({
   borderBetween = "2px",
   effectHeight = "200rem",
   effect = false,
-}: DoubleBorderGradientProps) => {
+}: DGBorderProps) => {
   return (
     <div
       className={`border_gradient ${className}`}
@@ -77,3 +77,4 @@ export const DoubleBorderGradient = ({
     </div>
   );
 };
+export default DGBorder;

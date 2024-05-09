@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-interface BorderGradientProps {
+interface BGradientProps {
   children: ReactNode;
   className: string;
   color?: string;
@@ -8,7 +8,7 @@ interface BorderGradientProps {
   onClick?: () => void;
 }
 
-export const BorderGradient = ({ children, color, className, borderSize = "2px", onClick = () => { } }: BorderGradientProps) => {
+const BGradient = ({ children, color, className, borderSize = "2px", onClick = () => { } }: BGradientProps) => {
   return (
     <div
       onClick={onClick}
@@ -35,3 +35,4 @@ export const BorderGradient = ({ children, color, className, borderSize = "2px",
     </div>
   );
 };
+export default BGradient;

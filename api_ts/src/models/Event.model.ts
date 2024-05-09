@@ -1,6 +1,6 @@
-import Schema from "../../config/mongoDB/schemaManager";
+import Schema, { timeStamp } from "../../config/mongoDB/schemaManager";
 
-export interface IEvent {
+export interface IEvent extends timeStamp {
   name: string;
   description: string;
 }

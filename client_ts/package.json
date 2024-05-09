@@ -12,6 +12,7 @@
   "dependencies": {
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.3",
+    "build-url-ts": "^6.1.7",
     "dotenv": "^16.4.5",
     "env-var": "^7.4.1",
     "react": "^18.2.0",
@@ -20,9 +21,11 @@
     "react-router-dom": "^6.23.0",
     "redux": "^5.0.1",
     "rxjs": "^7.8.1",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "url": "^0.11.3"
   },
   "devDependencies": {
+    "@types/node": "^20.12.11",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
