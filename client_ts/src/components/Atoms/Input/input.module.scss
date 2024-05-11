@@ -1,30 +1,50 @@
+@import "../../../_config/styles/sass";
+
+.wrapper {
+    @include flex();
+}
+
+.default {
+    @include dim_height();
+    @include dim_width();
+    padding: 1rem;
+    color: var(--color-base-off);
+    background-color: transparent;
+    border: 1px solid var(--color-base-off);
+    border-radius: 1rem;
+
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-normal);
+
+    transition: 0.2s linear;
+    cursor: pointer;
+
+    &::placeholder {
+        color: var(--color-base-off);
+    }
+
+    &:focus {
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        outline: none;
+    }
+}
+
+
+
+
+
 #root {
 
-    //% COLOR:
+    //% TEXT COLOR:
     --color-base-off: #f2f2f26d;
     --color-base: #F2F2F2;
-    --color-base-dark: #0b0b0b;
 
     --color-primary: #2FABCF;
     --color-primary-hover: #67cfef;
     --color-secondary: #1addc6;
     --color-secondary-hover: #46eeda;
-
-    // request colors:
-    --color-get-off: #1addc63a;
-    --color-get: #1addc6;
-    --color-post-off: #dd8f1a34;
-    --color-post: #dd8f1a;
-    --color-put-off: #1a99dd59;
-    --color-put: #1a99dd;
-    --color-patch-off: #dd1a854e;
-    --color-patch: #dd1a85;
-    --color-delete-off: #dd1a1a46;
-    --color-delete: #dd1a1a;
-    --color-middleware-off: #5130aa57;
-    --color-middleware: #5030AA;
-    --color-controller-off: #1addc63a;
-    --color-controller: #1addc6;
 
     //% BG:
     --bg-primary: transparent;
@@ -38,8 +58,7 @@
 
     //% FONT:
     --font-family-primary: 'Inter';
-    // M+PLUS+Rounded+1c
-    --font-family-secondary: 'M PLUS Rounded 1c';
+    --font-family-secondary: 'Inter';
 
     //% FONT SIZE:
     --font-size-extra-small: 0.8rem;

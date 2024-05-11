@@ -1,19 +1,29 @@
-import React, { FC } from 'react';
-import scss from './border_button.module.scss';
+import React, { FC } from "react";
+import scss from "./button.module.scss";
 
-export const Button: FC<{
-  style?: React.CSSProperties
-  children: React.ReactNode,
-  variant?: "request" | "default"
+const Button: FC<{
+  style?: React.CSSProperties;
+  children: React.ReactNode;
+  variant?:
+  "default" | "reset" | "circle_one_char"
+  //? request colors
+  | "get" | "post" | "put" | "patch" | "delete" | "middleware"
+  ;
   onClick?: () => void;
-}> = ({ children, style, variant = "index", onClick }) => {
+}> = ({ children, style = {}, variant = "index", onClick }) => {
+
+  const notClonedList: string[] = ["circle_one_char"];
+  const includeDefault = notClonedList.includes(variant);
+
   return (
     <button
-      className={`${scss.index} ${variant ? scss[variant] : null}`}
+      className={`${!includeDefault ? scss.default : null} ${variant ? scss[variant] : null}`}
       style={style}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {children}
     </button>
-  )
-}
+  );
+};
 
+export default Button;

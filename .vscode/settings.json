@@ -11,5 +11,8 @@
     },
     "cSpell.words": [
         "panelsd"
-    ]
+    ],
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    }
 }
