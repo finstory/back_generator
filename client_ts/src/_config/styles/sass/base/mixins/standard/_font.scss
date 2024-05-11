@@ -1,8 +1,21 @@
+@mixin font($size : normal, $weight, $color, $family) {
+    font-size: $size;
+    font-weight: $weight;
+
+    @if($color) {
+        color: $color;
+    }
+
+    @if($family) {
+        font-family: $family;
+    }
+}
+
 @mixin font_M_PLUS($size : normal, $weight : semibold, $color: base) {
     font-family: 'M PLUS Rounded 1c';
-    font-size: map-get($font_size, $size);
+    font-size: $size;
 
-    @if($color == base) {
+    @if($color ==base) {
         color: var(--white-color);
     }
 
@@ -19,18 +32,12 @@
     font-weight: $weight;
 }
 
-@mixin font($color: primary, $size : normal, $weight : semibold, $type: K2D) {
-    font-family: $type;
-    font-size: map-get($font_size, $size);
-    font-weight: $weight;
-    color: map-get($text_color, $color);
-}
 
-@mixin font_extra($size : normal, $weight : semibold, $color: base){
+@mixin font_extra($size : normal, $weight : semibold, $color: base) {
     font-family: 'Inter';
-    font-size: map-get($font_size, $size);
+    font-size: $size;
 
-    @if($color == base) {
+    @if($color ==base) {
         color: var(--white-color);
     }
 

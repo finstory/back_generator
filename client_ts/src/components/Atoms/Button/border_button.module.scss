@@ -1,0 +1,22 @@
+ @import "../../../_config/styles/sass";
+
+ .index {
+
+     padding: 1rem;
+     color: var(--text-color-primary);
+     background-color: var(--text-color-primary-hover);
+     border: 1px solid var(--border-primary);
+     border-radius: 1rem;
+
+     font-family: var(--font-family-primary);
+     font-size: var(--font-size-normal);
+     font-weight: var(--font-weight-normal);
+
+     transition: background-color 0.2s linear;
+     cursor: pointer;
+
+     &:hover {
+         color: var(--text-btn-primary-hover);
+         background-color: var(--bg-btn-primary-hover);
+     }
+ }

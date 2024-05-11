@@ -1,0 +1,39 @@
+#root {
+
+    //% GLOBAL : 
+
+    //% TEXT COLOR:
+    --text-color-primary: #F2F2F2;
+    --text-color-primary-hover: #637df2;
+
+    //% BG:
+    --bg-primary: transparent;
+    --bg-primary-hover: #1a6bdd4f;
+    --bg-secondary: #3EE6B4;
+    --bg-secondary-hover: #1addc6;
+
+    //% BORDER:
+    --border-primary: #f2f2f26d;
+    --border-radius-primary: 1rem;
+
+    //% FONT:
+    --font-family-primary: 'Inter';
+    --font-family-secondary: 'Inter';
+
+    //% FONT SIZE:
+    --font-size-extra-small: 0.8rem;
+    --font-size-small: 1.2rem;
+    --font-size-normal: 1.4rem;
+    --font-size-medium: 1.8rem;
+    --font-size-large: 2rem;
+
+    //% FONT WEIGHT:
+    --font-weight-small: light;
+    --font-weight-normal: normal;
+    --font-weight-medium: semibold;
+    --font-weight-large: bold;
+
+    //% GRADIENT:
+    --gradient-primary: linear-gradient(90deg, #3757b5 0%, #1addc6 100%);
+    --gradient-hover: linear-gradient(90deg, #1addc6 0%, #3757b5 100%);
+}

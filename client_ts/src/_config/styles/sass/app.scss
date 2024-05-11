@@ -1,6 +1,5 @@
 @import "./base";
-@import "./utilities/font";
-@import "./utilities/gradient";
+@import "./constants";
 
 html {
     box-sizing: border-box;
@@ -17,10 +16,9 @@ div {
 body {
     @include dim_height();
     @include dim_width();
-    @include font_Inter(base, normal, semibold);
+    @include font(normal, normal, var(--text-color-primary), 'Inter');
     @include gradient(black_bg);
 }
-
 
 #root {
     position: relative;
@@ -31,18 +29,17 @@ body {
     background-position: top right;
     background-repeat: no-repeat;
 
+    // --white-color: #F2F2F2;
+    // --off-white-color: #DDDDDD;
+    // --null-color: #6339c6;
+    // --text-primary-color: #2FABCF;
 
-    --white-color: #F2F2F2;
-    --off-white-color: #DDDDDD;
-    --null-color: #6339c6;
-    --text-primary-color: #2FABCF;
-
-    --off-green-color: rgba(103, 141, 193, 0.648);
-    --strong-green-color: #286d66;
-    --hover-green-color: #1addc689;
-    --normal-green-color: #3EE6B4;
-    --gray-color: #3D3D3D;
-    --off-gray-color: #f2f2f26d;
+    // --off-green-color: rgba(103, 141, 193, 0.648);
+    // --strong-green-color: #286d66;
+    // --hover-green-color: #1addc689;
+    // --normal-green-color: #3EE6B4;
+    // --gray-color: #3D3D3D;
+    // --off-gray-color: #f2f2f26d;
 
 }
 
