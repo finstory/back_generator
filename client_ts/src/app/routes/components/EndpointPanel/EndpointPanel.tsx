@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, IText, DGBorder, Button, IDGBorder } from "@/components";
 import scss from "@routes/_scss/endpoint_panel.module.scss";
-
 import { Title } from "./Title/_Title";
 import { EndpointDir } from "./EndpointDir/_EndpointDir";
+import injector from "@/services/_test/injector";
 
 
 export const EndpointPanel = () => {
 
+  const test = injector();
+
+
   const props = childrenProps({});
+
+  const action = async () => {
+
+    test.auth.api.nose();
+
+  }
+  useEffect(() => {
+    action();
+  }, [])
+
 
   return (
     <DGBorder className={scss.endpoint_panel} {...props.endpoint_panel} >
