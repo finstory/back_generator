@@ -1,6 +1,5 @@
 import { UserManager } from "@/_config/redux";
-export class UserApiServices extends UserManager {
-
+class UserApiServices extends UserManager {
 
   otherUser = async () => {
     this.setUser({ name: "Other User" }, "SET_USER");
@@ -9,5 +8,11 @@ export class UserApiServices extends UserManager {
   userRedux = async (name: string) => {
     console.log(name)
   }
+
+  getAuth = async () => {
+
+    console.log(await this.S.auth.api.other())
+  }
 }
+
 export default UserApiServices;

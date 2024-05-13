@@ -3,19 +3,20 @@ import { Text, IText, DGBorder, Button, IDGBorder } from "@/components";
 import scss from "@routes/_scss/endpoint_panel.module.scss";
 import { Title } from "./Title/_Title";
 import { EndpointDir } from "./EndpointDir/_EndpointDir";
-import injector from "@/services/_test/injector";
+import S from "@/services/_test/injector";
 
 
 export const EndpointPanel = () => {
-
-  const test = injector();
-
+  const storeAuth = S.auth.store;
+  const stackAuth = S.auth.api;
+  const stackUser = S.user.api;
 
   const props = childrenProps({});
 
   const action = async () => {
-
-    test.auth.api.nose();
+    console.log(storeAuth)
+    stackAuth.main();
+    stackUser.getAuth();
 
   }
   useEffect(() => {

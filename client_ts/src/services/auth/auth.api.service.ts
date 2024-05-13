@@ -3,14 +3,15 @@ import { AuthManager } from "@/_config/redux";
 class AuthApiService extends AuthManager {
 
   nose = () => {
-    this.superService.user.api.userRedux("funkca");
+    this.S.user.api.userRedux("funkca");
+    
     this.setAuth({ name: "algito" }, "SET_OTRO");
   }
 
   main = () => {
     console.log("dsafasdf");
-    this.superService.user.api.otherUser();
-    // this.superService.super_other();
+    this.S.user.api.otherUser();
+    // this.S.super_other();
   };
 
   testReducer = async (name: string) => {
