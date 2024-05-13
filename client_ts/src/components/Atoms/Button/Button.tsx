@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import scss from "./button.module.scss";
 
-const Button: FC<{
+export const Button: FC<{
   style?: React.CSSProperties;
   children: React.ReactNode;
   variant?:
@@ -25,5 +25,3 @@ const Button: FC<{
     </button>
   );
 };
-
-export default Button;

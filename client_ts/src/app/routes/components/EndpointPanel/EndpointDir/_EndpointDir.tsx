@@ -1,14 +1,14 @@
-
-import scss from '@routes/_scss/rotes.module.scss';
+import { RouteModule } from "./RouteModule/__RouteModule";
 import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
 
 
-export const EndpointDir = () => {
-  const props = childrenProps({ scss });
+export const EndpointDir = ({ _scss }) => {
+  const props = childrenProps({});
 
   return (
-    <div className={scss.endpoint_dir}>
-      <RouteModuleEditor {...props.route_module_editor} />
+    <div className={_scss.endpoint_dir}>
+      <RouteModuleEditor _scss={_scss} />
+      <RouteModule _scss={_scss} />
       {/* 
       {[].map((route) => (
         <RouteModule key={route.module} scss={_scss} route={route} />
@@ -17,10 +17,9 @@ export const EndpointDir = () => {
   );
 };
 
-const childrenProps = ({ scss }) => {
+const childrenProps = ({ }) => {
   return {
     route_module_editor: {
-      _scss: scss,
       active: true,
       mode: "add",
       moduleName: "",

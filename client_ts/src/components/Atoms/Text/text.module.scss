@@ -2,11 +2,16 @@
 
 .default {
     transition: 0.2s linear;
-    cursor: pointer;
 
     font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-normal);
+    font-weight: 300;
     font-size: var(--font-size-normal);
+}
+
+.hover_primary {
+    &:hover {
+        color: var(--color-primary);
+    }
 }
 
 $sizes: (
@@ -24,6 +29,20 @@ $colors: (
     "primary-hover",
     "secondary",
     "secondary-hover",
+    "get-off",
+    "get",
+    "post-off",
+    "post",
+    "put-off",
+    "put",
+    "patch-off",
+    "patch",
+    "delete-off",
+    "delete",
+    "middleware-off",
+    "middleware",
+    "controller-off",
+    "controller",
 );
 
 $font-families: (

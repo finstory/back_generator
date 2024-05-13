@@ -1,84 +1,110 @@
 [
     {
         "type": "Group",
-        "name": "_Global_Components",
+        "name": "_Stack",
         "parent_id": null,
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "kM97bLzEf2WDJeBo",
-        "iconColor": "rgb(224, 255, 255)"
+        "id": "OxDmvqIhSWPHLNRu",
+        "iconColor": "rgb(144, 238, 144)"
     },
     {
         "type": "Group",
         "name": "Resources",
-        "parent_id": "kM97bLzEf2WDJeBo",
+        "parent_id": "OxDmvqIhSWPHLNRu",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "p7Rit9mcDv5FEIVs",
-        "iconColor": "rgb(173, 216, 230)"
+        "id": "yiDPf34OEYtbJS98",
+        "iconColor": "rgb(32, 178, 170)"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "parent_id": "yiDPf34OEYtbJS98",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "s91ZkYpQBotrjO5T"
     },
     {
         "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass",
-        "parent_id": "p7Rit9mcDv5FEIVs",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components",
+        "parent_id": "yiDPf34OEYtbJS98",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "YfEPNwKeFzACt0iO",
-        "label": "global_sass"
-    },
-    {
-        "type": "Group",
-        "name": "Proyect",
-        "parent_id": null,
-        "workspaceRoot": null,
-        "workspacePath": null,
-        "id": "dBbm0I9UNtaEYher",
-        "iconColor": "rgb(0, 128, 0)"
-    },
-    {
-        "type": "Directory",
-        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src",
-        "parent_id": "dBbm0I9UNtaEYher",
-        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src",
-        "workspaceRoot": null,
-        "workspacePath": null,
-        "id": "QshxZuW7OUCaKFj2"
+        "id": "9zWp7NA3QLkRFKMy",
+        "label": "global_components"
     },
     {
         "type": "Group",
         "name": "_Editor",
-        "parent_id": "kM97bLzEf2WDJeBo",
+        "parent_id": "OxDmvqIhSWPHLNRu",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "sqjvE2akRyl8KCLg",
-        "iconColor": "rgb(173, 216, 230)"
+        "id": "1ulAdoPgrSMzLFUy",
+        "iconColor": "rgb(32, 178, 170)"
     },
     {
         "type": "Directory",
-        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components\\Atoms",
-        "parent_id": "sqjvE2akRyl8KCLg",
-        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components\\Atoms",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes",
+        "parent_id": "1ulAdoPgrSMzLFUy",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "RbGdl7jocmpUxkTr"
+        "id": "hokwPO13LURluHAv"
     },
     {
         "type": "Group",
-        "name": "_Testing",
-        "parent_id": "kM97bLzEf2WDJeBo",
+        "name": "_Componets_Design",
+        "parent_id": null,
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "hvceDZGaA3z0F98P",
-        "iconColor": "rgb(173, 216, 230)"
+        "id": "X0wPBRIgodc2tsUu",
+        "iconColor": "rgb(255, 182, 193)"
+    },
+    {
+        "type": "Group",
+        "name": "Resources",
+        "parent_id": "X0wPBRIgodc2tsUu",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "b8lgktCXReHVNY2y"
+    },
+    {
+        "type": "Group",
+        "name": "_Editor",
+        "parent_id": "X0wPBRIgodc2tsUu",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "mC0YxvRGzj93tcTL"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\components\\EndpointPanel",
+        "parent_id": "mC0YxvRGzj93tcTL",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\components\\EndpointPanel",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "50oEu9xUlDLcIS2J"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\_scss",
+        "parent_id": "b8lgktCXReHVNY2y",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\_scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "N5ehD7ZU2owzFaIb"
     },
     {
         "type": "File",
-        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\components\\EndpointPanel\\EndpointPanel.tsx",
-        "parent_id": "hvceDZGaA3z0F98P",
-        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\components\\EndpointPanel\\EndpointPanel.tsx",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "parent_id": "b8lgktCXReHVNY2y",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "mTCxYR4atEfZP0UA"
+        "id": "e28IPhVAwr4GzbEv",
+        "label": "_constants.scss"
     }
 ]

@@ -1,0 +1,18 @@
+@import "../../../_config/styles/sass";
+
+.default {
+    @include flex();
+    padding: 0;
+    background-color: transparent;
+    transition: 0.2s linear;
+    cursor: pointer;
+    border: 0;
+    //% Variants Cloned:
+
+    img {
+        @include dim_width();
+        @include dim_height();
+        @include flex();
+        object-fit: cover;
+    }
+}

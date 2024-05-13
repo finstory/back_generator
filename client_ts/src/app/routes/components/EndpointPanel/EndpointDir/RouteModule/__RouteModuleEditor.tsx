@@ -1,4 +1,5 @@
-import React from "react";
+import React, { FC } from "react";
+import { Button, Input, Mark } from "@/components";
 
 interface IProps {
   _scss: any;
@@ -8,29 +9,16 @@ interface IProps {
   setEditMode?: () => void;
 }
 
-export const RouteModuleEditor = (
-  { _scss, active = true, mode = "add", moduleName = "", setEditMode = () => { } }
-    : IProps) => {
-      return (
-        <div
-          className={`${_scss.module} ${_scss.module_edit}`}
-        >
-          <form className={_scss.module_edit}>
-            <div className={_scss.marker} />
-            <div className={_scss.input_wrap}>
-              <input
-                type="text"
-                name="route_module_name"
-              // onChange={handleInputChange}
-              // value={values.route_module_name}
-              />
-            </div>
-            <button className={_scss.save_btn} type="submit">
-              {mode === "add" ? "Add" : "Edit"}
-            </button>
-          </form>
-        </div>
-      );
+export const RouteModuleEditor: FC<IProps> = ({ _scss }
+) => {
+
+  return (
+    <form className={_scss.module_edit}>
+      <Mark />
+      <Input width="32rem" placeholder="Route Module Name" />
+      <Button>Add</Button>
+    </form>
+  );
 };
 
 const childrenProps = ({ scss }) => {

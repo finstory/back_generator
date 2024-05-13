@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-interface BGradientProps {
+export interface BGradientProps {
   children: ReactNode;
   className: string;
   color?: string;
@@ -8,7 +8,7 @@ interface BGradientProps {
   onClick?: () => void;
 }
 
-const BGradient = ({ children, color, className, borderSize = "2px", onClick = () => { } }: BGradientProps) => {
+export const BGradient = ({ children, color, className, borderSize = "2px", onClick = () => { } }: BGradientProps) => {
   return (
     <div
       onClick={onClick}
@@ -18,7 +18,7 @@ const BGradient = ({ children, color, className, borderSize = "2px", onClick = (
         justifyContent: "center",
         alignContent: "center",
       }}
-    >
+      >
       <div
         className={`children ${className}`}
         style={{
@@ -26,6 +26,7 @@ const BGradient = ({ children, color, className, borderSize = "2px", onClick = (
           left: "auto",
           top: "auto",
           bottom: "auto",
+          // background: "transparent",
           width: `calc(100% - ${borderSize})`,
           height: `calc(100% - ${borderSize})`,
         }}

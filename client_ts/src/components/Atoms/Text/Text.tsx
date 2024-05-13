@@ -1,36 +1,49 @@
 import React, { FC } from 'react';
 import scss from './text.module.scss';
+import { ColorStyle, FamilyStyle, FontWeightStyle, LabelStyle, SizeStyle } from '@/interfaces/IStyles';
 
-const Text: FC<{
+export interface IText {
+    className?: string,
     style?: React.CSSProperties,
     //% custom types:
-    children: React.ReactNode,
-    label?: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span",
+    children?: React.ReactNode,
+    label: LabelStyle,
     cursor?: React.CSSProperties["cursor"],
-    color?: "base-off" | "base" | "primary" | "primary-hover" | "secondary" | "secondary-hover",
-    family?: "primary" | "secondary",
+    color?: ColorStyle,
+    family?: FamilyStyle,
     padding?: string,
-    size?: "small" | "normal" | "large",
+    size?: SizeStyle,
+    fontWeight?: FontWeightStyle,
+    hoverColor?: ColorStyle,
+}
 
-}> = ({ style = {},
-
+export const Text: FC<IText> = ({ style = {},
+    children,
     //% custom properties:
-    label = "p",
+    label,
     color = "base",
     size = "normal",
-    family = "",
-    padding,
-    children,
+    family = "primary",
+    cursor = "",
+    padding = "0",
+    fontWeight = "400",
+    hoverColor = "none",
+    className
 }) => {
-        return React.createElement(
-            label,
-            {
-                className: `${scss.default} ${scss["color_" + color]} ${scss["size_" + size]} ${scss["family_" + family]}`,
-                style: { ...style, padding },
-            },
-            children
-        )
+    return React.createElement(
+        label,
+        {
+            className: `
+            ${className}
+            ${scss.default} 
+            ${scss["color_" + color]} 
+            ${scss["size_" + size]} 
+            ${scss["family_" + family]}
+            ${scss["hover_" + hoverColor]}`,
 
-    }
+            style: { ...style, padding, cursor, fontWeight },
+        },
+        children
+    )
 
-export default Text;
+}

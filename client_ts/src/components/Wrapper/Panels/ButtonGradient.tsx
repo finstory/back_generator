@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-interface ButtonGradientProps {
+export interface ButtonGradientProps {
   children: React.ReactNode;
   color?: string;
   className: string;

@@ -1,8 +1,8 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode } from "react";
 
-interface DGBorderProps {
-  children: ReactNode;
-  className: string;
+export interface IDGBorder {
+  children?: ReactNode;
+  className?: string;
   color?: string;
   borderSize?: string;
   borderRadius?: string;
@@ -11,7 +11,7 @@ interface DGBorderProps {
   effect?: boolean;
 }
 
-const DGBorder = ({
+export const DGBorder = ({
   children,
   className,
   color,
@@ -20,7 +20,7 @@ const DGBorder = ({
   borderBetween = "2px",
   effectHeight = "200rem",
   effect = false,
-}: DGBorderProps) => {
+}: IDGBorder) => {
   return (
     <div
       className={`border_gradient ${className}`}
@@ -77,4 +77,3 @@ const DGBorder = ({
     </div>
   );
 };
-export default DGBorder;
