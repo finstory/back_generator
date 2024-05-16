@@ -1,17 +1,24 @@
 {
+  "target": "es2016",
+  "module": "commonjs",
   "compilerOptions": {
-    "baseUrl": "../src",
+    "baseUrl": "./src",
     "paths": {
-      "@generator/*": ["generator/*"]
+      "@/*": ["./*"],
+      "@app/*": ["./app/*"],
+      "@config/*": ["./_config/*"],
+      "@user/*": ["./app/user/*"]
     },
+    "experimentalDecorators": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
     "resolveJsonModule": true
   },
   "plugins": [
+    /* Transform paths in output .js files */
     {
-      "transform": "ts-auto-mock/transformer",
-      "cacheBetweenTests": false
+      "transform": "typescript-transform-paths"
     }
   ]
 }

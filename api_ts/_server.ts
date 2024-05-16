@@ -1,16 +1,17 @@
 import dotenv from 'dotenv';
 import colors from 'colors';
-import server from "./config/server";
-import mongoDB from "./config/mongoDB/connection";
-import test from './src/test';
+import server from '@config/server';
+import mongoDB from "@config/mongoDB/connection";
+import test from '@/test';
+
 dotenv.config();
 
 
 //% SERVER CONFIG:
 const PORT = process.env.PORT || 3000;
-const connectDB = true;
-const initialDropDB = true;
-const testMode = true;
+const connectDB = false;
+const initialDropDB = false;
+const testMode = false;
 
 
 //$ SERVER START:

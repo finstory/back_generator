@@ -1,6 +1,6 @@
 //<IMPORTS>
 import * as GetAuthByEmail from "./getAuthByEmail";
-
+import * as GetAuthByEmail from "./getAuthByEmail";
   class Controllers {
     //<CONTROLLERS>
   }

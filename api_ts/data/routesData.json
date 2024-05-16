@@ -1,1 +1,61 @@
-[{"module":"user","routesList":[{"id":"13a52111-72b4-4648-ae8b-cb864fd18793","endpoint":"/create","method":"post","description":"Write a description here...","controllerName":"postUserCreate","middlewares":["Token","+"],"params":[],"query":[],"body":[{"key":"id","type":"UUID","elementType":"","optional":true,"value":"ER334WE"},{"key":"first_name","type":"string","elementType":"facundo","optional":true,"value":null},{"key":"password","type":"string","elementType":"","optional":true,"value":"2329Icx/"},{"key":"age","type":"number","elementType":"","optional":false,"value":"32"}],"response_body":[]},{"id":"30fa9d5a-a0fd-4304-9a37-ea60b2092156","endpoint":"/","method":"get","description":"Write a description here...","controllerName":"getUser","middlewares":["Token","+"],"params":[],"query":[],"body":[],"response_body":[]}]},{"module":"auth","routesList":[]}]
+[
+  {
+    "module": "user",
+    "routesList": [
+      {
+        "id": "13a52111-72b4-4648-ae8b-cb864fd18793",
+        "endpoint": "/create",
+        "method": "post",
+        "description": "Write a description here...",
+        "controllerName": "postUserCreate",
+        "middlewares": ["Token", "+"],
+        "params": [],
+        "query": [],
+        "body": [
+          {
+            "key": "id",
+            "type": "UUID",
+            "elementType": "",
+            "optional": true,
+            "value": "ER334WE"
+          },
+          {
+            "key": "first_name",
+            "type": "string",
+            "elementType": "facundo",
+            "optional": true,
+            "value": null
+          },
+          {
+            "key": "password",
+            "type": "string",
+            "elementType": "",
+            "optional": true,
+            "value": "2329Icx/"
+          },
+          {
+            "key": "age",
+            "type": "number",
+            "elementType": "",
+            "optional": false,
+            "value": "32"
+          }
+        ],
+        "response_body": []
+      },
+      {
+        "id": "30fa9d5a-a0fd-4304-9a37-ea60b2092156",
+        "endpoint": "/",
+        "method": "get",
+        "description": "Write a description here...",
+        "controllerName": "getUser",
+        "middlewares": ["Token", "+"],
+        "params": [],
+        "query": [],
+        "body": [],
+        "response_body": []
+      }
+    ]
+  },
+  { "module": "auth", "routesList": [] }
+]

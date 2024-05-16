@@ -1,3 +1,4 @@
+import S from "@/_config/services";
 import { RouteModule } from "./RouteModule/__RouteModule";
 import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
 
@@ -17,7 +18,7 @@ export const EndpointDir = ({ _scss }) => {
   );
 };
 
-const childrenProps = ({ }) => {
+const childrenProps = ({ }) => { 
   return {
     route_module_editor: {
       active: true,

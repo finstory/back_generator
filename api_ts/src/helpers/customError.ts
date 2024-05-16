@@ -12,8 +12,12 @@ class CustomError extends Error {
   }
 }
 
-function throwError(type: string, status: number, payload: any): never {
-  throw new CustomError(type, status, payload);
+type typeError = "bad_request" | "not_found";
+
+function throwError(type: typeError, payload?: any, status?: number) {
+  if (status) throw new CustomError(type, status, payload);
+  if (type === "bad_request") throw new CustomError(type, 400, payload ? payload : "Bad Request");
+  if (type === "not_found") throw new CustomError(type, 404, payload ? payload : "Not Found");
 }
 
 export { throwError, CustomError };

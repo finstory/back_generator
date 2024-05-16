@@ -1,7 +1,6 @@
 import { AuthManager } from "@/_config/redux";
 
 class AuthApiService extends AuthManager {
-
   nose = () => {
     this.S.user.api.userRedux("funkca");
     

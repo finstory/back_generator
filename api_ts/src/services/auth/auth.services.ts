@@ -1,4 +1,6 @@
-import db from "src/app/db";
+import { UserDto } from "../../dto/user.dto";
+import { throwError } from "../../helpers/customError";
+import { User } from "../../models";
 import S from "../injector";
 
 interface IUser {
@@ -7,16 +9,11 @@ interface IUser {
 }
 
 class Services {
-  async login(user: IUser) {
-    if (user) throw new Error("User not found");
+  async login(user: UserDto) {
+    if (user) throwError("not_found");
   }
 }
 
 const services = new Services();
-
-import { User } from "../../app/db";
-const serv = async () => {
-  const getUser = await User.findOne({ where: {} });
-};
 
 export default services;
