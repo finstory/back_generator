@@ -1,0 +1,33 @@
+{
+  "target": "es2016",
+  "module": "commonjs",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      //% Root :
+      "@/*": ["./*"],
+      "@app/*": ["./app/*"],
+
+      //% Services :
+      "@services_injector": ["./_config/services/ServicesInjector.ts"],
+      "@services": ["./_config/services/AllServices.ts"],
+
+      //% Config :
+      "@config/*": ["./_config/*"],
+
+      //% Modules :
+      "@user/*": ["./app/user/*"]
+    },
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true
+  },
+  "plugins": [
+    /* Transform paths in output .js files */
+    {
+      "transform": "typescript-transform-paths"
+    }
+  ]
+}

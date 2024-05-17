@@ -1,4 +1,4 @@
-import Schema, { timeStamp } from "../../config/mongoDB/schemaManager";
+import Schema, { timeStamp } from "@/_config/mongoDB/schemaManager";
 
 export interface IUser extends timeStamp {
   name: string;

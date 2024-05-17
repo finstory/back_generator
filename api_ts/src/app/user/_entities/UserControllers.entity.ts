@@ -1,6 +1,6 @@
 //<IMPORTS>
-import * as GetUser from "./getUser";
-import * as PostUserCreate from "./postUserCreate";
+import * as GetUser from "@user/_validator/getUser";
+import * as PostUserCreate from "@user/_validator/postUserCreate";
 
 class Controllers {
   //<CONTROLLERS>

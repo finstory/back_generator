@@ -106,5 +106,22 @@
         "workspacePath": null,
         "id": "e28IPhVAwr4GzbEv",
         "label": "_constants.scss"
+    },
+    {
+        "type": "Group",
+        "name": "_Back",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "oArFVTwn5mCjsx27"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\api_ts\\src\\app\\user",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\api_ts\\src\\app\\user",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "lfnLtcySbYie2sPz"
     }
 ]

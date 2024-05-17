@@ -1,0 +1,74 @@
+{
+  "params": [],
+  "query": [
+    {
+      "from": null,
+      "property": "age",
+      "errors": { "isAlpha": "age must contain only letters (a-zA-Z)" }
+    }
+  ],
+  "body": [
+    {
+      "from": ["user", 0, "street"],
+      "property": "street",
+      "errors": {
+        "isAlpha": "street must contain only letters (a-zA-Z)",
+        "isString": "street must be a string",
+        "isNotEmpty": "street should not be empty"
+      }
+    },
+    {
+      "from": ["user", 0],
+      "property": "user_name",
+      "errors": {
+        "isAlpha": "user_name must contain only letters (a-zA-Z)",
+        "isString": "user_name must be a string"
+      }
+    },
+    {
+      "from": ["user", 0, "city"],
+      "property": "city",
+      "errors": {
+        "isAlpha": "city must contain only letters (a-zA-Z)",
+        "isString": "city must be a string",
+        "isNotEmpty": "city should not be empty"
+      }
+    },
+    {
+      "from": ["user", 1, "street"],
+      "property": "street",
+      "errors": {
+        "isAlpha": "street must contain only letters (a-zA-Z)",
+        "isString": "street must be a string",
+        "isNotEmpty": "street should not be empty"
+      }
+    },
+    {
+      "from": ["user", 1],
+      "property": "user_name",
+      "errors": {
+        "isAlpha": "user_name must contain only letters (a-zA-Z)",
+        "isString": "user_name must be a string"
+      }
+    },
+    {
+      "from": ["user", 1, "city"],
+      "property": "city",
+      "errors": {
+        "isAlpha": "city must contain only letters (a-zA-Z)",
+        "isString": "city must be a string",
+        "isNotEmpty": "city should not be empty"
+      }
+    },
+    {
+      "from": ["anotherUser"],
+      "property": "name",
+      "errors": { "isAlpha": "name must contain only letters (a-zA-Z)" }
+    },
+    {
+      "from": null,
+      "property": "isName",
+      "errors": { "isBoolean": "isName must be a boolean value" }
+    }
+  ]
+}
