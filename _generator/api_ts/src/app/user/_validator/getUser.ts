@@ -87,7 +87,7 @@ const body: ResponseBody = {};
 //     children: error.children && error.children.length ? formatErrors(error.children) : undefined
 //   }));
 // }
-function formatErrors(errors: V.ValidationError[]): any[] {
+function formatErrors(errors: V.ValidationError[], parameter: "params" | "query" | "body"): any[] {
   const result = [];
 
   function traverse(errors: V.ValidationError[], path: (string | number)[] = []) {
@@ -95,9 +95,10 @@ function formatErrors(errors: V.ValidationError[]): any[] {
       const currentPath = [...path];
       if (error.constraints) {
         result.push({
+          parameter,
           from: currentPath.length > 0 ? currentPath : null,
           property: error.property,
-          errors: error.constraints,
+          constraints: error.constraints,
         });
       }
       if (error.children && error.children.length) {
@@ -109,6 +110,13 @@ function formatErrors(errors: V.ValidationError[]): any[] {
 
   traverse(errors);
   return result;
+}
+
+interface ErrorFormat {
+  parameter: "params" | "query" | "body" | "condition";
+  from: (string | number)[] | null;
+  property: string;
+  constraints: { [type: string]: string };
 }
 
 export const validator = async (req: Req, res: Res, next: NextFunction) => {
@@ -128,24 +136,22 @@ export const validator = async (req: Req, res: Res, next: NextFunction) => {
   const checkQuery = await V.validate(query);
   const checkBody = await V.validate(body);
 
-  const errors: { params: V.ValidationError[], query: V.ValidationError[], body: V.ValidationError[] }
-    = {
-    params: checkParams,
-    query: checkQuery,
-    body: checkBody
-  };
+  if (checkParams.length > 0 || checkQuery.length > 0 || checkBody.length > 0) {
+    const formattedErrors: ErrorFormat[] = [
+      ...formatErrors(checkParams, 'params'),
+      ...formatErrors(checkQuery, 'query'),
+      ...formatErrors(checkBody, 'body'),
+    ];
 
-  if (errors.params.length > 0 || errors.query.length > 0 || errors.body.length > 0) {
-    const formattedErrors = {
-      params: formatErrors(errors.params),
-      query: formatErrors(errors.query),
-      body: formatErrors(errors.body)
-    };
-  
-  fs.writeFileSync('./errors.json', JSON.stringify(formattedErrors));
-} else {
-  console.log('Validation succeeded');
-next();
+    // fs.writeFileSync('./errors.json', JSON.stringify(formattedErrors));
+    res.status(400).json({
+      type: "bad_request",
+      message: "Errors in Request Parameters.",
+      payload: formattedErrors
+    });
+  } else {
+    console.log('Validation succeeded');
+    next();
   }
 
 }
