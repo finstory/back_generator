@@ -8,6 +8,13 @@
       "@/*": ["./*"],
       "@app/*": ["./app/*"],
 
+      //% Errors :
+      "@throw_error": [
+        "./_config/server/response/errors/errors.response.ts"
+      ],
+      "@throw_error_response_wrap": [
+        "./_config/server/response/errors/throw-error-wrapper.response.ts"
+      ],
       //% Services :
       "@services_injector": ["./_config/services/ServicesInjector.ts"],
       "@services": ["./_config/services/AllServices.ts"],
