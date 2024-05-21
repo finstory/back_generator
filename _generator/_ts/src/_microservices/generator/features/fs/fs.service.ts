@@ -109,7 +109,7 @@ class FS {
         await promise<void>((resolve, reject) => {
 
             fs.rename(folderPath, newFolderPath, (err) => {
-                if (err) reject({ type: "rename_file", key: nameFolder });
+                if (err) reject({ type: "rename_folder", key: nameFolder });
                 resolve();
             });
 
@@ -121,8 +121,8 @@ class FS {
         const nameFolder = getName(folderPath);
         await promise<void>((resolve, reject) => {
 
-            fs.rmdir(folderPath, { recursive: true }, (err) => {
-                if (err) reject({ type: "file_not_found", key: nameFolder });
+            fs.rm(folderPath, { recursive: true }, (err) => {
+                if (err) reject({ type: "folder_not_found", key: nameFolder });
                 resolve();
             });
 

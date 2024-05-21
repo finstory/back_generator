@@ -87,12 +87,19 @@ type fsErrors =
     "file_not_found" | //! status = 404 
     "create_file" | //! status = 409
     "rename_file" | //! status = 409
-    "create_folder"; //! status = 409
+    "delete_file" | //! status = 404
+
+    "folder_not_found" | //! status = 404
+    "create_folder" | //! status = 409
+    "rename_folder" | //! status = 409
+    "delete_folder"; //! status = 404
 
 const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
     let upperKey: string = key.charAt(0).toUpperCase() + key.slice(1);
 
     switch (type) {
+
+        //% Files:
 
         case "file_not_found":
             defaultError(`File '${upperKey}' not found.`, 404);
@@ -106,11 +113,28 @@ const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
             defaultError(`Conflict to rename file '${upperKey}'.`, 409);
             break;
 
+        case "delete_file":
+            defaultError(`Error deleting file '${upperKey}'.`, 404);
+            break;
+
+        //% Folders:
+
+        case "folder_not_found":
+            defaultError(`Folder '${upperKey}' not found.`, 404);
+            break;
+
         case "create_folder":
             defaultError(`Error creating folder '${upperKey}'.`, 409);
             break;
-    }
 
+        case "rename_folder":
+            defaultError(`Conflict to rename folder '${upperKey}'.`, 409);
+            break;
+
+        case "delete_folder":
+            defaultError(`Error deleting folder '${upperKey}'.`, 404);
+            break;
+    }
 
 }
 
