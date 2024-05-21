@@ -1,6 +1,6 @@
 
 
-import { Event, IEvent, IProduct, IUser, Product, User } from "../models";
+// import { Event, IEvent, IProduct, IUser, Product, User } from "../models";
 import { printMsg } from "../helpers/wordsManager";
 import { isEmail, isNumeric } from "validator";
 

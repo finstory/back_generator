@@ -113,15 +113,81 @@
         "parent_id": null,
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "oArFVTwn5mCjsx27"
+        "id": "oArFVTwn5mCjsx27",
+        "iconColor": "rgb(127, 255, 212)"
+    },
+    {
+        "type": "Group",
+        "name": "Resources",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "RpafOXMTmPGJWiDh",
+        "iconColor": "rgb(102, 205, 170)"
+    },
+    {
+        "type": "Group",
+        "name": "_Editor",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "8qhv01mSNHdkZa4V",
+        "iconColor": "rgb(102, 205, 170)"
     },
     {
         "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\api_ts\\src\\app\\user",
-        "parent_id": "oArFVTwn5mCjsx27",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\api_ts\\src\\app\\user",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_microservices\\generator",
+        "parent_id": "8qhv01mSNHdkZa4V",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_microservices\\generator",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "lfnLtcySbYie2sPz"
+        "id": "bpHsg9ye07U8dz2I"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
+        "parent_id": "yiDPf34OEYtbJS98",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "BqzxXAw9ZT31rmSo"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "r3XVePJRFtSaxidz",
+        "label": "old_generator"
+    },
+    {
+        "type": "Group",
+        "name": "Main",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "32ZgMslDoAV6PzLT",
+        "iconColor": "rgb(240, 128, 128)"
+    },
+    {
+        "type": "File",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "parent_id": "32ZgMslDoAV6PzLT",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "yokezbUmSutnXIJT",
+        "label": "main.ts"
+    },
+    {
+        "type": "File",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_config\\server\\response\\errors\\errors-list.response.ts",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_config\\server\\response\\errors\\errors-list.response.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "BZjvWrLcg2Xdtxhi"
     }
 ]

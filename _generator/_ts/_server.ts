@@ -11,7 +11,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 const connectDB = false;
 const initialDropDB = false;
-const testMode = false;
+const testMode = true;
 
 
 //$ SERVER START:

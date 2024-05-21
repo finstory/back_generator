@@ -7,7 +7,7 @@
       //% Root :
       "@/*": ["./*"],
       "@app/*": ["./app/*"],
-
+      "@ms/*": ["./_microservices/*"],
       //% Errors :
       "@throw_error": [
         "./_config/server/response/errors/errors.response.ts"

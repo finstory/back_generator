@@ -11,6 +11,7 @@ import { routes } from "@config/routes";
 const server: Express = express();
 server.use(cors());
 
+
 server.use(express.static(path.join(__dirname, "public")));
 // server.name = "API";
 

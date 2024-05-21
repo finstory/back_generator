@@ -4,7 +4,6 @@ import { Transform, Type } from 'class-transformer';
 
 //% MAIN DTO:
 export class User {
-
     @V.IsNotEmpty()
     @V.ValidateNested()
     @Type(() => Street)

@@ -1,20 +1,24 @@
 //<IMPORTS>
-import controller from "@/app/user/_entities/UserControllers.entity";
+import throwError from "@throw_error";
+import controller from "@user/_models/user-controllers.model";
+import S from "@services";
 
 //<CONTROLLERS>
 
 controller.getUser = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "getUser" };
+  const data: any = { controllerName: "getUser" };
+  // S.product.test();
+  await S.user.connectToProduct();
+  // throwError("conflict", "id");
+  // console.log(query.age);
 
-    // console.log(query.id);
-
-    res.status(200).json(params.id);
+  res.status(200).json(query);
 };
 
 controller.postUserCreate = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "getUser" };
+  const data: any = { controllerName: "getUser" };
 
-    res.status(200).json(data);
+  res.status(200).json(data);
 };
 
 export default controller;
