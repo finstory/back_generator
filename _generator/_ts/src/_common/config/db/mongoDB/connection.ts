@@ -1,23 +1,21 @@
 import mongoose from "mongoose";
 import colors from 'colors';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+//dotenv.config();
+import envs from "@envs";
 
 interface ConnectionOption {
-
   dbName: string;
-
   auth: {
     username: string;
     password: string;
   };
-
 }
 
-const mongoUrl = process.env.MONGO_URI;
-const dbName = process.env.MONGO_DB_NAME;
-const username = process.env.MONGO_USER;
-const password = process.env.MONGO_PASS;
+const mongoUrl = envs.MONGO_URI;
+const dbName = envs.MONGO_DB_NAME;
+const username = envs.MONGO_USER;
+const password = envs.MONGO_PASS;
 
 const connectionOptions: ConnectionOption = { dbName, auth: { username, password } };
 

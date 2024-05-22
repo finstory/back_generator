@@ -11,11 +11,11 @@ class Generator extends ServicesInjector {
     public readonly imports: GeneratorImport;
     public readonly tags: GeneratorTag;
 
-    constructor(services: AllServices) {
-        super(services);
-        this.functions = new GeneratorFn(services);
-        this.imports = new GeneratorImport(services);
-        this.tags = new GeneratorTag(services);
+    constructor(S: AllServices) {
+        super(S);
+        this.functions = new GeneratorFn(S);
+        this.imports = new GeneratorImport(S);
+        this.tags = new GeneratorTag(S);
     }
 
 }

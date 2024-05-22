@@ -1,43 +1,15 @@
 {
   "target": "es2016",
   "module": "commonjs",
+  "extends": "./tsconfigpath.json",
+
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      //% Root :
-      "@/*": ["./*"],
-      "@app/*": ["./app/*"],
-      "@ms/*": ["./_microservices/*"],
-      "@common/*": ["./_common/*"],
-      "@helpers/*": ["./_common/helpers/*"],
-      "@interfaces/*": ["./_common/interfaces/*"],
-      //% Errors :
-      "@throw_error": [
-        "./_common/config/server/response/errors/errors.response.ts"
-      ],
-      "@throw_error_response_wrap": [
-        "./_common/config/server/response/errors/throw-error-wrapper.response.ts"
-      ],
-      //% Services :
-      "@services_injector": ["./_common/config/services/ServicesInjector.ts"],
-      "@services": ["./_common/config/services/AllServices.ts"],
-
-      //% Config :
-      "@config/*": ["./_common/config/*"],
-
-      //% Modules :
-      "@user/*": ["./app/user/*"]
-    },
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": false,
     "resolveJsonModule": true
   },
-  "plugins": [
-    /* Transform paths in output .js files */
-    {
-      "transform": "typescript-transform-paths"
-    }
-  ]
+
+  "plugins": [{ "transform": "typescript-transform-paths" }]
 }

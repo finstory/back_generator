@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@app/*": ["./app/*"],
+      "@ms/*": ["./_microservices/*"],
+      "@common/*": ["./_common/*"],
+      "@helpers/*": ["./_common/helpers/*"],
+      "@interfaces/*": ["./_common/interfaces/*"],
+      "@envs": ["./_common/config/plugins/env/env-var.plugin.ts"],
+
+      "@throw_error": [
+        "./_common/config/server/response/errors/errors.response.ts"
+      ],
+      "@throw_error_response_wrap": [
+        "./_common/config/server/response/errors/throw-error-wrapper.response.ts"
+      ],
+
+      "@services_injector": ["./_common/config/services/ServicesInjector.ts"],
+
+      "@services": ["./_common/config/services/AllServices.ts"],
+      "@config/*": ["./_common/config/*"],
+
+      "@user/*": ["./app/user/*"]
+    }
+  }
+}
