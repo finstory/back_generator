@@ -1,25 +1,23 @@
 import ServicesInjector, { AllServices } from "@services_injector";
 
-import throwError from "@throw_error";
+import GeneratorFn from "./features/generator-fn.service";
+import GeneratorImport from "./features/generator-import.service";
+import GeneratorTag from "./features/generator-tag.service";
+
 
 class Generator extends ServicesInjector {
 
+    public readonly functions: GeneratorFn;
+    public readonly imports: GeneratorImport;
+    public readonly tags: GeneratorTag;
 
-    
-    constructor(S: AllServices) {
-        super(S);
+    constructor(services: AllServices) {
+        super(services);
+        this.functions = new GeneratorFn(services);
+        this.imports = new GeneratorImport(services);
+        this.tags = new GeneratorTag(services);
     }
 
-    async generacion() {
-        //  throwError("bad_request", "id");
-        console.log("genert.create");
-        this.S.product.test();
-
-    }
-
-    async create(string: any) {
-        console.log(string);
-    }
 }
 
 export default Generator;
