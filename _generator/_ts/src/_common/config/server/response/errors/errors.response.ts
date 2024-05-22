@@ -1,4 +1,4 @@
-import { ErrorFormat } from "@/_config/validations/formatErrors";
+import { ErrorFormat } from "@config/validations/formatErrors";
 import { errorsList, typeError } from "./errors-list.response";
 
 

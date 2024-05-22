@@ -1,6 +1,6 @@
 const fs = require('fs');
-const parser = require('@babel/parser');
 const S = require('../../utils/service/injector');
+const parser = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const { transformFromAst } = require('@babel/core');
 const { throwError } = require('../../helpers/customError');

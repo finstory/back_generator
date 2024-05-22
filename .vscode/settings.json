@@ -15,5 +15,6 @@
     ],
     "[scss]": {
         "editor.defaultFormatter": "vscode.css-language-features"
-    }
+    },
+    "workbench.startupEditor": "none"
 }

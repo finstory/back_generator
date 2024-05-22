@@ -1,0 +1,1 @@
+export type Pos = { start: number, end: number };

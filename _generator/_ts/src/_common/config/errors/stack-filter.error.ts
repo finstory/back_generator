@@ -5,7 +5,7 @@ interface StackInfo {
     services?: string;
 }
 
-export function filterAndViewStackTrace(stack: string): void {
+export function Mark(stack: string): void {
     const stackLines = stack.split('\n');
     const dirList: StackInfo = {};
     let type: string;

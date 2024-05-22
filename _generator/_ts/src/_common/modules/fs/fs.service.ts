@@ -1,24 +1,20 @@
-import promise from "@/helpers/promiseWrapper";
-import throwError from "@throw_error";
 import * as fs from "fs";
-import { Code } from "../../_interfaces/fs.interface";
+import promise from "@/_common/helpers/promiseWrapper";
+import { getName } from "./_utils/path.util";
+import { TextCode } from "@interfaces/fs.interface";
+import ServicesInjector from "@services_injector";
 
-const getName = (filePath: string) => {
-    const nameFile = filePath.split("/").pop();
-    return nameFile;
-}
-
-class FS {
+class FS extends ServicesInjector {
 
     //% Files:
 
-    getFile = async (filePath: string, jsonFormat: boolean = true): Promise<Code> => {
+    getFile = async (filePath: string, jsonFormat: boolean = true): Promise<TextCode> => {
 
         const nameFile = getName(filePath);
-        const textCode: Code = await promise<string>((resolve, reject) => {
+        const textCode: TextCode = await promise<string>((resolve, reject) => {
 
             fs.readFile(filePath, "utf8", (err, data) => {
-                if (err) reject({ type: "create_file", key: nameFile });
+                if (err) reject({ type: "file_not_found", key: nameFile });
                 resolve(data);
             });
 
@@ -32,7 +28,7 @@ class FS {
         return textCode;
     };
 
-    createFile = async (filePath: string, code: Code): Promise<void> => {
+    createFile = async (filePath: string, code: any): Promise<void> => {
 
         const nameFile = getName(filePath);
         await promise<void>((resolve, reject) => {
@@ -45,7 +41,7 @@ class FS {
         }, `File '${nameFile}' created.`);
     };
 
-    replaceFile = async (filePath: string, code: Code): Promise<void> => {
+    replaceFile = async (filePath: string, code: TextCode): Promise<void> => {
 
         const nameFile = getName(filePath);
         await promise<void>((resolve, reject) => {

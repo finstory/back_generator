@@ -1,6 +1,6 @@
 //<IMPORTS>
 import { NextFunction } from "express";
-import parametersValidator from "@/_config/validations";
+import parametersValidator from "@config/validations";
 
 import * as GetUser from "@/app/user/_validations/get-user";
 import * as PostUserCreate from "@/app/user/_validations/post-user-create";

@@ -1,4 +1,4 @@
-import { typeError } from "@/_config/server/response/errors/errors-list.response";
+import { typeError } from "@config/server/response/errors/errors-list.response";
 import throwError from "@throw_error";
 import dotenv from "dotenv";
 

@@ -136,15 +136,6 @@
     },
     {
         "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_microservices\\generator",
-        "parent_id": "8qhv01mSNHdkZa4V",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_microservices\\generator",
-        "workspaceRoot": null,
-        "workspacePath": null,
-        "id": "bpHsg9ye07U8dz2I"
-    },
-    {
-        "type": "Directory",
         "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
         "parent_id": "yiDPf34OEYtbJS98",
         "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
@@ -189,5 +180,14 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "BZjvWrLcg2Xdtxhi"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\modules",
+        "parent_id": "8qhv01mSNHdkZa4V",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\modules",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "YwxbFN5PD4f3hiOT"
     }
 ]

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import colors from 'colors';
 import server from '@config/server';
-import mongoDB from "@/_config/db/mongoDB/connection";
+import mongoDB from "@config/db/mongoDB/connection";
 import test from '@/test';
 
 dotenv.config();

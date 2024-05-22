@@ -79,6 +79,7 @@ export const errorsList = (defaultError: any, type: typeError, key: string) => {
     }
 
     fsErrorsList(defaultError, type, key);
+    astErrorsList(defaultError, type, key);
 }
 
 //% File System Errors:
@@ -106,7 +107,7 @@ const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
             break;
 
         case "create_file":
-            defaultError(`Error creating file '${upperKey}'.`, 409);
+            defaultError(`Error to create file '${upperKey}'.`, 409);
             break;
 
         case "rename_file":
@@ -114,7 +115,7 @@ const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
             break;
 
         case "delete_file":
-            defaultError(`Error deleting file '${upperKey}'.`, 404);
+            defaultError(`Error to delete file '${upperKey}'.`, 404);
             break;
 
         //% Folders:
@@ -124,7 +125,7 @@ const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
             break;
 
         case "create_folder":
-            defaultError(`Error creating folder '${upperKey}'.`, 409);
+            defaultError(`Error to create folder '${upperKey}'.`, 409);
             break;
 
         case "rename_folder":
@@ -132,11 +133,32 @@ const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
             break;
 
         case "delete_folder":
-            defaultError(`Error deleting folder '${upperKey}'.`, 404);
+            defaultError(`Error to delete folder '${upperKey}'.`, 404);
             break;
     }
 
 }
 
-export type typeError = requestErrors | fsErrors;
+type astErrors =
+    "transform_code" | //! status = 500
+    "parse_code"; //! status = 500
+
+//% Abstract Syntax Tree Errors:
+
+const astErrorsList = (defaultError: any, type: typeError, key: string) => {
+    let upperKey: string = key.charAt(0).toUpperCase() + key.slice(1);
+
+    switch (type) {
+
+        case "transform_code":
+            defaultError(`Error to transform code '${upperKey}'.`, 422);
+            break;
+
+        case "parse_code":
+            defaultError(`Error to parse code '${upperKey}'.`, 422);
+            break;
+    }
+}
+
+export type typeError = requestErrors | fsErrors | astErrors;
 export type typeSuccess = successErrors;

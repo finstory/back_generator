@@ -5,6 +5,7 @@ class UserServices extends ServicesInjector {
     async connectToProduct() {
         //  throwError("bad_request", "id");
         await this.S.product.createProduct();
+
         //    this.S.generator
     }
 

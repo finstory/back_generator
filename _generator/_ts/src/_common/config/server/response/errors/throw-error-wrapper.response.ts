@@ -1,4 +1,4 @@
-import { filterAndViewStackTrace } from "@/_config/errors/stack-filter.error";
+import { Mark } from "@config/errors/stack-filter.error";
 import sendError from "./send-error.response";
 import dotenv from 'dotenv';
 dotenv.config();
@@ -9,7 +9,7 @@ const errorWrapper = (fn: any) => async (req: any, res: any) => {
     } catch (error) {
         sendError(res, error);
         if (process.env.PRINT_THROW_ERRORS_RESPONSE === 'true') {
-            filterAndViewStackTrace(error.stack);
+            Mark(error.stack);
         }
     }
 };
