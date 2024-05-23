@@ -144,16 +144,6 @@
         "id": "BqzxXAw9ZT31rmSo"
     },
     {
-        "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
-        "parent_id": "RpafOXMTmPGJWiDh",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
-        "workspaceRoot": null,
-        "workspacePath": null,
-        "id": "r3XVePJRFtSaxidz",
-        "label": "old_generator"
-    },
-    {
         "type": "Group",
         "name": "Main",
         "parent_id": "oArFVTwn5mCjsx27",
@@ -189,5 +179,23 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "YwxbFN5PD4f3hiOT"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "pPAH8kCeXVuGQ9Zf"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\package",
+        "parent_id": "8qhv01mSNHdkZa4V",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\package",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "1P0GWn2womHFS7Ty"
     }
 ]

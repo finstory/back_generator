@@ -1,7 +1,7 @@
 import { AllServices } from "./AllServices";
 
 
-class ServicesInjector {
+class ServiceInjector {
     protected readonly S: AllServices;
 
     constructor(S: AllServices) {
@@ -10,4 +10,4 @@ class ServicesInjector {
 }
 
 export { AllServices };
-export default ServicesInjector;
+export default ServiceInjector;

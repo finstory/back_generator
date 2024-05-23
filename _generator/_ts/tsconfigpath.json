@@ -9,6 +9,7 @@
       "@helpers/*": ["./_common/helpers/*"],
       "@interfaces/*": ["./_common/interfaces/*"],
       "@envs": ["./_common/config/plugins/env/env-var.plugin.ts"],
+      "@mockups": ["./_common/mockups/_index.ts"],
 
       "@throw_error": [
         "./_common/config/server/response/errors/errors.response.ts"

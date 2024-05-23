@@ -9,7 +9,6 @@ controller.getUser = async ({ params, query, body }, res) => {
     const data: any = { controllerName: "getUser" };
     // S.product.test();
      throwError("bad_request", "id");
-    await S.user.connectToProduct();
     console.log(query.age);
      console.log(query);    
 
