@@ -8,6 +8,7 @@ const serivbce = {
 class AuthApiService extends AuthManager {
 
   getAllUsers = async () => {
+  
   };
 
   testReducer = async (name: string) => {

@@ -3,7 +3,7 @@ import sendError from "./send-error.response";
 import dotenv from 'dotenv';
 dotenv.config();
 
-const errorWrapper = (fn: any) => async (req: any, res: any) => {
+const errorWrapper =  (fn: any) => async (req: any, res: any) => {
     try {
         await fn(req, res);
     } catch (error) {

@@ -1,6 +1,7 @@
 import { getState } from "@/redux/hooks/useRedux";
-import authApiServices from "@/services/auth/auth.api.service";
+
 import authCompService from "@/services/auth/auth.comp.service";
+import authApiServices from "@/services/other/other.api.service";
 import userApiServices from "@/services/user/user.api.service";
 
 
@@ -18,9 +19,7 @@ const S = {
     }
   },
   user: {
-    get api() {
-      return userApiServices();
-    }
+
   }
 };
 

@@ -1,10 +1,11 @@
 import { Router } from "express";
-import errorWrapper from "@throw_error_response_wrap";
-import controllers from "@user/controllers/user.controllers";
-import validations from "@user/_models/user-validations-model";
+import { controller, validation } from "@user/user.controller";
+import controllerMiddlewares from "@common/middleware/controller.middleware";
+
+controllerMiddlewares(controller, { error_wrapper: true });
 
 const router = Router();
 
-router.get("/all", validations.getUser, errorWrapper(controllers.getUser));
+router.get("/all", validation.getUser, controller.getUser);
 
 export default router;

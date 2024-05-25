@@ -6,7 +6,6 @@ import { removeCodeBetweenPos } from "../_utils/codeEdition";
 
 class GeneratorFn extends ServicesInjector {
 
-
     renameFunctionProperty = async (filePath: Path, compilerName: string, propName: string, newPropName: string) => {
 
         const textCode = await this.S.fs.files.getFile(filePath);

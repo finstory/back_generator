@@ -1,3 +1,4 @@
+import S from '@/_config/services';
 import React, { FC } from 'react';
 
 interface IProps {
@@ -5,7 +6,10 @@ interface IProps {
 }
 
 const Test: FC<IProps> = ({ _scss }) => {
+
+
   return (
+
     <div className={_scss.sdsd}>
       Test
     </div>

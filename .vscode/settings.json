@@ -1,20 +1,5 @@
 {
-    "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "favorites.sortDirection": "ASC",
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "cSpell.words": [
-        "dtos",
-        "panelsd"
-    ],
-    "[scss]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
-    },
-    "workbench.startupEditor": "none"
+    }
 }
