@@ -197,5 +197,41 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "1P0GWn2womHFS7Ty"
+    },
+    {
+        "type": "Group",
+        "name": "Test",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "mgPq8GHSBLfDFjbu",
+        "iconColor": "rgb(255, 160, 122)"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\folder-tester",
+        "parent_id": "mgPq8GHSBLfDFjbu",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\folder-tester",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "8yqGHVcOkUbm7Xoz"
+    },
+    {
+        "type": "File",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "parent_id": "mgPq8GHSBLfDFjbu",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "M2h9UWZwOayBvCjS"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\mockups",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\mockups",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "wJES6ZPI8zYXs0rO"
     }
 ]

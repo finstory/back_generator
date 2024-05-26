@@ -1,8 +1,9 @@
 {
-  "target": "es2016",
+  "extends": "./tsconfig.path.json",
+  "target": "ES2017",
   "module": "commonjs",
-  "extends": "./tsconfigpath.json",
-
+  "lib": ["es2017"],
+  "noUnusedLocals": true,
   "compilerOptions": {
     "experimentalDecorators": true,
     "esModuleInterop": true,

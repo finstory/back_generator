@@ -1,14 +1,16 @@
-//<IMPORTS>
+import { UpFirst } from "../helpers/wordsManager";
+
+export const module_route = (moduleName: string): string => `//<IMPORTS>
 import { Router } from "express";
-import { controller, validation } from "../user.controller";
+import { controller, validation } from "../${moduleName}.controller";
 import controllerMiddlewares from "@common/middleware/controller.middleware";
 
 //<CONFIGS>
 controllerMiddlewares(controller, { error_wrapper: true });
-
 const router = Router();
 
-//<ROUTES>
-router.get("/all", validation.getUser, controller.getUser);
 
-export default router;
+//<ROUTES>
+
+
+export default router;`

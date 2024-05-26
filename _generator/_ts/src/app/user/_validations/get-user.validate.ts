@@ -44,7 +44,7 @@ class ResponseBody { };
 const body: ResponseBody = {};
 
 
-//EXPORTS:
+//<EXPORTS>:
 export interface Req extends Request<Params, {}, Body, Query> { }
 export interface Res extends Response<ResponseBody> { }
 export const parameters = { Params, Query, Body };

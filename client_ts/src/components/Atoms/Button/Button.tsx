@@ -21,6 +21,7 @@ export const Button: FC<{
       style={style}
       onClick={onClick}
     >
+
       {children}
     </button>
   );

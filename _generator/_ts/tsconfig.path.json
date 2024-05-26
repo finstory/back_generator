@@ -23,7 +23,8 @@
       "@services": ["./_common/config/services/AllServices.ts"],
       "@config/*": ["./_common/config/*"],
 
-      "@user/*": ["./app/user/*"]
+      "@user/*": ["./app/user/*"],
+      "@package/*": ["./app/package/*"]
     }
   }
 }

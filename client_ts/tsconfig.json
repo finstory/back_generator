@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "paths": {
       "@routes/*": ["./src/app/routes/*"],
       "@/*": ["./src/*"]
@@ -16,7 +17,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
 
     /* Linting */
     "strict": false,

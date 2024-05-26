@@ -3,7 +3,8 @@ import "reflect-metadata";
 import { Transform, Type } from 'class-transformer';
 
 //% MAIN DTO:
-export class Package {
+export class User {
+
     @V.IsNotEmpty()
     @V.ValidateNested()
     @Type(() => Street)
