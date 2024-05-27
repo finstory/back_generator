@@ -1,15 +1,17 @@
 import { UpFirst } from "../helpers/wordsManager"
 
-export const module_controller = (moduleName: string): string => `//<IMPORTS>
-import controller from "./_entities/${moduleName}-controller.entity";
-import throwError from "@throw_error";
 
+export const module_controller = (moduleName: string): string => `//<IMPORTS>
+import throwError from "@throw_error";
+import { controller, validation } from "./_entities/${moduleName}-controller.entity";
 import S from "@services";
 
 //<CONTROLLERS>
 
 
-export default controller;`
+//<EXPORTS>
+export { validation, controller };`
+
 
 export const controller_entity = (moduleName: string): string => `//<IMPORTS>
 import * as C from "../_validations/_index";

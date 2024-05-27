@@ -9,7 +9,6 @@ import { Pos } from '@interfaces/ast.interface';
 
 import { codeToAst } from "../_utils/transform.util";
 
-
 class AstComment extends ServicesInjector {
 
     getPosComment = (textCode: TextCode, comment: string): Pos => {
@@ -21,7 +20,6 @@ class AstComment extends ServicesInjector {
             enter(path) {
                 const leadingCommentsList: Comment[] = path.node.leadingComments;
                 const innerCommentsList = path.node.innerComments;
-
                 let uniqueValues = [];
 
                 leadingCommentsList?.forEach(obj => {

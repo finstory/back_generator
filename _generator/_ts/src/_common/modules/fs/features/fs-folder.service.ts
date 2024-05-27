@@ -20,6 +20,13 @@ class FSFolder extends ServicesInjector {
         }, `Folder '${nameFolder}' created.`);
     };
 
+    createFoldersList = async (foldersList: string[]): Promise<void> => {
+
+        for (const folder of foldersList) {
+            await this.createFolder(folder);
+        }
+    };
+
     renameFolder = async (folderPath: string, newName: string): Promise<void> => {
 
         const nameFolder = getName(folderPath);

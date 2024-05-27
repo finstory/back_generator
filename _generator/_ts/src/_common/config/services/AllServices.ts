@@ -3,6 +3,7 @@ import FS from "@/_common/modules/fs/fs.service";
 import Ast from "@/_common/modules/ast/ast.service";
 
 import PackageService from "@/app/package/package.service";
+import EndpointService from "@/app/endpoint/endpoint.service";
 
 export class AllServices {
 
@@ -11,6 +12,7 @@ export class AllServices {
     public readonly ast: Ast;
 
     public readonly package: PackageService;
+    public readonly endpoint: EndpointService;
 
     constructor() {
 
@@ -19,6 +21,7 @@ export class AllServices {
         this.ast = new Ast(this);
 
         this.package = new PackageService(this);
+        this.endpoint = new EndpointService(this);
     }
 }
 

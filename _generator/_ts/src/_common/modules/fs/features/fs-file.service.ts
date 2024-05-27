@@ -41,6 +41,12 @@ class FSFile extends ServicesInjector {
         }, `File '${nameFile}' created.`);
     };
 
+    createFilesList = async (filesList: { path: string, code: TextCode }[]): Promise<void> => {
+        for (const file of filesList) {
+            await this.createFile(file.path, file.code);
+        }
+    }
+
     replaceFile = async (filePath: string, code: TextCode): Promise<void> => {
 
         const nameFile = getName(filePath);

@@ -14,3 +14,6 @@ const router = Router();
 
 
 export default router;`
+
+export const express_endpoint = (endpoint: string = "/", requestType: string, controllerName: string,): string =>
+    `router.${requestType}("${endpoint}", validation.${controllerName}, controller.${controllerName});`

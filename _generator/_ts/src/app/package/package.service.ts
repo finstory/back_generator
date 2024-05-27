@@ -9,7 +9,8 @@ class PackageService extends ServicesInjector {
 
     private createFolder = this.S.fs.folders.createFolder;
     private createFile = this.S.fs.files.createFile;
-
+    private createFoldersList = this.S.fs.folders.createFoldersList;
+    private createFilesList = this.S.fs.files.createFilesList;
 
     createModule = async (name: string, commonModule: boolean = false) => {
         let folderPath: string;
@@ -18,30 +19,68 @@ class PackageService extends ServicesInjector {
             folderPath = `${appPath}/${name}`;
 
             //% Creation of the folders
-            await this.createFolder(folderPath);
-            await this.createFolder(folderPath + "/_dtos");
-            await this.createFolder(folderPath + "/_entities");
-            await this.createFolder(folderPath + "/_routes");
-            await this.createFolder(folderPath + "/_utils");
-            await this.createFolder(folderPath + "/_validations");
-            await this.createFolder(folderPath + "/features");
+
+            const foldersList = [
+                folderPath,
+                `${folderPath}/_dtos`,
+                `${folderPath}/_entities`,
+                `${folderPath}/_routes`,
+                `${folderPath}/_utils`,
+                `${folderPath}/_validations`,
+                `${folderPath}/features`
+            ];
+
+            await this.createFoldersList(foldersList);
 
             //% Creation of the files
-            await this.createFile(`${folderPath}/${name}.controller.ts`, module_controller(name));
-            await this.createFile(`${folderPath}/${name}.service.ts`, module_service(name));
-            await this.createFile(`${folderPath}/_entities/${name}-controller.entity.ts`, controller_entity(name));
-            await this.createFile(`${folderPath}/_routes/${name}.route.ts`, module_route(name));
+
+            const filesList = [
+                {
+                    path: `${folderPath}/_entities/${name}-controller.entity.ts`,
+                    code: controller_entity(name)
+                },
+                {
+                    path: `${folderPath}/${name}.controller.ts`,
+                    code: module_controller(name)
+                },
+                {
+                    path: `${folderPath}/_validations/_index.ts`,
+                    code: "export default {};",
+                },
+                {
+                    path: `${folderPath}/${name}.service.ts`,
+                    code: module_service(name)
+                },
+                {
+                    path: `${folderPath}/_routes/${name}.route.ts`,
+                    code: module_route(name)
+                }
+            ];
+
+            await this.createFilesList(filesList);
+
         }
         else {
             folderPath = `${appPath}/${name}`;
 
             //% Creation of the folders
-            await this.createFolder(folderPath);
-            await this.createFolder(folderPath + "/_utils");
-            await this.createFolder(folderPath + "/features");
+
+            const foldersList = [
+                folderPath,
+                `${folderPath}/_utils`,
+                `${folderPath}/features`
+            ];
+
+            await this.createFoldersList(foldersList);
 
             //% Creation of the files
-            await this.createFile(`${folderPath}/${name}.service.ts`, module_service(name));
+
+            const filesList = [{
+                path: `${folderPath}/${name}.service.ts`,
+                code: module_service(name)
+            }];
+
+            await this.createFilesList(filesList);
         }
 
 

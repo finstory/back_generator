@@ -1,10 +1,10 @@
 //<IMPORTS>
-import controller from "./_entities/auth-controller.entity";
 import throwError from "@throw_error";
-
+import { controller, validation } from "./_entities/auth-controller.entity";
 import S from "@services";
 
 //<CONTROLLERS>
 
 
-export default controller;
+//<EXPORTS>
+export { validation, controller };
