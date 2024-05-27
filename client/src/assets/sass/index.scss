@@ -17,7 +17,6 @@ body {
     @include gradient(black_bg);
 }
 
-
 #root {
     position: relative;
     @include dim_height();
@@ -27,12 +26,11 @@ body {
     background-position: top right;
     background-repeat: no-repeat;
 
-
     --white-color: #F2F2F2;
     --off-white-color: #DDDDDD;
     --null-color: #6339c6;
     --text-primary-color: #2FABCF;
-    
+
     --off-green-color: rgba(103, 141, 193, 0.648);
     --strong-green-color: #286d66;
     --hover-green-color: #1addc689;
@@ -40,8 +38,8 @@ body {
     --gray-color: #3D3D3D;
     --off-gray-color: #f2f2f26d;
 
+    --my-color: #c8971a;
 }
-
 
 .main_container {
     padding: 8rem;
@@ -52,7 +50,6 @@ body {
     transition: 0.2s linear;
     animation: opacity 0.5s alternate;
 }
-
 
 .border_gradient {
     position: relative;

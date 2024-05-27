@@ -1,0 +1,110 @@
+@import "../../../_config/styles/sass";
+
+.default {
+    transition: 0.2s linear;
+
+    font-family: var(--font-family-primary);
+    font-weight: 300;
+    font-size: var(--font-size-normal);
+}
+
+.hover_primary {
+    &:hover {
+        color: var(--color-primary);
+    }
+}
+
+$sizes: (
+    "extra-small",
+    "small",
+    "normal",
+    "medium",
+    "large",
+);
+
+$colors: (
+    "base-off",
+    "base",
+    "primary",
+    "primary-hover",
+    "secondary",
+    "secondary-hover",
+    "get-off",
+    "get",
+    "post-off",
+    "post",
+    "put-off",
+    "put",
+    "patch-off",
+    "patch",
+    "delete-off",
+    "delete",
+    "middleware-off",
+    "middleware",
+    "controller-off",
+    "controller",
+);
+
+$font-families: (
+    "primary",
+    "secondary",
+);
+
+
+@for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+
+    .size_#{$size} {
+        font-size: var(--font-size-#{$size});
+    }
+}
+
+@for $i from 1 through length($colors) {
+    $color: nth($colors, $i);
+
+    .color_#{$color} {
+        color: var(--color-#{$color});
+    }
+}
+
+@for $i from 1 through length($font-families) {
+
+    $font: nth($font-families, $i);
+
+    .family_#{$font} {
+        font-family: var(--font-family-#{$font});
+    }
+}
+
+
+#root {
+    //% TEXT COLOR:
+    --color-base-off: #f2f2f26d;
+    --color-base: #F2F2F2;
+
+    --color-primary: #2FABCF;
+    --color-primary-hover: #67cfef;
+    --color-secondary: #1addc6;
+    --color-secondary-hover: #46eeda;
+
+    //% BG:
+    --bg-primary: transparent;
+    --bg-primary-hover: #1a6bdd4f;
+    --bg-secondary: #3EE6B4;
+    --bg-secondary-hover: #1addc6;
+
+    //% BORDER:
+    --border-primary: #f2f2f26d;
+    --border-radius-primary: 1rem;
+
+    //% FONT SIZE:
+    --font-size-extra-small: 0.8rem;
+    --font-size-small: 1.2rem;
+    --font-size-normal: 1.4rem;
+    --font-size-medium: 1.8rem;
+    --font-size-large: 2rem;
+
+    //% GRADIENT:
+    --gradient-primary: linear-gradient(90deg, #3757b5 0%, #1addc6 100%);
+    --gradient-hover: linear-gradient(90deg, #1addc6 0%, #3757b5 100%);
+}

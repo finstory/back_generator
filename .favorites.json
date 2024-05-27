@@ -1,0 +1,237 @@
+[
+    {
+        "type": "Group",
+        "name": "_Stack",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "OxDmvqIhSWPHLNRu",
+        "iconColor": "rgb(144, 238, 144)"
+    },
+    {
+        "type": "Group",
+        "name": "Resources",
+        "parent_id": "OxDmvqIhSWPHLNRu",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "yiDPf34OEYtbJS98",
+        "iconColor": "rgb(32, 178, 170)"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "parent_id": "yiDPf34OEYtbJS98",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "s91ZkYpQBotrjO5T"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components",
+        "parent_id": "yiDPf34OEYtbJS98",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "9zWp7NA3QLkRFKMy",
+        "label": "global_components"
+    },
+    {
+        "type": "Group",
+        "name": "_Editor",
+        "parent_id": "OxDmvqIhSWPHLNRu",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "1ulAdoPgrSMzLFUy",
+        "iconColor": "rgb(32, 178, 170)"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes",
+        "parent_id": "1ulAdoPgrSMzLFUy",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "hokwPO13LURluHAv"
+    },
+    {
+        "type": "Group",
+        "name": "_Componets_Design",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "X0wPBRIgodc2tsUu",
+        "iconColor": "rgb(255, 182, 193)"
+    },
+    {
+        "type": "Group",
+        "name": "Resources",
+        "parent_id": "X0wPBRIgodc2tsUu",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "b8lgktCXReHVNY2y"
+    },
+    {
+        "type": "Group",
+        "name": "_Editor",
+        "parent_id": "X0wPBRIgodc2tsUu",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "mC0YxvRGzj93tcTL"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\components\\EndpointPanel",
+        "parent_id": "mC0YxvRGzj93tcTL",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\components\\EndpointPanel",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "50oEu9xUlDLcIS2J"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\_scss",
+        "parent_id": "b8lgktCXReHVNY2y",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\routes\\_scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "N5ehD7ZU2owzFaIb"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "parent_id": "b8lgktCXReHVNY2y",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_config\\styles\\sass\\constants.scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "e28IPhVAwr4GzbEv",
+        "label": "_constants.scss"
+    },
+    {
+        "type": "Group",
+        "name": "_Back",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "oArFVTwn5mCjsx27",
+        "iconColor": "rgb(127, 255, 212)"
+    },
+    {
+        "type": "Group",
+        "name": "Resources",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "RpafOXMTmPGJWiDh",
+        "iconColor": "rgb(102, 205, 170)"
+    },
+    {
+        "type": "Group",
+        "name": "_Editor",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "8qhv01mSNHdkZa4V",
+        "iconColor": "rgb(102, 205, 170)"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
+        "parent_id": "yiDPf34OEYtbJS98",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services\\generator",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "BqzxXAw9ZT31rmSo"
+    },
+    {
+        "type": "Group",
+        "name": "Main",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "32ZgMslDoAV6PzLT",
+        "iconColor": "rgb(240, 128, 128)"
+    },
+    {
+        "type": "File",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "parent_id": "32ZgMslDoAV6PzLT",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "yokezbUmSutnXIJT",
+        "label": "main.ts"
+    },
+    {
+        "type": "File",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_config\\server\\response\\errors\\errors-list.response.ts",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_config\\server\\response\\errors\\errors-list.response.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "BZjvWrLcg2Xdtxhi"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\modules",
+        "parent_id": "8qhv01mSNHdkZa4V",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\modules",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "YwxbFN5PD4f3hiOT"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_api\\src\\services",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "pPAH8kCeXVuGQ9Zf"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\package",
+        "parent_id": "8qhv01mSNHdkZa4V",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\package",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "1P0GWn2womHFS7Ty"
+    },
+    {
+        "type": "Group",
+        "name": "Test",
+        "parent_id": "oArFVTwn5mCjsx27",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "mgPq8GHSBLfDFjbu",
+        "iconColor": "rgb(255, 160, 122)"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\folder-tester",
+        "parent_id": "mgPq8GHSBLfDFjbu",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\folder-tester",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "8yqGHVcOkUbm7Xoz"
+    },
+    {
+        "type": "File",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "parent_id": "mgPq8GHSBLfDFjbu",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\test\\index.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "M2h9UWZwOayBvCjS"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\mockups",
+        "parent_id": "RpafOXMTmPGJWiDh",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\mockups",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "wJES6ZPI8zYXs0rO"
+    }
+]

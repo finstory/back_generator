@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import "./assets/css/normalize.css";
-import "./assets/sass/index.scss";
+import "./_config/styles/css/normalize.css";
+import "./_config/styles/sass/app.scss";
 import { AppMain } from "./router/AppMain";
 import store from "./redux";
 

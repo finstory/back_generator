@@ -1,0 +1,82 @@
+@mixin color_request_type($colorActive: true) {
+
+    &.get {
+
+
+        @if $colorActive {
+            color: #1addc6;
+        }
+
+        @else {
+            border: 1px solid #1addc6;
+
+            &:hover {
+                background-color: #1addc63a;
+            }
+        }
+
+
+    }
+
+    &.post {
+
+        @if $colorActive {
+            color: #dd8f1a;
+        }
+
+        @else {
+            border: 1px solid #dd8f1a;
+
+            &:hover {
+                background-color: #dd8f1a34;
+            }
+        }
+    }
+
+    &.put {
+
+        @if $colorActive {
+            color: #1a99dd;
+        }
+
+        @else {
+            border: 1px solid #1a99dd;
+
+            &:hover {
+                background-color: #1a99dd59;
+            }
+        }
+
+    }
+
+    &.patch {
+
+        @if $colorActive {
+            color: #dd1a85;
+        }
+
+        @else {
+            border: 1px solid #dd1a85;
+
+            &:hover {
+                background-color: #dd1a854e;
+            }
+        }
+
+    }
+
+    &.delete {
+
+        @if $colorActive {
+            color: #dd1a1a;
+        }
+
+        @else {
+            border: 1px solid #dd1a1a;
+
+            &:hover {
+                background-color: #dd1a1a46;
+            }
+        }
+    }
+}

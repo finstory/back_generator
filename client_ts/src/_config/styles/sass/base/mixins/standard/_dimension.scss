@@ -1,0 +1,29 @@
+@mixin flex($justify: center, $align: center, $direction: row, $gap: 0, $wrap: nowrap, $content: auto) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    gap: $gap;
+    flex-wrap: $wrap;
+    align-content: $content;
+}
+
+@mixin dim_width($width: 100%, $max: auto, $min: auto) {
+    width: $width;
+    max-width: $max;
+    min-width: $min;
+}
+
+@mixin dim_height($height: 100%, $max: auto, $min: auto) {
+    height: $height;
+    max-height: $max;
+    min-height: $min;
+}
+
+@mixin pos_absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}

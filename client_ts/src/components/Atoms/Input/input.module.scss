@@ -1,0 +1,80 @@
+@import "../../../_config/styles/sass";
+
+.wrapper {
+    
+    @include flex();
+
+}
+
+.default {
+    @include dim_height();
+    @include dim_width();
+    padding: 0 1rem;
+    color: var(--color-base);
+    background-color: transparent;
+    border: 1px solid var(--color-base-off);
+    border-radius: 1rem;
+
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-normal);
+
+    transition: 0.2s linear;
+
+    &::placeholder {
+        color: var(--color-base-off);
+    }
+
+    &:focus {
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        outline: none;
+    }
+}
+
+
+
+
+
+#root {
+
+    //% TEXT COLOR:
+    --color-base-off: #f2f2f26d;
+    --color-base: #F2F2F2;
+
+    --color-primary: #2FABCF;
+    --color-primary-hover: #67cfef;
+    --color-secondary: #1addc6;
+    --color-secondary-hover: #46eeda;
+
+    //% BG:
+    --bg-primary: transparent;
+    --bg-primary-hover: #1a6bdd4f;
+    --bg-secondary: #3EE6B4;
+    --bg-secondary-hover: #1addc6;
+
+    //% BORDER:
+    --border-primary: #f2f2f26d;
+    --border-radius-primary: 1rem;
+
+    //% FONT:
+    --font-family-primary: 'Inter';
+    --font-family-secondary: 'Inter';
+
+    //% FONT SIZE:
+    --font-size-extra-small: 0.8rem;
+    --font-size-small: 1.2rem;
+    --font-size-normal: 1.4rem;
+    --font-size-medium: 1.8rem;
+    --font-size-large: 2rem;
+
+    //% FONT WEIGHT:
+    --font-weight-small: light;
+    --font-weight-normal: normal;
+    --font-weight-medium: semibold;
+    --font-weight-large: bold;
+
+    //% GRADIENT:
+    --gradient-primary: linear-gradient(90deg, #3757b5 0%, #1addc6 100%);
+    --gradient-hover: linear-gradient(90deg, #1addc6 0%, #3757b5 100%);
+}

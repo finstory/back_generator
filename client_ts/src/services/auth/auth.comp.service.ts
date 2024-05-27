@@ -1,4 +1,5 @@
-import { AuthManager } from "../../config/redux";
+
+import { AuthManager } from "@/_config/redux";
 
 class AuthCompService extends AuthManager {
 
@@ -7,7 +8,7 @@ class AuthCompService extends AuthManager {
   };
 
   other = async () => {
-    return this.auth.name;
+    console.log(this.auth.name)
   };
 }
 

@@ -1,13 +1,16 @@
-import { get } from "env-var";
-import { AuthManager } from "../../../config/redux/";
-const db = {
-  User: {} as object
-};
-const serivbce = {
-}
-class AuthApiService extends AuthManager {
+import { AuthManager } from "@/_config/redux";
 
-  getAllUsers = async () => {
+class AuthApiService extends AuthManager {
+  nose = () => {
+    this.S.user.api.userRedux("funkca");
+
+    this.setAuth({ name: "algito" }, "SET_OTRO");
+  }
+
+  main = () => {
+    console.log("dsafasdf");
+    this.S.user.api.otherUser();
+    // this.S.super_other();
   };
 
   testReducer = async (name: string) => {
@@ -15,13 +18,10 @@ class AuthApiService extends AuthManager {
   };
 
   other = async () => {
-    return this.auth.name;
+    return this.auth().name;
   };
 }
 
-const authApiServices = () => new AuthApiService();
 
 
-
-
-export default authApiServices;
+export default AuthApiService;

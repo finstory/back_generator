@@ -1,18 +1,18 @@
-import { UserManager } from "../../config/redux";
-
+import { UserManager } from "@/_config/redux";
 class UserApiServices extends UserManager {
 
-  testReducer = async () => {
-    const credential = this.user().credential;
-    this.setUser({ credential: { ...credential, name: "sds" } }, "SET_CRENDENTIAL");
-  };
+  otherUser = async () => {
+    this.setUser({ name: "Other User" }, "SET_USER");
+  }
 
-  other = async () => {
-    return this.user.name;
-  };
+  userRedux = async (name: string) => {
+    console.log(name)
+  }
+
+  getAuth = async () => {
+
+    console.log(await this.S.auth.api.other())
+  }
 }
 
-
-
-const userApiServices = () => { new UserApiServices() };
-export default userApiServices;
+export default UserApiServices;

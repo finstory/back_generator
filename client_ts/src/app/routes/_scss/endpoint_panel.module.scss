@@ -1,0 +1,279 @@
+@import ".index";
+
+#root {
+
+    //% COLOR:
+    --color-base-off: #f2f2f26d;
+    --color-base: #F2F2F2;
+    --color-base-dark: #0b0b0b;
+
+    --color-primary: #2FABCF;
+    --color-primary-hover: #67cfef;
+    --color-secondary: #1addc6;
+    --color-secondary-hover: #46eeda;
+
+    // request colors:
+    --color-get-off: #1addc63a;
+    --color-get: #1addc6;
+    --color-post-off: #dd8f1a34;
+    --color-post: #dd8f1a;
+    --color-put-off: #1a99dd59;
+    --color-put: #1a99dd;
+    --color-patch-off: #dd1a854e;
+    --color-patch: #dd1a85;
+    --color-delete-off: #dd1a1a46;
+    --color-delete: #dd1a1a;
+    --color-middleware-off: #5130aa57;
+    --color-middleware: #5030AA;
+    --color-controller-off: #1addc63a;
+    --color-controller: #1addc6;
+
+    //% BG:
+    --bg-primary: transparent;
+    --bg-primary-hover: #1a6bdd4f;
+    --bg-secondary: #3EE6B4;
+    --bg-secondary-hover: #1addc6;
+
+    //% BORDER:
+    --border-primary: #f2f2f26d;
+    --border-secondary: #3D3D3D;
+    --border-radius-primary: 1rem;
+
+    //% FONT:
+    --font-family-primary: 'M PLUS Rounded 1c';
+    // M+PLUS+Rounded+1c
+    --font-family-secondary: 'Inter';
+
+    //% FONT SIZE:
+    --font-size-extra-small: 0.8rem;
+    --font-size-small: 1.2rem;
+    --font-size-normal: 1.4rem;
+    --font-size-medium: 1.6rem;
+    --font-size-large: 2.4rem;
+
+    //% FONT WEIGHT:
+    --font-weight-small: light;
+    --font-weight-normal: normal;
+    --font-weight-medium: semibold;
+    --font-weight-large: bold;
+
+    //% GRADIENT:
+    --gradient-primary: linear-gradient(90deg, #3757b5 0%, #1addc6 100%);
+    --gradient-hover: linear-gradient(90deg, #1addc6 0%, #3757b5 100%);
+}
+
+.endpoint_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column);
+        padding: 1rem;
+        border-radius: 2rem;
+        @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+
+        .title {
+            position: relative;
+            @include dim_width();
+            @include dim_height(6.5rem);
+            @include flex();
+            @include font_M_PLUS(medium, 400);
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-secondary);
+
+            .add_route {
+                color: var(--color-base);
+                position: absolute;
+                right: 2rem;
+                @include dim_width(3rem);
+                @include dim_height(3rem);
+                @include flex();
+                border-radius: 1rem;
+                cursor: pointer;
+                transition: 0.7s linear;
+
+                :hover {
+                    transition: 0.7s linear;
+                    @include gradient(primary);
+
+                }
+
+
+            }
+
+        }
+
+        .endpoint_dir {
+            @include dim_width();
+            @include dim_height(calc(100% - 6.5rem));
+            @include flex(flex-start, center, column);
+            overflow-y: scroll;
+
+            .module_edit {
+                @include dim_width();
+                @include dim_height(10rem);
+                box-sizing: border-box;
+                @include flex(flex-start, center, $gap: 1.3rem);
+                border-bottom: 1px solid var(--border-secondary);
+                padding: 0 2rem;
+            }
+
+            .module_container {
+                @include dim_width();
+                @include dim_height(auto);
+                @include flex(flex-start, flex-start, column, 1.5rem);
+                padding: 2rem;
+                border-bottom: 1px solid var(--border-secondary);
+                animation: fadeIn 0.2s ease-in forwards;
+
+                .module {
+                    @include dim_width();
+                    @include dim_height(3rem);
+                    @include flex(flex-start, $gap: 1.3rem);
+
+                    .wrap_editor {
+                        @include flex(flex-start, $gap: 1rem);
+                    }
+                }
+
+                .endpoint {
+                    @include dim_width();
+                    @include dim_height(3rem);
+                    @include flex(flex-start, $gap: 1.3rem);
+
+                    .wrap {
+                        @include flex(flex-start, $gap: 1.3rem);
+                        cursor: pointer;
+
+                        &:hover {
+
+                            p {
+                                color: var(--color-primary)
+                            }
+
+                            .mark {
+                                background-color: var(--color-primary);
+                            }
+                        }
+                    }
+
+                    .wrap_editor {
+                        @include flex(flex-start, $gap: 1rem);
+                    }
+                }
+
+                // .endpoint_editor {
+                //     @include dim_width();
+                //     @include dim_height(auto);
+                //     @include flex(flex-start, center, row, 1rem);
+
+                //     .marker {
+                //         @include dim_width(1rem);
+                //         @include dim_height(.7rem);
+                //         transform: rotate(45deg);
+                //         background-color: var(--off-gray-color);
+                //     }
+
+                //     .request_selector {
+                //         @include dim_width(10rem);
+                //         @include dim_height(3rem);
+                //         @include flex($gap: 1rem);
+                //         @include font_M_PLUS(normal, 300);
+                //         padding: 0 1rem;
+                //         color: var(--white-color);
+                //         background-color: transparent;
+                //         border-radius: .8rem;
+                //         border: 1px solid var(--off-gray-color);
+                //         cursor: pointer;
+
+                //         &:hover {
+                //             color: var(--text-primary-color);
+                //             border: 1px solid var(--text-primary-color);
+                //         }
+
+                //         option {
+                //             @include dim_height(2rem);
+                //             @include dim_width();
+                //             padding: 0 1rem;
+                //             border-radius: .8rem;
+                //             color: var(--white-color);
+                //             background-color: var(--strong-green-color);
+                //         }
+                //     }
+
+                //     .input_wrap {
+                //         @include flex($gap: 1rem);
+                //         @include dim_width(34rem);
+                //         @include dim_height();
+
+                //         transition: 0.2s linear;
+
+                //         input {
+                //             @include dim_width();
+                //             @include dim_height();
+                //             border: 1px solid var(--off-gray-color);
+                //             border-radius: 1rem;
+                //             padding: 0 1rem;
+                //             color: var(--white-color);
+                //             background-color: transparent;
+                //             transition: border 0.2s linear;
+
+                //             &::placeholder {
+                //                 color: var(--off-gray-color);
+                //             }
+
+                //             &:focus {
+                //                 color: var(--text-primary-color);
+                //                 border: 1px solid var(--text-primary-color);
+                //                 outline: none;
+                //             }
+                //         }
+                //     }
+
+                //     .save_btn {
+                //         @include dim_height();
+                //         @include flex(center, center);
+
+                //         padding: .5rem;
+                //         border-radius: 1rem;
+                //         border: 1px solid var(--off-gray-color);
+
+                //         color: var(--off-gray-color);
+                //         @include gradient(black_bg);
+                //         cursor: pointer;
+                //         transition: border 0.2s linear;
+
+                //         &:hover {
+                //             // @include gradient(primary);
+                //             border: 1px solid var(--text-primary-color);
+                //             color: var(--text-primary-color);
+                //         }
+                //     }
+                // }
+
+            }
+
+
+        }
+    }
+
+    .add_route_modal {
+        z-index: 30;
+        position: absolute;
+        top: 0;
+        @include dim_width();
+        @include dim_height(35rem);
+        @include flex(center, center);
+        @include gradient(black_bg);
+        border-radius: 2rem;
+        border-bottom: 1px solid var(--gray-color);
+        opacity: .9;
+    }
+}
