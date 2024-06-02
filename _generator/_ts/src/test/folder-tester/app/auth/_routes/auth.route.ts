@@ -10,6 +10,6 @@ const router = Router();
 
 //<ROUTES>
 
-router.get("/all", validation.getUser);
+router.get("/all", validation.getUser, controller.getUser);
 
 export default router;

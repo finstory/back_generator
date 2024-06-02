@@ -24,7 +24,7 @@ class Query {
   // })
   age: number;
 
-  is_short: boolean;
+
 };
 
 class Body {

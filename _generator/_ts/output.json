@@ -1,0 +1,209 @@
+{
+    "type": "CallExpression",
+    "start": 0,
+    "end": 58,
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0,
+            "index": 0
+        },
+        "end": {
+            "line": 1,
+            "column": 58,
+            "index": 58
+        }
+    },
+    "callee": {
+        "type": "MemberExpression",
+        "start": 0,
+        "end": 10,
+        "loc": {
+            "start": {
+                "line": 1,
+                "column": 0,
+                "index": 0
+            },
+            "end": {
+                "line": 1,
+                "column": 10,
+                "index": 10
+            }
+        },
+        "object": {
+            "type": "Identifier",
+            "start": 0,
+            "end": 6,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0,
+                    "index": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 6,
+                    "index": 6
+                },
+                "identifierName": "router"
+            },
+            "name": "router"
+        },
+        "computed": false,
+        "property": {
+            "type": "Identifier",
+            "start": 7,
+            "end": 10,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 7,
+                    "index": 7
+                },
+                "end": {
+                    "line": 1,
+                    "column": 10,
+                    "index": 10
+                },
+                "identifierName": "get"
+            },
+            "name": "get"
+        }
+    },
+    "arguments": [
+        {
+            "type": "StringLiteral",
+            "start": 11,
+            "end": 17,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 11,
+                    "index": 11
+                },
+                "end": {
+                    "line": 1,
+                    "column": 17,
+                    "index": 17
+                }
+            },
+            "extra": {
+                "rawValue": "/all",
+                "raw": "'/all'"
+            },
+            "value": "/all"
+        },
+        {
+            "type": "MemberExpression",
+            "start": 19,
+            "end": 37,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 19,
+                    "index": 19
+                },
+                "end": {
+                    "line": 1,
+                    "column": 37,
+                    "index": 37
+                }
+            },
+            "object": {
+                "type": "Identifier",
+                "start": 19,
+                "end": 29,
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 19,
+                        "index": 19
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 29,
+                        "index": 29
+                    },
+                    "identifierName": "validation"
+                },
+                "name": "validation"
+            },
+            "computed": false,
+            "property": {
+                "type": "Identifier",
+                "start": 30,
+                "end": 37,
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 30,
+                        "index": 30
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 37,
+                        "index": 37
+                    },
+                    "identifierName": "getUser"
+                },
+                "name": "getUser"
+            }
+        },
+        {
+            "type": "MemberExpression",
+            "start": 39,
+            "end": 57,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 39,
+                    "index": 39
+                },
+                "end": {
+                    "line": 1,
+                    "column": 57,
+                    "index": 57
+                }
+            },
+            "object": {
+                "type": "Identifier",
+                "start": 39,
+                "end": 49,
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 39,
+                        "index": 39
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 49,
+                        "index": 49
+                    },
+                    "identifierName": "controller"
+                },
+                "name": "controller"
+            },
+            "computed": false,
+            "property": {
+                "type": "Identifier",
+                "start": 50,
+                "end": 57,
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 50,
+                        "index": 50
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 57,
+                        "index": 57
+                    },
+                    "identifierName": "getUser"
+                },
+                "name": "getUser"
+            }
+        }
+    ]
+}

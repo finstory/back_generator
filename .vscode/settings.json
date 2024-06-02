@@ -1,5 +1,12 @@
 {
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": null
+    },
+    "files.associations": {
+        "*.json": "jsonc",
+        "iostream": "cpp"
     }
 }

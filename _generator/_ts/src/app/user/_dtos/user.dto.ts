@@ -10,6 +10,8 @@ export class User {
     @Type(() => Street)
     street: Street;
 
+
+
     @V.IsString()
     @V.IsAlpha()
     user_name: string;
@@ -17,6 +19,7 @@ export class User {
     @V.IsNotEmpty()
     @V.ValidateNested()
     @Type(() => Address)
+
     city: Address;
 }
 

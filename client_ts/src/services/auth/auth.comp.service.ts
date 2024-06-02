@@ -4,6 +4,7 @@ import { AuthManager } from "@/_config/redux";
 class AuthCompService extends AuthManager {
 
   setComponent = async (name: string) => {
+   return coso;
     this.setAuth({ name }, "SET_COMPONENT");
   };
 

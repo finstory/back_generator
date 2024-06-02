@@ -11,10 +11,9 @@ interface IProps {
 const Test: FC<IProps> = ({ _scss }) => {
 
   return (
-
     <div className={_scss.sdsd}>
-      <Text label="h2" color="delete"></Text>
-      <Button variant='get'> sd</Button>
+      <Text label='span' ></Text>
+      <Button variant='circle_one_char'> sd</Button>
     </div>
   );
 };

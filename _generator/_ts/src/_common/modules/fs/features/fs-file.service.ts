@@ -2,7 +2,7 @@ import * as fs from "fs";
 
 import promise from "@helpers/promiseWrapper";
 import ServicesInjector from "@services_injector";
-import { TextCode } from "@interfaces/fs.interface";
+import { TextCode } from "@interfaces";
 
 import { getName } from "../_utils/path.util";
 

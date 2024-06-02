@@ -1,8 +1,8 @@
 import ServicesInjector from "@services_injector";
 import throwError from "@throw_error";
+import { RequestType } from "@interfaces";
+import { generateControllerName } from "@utils";
 import { express_endpoint } from "@mockups";
-import { RequestType } from "@interfaces/endpoint.interface";
-import { generateControllerName } from "@/_common/utilities/controller.util";
 
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
 

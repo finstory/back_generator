@@ -3,8 +3,8 @@ import throwError from "@throw_error";
 
 import traverse, { Node } from '@babel/traverse';
 
-import { TextCode } from '@interfaces/fs.interface';
-import { Pos } from '@interfaces/ast.interface';
+import { TextCode } from '@interfaces';
+import { Pos } from '@interfaces';
 
 import { astToTextCode, codeToAst } from "../_utils/transform.util";
 

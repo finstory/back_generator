@@ -1,5 +1,5 @@
 import ServicesInjector from "@services_injector";
-import { Path, } from '@interfaces/fs.interface';
+import { Path, } from '@interfaces';
 
 import { removeCodeBetweenPos } from "../_utils/codeEdition";
 

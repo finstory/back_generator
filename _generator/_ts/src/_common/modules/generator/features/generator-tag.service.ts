@@ -1,5 +1,5 @@
 import ServicesInjector from "@services_injector";
-import { Path, TextCode } from '@interfaces/fs.interface';
+import { Path, TextCode } from '@interfaces';
 import { Tags } from "@/_common/interfaces/ast.interface";
 
 import { insertCodeAfterPosition } from "../_utils/codeEdition";
