@@ -1,17 +1,15 @@
 import ServicesInjector from "@services_injector";
 import throwError from "@throw_error";
 
-import traverse, { Node } from '@babel/traverse';
+import traverse, { Node } from "@babel/traverse";
 
-import { TextCode } from '@interfaces';
-import { Pos } from '@interfaces';
+import { TextCode } from "@interfaces";
+import { Pos } from "@interfaces";
 
-import { astToTextCode, codeToAst } from "../_utils/transform.util";
+import { astToTextCode, codeToAst } from "@utils";
 
-
-class AstImport extends ServicesInjector {
-
-    editImport = (textCode: TextCode, importName: string, newImportName: string, newImportPath: string): TextCode => {
+class AstImport  {
+    editImport = async (textCode: TextCode, importName: string, newImportName: string, newImportPath: string): Promise<TextCode> => {
         const ast = codeToAst(textCode);
 
         traverse(ast, {
@@ -21,15 +19,13 @@ class AstImport extends ServicesInjector {
                 if (identifierGetting.name === importName) {
                     if (newImportPath) path.node.source.value = newImportPath;
                     if (newImportName) identifierGetting.name = newImportName;
-                }
-                else throwError("not_found", `[AST] Import '${importName}'`);
-            }
+                } else throwError("not_found", `[AST] Import '${importName}'`);
+            },
         });
 
-        const textCodeEdited = astToTextCode(ast);
+        const textCodeEdited = await astToTextCode(ast);
         return textCodeEdited;
-
-    }
+    };
 
     getPosImport = (textCode: TextCode, importName: string): Pos => {
         let pos: Pos = { start: 0, end: 0 };
@@ -43,12 +39,11 @@ class AstImport extends ServicesInjector {
                     pos.start = path.node.start;
                     pos.end = path.node.end;
                 }
-            }
+            },
         });
         if (pos.end !== 0) return pos;
         else throwError("not_found", `[AST] Import '${importName}'`);
     };
-
 }
 
 export default AstImport;

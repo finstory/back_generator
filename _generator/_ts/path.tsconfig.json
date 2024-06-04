@@ -19,14 +19,18 @@
       "@throw_error_response_wrap": ["./_common/config/server/response/errors/throw-error-wrapper.response.ts"],
 
       //% Services:
-      "@services": ["./_common/config/services/AllServices.ts"],
-      "@services_injector": ["./_common/config/services/ServicesInjector.ts"],
+      "@services": ["./_common/config/services/all-services.ts"],
+      "@services_injector": ["./_common/config/services/service-injector.ts"],
       
       //<APP_MODULES>
       "@user/*": ["./app/user/*"],
-      "@package/*": ["./app/package/*"]
+      "@package/*": ["./app/package/*"],
+      "@endpoint/*": ["./app/endpoint/*"],
       
       //<MODULES>
+      "@ast/*": ["./_common/modules/ast/*"],
+      "@fs/*": ["./_common/modules/fs/*"],
+      "@generator/*": ["./_common/modules/generator/*"],
     }
   }
 }

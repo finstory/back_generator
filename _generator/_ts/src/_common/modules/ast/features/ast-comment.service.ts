@@ -7,9 +7,9 @@ import { Comment } from '@babel/types';
 import { TextCode } from '@interfaces';
 import { Pos } from '@interfaces';
 
-import { codeToAst } from "../_utils/transform.util";
+import { codeToAst } from "@utils";
 
-class AstComment extends ServicesInjector {
+class AstComment  {
 
     getPosComment = (textCode: TextCode, comment: string): Pos => {
 

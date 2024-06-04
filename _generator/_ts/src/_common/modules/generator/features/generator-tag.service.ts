@@ -1,19 +1,22 @@
-import ServicesInjector from "@services_injector";
+import { AllServices as S, Injector } from "@services_injector";
 import { Path, TextCode } from '@interfaces';
-import { Tags } from "@/_common/interfaces/ast.interface";
+import { Tags } from "@interfaces";
 
-import { insertCodeAfterPosition } from "../_utils/codeEdition";
+import { insertCodeAfterPosition } from "../_utils/code-edition.util";
 
 
-class GeneratorTag extends ServicesInjector {
+class GeneratorTag extends Injector {
+
+    private _fs_file: S['fs']['file'];
+    private _ast_comment: S['ast']['comment'];
 
     addCodeAfterTag = async (filePath: Path, tagName: Tags, codeToAdd: TextCode, addSpace: boolean = false) => {
 
-        let textCode = await this.S.fs.files.getFile(filePath);
-        const pos = this.S.ast.comments.getPosComment(textCode, tagName);
+        let textCode = await this._fs_file.getFile(filePath);
+        const pos = this._ast_comment.getPosComment(textCode, tagName);
         textCode = insertCodeAfterPosition(textCode, codeToAdd, pos, addSpace);
 
-        await this.S.fs.files.createFile(filePath, textCode);
+        await this._fs_file.createFile(filePath, textCode);
 
     }
 

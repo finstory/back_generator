@@ -1,5 +1,5 @@
-import { underscoreToUpperCase, UpFirst } from "../helpers/wordsManager";
-import { RequestType } from "../interfaces/endpoint.interface";
+import { underscoreToUpperCase, UpFirst } from "@helpers/wordsManager";
+import { RequestType } from "@interfaces";
 
 export const getEndpointNames = (endpoint: string, underscore: boolean = false)
     : { endpointList: string[] | undefined, params: string | undefined } => {

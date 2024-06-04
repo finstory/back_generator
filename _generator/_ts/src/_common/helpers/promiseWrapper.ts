@@ -26,7 +26,7 @@ const promise = async <T>(
     })
         .then((result) => {
             clearTimeout(setTimer);
-            if (showSuccessMsg) console.log(msgSuccess || "Promise success");
+            if (showSuccessMsg) msgSuccess && console.log(msgSuccess);
             if (result) return result;
         })
         .catch((err) => {

@@ -1,4 +1,4 @@
-import { RequestType } from "../endpoint.interface";
+import { RequestType } from "@interfaces";
 
 export interface RouteExpressAst {
     type: "CallExpression";
@@ -24,7 +24,7 @@ export interface RouteArgumentInterface {
     raw?: string;
     object?: {
         type: "Identifier";
-        name: "validation" | "controller";
+        name: "validation" | "controller" | "middleware";
     }
     property?: {
         type: "Identifier";

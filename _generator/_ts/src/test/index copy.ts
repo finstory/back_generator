@@ -1,4 +1,4 @@
-import S from "@services";
+import S from "@/_common/config/services/all-services";
 import { User } from './../app/user/_dtos/user.dto';
 
 interface ComparisonResult {

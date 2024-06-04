@@ -1,5 +1,12 @@
-type Look = any;
-const test: Look = {};
-test.look = () => { };
+const ok2 = "ok";
 
-console.log("ready");
+
+
+router.get("/jeje", validation.getUser, validation.getUser, validation.getUser, validation.getUser, validation.getUser);
+
+//%jojo
+const ok5= "ok";
+router.get("/other", controller.getUser);
+
+router.get("/all", controller.getUser);
+getUser);

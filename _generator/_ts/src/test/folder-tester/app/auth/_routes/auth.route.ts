@@ -7,9 +7,8 @@ import controllerMiddlewares from "@common/middleware/controller.middleware";
 controllerMiddlewares(controller, { error_wrapper: true });
 const router = Router();
 
-
 //<ROUTES>
 
-router.get("/all", validation.getUser, controller.getUser);
+router.get("/all", validation.getUser, validation.getUser, validation.getUser, validation.getUser, validation.getUser);
 
 export default router;

@@ -1,19 +1,16 @@
-import ServicesInjector, { AllServices } from "@services_injector";
+import { AllServices, Auto, Instantiate } from "@services_injector";
 
 import FSFile from "./features/fs-file.service";
 import FSFolder from "./features/fs-folder.service";
 
-class FS extends ServicesInjector {
+@Instantiate
+class FS {
 
-    public readonly files: FSFile;
-    public readonly folders: FSFolder;
+    @Auto public file: FSFile;
+    @Auto public folder: FSFolder;
 
-    constructor(S: AllServices) {
-        super(S);
-        this.files = new FSFile(S);
-        this.folders = new FSFolder(S);
-    }
 
+    _initial = (S: AllServices) => { }
 }
 
 export default FS;
