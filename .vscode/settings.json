@@ -13,6 +13,5 @@
     "cSpell.words": [
         "dtos"
     ],
-    "prettier.tabWidth": 4,
     "prettier.printWidth": 1000,
 }

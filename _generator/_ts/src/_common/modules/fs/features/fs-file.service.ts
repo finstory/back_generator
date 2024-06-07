@@ -2,7 +2,7 @@ import * as fs from "fs";
 
 import promise from "@helpers/promiseWrapper";
 import ServicesInjector, { Injector } from "@services_injector";
-import { TextCode } from "@interfaces";
+import { Path, TextCode } from "@interfaces";
 
 import { getName } from "../_utils/path.util";
 import { printInfo } from "@/_common/helpers/wordsManager";
@@ -33,7 +33,7 @@ class FSFile extends Injector {
                 if (err) reject({ type: "create_file", key: nameFile });
                 resolve();
             });
-        }).then(() => printInfo("FS", `File '${nameFile}' created.`));
+        }).then(() => printInfo("FS", `File '${nameFile}' modified.`));
     };
 
     createFilesList = async (filesList: { path: string; code: TextCode }[]): Promise<void> => {
@@ -73,6 +73,14 @@ class FSFile extends Injector {
             });
         }).then(() => printInfo("FS", `File '${nameFile}' deleted.`));
     };
+
+    updateFile = async (filePath: Path, callback: (textCode: TextCode) => Promise<TextCode>) => {
+
+        let textCode = await this.getFile(filePath);
+        const newTextCode = await callback(textCode);
+        await this.createFile(filePath, newTextCode);
+    }
+
 }
 
 export default FSFile;

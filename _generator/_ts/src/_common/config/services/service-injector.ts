@@ -1,4 +1,4 @@
-import { AllServices } from "./all-services";
+import { AllServices } from "@services";
 import { Auto, Instantiate } from "./auto-instantiate.services";
 
 class SuperInjector {
@@ -19,8 +19,10 @@ class Injector {
     }
 }
 
-const initialInjector = (S: AllServices) => {
+const initialInjector = (S: AllServices, secondTry: boolean = true) => {
     for (const service of Object.values(S)) service._initial && service._initial(S);
+    if (secondTry) for (const service of Object.values(S)) service._initial && service._initial(S);
+
 }
 
 export { AllServices, Injector, Auto, Instantiate, initialInjector };

@@ -1,6 +1,6 @@
 //<IMPORTS>
-import * as C from "@/app/user/_validations/_index";
-import getValidations from "@/_common/config/validations/getValidations";
+import * as C from "@user/_validations/_index";
+import getValidations from "@config/validations/getValidations";
 
 export class UserController {
   //<CONTROLLERS>

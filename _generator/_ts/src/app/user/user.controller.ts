@@ -1,7 +1,7 @@
 //<IMPORTS>
 import throwError from "@throw_error";
 import { controller, validation } from "@/app/user/_entities/user-controller.entity";
-import S from "@/_common/config/services/all-services";
+import S from "@/_common/services/all-services";
 //<CONTROLLERS>
 
 controller.getUser = async ({ body: { user } }, res) => {

@@ -4,12 +4,17 @@ import { Path, RequestType } from '@interfaces';
 
 import { RouteExpressDto, RouteExpressDtoV2 } from "@ast/_dtos/ast-route-function.dto";
 import { EditRouteFnDto } from "../_dtos/router-fn.dto";
-import FS from "../../fs/fs.service";
+import { printInfo } from "@/_common/helpers/wordsManager";
 
 
 class GeneratorRouteFn extends Injector {
     private _fs_file: S["fs"]["file"];
     private _ast_route_function: S["ast"]["route_function"];
+
+    test = async () => {
+        console.log(this._ast_route_function)
+        console.log(this._fs_file)
+    }
 
     edit = async (filePath: Path, { endpoint, requestType, validateActive }: RouteExpressDtoV2, { newEndpoint, newRequestType, newController }: EditRouteFnDto) => {
         console.log("ok")
@@ -38,9 +43,11 @@ class GeneratorRouteFn extends Injector {
 
     remove = async (filePath: Path, { endpoint, requestType }: RouteExpressDto) => {
         let textCode = await this._fs_file.getFile(filePath);
-        const newTextCode = this._ast_route_function.removeRoute(textCode, { endpoint, requestType });
+
+        const newTextCode = await this._ast_route_function.removeRoute(textCode, { endpoint, requestType });
 
         await this._fs_file.createFile(filePath, newTextCode);
+        printInfo("GENERATOR", "Route removed successfully.");
     }
 
 

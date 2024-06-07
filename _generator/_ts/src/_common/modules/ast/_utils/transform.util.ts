@@ -35,7 +35,7 @@ export const formatCode = async (textCode: string): Promise<string> => {
     return await prettier.format(textCode, {
         parser: 'babel-ts',
         semi: true,
-        singleQuote: true,
+        singleQuote: false,
         trailingComma: 'es5',
         tabWidth: 4,
         printWidth: 1000,

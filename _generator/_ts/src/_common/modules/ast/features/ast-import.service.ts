@@ -1,4 +1,4 @@
-import ServicesInjector from "@services_injector";
+
 import throwError from "@throw_error";
 
 import traverse, { Node } from "@babel/traverse";
@@ -8,7 +8,7 @@ import { Pos } from "@interfaces";
 
 import { astToTextCode, codeToAst } from "@utils";
 
-class AstImport  {
+class AstImport {
     editImport = async (textCode: TextCode, importName: string, newImportName: string, newImportPath: string): Promise<TextCode> => {
         const ast = codeToAst(textCode);
 
@@ -23,8 +23,7 @@ class AstImport  {
             },
         });
 
-        const textCodeEdited = await astToTextCode(ast);
-        return textCodeEdited;
+        return await astToTextCode(ast);
     };
 
     getPosImport = (textCode: TextCode, importName: string): Pos => {

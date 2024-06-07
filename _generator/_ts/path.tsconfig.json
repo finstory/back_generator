@@ -19,7 +19,7 @@
       "@throw_error_response_wrap": ["./_common/config/server/response/errors/throw-error-wrapper.response.ts"],
 
       //% Services:
-      "@services": ["./_common/config/services/all-services.ts"],
+      "@services": ["./_common/services/all-services.ts"],
       "@services_injector": ["./_common/config/services/service-injector.ts"],
       
       //<APP_MODULES>

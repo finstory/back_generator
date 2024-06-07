@@ -1,12 +1,24 @@
-import S from "@/_common/config/services/all-services";
+import S from "@services";
 import { User } from "./../app/user/_dtos/user.dto";
 import validateModule from "@/_common/config/validations/validateModule";
 import { formatCode } from "@/_common/utils/_index";
-import { printMsg } from "@/_common/helpers/wordsManager";
+import { printInfo, printMsg } from "@/_common/helpers/wordsManager";
+import { keepObjRef } from "@/_common/modules/ast/_utils/keep-ref.util";
 
+interface MyObject {
+    property: string;
+}
 const testMain = async () => {
+
     try {
-        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/_common/modules/ast/file.ts";
+        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/_routes/auth.route.ts";
+
+        // await S.endpoint.createEndpoint("user", "/all", "get");
+
+        await S.generator.routeFunction.test();
+
+        //  await S.generator.routeFunction.remove(filePath, { endpoint: "/all", requestType: "get" });
+        // await S.generator.routeFunction.test();
         // await S.generator.routeFunction.edit(
         //     filePath, {
         //     endpoint: "/all",
@@ -17,9 +29,7 @@ const testMain = async () => {
         //     newRequestType: "post",
         //     newController: "userController"
         // });
-  
-   
-    //   await   S.generator.routeFunction.test();
+
         // const fileGetting = await S.fs.file.getFile(filePath);
         // // let file = S.ast.route_function.removeRoute(textCode,
         // //     { endpoint: "/all", requestType: "get" });
