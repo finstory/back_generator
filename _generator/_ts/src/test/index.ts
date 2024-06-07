@@ -13,10 +13,25 @@ const testMain = async () => {
     try {
         const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/_routes/auth.route.ts";
 
-        // await S.endpoint.createEndpoint("user", "/all", "get");
 
-        await S.generator.routeFunction.test();
+        await S.endpoint.create("auth", "/all", "get");
+        setTimeout(async () => {
 
+            await S.endpoint.edit("auth", {
+                endpoint: "/all",
+                requestType: "get",
+                validateActive: false
+            }, {
+                newEndpoint: "/other",
+                newRequestType: "post",
+                newController: "myController"
+            });
+        }, 2000);
+
+        setTimeout(async () => {
+            await S.endpoint.remove("auth", { endpoint: "/other", requestType: "post" });
+        }
+            , 4000);
         //  await S.generator.routeFunction.remove(filePath, { endpoint: "/all", requestType: "get" });
         // await S.generator.routeFunction.test();
         // await S.generator.routeFunction.edit(

@@ -17,7 +17,7 @@ class GeneratorWrapperService extends Injector {
         const newTextCode = await callback(textCode);
 
         await this._fs_file.createFile(filePath, newTextCode);
-        printInfo("ROUTER", successMessage);
+        printInfo("ROUTE", successMessage);
     }
 
 }

@@ -23,13 +23,14 @@ function textColor(str: string, color: string = "green"): string {
     return str;
 }
 
-type Info = "AST" | "FS" | "GENERATOR" | "ROUTER" | "CONTROLLER" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
+type Info = "AST" | "FS" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
 
-const blueList = ["GENERATOR", "ROUTER", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS"];
+const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS"];
 
-const showFSLogs = true;
-const showASTLogs = true;
+const showFSLogs = false;
+const showASTLogs = false;
 const showGeneratorLogs = true;
+
 function printInfo(type: Info, str: string): void {
     if (type === "FS" && showFSLogs) console.log(`[${colors.green(type)}]` + colors.green(" ⭍  ") + (str) + colors.green(" ⭍  "));
     if (type === "AST" && showASTLogs) console.log(`[${colors.yellow(type)}]` + colors.yellow(" ⭍  ") + (str) + colors.yellow(" ⭍  "));

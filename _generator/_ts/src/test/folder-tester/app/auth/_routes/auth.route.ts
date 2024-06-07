@@ -9,6 +9,6 @@ const router = Router();
 
 //<ROUTES>
 
-router.get("/all", validation.getUser, validation.getUser, validation.getUser, validation.getUser, validation.getUser);
+router.post("/all/:id", validation.postAuthAllById, controller.postAuthAllById);
 
 export default router;

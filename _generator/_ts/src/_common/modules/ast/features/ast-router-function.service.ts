@@ -74,7 +74,6 @@ class AstRouteFunction {
     }
 
     renameController = (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newController: string) => {
-
         const ast = codeToAst(textCode);
         let ok = false;
 
@@ -89,6 +88,7 @@ class AstRouteFunction {
                     if (arg.type === "MemberExpression" && arg.object.type === "Identifier") {
                         arg.property.name = newController;
                         ok = true;
+                       
                     }
                 });
 
