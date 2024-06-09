@@ -1,6 +1,6 @@
 import { RequestType } from "@interfaces";
 
-export interface RouteExpressAst {
+export interface AstRouteExpress {
     type: "CallExpression";
     callee: {
         type: "MemberExpression";

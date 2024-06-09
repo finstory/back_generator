@@ -9,7 +9,7 @@ import { Pos } from '@interfaces';
 
 import { codeToAst } from "@utils";
 
-class AstComment  {
+class AstCommentService  {
 
     getPosComment = (textCode: TextCode, comment: string): Pos => {
 
@@ -49,4 +49,4 @@ class AstComment  {
 
 }
 
-export default AstComment;
+export default AstCommentService;

@@ -4,11 +4,11 @@ import { controller, validation } from "@/app/user/_entities/user-controller.ent
 import S from "@/_common/services/all-services";
 //<CONTROLLERS>
 
-controller.getUser = async ({ body: { user } }, res) => {
+controller.getUser = async ({ body }, res) => {
 
-    throwError("bad_request", "id");
+    throwError("not_found", "id");
 
-    res.status(200).json({ user });
+    res.status(200).json({ });
 };
 
 controller.postUserCreate = async ({ params, query, body }, res) => {

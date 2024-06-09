@@ -4,34 +4,40 @@ import validateModule from "@/_common/config/validations/validateModule";
 import { formatCode } from "@/_common/utils/_index";
 import { printInfo, printMsg } from "@/_common/helpers/wordsManager";
 import { keepObjRef } from "@/_common/modules/ast/_utils/keep-ref.util";
+import { delay } from "@helpers/delay";
+
 
 interface MyObject {
     property: string;
 }
+
+
 const testMain = async () => {
 
     try {
-        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/_routes/auth.route.ts";
+        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/auth.controller.ts";
+
+        // const file = await S.controller.file.renameController("auth", "postUserCreate", "siUserCreate");
+
+        await S.controller.file.removeController("auth", "postUserCreate");
+        // await S.endpoint.create("auth", { endpoint: "/all", requestType: "get" });
+
+        // await delay(5000);
+        // await S.endpoint.edit("auth", {
+        //     endpoint: "/all",
+        //     requestType: "get",
+        //     validateActive: false
+        // }, {
+        //     newEndpoint: "/other",
+        //     newRequestType: "post",
+        //     newController: "myController"
+        // });
+
+        // await delay(5000);
+
+        // await S.endpoint.remove("auth", { endpoint: "/other", requestType: "post" });
 
 
-        await S.endpoint.create("auth", "/all", "get");
-        setTimeout(async () => {
-
-            await S.endpoint.edit("auth", {
-                endpoint: "/all",
-                requestType: "get",
-                validateActive: false
-            }, {
-                newEndpoint: "/other",
-                newRequestType: "post",
-                newController: "myController"
-            });
-        }, 2000);
-
-        setTimeout(async () => {
-            await S.endpoint.remove("auth", { endpoint: "/other", requestType: "post" });
-        }
-            , 4000);
         //  await S.generator.routeFunction.remove(filePath, { endpoint: "/all", requestType: "get" });
         // await S.generator.routeFunction.test();
         // await S.generator.routeFunction.edit(

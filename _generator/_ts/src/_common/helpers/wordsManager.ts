@@ -27,9 +27,10 @@ type Info = "AST" | "FS" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "SERVICE" | "I
 
 const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS"];
 
-const showFSLogs = false;
-const showASTLogs = false;
+const showFSLogs = true;
+const showASTLogs = true;
 const showGeneratorLogs = true;
+
 
 function printInfo(type: Info, str: string): void {
     if (type === "FS" && showFSLogs) console.log(`[${colors.green(type)}]` + colors.green(" ⭍  ") + (str) + colors.green(" ⭍  "));

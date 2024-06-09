@@ -7,7 +7,7 @@ import { Path, TextCode } from "@interfaces";
 import { getName } from "../_utils/path.util";
 import { printInfo } from "@/_common/helpers/wordsManager";
 
-class FSFile extends Injector {
+class FSFile {
 
 
     getFile = async (filePath: string, jsonFormat: boolean = true): Promise<TextCode> => {

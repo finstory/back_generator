@@ -2,15 +2,15 @@ import ServicesInjector from "@services_injector";
 import throwError from "@throw_error";
 
 import traverse, { Node } from '@babel/traverse';
-import { RequestType, TextCode, RouteExpressAst } from '@interfaces';
+import { RequestType, TextCode, AstRouteExpress } from '@interfaces';
 
 import { astToTextCode, codeToAst } from "@utils";
 import { RouteExpressDto, RouteExpressDtoV1 } from "../_dtos/ast-route-function.dto";
 import { printInfo } from "@/_common/helpers/wordsManager";
 
-class AstRouteFunction {
+class AstRouteFunctionService {
 
-    private hasRouteFunction = (expression: RouteExpressAst, endpoint: string, requestType: RequestType): boolean => {
+    private hasRouteFunction = (expression: AstRouteExpress, endpoint: string, requestType: RequestType): boolean => {
         if (
             expression.type === "CallExpression" &&
             expression.callee.type === "MemberExpression" &&
@@ -23,10 +23,9 @@ class AstRouteFunction {
         else return false;
     };
 
-    //% Express Router:
+    //% Express Router :
 
-    renameEndpoint = (textCode: TextCode, { endpoint, requestType }: RouteExpressDto,
-        newEndpoint: string) => {
+    renameEndpoint = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newEndpoint: string): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
@@ -34,7 +33,7 @@ class AstRouteFunction {
 
             ExpressionStatement: (path) => {
 
-                const expression = path.node.expression as RouteExpressAst;
+                const expression = path.node.expression as AstRouteExpress;
                 const check = this.hasRouteFunction(expression, endpoint, requestType);
 
                 if (check) expression.arguments.forEach(arg => {
@@ -48,10 +47,13 @@ class AstRouteFunction {
 
         });
         !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
-        return astToTextCode(ast);
+        return await astToTextCode(ast);
+
+
     }
 
-    changeRequestType = (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newRequestType: RequestType) => {
+
+    changeRequestType = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newRequestType: RequestType): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
@@ -59,7 +61,7 @@ class AstRouteFunction {
         traverse(ast, {
             ExpressionStatement: (path) => {
 
-                const expression = path.node.expression as RouteExpressAst;
+                const expression = path.node.expression as AstRouteExpress;
                 const check = this.hasRouteFunction(expression, endpoint, requestType);
 
                 if (check) expression.callee.property.name = newRequestType;
@@ -70,17 +72,17 @@ class AstRouteFunction {
         });
 
         !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
-        return astToTextCode(ast);
+        return await astToTextCode(ast);
     }
 
-    renameController = (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newController: string) => {
+    renameController = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newController: string): Promise<TextCode> => {
         const ast = codeToAst(textCode);
         let ok = false;
 
         traverse(ast, {
             ExpressionStatement: (path) => {
 
-                const expression = path.node.expression as RouteExpressAst;
+                const expression = path.node.expression as AstRouteExpress;
                 const check = this.hasRouteFunction(expression, endpoint, requestType);
 
                 if (check) expression.arguments.forEach(arg => {
@@ -88,7 +90,7 @@ class AstRouteFunction {
                     if (arg.type === "MemberExpression" && arg.object.type === "Identifier") {
                         arg.property.name = newController;
                         ok = true;
-                       
+
                     }
                 });
 
@@ -97,17 +99,17 @@ class AstRouteFunction {
         });
 
         !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
-        return astToTextCode(ast);
+        return await astToTextCode(ast);
     }
 
-    switchValidation = (textCode: TextCode, { endpoint, requestType, validateActive }: RouteExpressDtoV1) => {
+    switchValidation = async (textCode: TextCode, { endpoint, requestType, validateActive }: RouteExpressDtoV1): Promise<TextCode> => {
         const ast = codeToAst(textCode);
         let ok = false;
 
         traverse(ast, {
             ExpressionStatement: (path) => {
 
-                const expression = path.node.expression as RouteExpressAst;
+                const expression = path.node.expression as AstRouteExpress;
                 const check = this.hasRouteFunction(expression, endpoint, requestType);
 
                 if (check) {
@@ -151,10 +153,10 @@ class AstRouteFunction {
         });
 
         !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
-        return astToTextCode(ast);
+        return await astToTextCode(ast);
     }
 
-    removeRoute = (textCode: TextCode, { endpoint, requestType }: RouteExpressDto) => {
+    removeRoute = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
@@ -162,7 +164,7 @@ class AstRouteFunction {
 
             ExpressionStatement: (path) => {
 
-                const expression = path.node.expression as RouteExpressAst;
+                const expression = path.node.expression as AstRouteExpress;
                 if (
                     expression.type === "CallExpression" &&
                     expression.callee.type === "MemberExpression" &&
@@ -181,7 +183,7 @@ class AstRouteFunction {
         });
         !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
         printInfo("AST", `Endpoint '${endpoint}' removed.`);
-        return astToTextCode(ast);
+        return await astToTextCode(ast);
     }
 }
-export default AstRouteFunction;
+export default AstRouteFunctionService;
