@@ -2,7 +2,7 @@ import { AllServices as S, Injector } from "@services_injector";
 import throwError from "@throw_error";
 import { generateControllerName } from "@utils";
 import { express_endpoint } from "@mockups";
-import { printInfo } from "@/_common/helpers/wordsManager";
+import { printInfo } from "@helpers/wordsManager";
 import { EditRouteFnDto } from "../_dtos/router-fn.dto";
 import { RouteExpressDto, RouteExpressDtoV2 } from "@ast/_dtos/ast-route-function.dto";
 
@@ -13,7 +13,7 @@ class ExpressRouteService extends Injector {
 
     private _fs_file: S['fs']['file'];
     private _ast_import: S['ast']['import'];
-    private _ast_route_function: S['ast']['route_function'];
+    private _ast_routeFunction: S['ast']['routeFunction'];
     private _generator_tag: S['generator']['tag'];
 
     updateControllerImport = async (moduleName: string, features?: string[]) => {
@@ -48,24 +48,24 @@ class ExpressRouteService extends Injector {
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
             if (newEndpoint) {
-                textCode = await this._ast_route_function.renameEndpoint(textCode, { endpoint, requestType }, newEndpoint);
+                textCode = await this._ast_routeFunction.renameEndpoint(textCode, { endpoint, requestType }, newEndpoint);
                 endpoint = newEndpoint;
                 message = `endpoint_name | ${message}`;
             }
 
             if (newRequestType) {
-                textCode = await this._ast_route_function.changeRequestType(textCode, { endpoint, requestType }, newRequestType);
+                textCode = await this._ast_routeFunction.changeRequestType(textCode, { endpoint, requestType }, newRequestType);
                 requestType = newRequestType;
                 message = `request_type_name | ${message}`;
             }
 
             if (newController) {
                 !newController && throwError("bad_request", "newController");
-                textCode = await this._ast_route_function.renameController(textCode, { endpoint, requestType }, newController);
+                textCode = await this._ast_routeFunction.renameController(textCode, { endpoint, requestType }, newController);
                 message = `controller_name | ${message}`;
             }
 
-            textCode = await this._ast_route_function.switchValidation(textCode, { endpoint, requestType, validateActive })
+            textCode = await this._ast_routeFunction.switchValidation(textCode, { endpoint, requestType, validateActive })
 
 
             return textCode;
@@ -80,7 +80,7 @@ class ExpressRouteService extends Injector {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
-            textCode = await this._ast_route_function.removeRoute(textCode, { endpoint, requestType });
+            textCode = await this._ast_routeFunction.removeRoute(textCode, { endpoint, requestType });
 
             return textCode;
 
@@ -91,7 +91,7 @@ class ExpressRouteService extends Injector {
 
     _initial = (S: S) => {
         this._ast_import = S.ast.import;
-        this._ast_route_function = S.ast.route_function;
+        this._ast_routeFunction = S.ast.routeFunction;
         this._fs_file = S.fs.file;
         this._generator_tag = S.generator.tag;
     }

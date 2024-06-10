@@ -12,7 +12,7 @@ class EndpointService {
         S.endpoint.express_route = new ExpressRouteService([
             { _fs_file: S.fs.file },
             { _ast_import: S.ast.import },
-            { _ast_route_function: S.ast.route_function },
+            { _ast_route_function: S.ast.routeFunction },
             { _generator_tag: S.generator.tag }
         ]);
     }

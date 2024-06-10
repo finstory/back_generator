@@ -30,12 +30,16 @@ const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UT
 const showFSLogs = true;
 const showASTLogs = true;
 const showGeneratorLogs = true;
+const showBlueList = true;
 
 
 function printInfo(type: Info, str: string): void {
     if (type === "FS" && showFSLogs) console.log(`[${colors.green(type)}]` + colors.green(" ⭍  ") + (str) + colors.green(" ⭍  "));
-    if (type === "AST" && showASTLogs) console.log(`[${colors.yellow(type)}]` + colors.yellow(" ⭍  ") + (str) + colors.yellow(" ⭍  "));
-    if (blueList.includes(type) && showGeneratorLogs) console.log(`[${colors.blue(type)}]` + colors.blue(" ⭍  ") + (str) + colors.blue(" ⭍  "));
+    else if (type === "AST" && showASTLogs) console.log(`[${colors.yellow(type)}]` + colors.yellow(" ⭍  ") + (str) + colors.yellow(" ⭍  "));
+
+    else if (type === "GENERATOR" && showGeneratorLogs) console.log(`[${colors.magenta(type)}]` + colors.magenta(" ⭍  ") + (str) + colors.magenta(" ⭍  "));
+
+    else if (blueList.includes(type) && showBlueList) console.log(`[${colors.blue(type)}]` + colors.blue(" ⭍  ") + (str) + colors.blue(" ⭍  "));
 }
 
 function printMsg(str: string, color: string = "generator"): void {

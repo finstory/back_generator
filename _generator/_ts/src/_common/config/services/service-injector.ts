@@ -1,6 +1,6 @@
 import { AllServices } from "@services";
 import { Auto, Instantiate } from "./auto-instantiate.services";
-
+import { Initial, Initialization, InitialAll } from "./initial-services";
 class SuperInjector {
     protected readonly S: AllServices;
 
@@ -25,5 +25,37 @@ const initialInjector = (S: AllServices, secondTry: boolean = true) => {
 
 }
 
-export { AllServices, Injector, Auto, Instantiate, initialInjector };
+function Inject(target: any, propertyKey: string) {
+    if (!target.constructor.__injectProps) {
+        target.constructor.__injectProps = [];
+    }
+    target.constructor.__injectProps.push(propertyKey);
+}
+
+// Clase base genérica que maneja la inyección de dependencias
+class Injectable {
+    constructor(S: AllServices) {
+        const props = (this.constructor as any).__injectProps || [];
+        for (const prop of props) {
+
+            const [serviceGroup, serviceKey] = prop.startsWith('_') ? prop.slice(1).split('_') : prop.split('_');
+
+            if (S && S[serviceGroup] && S[serviceGroup][serviceKey])
+                (this as any)[prop] = S[serviceGroup][serviceKey];
+
+            else if (S && S[serviceGroup])
+                (this as any)[prop] = S[serviceGroup];
+
+            else if (S)
+                throw new Error(`Service ${serviceGroup}.${serviceKey} not provided in AllServices`);
+
+        }
+    }
+}
+
+
+export {
+    AllServices, Injector, Auto, Instantiate, initialInjector,
+    Inject, Injectable, Initial, Initialization, InitialAll
+};
 export default SuperInjector;

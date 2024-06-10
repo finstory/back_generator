@@ -19,14 +19,14 @@ class Generator {
     _initial = (S: AllServices) => {
         S.generator.routeFunction = new GeneratorRouteFn(
             [
-                { _ast_route_function: S.ast.route_function },
+                { _ast_route_function: S.ast.routeFunction },
                 { _fs_file: S.fs.file }
             ]);
 
         S.generator.function = new GeneratorFn(
             [
                 { _fs_file: S.fs.file },
-                { _ast_route_function: S.ast.route_function }
+                { _ast_route_function: S.ast.routeFunction }
             ]);
 
         S.generator.import = new GeneratorImport(

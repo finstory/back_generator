@@ -2,215 +2,12 @@
 import throwError from "@throw_error";
 
 import traverse, { Node } from "@babel/traverse";
-import { TextCode, Pos } from "@interfaces";
-
-import { astToTextCode, codeToAst } from "@utils";
+import { TextCode, AstCompilerFunction, TextPosition } from "@interfaces";
 import { printInfo } from "@helpers/wordsManager";
+import { astToTextCode, codeToAst } from "@utils";
 
-interface AstCompilerFunction {
-    type: "AssignmentExpression";
-    left: {
-        type: string;
-        start: number;
-        end: number;
-        loc: {
-            start: {
-                line: number;
-                column: number;
-                index: number;
-            };
-            end: {
-                line: number;
-                column: number;
-                index: number;
-            };
-        };
-        object: {
-            type: string;
-            start: number;
-            end: number;
-            loc: {
-                start: {
-                    line: number;
-                    column: number;
-                    index: number;
-                };
-                end: {
-                    line: number;
-                    column: number;
-                    index: number;
-                };
-                identifierName: string;
-            };
-            name: string;
-        };
-        computed: boolean;
-        property: {
-            type: string;
-            start: number;
-            end: number;
-            loc: {
-                start: {
-                    line: number;
-                    column: number;
-                    index: number;
-                };
-                end: {
-                    line: number;
-                    column: number;
-                    index: number;
-                };
-                identifierName: string;
-            };
-            name: string;
-        };
-    };
-    // right: {
-    //     type: string;
-    //     start: number;
-    //     end: number;
-    //     loc: {
-    //         start: {
-    //             line: number;
-    //             column: number;
-    //             index: number;
-    //         };
-    //         end: {
-    //             line: number;
-    //             column: number;
-    //             index: number;
-    //         };
-    //     };
-    //     id: null;
-    //     generator: boolean;
-    //     async: boolean;
-    //     params: [
-    //         {
-    //             type: string;
-    //             start: number;
-    //             end: number;
-    //             loc: {
-    //                 start: {
-    //                     line: number;
-    //                     column: number;
-    //                     index: number;
-    //                 };
-    //                 end: {
-    //                     line: number;
-    //                     column: number;
-    //                     index: number;
-    //                 };
-    //             };
-    //             properties: [
-    //                 {
-    //                     type: string;
-    //                     start: number;
-    //                     end: number;
-    //                     loc: {
-    //                         start: {
-    //                             line: number;
-    //                             column: number;
-    //                             index: number;
-    //                         };
-    //                         end: {
-    //                             line: number;
-    //                             column: number;
-    //                             index: number;
-    //                         };
-    //                     };
-    //                     method: boolean;
-    //                     key: {
-    //                         type: string;
-    //                         start: number;
-    //                         end: number;
-    //                         loc: {
-    //                             start: {
-    //                                 line: number;
-    //                                 column: number;
-    //                                 index: number;
-    //                             };
-    //                             end: {
-    //                                 line: number;
-    //                                 column: number;
-    //                                 index: number;
-    //                             };
-    //                             identifierName: string;
-    //                         };
-    //                         name: string;
-    //                     };
-    //                     computed: boolean;
-    //                     shorthand: boolean;
-    //                     value: {
-    //                         type: string;
-    //                         start: number;
-    //                         end: number;
-    //                         loc: {
-    //                             start: {
-    //                                 line: number;
-    //                                 column: number;
-    //                                 index: number;
-    //                             };
-    //                             end: {
-    //                                 line: number;
-    //                                 column: number;
-    //                                 index: number;
-    //                             };
-    //                             identifierName: string;
-    //                         };
-    //                         name: string;
-    //                     };
-    //                     extra: {
-    //                         shorthand: boolean;
-    //                     };
-    //                 }
-    //             ];
-    //         },
-    //         {
-    //             type: string;
-    //             start: number;
-    //             end: number;
-    //             loc: {
-    //                 start: {
-    //                     line: number;
-    //                     column: number;
-    //                     index: number;
-    //                 };
-    //                 end: {
-    //                     line: number;
-    //                     column: number;
-    //                     index: number;
-    //                 };
-    //                 identifierName: string;
-    //             };
-    //             name: string;
-    //         }
-    //     ];
-    //     body: {
-    //         type: string;
-    //         start: number;
-    //         end: number;
-    //         loc: {
-    //             start: {
-    //                 line: number;
-    //                 column: number;
-    //                 index: number;
-    //             };
-    //             end: {
-    //                 line: number;
-    //                 column: number;
-    //                 index: number;
-    //             };
-    //         };
-    //         body: any[]; // You can replace `any[]` with the appropriate type for the body
-    //         directives: any[]; // You can replace `any[]` with the appropriate type for the directives
-    //     };
-    // };
-}
-
-class CompilerFunctionDto {
-    compilerName: string;
-    propName: string;
-}
+import { CompilerFunctionDto } from "../_dtos/ast-compiler-function.dto";
+import { getTextPosition } from "../_utils/calculate-position.util";
 
 class AstFunctionCompilerService {
 
@@ -263,6 +60,33 @@ class AstFunctionCompilerService {
         printInfo("AST", `Compiler function '${propName}' removed successfully.`);
 
         return await astToTextCode(ast);
+    }
+
+    getPosProperty = (textCode: TextCode, { compilerName, propName }: CompilerFunctionDto): TextPosition => {
+
+        const ast = codeToAst(textCode);
+        let columnPosition: number;
+
+        traverse(ast, {
+            ExpressionStatement: (path) => {
+                const expression = path.node.expression as AstCompilerFunction;
+
+                if (expression?.left?.object?.name === compilerName &&
+                    expression?.left?.property?.name === propName) {
+
+                    columnPosition = path.node.loc.start.line;
+                }
+            },
+        });
+
+        !columnPosition && throwError("not_found", `[AST] Compiler function '${propName}'`);
+
+        const position = getTextPosition(textCode, propName, columnPosition);
+
+        printInfo("AST", `Position obtained for '${compilerName}.${propName}'.`);
+
+        return position
+
     }
 }
 export default AstFunctionCompilerService;

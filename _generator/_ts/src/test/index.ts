@@ -7,19 +7,21 @@ import { keepObjRef } from "@/_common/modules/ast/_utils/keep-ref.util";
 import { delay } from "@helpers/delay";
 
 
-interface MyObject {
-    property: string;
-}
-
 
 const testMain = async () => {
 
     try {
-        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/auth.controller.ts";
+        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/_entities/auth-controller.entity.ts";
+        // await S.controller.entity.removeControllerEntity("auth", "postUser");
 
+        // await S.controller.entity.createControllerEntity("auth", "authGetting");
+
+ 
+        //  await   S.controller.file.createController("auth", "userGetting");
+        // await    S.controller.file.createController("auth", "userGetting2");
+        // await S.controller.file.removeController("auth", "userGetting2");
         // const file = await S.controller.file.renameController("auth", "postUserCreate", "siUserCreate");
 
-        await S.controller.file.removeController("auth", "postUserCreate");
         // await S.endpoint.create("auth", { endpoint: "/all", requestType: "get" });
 
         // await delay(5000);
@@ -71,10 +73,6 @@ const testMain = async () => {
     }
 };
 
-class Users {
-    name: string;
-    age: number;
-    isShort: boolean;
-}
+
 
 export default testMain;

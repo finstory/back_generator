@@ -33,13 +33,13 @@ class AstImportService {
                     if (newImportName) localGetting.name = newImportName;
                     if (newImportPath) astImport.source.value = newImportPath;
                     ok = true;
-        
+
                 }
             },
         });
 
         !ok && throwError("not_found", `[AST] Import '${importName}'`);
-        printInfo("AST", `Import '${importName}' edited successfully.`);
+        printInfo("AST", `Import of '${importName}' edited.`);
         return await astToTextCode(ast);
     };
 
@@ -57,7 +57,10 @@ class AstImportService {
                 }
             },
         });
-        if (pos.end !== 0) return pos;
+        if (pos.end !== 0) {
+            printInfo("AST", ` Getting position of import '${importName}' successfully.`);
+            return pos;
+        }
         else throwError("not_found", `[AST] Import '${importName}'`);
     };
 }

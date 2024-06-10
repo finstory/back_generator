@@ -1,6 +1,6 @@
 //<IMPORTS>
 import { Router } from "express";
-import { controller, validation } from "../auth.controller";
+import { controller, validation } from "../_entities/auth-controller.entity";
 import controllerMiddlewares from "@common/middleware/controller.middleware";
 
 //<CONFIGS>

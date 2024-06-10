@@ -8,8 +8,9 @@ import { TextCode } from '@interfaces';
 import { Pos } from '@interfaces';
 
 import { codeToAst } from "@utils";
+import { printInfo } from "@/_common/helpers/wordsManager";
 
-class AstCommentService  {
+class AstCommentService {
 
     getPosComment = (textCode: TextCode, comment: string): Pos => {
 
@@ -42,7 +43,10 @@ class AstCommentService  {
             },
         });
 
-        if (pos.end !== 0) return pos;
+        if (pos.end !== 0) {
+            printInfo("AST", `Position obtained for the comment '${comment}'.`);
+            return pos;
+        }
         else throwError("not_found", `[AST] Comment '${comment}'`);
 
     }

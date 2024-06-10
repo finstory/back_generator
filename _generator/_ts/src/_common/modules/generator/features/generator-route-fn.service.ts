@@ -9,7 +9,7 @@ import { printInfo } from "@/_common/helpers/wordsManager";
 
 class GeneratorRouteFn extends Injector {
     private _fs_file: S["fs"]["file"];
-    private _ast_route_function: S["ast"]["route_function"];
+    private _ast_route_function: S["ast"]["routeFunction"];
 
     test = async () => {
         console.log(this._ast_route_function)
