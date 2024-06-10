@@ -2,7 +2,7 @@
 import throwError from "@throw_error";
 
 import traverse, { Node } from "@babel/traverse";
-import { TextCode, AstCompilerFunction, TextPosition, AstClassDeclaration, AstClassProperty } from "@interfaces";
+import { TextCode, AstCompilerFunction, TextPosition, AstClassDeclaration, AstClassProperty, CommentLine } from "@interfaces";
 import { printInfo } from "@helpers/wordsManager";
 import { astToTextCode, codeToAst } from "@utils";
 
@@ -11,24 +11,39 @@ import { getTextPosition } from "../_utils/calculate-position.util";
 
 class AstClassService {
 
-    removeProperty = async (textCode: TextCode, { className, propName }: { className: string, propName: string }): Promise<TextCode> => {
+    removeProperty = async (textCode: TextCode, { className, propName, comment }: { className: string, propName: string, comment?: string }): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
-
+        let isFirstProp = false;
         traverse(ast, {
             ClassDeclaration: (path) => {
                 const expression = path.node as AstClassDeclaration;
 
                 if (expression.id.name === className) {
-                    const classBody = expression.body.body;
 
-                    classBody.forEach((prop: AstClassProperty, index) => {
+                    let newBody = expression.body.body.filter((prop: AstClassProperty, index) => {
                         if (prop.key.name === propName) {
-                            classBody.splice(index, 1);
-                            ok = true;
+                            if (index === 0) isFirstProp = true;
+                            ok = true; return false;
                         }
+                        else return true;
                     });
+
+                    if (newBody) {
+                     
+                        if (comment) {
+                            const commentLine: CommentLine[] = [{ type: "CommentLine", value: comment, start: expression.body.start }];
+
+                            if (newBody.length === 0)
+                                expression.body.innerComments = commentLine;
+                            else if (isFirstProp)
+                                newBody[0].leadingComments = commentLine;
+                        }
+
+                        expression.body.body = newBody;
+                    }
+
                 }
             },
         });

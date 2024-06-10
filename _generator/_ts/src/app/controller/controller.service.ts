@@ -1,12 +1,12 @@
-import { Instantiate, Auto, InitialAll } from "@services_injector";
+import { AutoInstance, Auto, Initialization, Initial } from "@services_injector";
 import ControllerFileService from "./features/controller-file.service";
 import ControllerEntityService from "./features/controller-entity.service";
-@Instantiate
-@InitialAll
+@AutoInstance
+@Initialization
 class ControllerService {
 
-    @Auto public entity: ControllerEntityService;
-    @Auto public file: ControllerFileService;
+    @Initial @Auto public entity: ControllerEntityService;
+    @Initial @Auto public file: ControllerFileService;
 
 }
 

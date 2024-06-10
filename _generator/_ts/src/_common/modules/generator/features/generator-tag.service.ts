@@ -1,4 +1,4 @@
-import { AllServices as S, Injector } from "@services_injector";
+import { AllServices as S, Inject, Injectable, Injector } from "@services_injector";
 import { Path, TextCode } from '@interfaces';
 import { Tags } from "@interfaces";
 
@@ -7,10 +7,11 @@ import { formatCode } from "@ast/_utils/transform.util";
 import { printInfo } from "@/_common/helpers/wordsManager";
 
 
-class GeneratorTag extends Injector {
 
-    private _fs_file: S['fs']['file'];
-    private _ast_comment: S['ast']['comment'];
+class GeneratorTagService extends Injectable {
+
+    @Inject private _fs_file: S['fs']['file'];
+    @Inject private _ast_comment: S['ast']['comment'];
 
     addCodeAfterTag = async (filePath: Path, tagName: Tags, codeToAdd: TextCode, addSpace: boolean = false) => {
 
@@ -26,4 +27,4 @@ class GeneratorTag extends Injector {
 }
 
 
-export default GeneratorTag;
+export default GeneratorTagService;

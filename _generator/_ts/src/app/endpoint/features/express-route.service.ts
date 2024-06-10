@@ -1,4 +1,4 @@
-import { AllServices as S, Injector } from "@services_injector";
+import { AllServices as S, Injector, Injectable, Inject } from "@services_injector";
 import throwError from "@throw_error";
 import { generateControllerName } from "@utils";
 import { express_endpoint } from "@mockups";
@@ -9,12 +9,13 @@ import { RouteExpressDto, RouteExpressDtoV2 } from "@ast/_dtos/ast-route-functio
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
 
 
-class ExpressRouteService extends Injector {
+class ExpressRouteService extends Injectable {
 
-    private _fs_file: S['fs']['file'];
-    private _ast_import: S['ast']['import'];
-    private _ast_routeFunction: S['ast']['routeFunction'];
-    private _generator_tag: S['generator']['tag'];
+    @Inject private _fs_file: S['fs']['file'];
+    @Inject private _ast_import: S['ast']['import'];
+    @Inject private _ast_routeFunction: S['ast']['routeFunction'];
+    @Inject private _generator_tag: S['generator']['tag'];
+
 
     updateControllerImport = async (moduleName: string, features?: string[]) => {
 

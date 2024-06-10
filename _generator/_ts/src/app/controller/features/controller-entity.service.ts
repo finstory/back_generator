@@ -1,6 +1,6 @@
 import { printInfo, UpFirst } from "@helpers/wordsManager";
 import { controller_model } from "@/_common/mockups/controller.mockup";
-import { AllServices as S, Injector, Injectable, Inject } from "@services_injector";
+import { AllServices as S, Injectable, Inject } from "@services_injector";
 import throwError from "@throw_error";
 
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
@@ -10,6 +10,9 @@ class ControllerEntityService extends Injectable {
     @Inject private _fs_file: S['fs']['file'];
     @Inject private _ast_class: S['ast']['class'];
     @Inject private _generator_tag: S['generator']['tag'];
+
+
+
 
     createControllerEntity = async (moduleName: string, controllerName: string) => {
 
@@ -27,7 +30,7 @@ class ControllerEntityService extends Injectable {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
-            return await this._ast_class.removeProperty(textCode, { className: `${UpFirst(moduleName)}Controller`, propName: controllerName })
+            return await this._ast_class.removeProperty(textCode, { className: `${UpFirst(moduleName)}Controller`, propName: controllerName, comment: "<CONTROLLERS>" })
 
         });
 

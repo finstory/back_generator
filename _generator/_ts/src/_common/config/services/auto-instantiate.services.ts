@@ -14,7 +14,7 @@ function instantiateServices(instance: any) {
         }
     }
 }
-export function Instantiate<T extends { new(...args: any[]): {} }>(constructor: T) {
+export function AutoInstance<T extends { new(...args: any[]): {} }>(constructor: T) {
     return class extends constructor {
         constructor(...args: any[]) {
             super(...args);

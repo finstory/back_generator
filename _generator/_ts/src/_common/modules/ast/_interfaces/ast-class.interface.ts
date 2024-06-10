@@ -51,7 +51,9 @@ export interface AstClassDeclaration {
             };
         };
         body: AstClassProperty[];
+    innerComments?: CommentLine[];
     };
+
 }
 
 
@@ -411,24 +413,11 @@ export interface AstClassProperty {
     //         directives: any[];
     //     };
     // };
-    // leadingComments: [
-    //     {
-    //         type: "CommentLine";
-    //         value: string;
-    //         start: number;
-    //         end: number;
-    //         loc: {
-    //             start: {
-    //                 line: number;
-    //                 column: number;
-    //                 index: number;
-    //             };
-    //             end: {
-    //                 line: number;
-    //                 column: number;
-    //                 index: number;
-    //             };
-    //         };
-    //     }
-    // ];
+    leadingComments: CommentLine[];
+}
+
+export interface CommentLine {
+    type: "CommentLine";
+    value: string;
+    start: number;
 }

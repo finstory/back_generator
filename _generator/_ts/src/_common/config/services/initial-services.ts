@@ -18,20 +18,28 @@ function InitialServices(target: any) {
 }
 
 function Initial(target: any, propertyKey: string) {
-    // Aquí puedes realizar cualquier lógica adicional si es necesario
-    // En este caso, el decorador no necesita hacer nada más
+    Reflect.defineMetadata('Initial', true, target, propertyKey);
+    if (!target.constructor._initialProperties) {
+        target.constructor._initialProperties = [];
+    }
+    target.constructor._initialProperties.push(propertyKey);
 }
 
 
 function Initialization(constructor: Function) {
+
+    const properties = (constructor as any)._initialProperties;
     const _initial = function (S: any) {
         const serviceName = constructor.name;
         const serviceNameLower = serviceName.toLowerCase().replace('service', '');
-
+        
         for (const prop of Object.getOwnPropertyNames(this)) {
-            if (Reflect.hasMetadata('Initial', this, prop) && prop !== '_initial') {
+
+            if (properties.includes(prop) && prop !== '_initial') {
+
                 const propertyClass = Reflect.getMetadata('design:type', this, prop);
                 S[serviceNameLower][prop] = new propertyClass(S);
+                
             }
         }
     };

@@ -1,5 +1,5 @@
 import { AllServices } from "@services";
-import { Auto, Instantiate } from "./auto-instantiate.services";
+import { Auto, AutoInstance } from "./auto-instantiate.services";
 import { Initial, Initialization, InitialAll } from "./initial-services";
 class SuperInjector {
     protected readonly S: AllServices;
@@ -55,7 +55,7 @@ class Injectable {
 
 
 export {
-    AllServices, Injector, Auto, Instantiate, initialInjector,
+    AllServices, Injector, Auto, AutoInstance, initialInjector,
     Inject, Injectable, Initial, Initialization, InitialAll
 };
 export default SuperInjector;
