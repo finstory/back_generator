@@ -101,11 +101,20 @@
     },
     {
         "type": "Directory",
-        "name": "_generator\\_ts\\src\\app\\controller",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\validation",
         "parent_id": "gLGhYV8DIlTcNvUd",
-        "fsPath": "_generator\\_ts\\src\\app\\controller",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\validation",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "RMZ9xBOirVmIpLzU"
+        "id": "yplSDvuCj2BwYXor"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\user",
+        "parent_id": "gLGhYV8DIlTcNvUd",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\user",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "1ARSMu4vPK0Tcd3e"
     }
 ]

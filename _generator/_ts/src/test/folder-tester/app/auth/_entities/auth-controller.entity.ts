@@ -5,7 +5,7 @@ import getValidations from "@config/validations/getValidations";
 export class AuthController {
     //<CONTROLLERS>
 
-    authGetting = async (req: C.authGetting.Req, res: C.authGetting.Res) => {};
+    getEmailUserById = async (req: C.getEmailUserById.Req, res: C.getEmailUserById.Res) => { };
 }
 
 //<EXPORTS>

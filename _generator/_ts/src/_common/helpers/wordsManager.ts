@@ -23,9 +23,9 @@ function textColor(str: string, color: string = "green"): string {
     return str;
 }
 
-type Info = "AST" | "FS" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
+type Info = "AST" | "FS" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
 
-const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS"];
+const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS", "VALIDATION"];
 
 const showFSLogs = true;
 const showASTLogs = true;

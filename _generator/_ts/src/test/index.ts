@@ -12,11 +12,9 @@ const testMain = async () => {
 
     try {
         const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/_entities/auth-controller.entity.ts";
-        await S.controller.entity.removeControllerEntity("auth", "getUser");
-        await delay(1000);
-        await S.controller.entity.createControllerEntity("auth", "authGetting");
-
-
+        // await S.validation.model.createFile("auth", "getEmailUserById");
+        await S.validation.model.addBarrelExport("auth", "getEmailUserById");
+        await S.validation.model.removeBarrelExport("auth", "getEmailUserById");
         //  await   S.controller.file.createController("auth", "userGetting");
         // await    S.controller.file.createController("auth", "userGetting2");
         // await S.controller.file.removeController("auth", "userGetting2");

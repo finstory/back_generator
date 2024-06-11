@@ -54,3 +54,54 @@ export interface AstImportDeclaration {
     };
 }
 
+export interface AstExportDeclaration {
+    type: "ExportAllDeclaration";
+    start: number;
+    end: number;
+    loc: {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    };
+    range: [number, number];
+    source: {
+        type: string;
+        start: number;
+        end: number;
+        loc: {
+            start: {
+                line: number;
+                column: number;
+            };
+            end: {
+                line: number;
+                column: number;
+            };
+        };
+        range: [number, number];
+        value: string;
+        raw: string;
+    };
+    exported: {
+        type: string;
+        start: number;
+        end: number;
+        loc: {
+            start: {
+                line: number;
+                column: number;
+            };
+            end: {
+                line: number;
+                column: number;
+            };
+        };
+        range: [number, number];
+        name: string;
+    };
+}

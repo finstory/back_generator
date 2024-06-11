@@ -17,7 +17,9 @@ class GeneratorTagService extends Injectable {
 
         let textCode = await this._fs_file.getFile(filePath);
         const pos = this._ast_comment.getPosComment(textCode, tagName);
+        
         textCode = insertCodeAfterPosition(textCode, codeToAdd, pos, addSpace);
+
         await this._fs_file.createFile(filePath, await formatCode(textCode));
 
         printInfo("GENERATOR", `Code added after tag '${tagName}'.`);
