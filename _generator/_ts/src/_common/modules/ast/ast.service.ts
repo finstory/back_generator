@@ -1,22 +1,18 @@
-import ServicesInjector, { AllServices } from "@services_injector";
+import { Auto, AutoInstance } from "@services_injector";
 
-import AstComment from "./features/ast-comment.service";
-import AstImport from "./features/ast-import.service";
-import AstFunction from "./features/ast-function.service";
+import AstCommentService from "./features/ast-comment.service";
+import AstImportService from "./features/ast-import.service";
+import AstRouteFunctionService from "./features/ast-router-function.service";
+import AstFunctionCompilerService from "./features/ast-compiler-function.service";
+import AstClassService from "./features/ast-class.service";
 
-
-class Ast extends ServicesInjector {
-
-    public readonly comments: AstComment;
-    public readonly imports: AstImport;
-    public readonly functions: AstFunction;
-
-    constructor(S: AllServices) {
-        super(S);
-        this.comments = new AstComment(S);
-        this.imports = new AstImport(S);
-        this.functions = new AstFunction(S);
-    }
+@AutoInstance
+class Ast {
+    @Auto public comment: AstCommentService;
+    @Auto public import: AstImportService;
+    @Auto public compilerFunction: AstFunctionCompilerService;
+    @Auto public routeFunction: AstRouteFunctionService;
+    @Auto public class: AstClassService;
 
 }
 

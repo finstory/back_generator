@@ -3,6 +3,7 @@
 @import "./utilities/gradient";
 
 html {
+    color : #adadad;
     box-sizing: border-box;
     font-size: 62.5%;
     @include dim_height();

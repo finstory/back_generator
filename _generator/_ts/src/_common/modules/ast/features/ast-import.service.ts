@@ -1,35 +1,47 @@
-import ServicesInjector from "@services_injector";
+
 import throwError from "@throw_error";
 
-import traverse, { Node } from '@babel/traverse';
+import traverse, { Node } from "@babel/traverse";
 
-import { TextCode } from '@interfaces/fs.interface';
-import { Pos } from '@interfaces/ast.interface';
+import { AstImportDeclaration, TextCode } from "@interfaces";
+import { Pos } from "@interfaces";
 
-import { astToTextCode, codeToAst } from "../_utils/transform.util";
+import { astToTextCode, codeToAst } from "@utils";
+import { printInfo } from "@/_common/helpers/wordsManager";
 
+class AstImportService {
+    editImport = async (textCode: TextCode, importName: string, newImportName?: string, newImportPath?: string): Promise<TextCode> => {
 
-class AstImport extends ServicesInjector {
-
-    editImport = (textCode: TextCode, importName: string, newImportName: string, newImportPath: string): TextCode => {
         const ast = codeToAst(textCode);
+        let ok = false;
 
         traverse(ast, {
-            ImportDeclaration: (path) => {
-                const identifierGetting = path.node.specifiers[0]?.local;
 
-                if (identifierGetting.name === importName) {
-                    if (newImportPath) path.node.source.value = newImportPath;
-                    if (newImportName) identifierGetting.name = newImportName;
+            ImportDeclaration: (path) => {
+                const astImport = path.node as AstImportDeclaration;
+
+                let importedGetting = astImport.specifiers[0].imported;
+                let localGetting = astImport.specifiers[0].local;
+
+                if (importedGetting && importedGetting.name === importName) {
+                    if (newImportName) importedGetting.name = newImportName;
+                    if (newImportPath) astImport.source.value = newImportPath;
+                    ok = true;
                 }
-                else throwError("not_found", `[AST] Import '${importName}'`);
-            }
+
+                if (localGetting && localGetting.name === importName) {
+                    if (newImportName) localGetting.name = newImportName;
+                    if (newImportPath) astImport.source.value = newImportPath;
+                    ok = true;
+
+                }
+            },
         });
 
-        const textCodeEdited = astToTextCode(ast);
-        return textCodeEdited;
-
-    }
+        !ok && throwError("not_found", `[AST] Import '${importName}'`);
+        printInfo("AST", `Import of '${importName}' edited.`);
+        return await astToTextCode(ast);
+    };
 
     getPosImport = (textCode: TextCode, importName: string): Pos => {
         let pos: Pos = { start: 0, end: 0 };
@@ -43,12 +55,14 @@ class AstImport extends ServicesInjector {
                     pos.start = path.node.start;
                     pos.end = path.node.end;
                 }
-            }
+            },
         });
-        if (pos.end !== 0) return pos;
+        if (pos.end !== 0) {
+            printInfo("AST", ` Getting position of import '${importName}' successfully.`);
+            return pos;
+        }
         else throwError("not_found", `[AST] Import '${importName}'`);
     };
-
 }
 
-export default AstImport;
+export default AstImportService;

@@ -31,7 +31,7 @@ const customPayload = (key: string, message?: string, defaultMessage?: string): 
 ];
 
 
-const throwErrorResponse = (type: typeError, key: string, message?: string, status?: number, payload?: ErrorFormat[]) => {
+const throwErrorResponse = (type: typeError, key: string = "", message?: string, status?: number, payload?: ErrorFormat[]) => {
 
   if (status)
     throw new ErrorResponse(type, message, status, payload ? payload : customPayload(key, message));

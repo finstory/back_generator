@@ -8,7 +8,8 @@
       "@common/*": ["./_common/*"],
       "@config/*": ["./_common/config/*"],
       "@helpers/*": ["./_common/helpers/*"],
-      "@interfaces/*": ["./_common/interfaces/*"],
+      "@utils": ["./_common/utils/_index.ts"],
+      "@interfaces": ["./_common/interfaces/_index.ts"],
       "@envs": ["./_common/config/plugins/env/env-var.plugin.ts"],
       "@mockups": ["./_common/mockups/_index.ts"],
       "@app/*": ["./app/*"],
@@ -18,14 +19,18 @@
       "@throw_error_response_wrap": ["./_common/config/server/response/errors/throw-error-wrapper.response.ts"],
 
       //% Services:
-      "@services": ["./_common/config/services/AllServices.ts"],
-      "@services_injector": ["./_common/config/services/ServicesInjector.ts"],
+      "@services": ["./_common/services/all-services.ts"],
+      "@services_injector": ["./_common/config/services/service-injector.ts"],
       
       //<APP_MODULES>
       "@user/*": ["./app/user/*"],
-      "@package/*": ["./app/package/*"]
+      "@package/*": ["./app/package/*"],
+      "@endpoint/*": ["./app/endpoint/*"],
       
       //<MODULES>
+      "@ast/*": ["./_common/modules/ast/*"],
+      "@fs/*": ["./_common/modules/fs/*"],
+      "@generator/*": ["./_common/modules/generator/*"],
     }
   }
 }

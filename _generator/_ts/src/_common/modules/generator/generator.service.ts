@@ -1,23 +1,21 @@
-import ServicesInjector, { AllServices } from "@services_injector";
+import ServicesInjector, { AllServices, Auto, Initial, Initialization, AutoInstance } from "@services_injector";
 
 import GeneratorFn from "./features/generator-fn.service";
 import GeneratorImport from "./features/generator-import.service";
-import GeneratorTag from "./features/generator-tag.service";
+import GeneratorTagService from "./features/generator-tag.service";
+import GeneratorRouteFn from "./features/generator-route-fn.service";
+import GeneratorWrapperService from "./features/generator-wrapper.service";
 
+@AutoInstance
+@Initialization
+class GeneratorService {
 
-class Generator extends ServicesInjector {
-
-    public readonly functions: GeneratorFn;
-    public readonly imports: GeneratorImport;
-    public readonly tags: GeneratorTag;
-
-    constructor(S: AllServices) {
-        super(S);
-        this.functions = new GeneratorFn(S);
-        this.imports = new GeneratorImport(S);
-        this.tags = new GeneratorTag(S);
-    }
+    @Auto @Initial public tag: GeneratorTagService;
+    @Auto public function: GeneratorFn;
+    @Auto public import: GeneratorImport;
+    @Auto public routeFunction: GeneratorRouteFn;
+    @Auto public wrapper: GeneratorWrapperService;
 
 }
 
-export default Generator;
+export default GeneratorService;

@@ -7,10 +7,10 @@ const commonPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder
 
 class PackageService extends ServicesInjector {
 
-    private createFolder = this.S.fs.folders.createFolder;
-    private createFile = this.S.fs.files.createFile;
-    private createFoldersList = this.S.fs.folders.createFoldersList;
-    private createFilesList = this.S.fs.files.createFilesList;
+    private createFolder = this.S.fs.folder.createFolder;
+    private createFile = this.S.fs.file.createFile;
+    private createFoldersList = this.S.fs.folder.createFoldersList;
+    private createFilesList = this.S.fs.file.createFilesList;
 
     createModule = async (name: string, commonModule: boolean = false) => {
         let folderPath: string;

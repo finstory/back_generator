@@ -4,7 +4,7 @@ export interface Res extends Response<ResponseBody> { }
 
 //REQUEST TYPES:
 class Params {
-  id: string;
+    id: string;
 }
 
 class Query {

@@ -4,12 +4,13 @@ import throwError from "@throw_error";
 import traverse, { Node } from '@babel/traverse';
 import { Comment } from '@babel/types';
 
-import { TextCode } from '@interfaces/fs.interface';
-import { Pos } from '@interfaces/ast.interface';
+import { TextCode } from '@interfaces';
+import { Pos } from '@interfaces';
 
-import { codeToAst } from "../_utils/transform.util";
+import { codeToAst } from "@utils";
+import { printInfo } from "@/_common/helpers/wordsManager";
 
-class AstComment extends ServicesInjector {
+class AstCommentService {
 
     getPosComment = (textCode: TextCode, comment: string): Pos => {
 
@@ -42,11 +43,14 @@ class AstComment extends ServicesInjector {
             },
         });
 
-        if (pos.end !== 0) return pos;
+        if (pos.end !== 0) {
+            printInfo("AST", `Position obtained for the comment '${comment}'.`);
+            return pos;
+        }
         else throwError("not_found", `[AST] Comment '${comment}'`);
 
     }
 
 }
 
-export default AstComment;
+export default AstCommentService;

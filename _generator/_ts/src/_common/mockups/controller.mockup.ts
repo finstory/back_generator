@@ -1,9 +1,9 @@
-import { UpFirst } from "../helpers/wordsManager"
+import { UpFirst } from "../helpers/wordsManager";
 
 
 export const module_controller = (moduleName: string): string => `//<IMPORTS>
 import throwError from "@throw_error";
-import { controller, validation } from "./_entities/${moduleName}-controller.entity";
+import { controller, validation } from "../_entities/${moduleName}-controller.entity";
 import S from "@services";
 
 //<CONTROLLERS>
@@ -11,6 +11,14 @@ import S from "@services";
 
 //<EXPORTS>
 export { validation, controller };`
+
+export const controller = (controllerName: string): string => `
+controller.${controllerName} = async ({ params, query, body }, res) => {
+  const data: any = { controllerName: ${controllerName} };
+
+
+  res.status(200).json(data);
+};`;
 
 
 export const controller_entity = (moduleName: string): string => `//<IMPORTS>
@@ -26,3 +34,6 @@ export class ${UpFirst(moduleName)}Controller {
 export const controller = new ${UpFirst(moduleName)}Controller();
 export const validation = getValidations(${UpFirst(moduleName)}Controller, C);
 `
+
+export const controller_model = (controllerName: string): string => `
+${controllerName} = async (req: C.${controllerName}.Req, res: C.${controllerName}.Res) => { };`;

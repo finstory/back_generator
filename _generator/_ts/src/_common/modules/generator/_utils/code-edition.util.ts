@@ -1,5 +1,5 @@
-import { Pos } from "@interfaces/ast.interface";
-import { TextCode } from "@interfaces/fs.interface";
+import { Pos } from "@interfaces";
+import { TextCode } from "@interfaces";
 
 export const insertCodeAfterPosition = (textCode: TextCode, codeToAdd: string, pos: Pos, addSpace: boolean) => {
     return textCode.slice(0, pos.end) + `\n${codeToAdd}${addSpace ? "\n" : ""}` + textCode.slice(pos.end);

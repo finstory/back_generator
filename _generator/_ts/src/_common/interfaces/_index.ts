@@ -1,3 +1,5 @@
-export * from "./ast.interface";
-export * from "./fs.interface";
-export * from "./generator.interface";
+export * from "@endpoint/_interfaces/_index";
+
+export * from "@generator/_interfaces/_index";
+export * from "@ast/_interfaces/_index";
+export * from "@fs/_interfaces/_index";
