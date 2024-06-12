@@ -25,6 +25,14 @@ const initialInjector = (S: AllServices, secondTry: boolean = true) => {
 
 }
 
+/**
+ * [🇺🇸] Used to infer and inject a service into a property based on its naming convention.
+ * 
+ * [🇪🇸] Usado para inferir e inyectar un servicio en una propiedad según su nomenclatura.
+ * 
+ * ( Example => | '@Inject' private _user_email |
+ *  Then do it using =>| _user like as UserService & _email like as EmailService | When UserService contains EmailService property)
+ */
 function Inject(target: any, propertyKey: string) {
     if (!target.constructor.__injectProps) {
         target.constructor.__injectProps = [];
@@ -32,7 +40,11 @@ function Inject(target: any, propertyKey: string) {
     target.constructor.__injectProps.push(propertyKey);
 }
 
-// Clase base genérica que maneja la inyección de dependencias
+/**
+ * [🇺🇸] Extend this class to inject all services marked by '@Inject'.
+ * 
+ * [🇪🇸] Extiende esta clase para inyectar todos los servicios marcados por '@Inject'.
+ */
 class Injectable {
     constructor(S: AllServices) {
         const props = (this.constructor as any).__injectProps || [];

@@ -17,6 +17,7 @@ export class AllServices {
   public readonly validation = new ValidationService();
   public readonly endpoint = new EndpointService();
   public readonly controller = new ControllerService();
+
 }
 
 const S = new AllServices();
