@@ -1,16 +1,17 @@
 import { Provider } from "react-redux";
-import "./_config/styles/css/normalize.css";
-import "./_config/styles/sass/app.scss";
-import { AppMain } from "./router/AppMain";
-import store from "./redux";
+import "@config/styles/css/normalize.css";
+import "@config/styles/sass/app.scss";
+import { AppMain } from "@/_common/routes/AppMain";
+
+// import store from "./redux";
 
 
 function App() {
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <AppMain />
-    </Provider>
+    // </Provider>
   );
 }
 

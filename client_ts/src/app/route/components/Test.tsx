@@ -1,4 +1,4 @@
-import S from '@/_config/services';
+import S from '@/_common/config/services45}';
 import { Button, Text } from '@/components';
 
 

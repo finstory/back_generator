@@ -7,6 +7,7 @@ import { export_validation, validation_model } from "@/_common/mockups/validatio
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
 
 const convertToSnakeCase = (text: string): string => {
+
     return text.replace(/([A-Z])/g, "-$1").toLowerCase();
 }
 
@@ -15,7 +16,7 @@ class ValidateModelService extends Injectable {
     @Inject private _fs_file: S['fs']['file'];
     // @Inject private _ast_class: S['ast']['class'];
     @Inject private _generator_tag: S['generator']['tag'];
-
+    
     addBarrelExport = async (moduleName: string, controllerName: string) => {
 
         const filePath = `${appPath}/${moduleName}/_validations/_index.ts`;

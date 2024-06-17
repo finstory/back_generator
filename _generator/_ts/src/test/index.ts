@@ -1,20 +1,16 @@
 import S from "@services";
 import { User } from "./../app/user/_dtos/user.dto";
-import validateModule from "@/_common/config/validations/validateModule";
-import { formatCode } from "@/_common/utils/_index";
 import { printInfo, printMsg } from "@/_common/helpers/wordsManager";
-import { keepObjRef } from "@/_common/modules/ast/_utils/keep-ref.util";
 import { delay } from "@helpers/delay";
-
 
 
 const testMain = async () => {
 
     try {
-        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app/auth/_entities/auth-controller.entity.ts";
+        
         // await S.validation.model.createFile("auth", "getEmailUserById");
         await S.validation.model.addBarrelExport("auth", "getEmailUserById");
-        await S.validation.model.removeBarrelExport("auth", "getEmailUserById");
+        // await S.validation.model.removeBarrelExport("auth", "getEmailUserById");
         //  await   S.controller.file.createController("auth", "userGetting");
         // await    S.controller.file.createController("auth", "userGetting2");
         // await S.controller.file.removeController("auth", "userGetting2");

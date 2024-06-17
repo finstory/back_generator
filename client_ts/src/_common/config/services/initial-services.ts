@@ -1,4 +1,4 @@
-import { initialInjector } from "@services_injector";
+import { initialInjector } from "./service-injector";
 
 /**
  * [🇺🇸] Used to initialize all _initial methods of applied services.

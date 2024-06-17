@@ -3,7 +3,7 @@ import { Text, IText, DGBorder, Button, IDGBorder } from "@/components";
 import scss from "@routes/_scss/endpoint_panel.module.scss";
 import { Title } from "./Title/_Title";
 import { EndpointDir } from "./EndpointDir/_EndpointDir";
-import S from "@/services/_test/injector";
+import S from "@/_common/services/_test/injector";
 
 
 export const EndpointPanel = () => {

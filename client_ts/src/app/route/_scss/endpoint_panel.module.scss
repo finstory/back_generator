@@ -66,6 +66,7 @@
     @include dim_width(50rem);
     @include dim_height(65rem);
     @include flex(center, center);
+    
     border-radius: 1rem;
 
     box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);

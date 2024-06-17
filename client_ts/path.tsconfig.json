@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      
+      "@services": ["./src/services/all-services.ts"],
+      "@services_injector": ["./src/_common/config/services/service-injector.ts"],
+      
+      "@routes/*": ["./src/_common/routes/*"],
+      "@config/*": ["./src/_common/config*"],
+      "@components": ["./src/_common/components"],
+
+      
+      "@route/*" : ["./src/app/route/*"]
+    }
+  }
+}

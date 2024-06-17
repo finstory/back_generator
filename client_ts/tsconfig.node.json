@@ -1,18 +1,14 @@
-{
-  "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "lib": ["ESNext"],
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": false,
-    "strict": true
-  },
-  "paths": {
-    "@components/*": ["components/*"],
-    "@pages/*": ["pages/*"],
-  },
+// {
+//   "compilerOptions": {
+//     "composite": true,
+//     "skipLibCheck": true,
+//     "module": "ESNext",
+//     "lib": ["ESNext"],
+//     "moduleResolution": "bundler",
+//     "allowSyntheticDefaultImports": true,
+//     "noUnusedLocals": false,
+//     "strict": true
+//   },
 
-  "include": ["vite.config.ts"]
-}
+//   "include": ["vite.config.ts"]
+// }

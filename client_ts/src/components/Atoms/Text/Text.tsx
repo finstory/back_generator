@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import scss from './text.module.scss';
-import { ColorStyle, FamilyStyle, FontWeightStyle, LabelStyle, SizeStyle } from '@/interfaces/IStyles';
+import { ColorStyle, FamilyStyle, FontWeightStyle, LabelStyle, SizeStyle } from '@/_common/interfaces/IStyles';
 
 export interface IText {
     className?: string,

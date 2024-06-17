@@ -1,6 +1,6 @@
 import { AuthState } from "@/redux/stores/auth.store";
 import { UserState } from "@/redux/stores/user.store";
-import { Injector } from "@/services/_test/injector";
+import { Injector } from "@/_common/services/_test/injector";
 
 export class AuthManager {
 

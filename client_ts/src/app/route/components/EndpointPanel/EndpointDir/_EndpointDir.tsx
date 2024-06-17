@@ -1,4 +1,4 @@
-import S from "@/_config/services";
+import S from "@/_common/config/services45}";
 import { RouteModule } from "./RouteModule/__RouteModule";
 import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
 

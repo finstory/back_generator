@@ -1,5 +1,5 @@
 
-import { RoutesPage } from "@routes/_pages/RoutesPage";
+import { RoutesPage } from "@/app/route/_pages/RoutesPage";
 import { Route, Routes } from "react-router-dom";
 
 

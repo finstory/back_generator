@@ -1,8 +1,8 @@
 import { getState } from "@/redux/hooks/useRedux";
 
-import authCompService from "@/services/auth/auth.comp.service";
-import authApiServices from "@/services/other/other.api.service";
-import userApiServices from "@/services/user/user.api.service";
+import authCompService from "@/_common/services/auth/auth.comp.service";
+import authApiServices from "@/_common/services/other/other.api.service";
+import userApiServices from "@/_common/services/user/user.api.service";
 
 
 

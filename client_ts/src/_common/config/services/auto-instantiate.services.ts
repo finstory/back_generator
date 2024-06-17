@@ -1,4 +1,5 @@
 
+import 'reflect-metadata';
 
 /**
  * [🇺🇸] Marks a property to be instantiated without dependencies.

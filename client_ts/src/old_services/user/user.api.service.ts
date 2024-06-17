@@ -1,4 +1,4 @@
-import { UserManager } from "@/_config/redux";
+import { UserManager } from "@/_common/config/redux";
 class UserApiServices extends UserManager {
 
   otherUser = async () => {
