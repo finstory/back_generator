@@ -1,7 +1,7 @@
 
 import InitialServices from "@/_common/config/services/initial-services";
 import AuthService from "./auth/auth.service";
-import ProductService from "@/old_services/product.service";
+import ProductService from "./product/product.service";
 
 @InitialServices
 export class AllServices {
@@ -11,5 +11,9 @@ export class AllServices {
 
 }
 
-const S = new AllServices();
+const S = {
+    get auth() {
+        return new AllServices().auth;
+    },
+}
 export default S;

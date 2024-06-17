@@ -36,7 +36,7 @@ export const setReducer = <K extends keyof RootState>(name: K) => {
 const selectorRedux = <K extends keyof RootState>(
   stateKey: K,
   childrenKey: keyof RootState[K]
-): RootState[K][keyof RootState[K]] => {
+) => {
   for (const initialKey in store.getState()) {
     if (initialKey === stateKey) {
       const state = useSelector((state: RootState) => state[stateKey][childrenKey]);

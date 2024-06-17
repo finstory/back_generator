@@ -1,23 +1,7 @@
 import { AllServices } from "@services";
-import { Auto, AutoInstance } from "./auto-instantiate.services";
+import { Auto, AutoInstance } from "./auto-instantiate-services";
 import { Initial, Initialization, InitialAll } from "./initial-services";
-class SuperInjector {
-    protected readonly S: AllServices;
-
-    constructor(S: AllServices) {
-        this.S = S;
-    }
-}
-
-class Injector {
-    constructor(listServices?: any[]) {
-        if (listServices && listServices.length > 0)
-            listServices.forEach((service) => {
-                const [propName, serviceInstance] = Object.entries(service)[0];
-                this[propName] = serviceInstance;
-            });
-    }
-}
+import "reflect-metadata";
 
 const initialInjector = (S: AllServices, secondTry: boolean = true) => {
     for (const service of Object.values(S)) service._initial && service._initial(S);
@@ -67,9 +51,44 @@ class Injectable {
     }
 }
 
+/**
+ * [🇺🇸] Used to mark a service that needs to be injected.
+ * 
+ * [🇪🇸] Usado para marcar un servicio que se quiera inyectar.
+ */
+function BasicInject(target: any, propertyKey: string) {
+    const existingInjectedProperties = Reflect.getMetadata('injectedProperties', target) || [];
+    Reflect.defineMetadata('injectedProperties', [...existingInjectedProperties, propertyKey], target);
+}
+
+/**
+ * [🇺🇸] Extend this class in a service WITHOUT SUB SERVICES to inject all services marked with '@BasicInject' when calling the _initial method.
+ * 
+ * [🇪🇸] Extiende esta clase en un servicio ""SIN SUB SERVICIOS" para inyectarle todos los servicios marcados por '@BasicInject' al llamar el método _initial.
+ * 
+ * ( Only works with top-level services that do not contain other subs services ).
+ */
+class BasicInjectable {
+    _initial(S: AllServices) {
+        const injectedProperties = Reflect.getMetadata('injectedProperties', this) || [];
+
+        for (const prop of injectedProperties) {
+            const [serviceGroup, serviceKey] = prop.startsWith('_') ? prop.slice(1).split('_') : prop.split('_');
+
+            if (S && S[serviceGroup] && S[serviceGroup][serviceKey])
+                (this as any)[prop] = S[serviceGroup][serviceKey];
+
+            else if (S && S[serviceGroup])
+                (this as any)[prop] = S[serviceGroup];
+
+            else if (S)
+                throw new Error(`Service ${serviceGroup}.${serviceKey} not provided in AllServices`);
+        }
+    }
+}
 
 export {
-    AllServices, Injector, Auto, AutoInstance, initialInjector,
-    Inject, Injectable, Initial, Initialization, InitialAll
+    AllServices, Auto, AutoInstance, initialInjector,
+    Inject, Injectable, Initial, Initialization, InitialAll,
+    BasicInject, BasicInjectable,
 };
-export default SuperInjector;
