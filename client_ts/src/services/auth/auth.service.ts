@@ -1,37 +1,85 @@
+import 'reflect-metadata';
 import { BasicInject, BasicInjectable, AllServices as S } from "@services_injector";
 import { getObjState as state, setReducer, getState } from "@/_common/redux/hooks/useRedux";
 import { useEffect } from "react";
+import type { AuthState } from "@/_common/redux/stores/auth.store";
+import type { UserState } from '@/_common/redux/stores/user.store';
 
-
-interface Dispatch {
-    set: (data: any, actionName: string) => void;
+function Redux(target: any, propertyKey: string) {
+    const reduxProperties = Reflect.getMetadata('reduxProperties', target) || [];
+    Reflect.defineMetadata('reduxProperties', [...reduxProperties, propertyKey], target);
 }
 
-const stateR = {
-    get auth() {
-        return state.auth;
-    }
-};
-class useAuthService extends BasicInjectable {
-    private get _auth() {
-        return state.auth;
-    }
 
-    private _setAuth = setReducer("auth");
+function ReduxConfig<T extends { new(...args: any[]): {} }>(constructor: T) {
 
-    get auth() {
-        return getState("auth");
-    
+    return class extends constructor {
+        constructor(...args: any[]) {
+            super(...args);
+
+            const reduxProperties = Reflect.getMetadata('reduxProperties', this) || [];
+
+            for (const propGetting of reduxProperties) {
+                const prop = propGetting.startsWith('_') ? propGetting.slice(1) : propGetting;
+
+                if (prop.endsWith("State")) {
+                    const stateName = prop.replace("State", "");
+
+                    Object.defineProperty(this, `_${stateName}State`, {
+                        get: function () {
+                            return getState(stateName);
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
+                    continue;
+                }
+
+                if (prop.startsWith("set")) {
+                    if (!propGetting.startsWith("_")) throw new Error("set method must be private, please add '_' before the method name.");
+
+                    const reducerName = prop.replace("set", "");
+
+                    Object.defineProperty(this, "_" + prop, {
+                        value: setReducer(reducerName.toLowerCase()),
+                        writable: true,
+                        enumerable: false,
+                        configurable: true
+                    });
+
+                    continue;
+                }
+                else {
+                    if (!propGetting.startsWith("_")) throw new Error("set method must be private, please add '_' before the method name.");
+
+                    Object.defineProperty(this, "_" + prop, {
+                        get: function () {
+                            return state[prop];
+                        },
+                        enumerable: false,
+                        configurable: true
+                    });
+
+                    continue;
+                }
+
+            }
+
+        }
     }
+}
+
+type SetRedux = (data: any, actionName: string) => void;
+
+@ReduxConfig
+class AuthService extends BasicInjectable {
+
+    @Redux public authState!: AuthState;
+    @Redux private _auth!: AuthState;
+    @Redux private _setAuth!: SetRedux;
 
 
-    readonly effect = () => {
-        useEffect(() => {
-            console.log("effect");
-        }, []);
-    }
     testAuth = () => {
-
         // this.effect();
         console.log("yes", this._auth.name);
         this._setAuth({ name: "hello" }, "testAuth");
@@ -47,4 +95,4 @@ class useAuthService extends BasicInjectable {
         console.log(password);
     }
 }
-export default useAuthService;
+export default AuthService;

@@ -20,10 +20,9 @@ import { useEffect } from 'react';
 // const external = () => new External();
 
 export const RoutesPage = () => {
-    const { testAuth, auth: { name } } = S.auth;
-    
-    console.log(S.auth)
+    const { testAuth } = S.auth;
 
+    // const { authState: { name } } = S.auth;
     // S.product.injectionAuth();
     // S.auth.login("heloo", "world");
 
@@ -32,13 +31,14 @@ export const RoutesPage = () => {
         // setAuth({ name: "hello" }, "testAuth");
 
     }
+
     useEffect(() => {
-        testAuth()
+        testAuth();
     }, [])
-    useEffect(() => {
-        console.log(name);
-        console.log("cambio")
-    }, [name])
+    // useEffect(() => {
+    //     console.log(name);
+    //     console.log("cambio")
+    // }, [name])
 
 
     //  S.auth.login("username", "password")
