@@ -15,6 +15,8 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "./src/_common/components"),
       "@services": path.resolve(__dirname, "./src/services/all-services.ts"),
       "@services_injector": path.resolve(__dirname, "./src/_common/config/services/service-injector.ts"),
+      "@redux_config": path.resolve(__dirname, "./src/_common/config/redux/decorators/redux-config.ts"),
+
       "@route": path.resolve(__dirname, "./src/app/route"),
     },
   },
