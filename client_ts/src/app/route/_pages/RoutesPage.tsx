@@ -1,7 +1,10 @@
 import { RoutesLayout } from '@/app/route/_layouts/RoutesLayout';
 import { EndpointPanel } from '@/app/route/components/EndpointPanel/EndpointPanel';
+import { Button, Text } from '@/components';
 import S from '@services';
 import { useEffect } from 'react';
+import { Other } from './Other';
+
 
 
 // class External {
@@ -19,33 +22,29 @@ import { useEffect } from 'react';
 // }
 // const external = () => new External();
 
-export const RoutesPage = () => {
-    const { testAuth } = S.auth;
+// const services = {
+//     get auth() {
+//         return useServices().auth;
+//     }
+// }
 
+export const RoutesPage: React.FC = () => {
+    const { testAuth} = S.auth;
+    const { listProduct } = S.product;
+    // const { testAuth } = S.auth;
     // const { authState: { name } } = S.auth;
-    // S.product.injectionAuth();
-    // S.auth.login("heloo", "world");
-
-    const method = () => {
-
-        // setAuth({ name: "hello" }, "testAuth");
-
+    const test = () => {
+        testAuth();
     }
 
-    useEffect(() => {
-        testAuth();
-    }, [])
-    // useEffect(() => {
-    //     console.log(name);
-    //     console.log("cambio")
-    // }, [name])
-
-
-    //  S.auth.login("username", "password")
     return (
-        <RoutesLayout>
-            <p>Works</p>
-            {/* <EndpointPanel />  */}
-        </RoutesLayout>
+        <>
+            <Other />
+            <RoutesLayout>
+                <Button onClick={test}>Test</Button>
+                <Text label='p' size='large' family='secondary'>jk</Text>
+                {/* <EndpointPanel />  */}
+            </RoutesLayout>
+        </>
     )
 }

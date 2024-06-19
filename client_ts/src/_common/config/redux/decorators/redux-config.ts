@@ -22,8 +22,7 @@ export function ReduxConfig<T extends { new(...args: any[]): {} }>(constructor: 
 
                 if (prop.endsWith("State")) {
                     const stateName = prop.replace("State", "");
-
-                    Object.defineProperty(this, `_${stateName}State`, {
+                    Object.defineProperty(this, propGetting, {
                         get: function () {
                             return getState(stateName);
                         },
@@ -37,20 +36,22 @@ export function ReduxConfig<T extends { new(...args: any[]): {} }>(constructor: 
                     if (!propGetting.startsWith("_")) throw new Error("set method must be private, please add '_' before the method name.");
 
                     const reducerName = prop.replace("set", "");
+                    if (reducerName.charAt(0) === reducerName.charAt(0).toUpperCase()) {
 
-                    Object.defineProperty(this, "_" + prop, {
-                        value: setReducer(reducerName.toLowerCase()),
-                        writable: true,
-                        enumerable: false,
-                        configurable: true
-                    });
+                        Object.defineProperty(this, propGetting, {
+                            value: setReducer(reducerName.charAt(0).toLowerCase() + reducerName.slice(1)),
+                            writable: true,
+                            enumerable: false,
+                            configurable: true
+                        });
 
-                    continue;
+                        continue;
+                    }
                 }
                 else {
                     if (!propGetting.startsWith("_")) throw new Error("set method must be private, please add '_' before the method name.");
 
-                    Object.defineProperty(this, "_" + prop, {
+                    Object.defineProperty(this, propGetting, {
                         get: function () {
                             return state[prop];
                         },

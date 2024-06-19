@@ -1,25 +1,26 @@
 
 import { BasicInject, BasicInjectable, AllServices as S } from "@services_injector";
 import { Redux, ReduxConfig, type SetRedux } from "@redux_config";
-
 import type { AuthState } from "@/_common/redux/stores/auth.store";
-import type { UserState } from "@/old_services/other/_other.store";
+import { useEffect, useState } from "react";
 
-
+const useHook = () => {
+    const [state, setState] = useState(0);
+    useEffect(() => {
+        console.log("useState used: ", state);
+    }, [state]);
+    return { state, setState };
+}
 @ReduxConfig
 class AuthService extends BasicInjectable {
 
     @Redux public authState!: AuthState;
     @Redux private _auth!: AuthState;
     @Redux private _setAuth!: SetRedux;
-    @Redux private _user!: UserState;
 
     testAuth = () => {
         // this.effect();
-        console.log(this._user.is_login);
-        console.log("yes", this._auth.name);
         this._setAuth({ name: "hello" }, "testAuth");
-        console.log("yes", this._auth.name);
 
         // this._product.listProduct();
         // this._product_otherP.test();

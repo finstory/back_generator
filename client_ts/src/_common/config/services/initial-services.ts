@@ -12,7 +12,7 @@ function InitialServices(target: any) {
 
     function construct(constructor: any, args: any[]) {
         const instance = new constructor(...args);
-        initialInjector(instance, false);
+        initialInjector(instance, true);
         return instance;
     }
 

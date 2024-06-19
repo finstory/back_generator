@@ -2,18 +2,15 @@
 import InitialServices from "@/_common/config/services/initial-services";
 import AuthService from "./auth/auth.service";
 import ProductService from "./product/product.service";
+import { PrimaryService } from "../_common/config/services/providers/providers-injector";
+import S from "../_common/config/services/providers/providers-injector";
 
 @InitialServices
 export class AllServices {
 
-    public product = new ProductService();
-    public auth = new AuthService();
+    @PrimaryService product = new ProductService();
+    @PrimaryService auth = new AuthService();
 
 }
 
-const S = {
-    get auth() {
-        return new AllServices().auth;
-    },
-}
-export default S;
+export default new S as AllServices;
