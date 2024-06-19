@@ -1,4 +1,4 @@
-export interface UserState {
+export default interface UserState {
   credential: {
     id: number;
     name: string;

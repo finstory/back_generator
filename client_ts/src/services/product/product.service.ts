@@ -1,4 +1,5 @@
-import { AllServices as S, Auto, AutoInstance, Inject, Injectable } from "@services_injector";
+import { Redux, ReduxConfig, type SetRedux } from "@/_common/config/redux/decorators/redux-config";
+import { AllServices as S, Auto, AutoInstance, Inject, Injectable, BasicInjectable, BasicInject } from "@services_injector";
 
 class OtherService {
     test() {
@@ -6,10 +7,12 @@ class OtherService {
     }
 
 }
+@ReduxConfig
+class ProductService extends BasicInjectable {
 
-class ProductService {
+    @Redux private _setAuth!: SetRedux;
+    @BasicInject private _auth!: S["auth"];
 
-    protected readonly product: any;
 
     // private _auth!: S["auth"];
 
@@ -22,6 +25,9 @@ class ProductService {
     // };
 
     listProduct() {
+
+        this._setAuth({ name: "hello" }, "testProduct");
+        this._auth.testProduct();
         console.log("listProduct222");
     }
 

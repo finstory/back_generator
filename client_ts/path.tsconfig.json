@@ -4,7 +4,8 @@
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       
-      "@services": ["./src/services/all-services.ts"],
+      "@S": ["./src/services/all-services.ts"],
+      "@services/*": ["./src/services/*"],
       "@services_injector": ["./src/_common/config/services/service-injector.ts"],
       
       "@routes/*": ["./src/_common/routes/*"],

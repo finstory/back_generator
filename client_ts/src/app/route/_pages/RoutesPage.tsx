@@ -1,7 +1,7 @@
 import { RoutesLayout } from '@/app/route/_layouts/RoutesLayout';
 import { EndpointPanel } from '@/app/route/components/EndpointPanel/EndpointPanel';
 import { Button, Text } from '@/components';
-import S from '@services';
+import S from '@S';
 import { useEffect } from 'react';
 import { Other } from './Other';
 
@@ -29,7 +29,7 @@ import { Other } from './Other';
 // }
 
 export const RoutesPage: React.FC = () => {
-    const { testAuth} = S.auth;
+    const { testAuth } = S.auth;
     const { listProduct } = S.product;
     // const { testAuth } = S.auth;
     // const { authState: { name } } = S.auth;

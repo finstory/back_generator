@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { AllServices } from '@services';
+import { AllServices } from '@S';
 
 // Define la interfaz para tu contexto
 export interface MyContextProps {

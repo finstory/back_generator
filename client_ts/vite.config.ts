@@ -9,11 +9,12 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@S": path.resolve(__dirname, "./src/services/all-services.ts"),
       "@app": path.resolve(__dirname, "./src/app"),
       "@config": path.resolve(__dirname, "./src/_common/config"),
       "@routes": path.resolve(__dirname, "./src/_common/routes"),
       "@components": path.resolve(__dirname, "./src/_common/components"),
-      "@services": path.resolve(__dirname, "./src/services/all-services.ts"),
+      "@services": path.resolve(__dirname, "./src/services"),
       "@services_injector": path.resolve(__dirname, "./src/_common/config/services/service-injector.ts"),
       "@redux_config": path.resolve(__dirname, "./src/_common/config/redux/decorators/redux-config.ts"),
 

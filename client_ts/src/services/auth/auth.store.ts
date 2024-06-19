@@ -1,4 +1,4 @@
-export interface AuthState {
+export default interface AuthState {
   user: {
     name: string;
     password: string;

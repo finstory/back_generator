@@ -5,6 +5,7 @@ import ProductService from "./product/product.service";
 import { PrimaryService } from "../_common/config/services/providers/providers-injector";
 import S from "../_common/config/services/providers/providers-injector";
 
+
 @InitialServices
 export class AllServices {
 

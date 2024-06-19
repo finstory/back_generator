@@ -1,9 +1,6 @@
-import { auth } from "../stores/auth.store";
-import { user } from "../stores/user.store";
+import * as initialState from "../stores/store";
 
-export let initialState = { auth, user };
-
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action: any) => {
   if (action.payload) {
     const nameReducer = Object.keys(action.payload)[0];
     const stateReducer = state[nameReducer];
