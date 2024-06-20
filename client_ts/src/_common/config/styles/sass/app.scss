@@ -58,7 +58,7 @@ body {
 .border_gradient {
     position: relative;
     @include flex();
-    background: map-get($gradient_color, primary);
+    background: var(--gradient-primary);
 
     .children {
         position: absolute;

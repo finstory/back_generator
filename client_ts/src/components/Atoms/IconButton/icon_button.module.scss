@@ -2,7 +2,7 @@
 
 .default {
     @include flex();
-    padding: 0;
+    padding: 0.3rem;
     background-color: transparent;
     transition: 0.2s linear;
     cursor: pointer;
@@ -13,6 +13,6 @@
         @include dim_width();
         @include dim_height();
         @include flex();
-        object-fit: cover;
+        object-fit: contain;
     }
 }

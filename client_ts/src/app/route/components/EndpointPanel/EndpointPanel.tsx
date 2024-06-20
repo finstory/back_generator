@@ -1,31 +1,17 @@
-import { useEffect, useState } from "react";
-import { Text, IText, DGBorder, Button, IDGBorder } from "@/components";
-import scss from "@routes/_scss/endpoint_panel.module.scss";
+import { FC, useEffect, useState } from "react";
+import { Text, IText, DGBorder, Button, IDGBorder } from "@components";
+import scss from "@route/_scss/endpoint_panel.module.scss";
 import { Title } from "./Title/_Title";
 import { EndpointDir } from "./EndpointDir/_EndpointDir";
-import S from "@/_common/services/_test/injector";
+import S from "@S";
 
 
-export const EndpointPanel = () => {
-  const storeAuth = S.auth.store;
-  const stackAuth = S.auth.api;
-  const stackUser = S.user.api;
+export const EndpointPanel: FC = () => {
 
   const props = childrenProps({});
 
-  const action = async () => {
-    console.log(storeAuth)
-    stackAuth.main();
-    stackUser.getAuth();
-
-  }
-  useEffect(() => {
-    action();
-  }, [])
-
-
   return (
-    <DGBorder className={scss.endpoint_panel} {...props.endpoint_panel} >
+    <DGBorder  className={scss.endpoint_panel} {...props.endpoint_panel} >
 
       <div className={scss.panel}>
         <Title _scss={scss} />

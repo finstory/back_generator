@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import scss from "./icon_button.module.scss";
 import images from './../../../../../client/src/assets/images/index';
 
-export type IconsName = "edit" | "delete" | "edit_blue" | "delete_blue";
+export type IconsName = "edit_primary" | "delete" | "edit_blue" | "delete_primary";
 
 const iconsUrls = {
-  edit_blue: "https://res.cloudinary.com/dz9smi3nc/image/upload/v1712556474/Generator/Icons/icons8-editar-100_sw2jom.png",
+  edit_primary: "https://res.cloudinary.com/dz9smi3nc/image/upload/v1718794655/Generator/Icons/Vector_1_txgh8i.png",
   edit: "https://res.cloudinary.com/dz9smi3nc/image/upload/v1712557540/Generator/Icons/icons8-editar-100_1_fe45dg.png",
-  delete_blue: "https://res.cloudinary.com/dz9smi3nc/image/upload/v1712556516/Generator/Icons/icons8-basura-100_uyplyl.png",
+  delete_primary: "https://res.cloudinary.com/dz9smi3nc/image/upload/v1718795186/Generator/Icons/Vector_8_lmu0sh.png",
   delete: "https://res.cloudinary.com/dz9smi3nc/image/upload/v1712557494/Generator/Icons/icons8-basura-100_1_g7gkma.png",
 };
 
@@ -18,7 +18,7 @@ export const IconButton: FC<{
   style?: React.CSSProperties;
   variant?: "default";
   onClick?: () => void;
-}> = ({ style = {}, width = "2rem", height = "1.9rem", variant = "index", onClick, icon }) => {
+}> = ({ style = {}, width = "2rem", height = "1.9rem", variant = "default", onClick, icon }) => {
 
   return (
     <button

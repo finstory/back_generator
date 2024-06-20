@@ -13,10 +13,12 @@ export default defineConfig({
       "@app": path.resolve(__dirname, "./src/app"),
       "@config": path.resolve(__dirname, "./src/_common/config"),
       "@routes": path.resolve(__dirname, "./src/_common/routes"),
-      "@components": path.resolve(__dirname, "./src/_common/components"),
+      "@components": path.resolve(__dirname, "./src/components"),
       "@services": path.resolve(__dirname, "./src/services"),
       "@services_injector": path.resolve(__dirname, "./src/_common/config/services/service-injector.ts"),
       "@redux_config": path.resolve(__dirname, "./src/_common/config/redux/decorators/redux-config.ts"),
+      "@services_config": path.resolve(__dirname, "./src/_common/config/services"),
+
 
       "@route": path.resolve(__dirname, "./src/app/route"),
     },

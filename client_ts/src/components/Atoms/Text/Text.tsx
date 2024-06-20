@@ -33,13 +33,7 @@ export const Text: FC<IText> = ({ style = {},
     return React.createElement(
         label,
         {
-            className: `
-            ${className}
-            ${scss.default} 
-            ${scss["color_" + color]} 
-            ${scss["size_" + size]} 
-            ${scss["family_" + family]}
-            ${scss["hover_" + hoverColor]}`,
+            className: `${className ? className : ""} ${scss.default} ${scss["color_" + color]} ${scss["size_" + size]} ${scss["family_" + family]}`,
 
             style: { ...style, padding, cursor, fontWeight },
         },

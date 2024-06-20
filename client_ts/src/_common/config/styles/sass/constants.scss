@@ -1,14 +1,15 @@
 #root {
 
     //% COLOR:
-    --color-base-off: #f2f2f26d;
+    --color-base-off: #797979;
     --color-base: #F2F2F2;
     --color-base-dark: #0b0b0b;
 
-    --color-primary: #2FABCF;
-    --color-primary-hover: #67cfef;
+    --color-primary: #03D3D3;
+    --color-primary-hover: #85f9f9;
     --color-secondary: #1addc6;
     --color-secondary-hover: #46eeda;
+    --color-tertiary: #9934FD;
 
     // request colors:
     --color-get-off: #1addc63a;
@@ -56,6 +57,6 @@
     --font-weight-large: bold;
 
     //% GRADIENT:
-    --gradient-primary: linear-gradient(90deg, #3757b5 0%, #1addc6 100%);
-    --gradient-hover: linear-gradient(90deg, #1addc6 0%, #3757b5 100%);
+    --gradient-primary: linear-gradient(180deg, #3D3D3D 0%, #5a5a5a 20%,#3D3D3D 80%, #3D3D3D 100%);
+    --gradient-secondary: linear-gradient(90deg, #03D3D3 0%, #1AA3C2 100%);
 }
