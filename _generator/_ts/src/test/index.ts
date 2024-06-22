@@ -2,14 +2,16 @@ import S from "@services";
 import { User } from "./../app/user/_dtos/user.dto";
 import { printInfo, printMsg } from "@/_common/helpers/wordsManager";
 import { delay } from "@helpers/delay";
+import DB from "@/_common/db/json/main";
 
 
 const testMain = async () => {
 
     try {
-        
+        const db = await DB();
+        await db.module.createModule("modul4e12");
+        // await db.module.createModule("dfdfdf42");
         // await S.validation.model.createFile("auth", "getEmailUserById");
-        await S.validation.model.addBarrelExport("auth", "getEmailUserById");
         // await S.validation.model.removeBarrelExport("auth", "getEmailUserById");
         //  await   S.controller.file.createController("auth", "userGetting");
         // await    S.controller.file.createController("auth", "userGetting2");
@@ -63,6 +65,7 @@ const testMain = async () => {
         //     });
         // console.log(vali);
     } catch (error) {
+      
         printMsg(error.message || "error", "error");
     }
 };

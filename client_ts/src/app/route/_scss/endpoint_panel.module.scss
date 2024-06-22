@@ -59,14 +59,18 @@
     --font-weight-large: bold;
 
     //% GRADIENT:
-    --gradient-primary: linear-gradient(180deg, #3D3D3D 0%, #5a5a5a 20%,#3D3D3D 80%, #3D3D3D 100%);
+    --gradient-primary: linear-gradient(180deg, #3D3D3D 0%, #5a5a5a 20%, #3D3D3D 80%, #3D3D3D 100%);
     --gradient-secondary: linear-gradient(90deg, #03D3D3 0%, #1AA3C2 100%);
 }
 
 .endpoint_panel {
     @include dim_width(50rem);
-    @include dim_height(65rem);
+    @include dim_height(70rem);
     @include flex(center, center);
+
+    @media (max-width: 1600px) {
+        height: 50rem;
+    }
 
     border-radius: 1rem;
 
@@ -121,21 +125,24 @@
 
         .endpoint_dir {
             @include dim_width();
-            @include dim_height(calc(100% - 6.5rem));
+            @include dim_height(calc(100% - 6.5rem), auto, calc(100% - 6.5rem));
+            padding-bottom: 2rem;
             @include flex(flex-start, center, column);
             overflow-y: scroll;
 
             .module_edit {
-                @include dim_width();
+                @include dim_width(95%);
                 @include dim_height(10rem);
                 box-sizing: border-box;
                 @include flex(flex-start, center, $gap: 1.3rem);
                 border-bottom: 1px solid var(--border-secondary);
-                padding: 0 2rem;
+                padding: 3rem 0rem;
+                padding-left: 2rem;
             }
 
             .module_container {
-                @include dim_width();
+
+                @include dim_width(95%);
                 @include dim_height(auto);
                 @include flex(flex-start, flex-start, column, 1.5rem);
                 padding: 2rem;
@@ -147,18 +154,8 @@
                     @include dim_height(3rem);
                     @include flex(flex-start, $gap: 1.3rem);
 
-                    .wrap_editor {
-                        @include flex(flex-start, $gap: 0.5rem);
-                    }
-                }
-
-                .endpoint {
-                    @include dim_width();
-                    @include dim_height(3rem);
-                    @include flex(flex-start, $gap: 1.3rem);
-
                     .wrap {
-                        @include flex(flex-start, $gap: 1.3rem);
+                        @include flex(flex-start, $gap: 1rem);
                         cursor: pointer;
 
                         &:hover {
@@ -170,102 +167,52 @@
                             .mark {
                                 background-color: var(--color-primary);
                             }
+
+                            .wrap_editor {
+                                @include flex(flex-start, $gap: .5rem);
+                            }
                         }
+
+                        .wrap_editor {
+                            display: none;
+                        }
+                    }
+                }
+
+                .endpoint {
+                    @include dim_width();
+                    @include dim_height(3rem);
+                    @include flex(flex-start, $gap: 1rem);
+
+                    .wrap {
+                        @include flex(flex-start, $gap: .8rem);
+                        cursor: pointer;
+
+                        &:hover {
+
+                            p {
+                                color: var(--color-primary)
+                            }
+
+                            .mark {
+                                background-color: var(--color-primary);
+                            }
+
+                            .wrap_editor {
+                                display: flex;
+                            }
+                        }
+
+                        .wrap_editor {
+                            display: none;
+                        }
+
                     }
 
                     .wrap_editor {
                         @include flex(flex-start, $gap: .5rem);
                     }
                 }
-
-                // .endpoint_editor {
-                //     @include dim_width();
-                //     @include dim_height(auto);
-                //     @include flex(flex-start, center, row, 1rem);
-
-                //     .marker {
-                //         @include dim_width(1rem);
-                //         @include dim_height(.7rem);
-                //         transform: rotate(45deg);
-                //         background-color: var(--off-gray-color);
-                //     }
-
-                //     .request_selector {
-                //         @include dim_width(10rem);
-                //         @include dim_height(3rem);
-                //         @include flex($gap: 1rem);
-                //         @include font_M_PLUS(normal, 300);
-                //         padding: 0 1rem;
-                //         color: var(--white-color);
-                //         background-color: transparent;
-                //         border-radius: .8rem;
-                //         border: 1px solid var(--off-gray-color);
-                //         cursor: pointer;
-
-                //         &:hover {
-                //             color: var(--text-primary-color);
-                //             border: 1px solid var(--text-primary-color);
-                //         }
-
-                //         option {
-                //             @include dim_height(2rem);
-                //             @include dim_width();
-                //             padding: 0 1rem;
-                //             border-radius: .8rem;
-                //             color: var(--white-color);
-                //             background-color: var(--strong-green-color);
-                //         }
-                //     }
-
-                //     .input_wrap {
-                //         @include flex($gap: 1rem);
-                //         @include dim_width(34rem);
-                //         @include dim_height();
-
-                //         transition: 0.2s linear;
-
-                //         input {
-                //             @include dim_width();
-                //             @include dim_height();
-                //             border: 1px solid var(--off-gray-color);
-                //             border-radius: 1rem;
-                //             padding: 0 1rem;
-                //             color: var(--white-color);
-                //             background-color: transparent;
-                //             transition: border 0.2s linear;
-
-                //             &::placeholder {
-                //                 color: var(--off-gray-color);
-                //             }
-
-                //             &:focus {
-                //                 color: var(--text-primary-color);
-                //                 border: 1px solid var(--text-primary-color);
-                //                 outline: none;
-                //             }
-                //         }
-                //     }
-
-                //     .save_btn {
-                //         @include dim_height();
-                //         @include flex(center, center);
-
-                //         padding: .5rem;
-                //         border-radius: 1rem;
-                //         border: 1px solid var(--off-gray-color);
-
-                //         color: var(--off-gray-color);
-                //         @include gradient(black_bg);
-                //         cursor: pointer;
-                //         transition: border 0.2s linear;
-
-                //         &:hover {
-                //             // @include gradient(primary);
-                //             border: 1px solid var(--text-primary-color);
-                //             color: var(--text-primary-color);
-                //         }
-                //     }
-                // }
 
             }
 

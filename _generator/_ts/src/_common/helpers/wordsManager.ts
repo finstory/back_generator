@@ -23,13 +23,14 @@ function textColor(str: string, color: string = "green"): string {
     return str;
 }
 
-type Info = "AST" | "FS" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
+type Info = "AST" | "FS" | "JSON_DB" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
 
 const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS", "VALIDATION"];
 
 const showFSLogs = true;
 const showASTLogs = true;
 const showGeneratorLogs = true;
+const showJsonDBLogs = true;
 const showBlueList = true;
 
 
@@ -38,6 +39,8 @@ function printInfo(type: Info, str: string): void {
     else if (type === "AST" && showASTLogs) console.log(`[${colors.yellow(type)}]` + colors.yellow(" ⭍  ") + (str) + colors.yellow(" ⭍  "));
 
     else if (type === "GENERATOR" && showGeneratorLogs) console.log(`[${colors.magenta(type)}]` + colors.magenta(" ⭍  ") + (str) + colors.magenta(" ⭍  "));
+
+    else if (type === "JSON_DB" && showJsonDBLogs) console.log(`[${colors.gray(type)}]` + colors.gray(" ⭍  ") + (str) + colors.gray(" ⭍  "));
 
     else if (blueList.includes(type) && showBlueList) console.log(`[${colors.blue(type)}]` + colors.blue(" ⭍  ") + (str) + colors.blue(" ⭍  "));
 }

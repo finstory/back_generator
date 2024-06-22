@@ -1,4 +1,5 @@
 import Schema, { timeStamp } from "@/_config/db/mongoDB/schemaManager";
+import { deprecate } from "util";
 
 export interface IUser extends timeStamp {
   name: string;

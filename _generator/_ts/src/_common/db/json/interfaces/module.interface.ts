@@ -16,7 +16,7 @@ export interface IRoute {
     responseBody?: RequestParams[];
 }
 
-interface RequestParams {
+export interface RequestParams {
     key: string;
     type: string;
     elementType: string;

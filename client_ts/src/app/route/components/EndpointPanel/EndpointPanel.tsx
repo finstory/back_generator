@@ -17,6 +17,7 @@ export const EndpointPanel: FC = () => {
         <Title _scss={scss} />
         <EndpointDir _scss={scss} />
       </div>
+      
     </DGBorder>
   )
 };

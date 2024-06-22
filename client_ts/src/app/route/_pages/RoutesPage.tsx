@@ -9,6 +9,8 @@ export const RoutesPage: React.FC = () => {
     return (
         <RoutesLayout>
             <EndpointPanel />
+            <EndpointPanel />
+            <EndpointPanel />
         </RoutesLayout>
     )
 }

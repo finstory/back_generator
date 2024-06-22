@@ -8,12 +8,24 @@ export default interface ModuleState {
 export const module: ModuleState = {
   modulesList: [
     {
-      moduleName: "user",
+      name: "user",
       routes: [
         {
+          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/other",
+          requestType: "get",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [],
+          body: [],
+          responseBody: []
+        },
+        {
           id: "13a52111-72b4-4648-ae8b-cb864fd18793",
-          endpoint: "/create",
-          method: "post",
+          endpointName: "/create",
+          requestType: "post",
           description: "Write a description here...",
           controllerName: "postUserCreate",
           middlewares: ["Token", "+"],
@@ -55,8 +67,125 @@ export const module: ModuleState = {
               value: "32"
             }
           ],
-          response_body: []
+          responseBody: []
+        },
+        {
+          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/other",
+          requestType: "get",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [],
+          body: [],
+          responseBody: []
+        },
+        {
+          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/other",
+          requestType: "get",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [],
+          body: [],
+          responseBody: []
+        },
+        {
+          id: "13a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/create",
+          requestType: "post",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [{
+            key: "id",
+            type: "UUID",
+            elementType: "",
+            optional: true,
+            value: "ER334WE"
+          }],
+          body: [
+            {
+              key: "id",
+              type: "UUID",
+              elementType: "",
+              optional: true,
+              value: "ER334WE"
+            },
+            {
+              key: "first_name",
+              type: "string",
+              elementType: "facundo",
+              optional: true,
+              value: null
+            },
+            {
+              key: "password",
+              type: "string",
+              elementType: "",
+              optional: true,
+              value: "2329Icx/"
+            },
+            {
+              key: "age",
+              type: "number",
+              elementType: "",
+              optional: false,
+              value: "32"
+            }
+          ],
+          responseBody: []
+        },
+        {
+          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/other",
+          requestType: "get",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [],
+          body: [],
+          responseBody: []
         }
+      ]
+    },
+    {
+      name: "auth",
+      routes: [
+        {
+          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/other",
+          requestType: "delete",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [],
+          body: [],
+          responseBody: []
+        },
+      ]
+    },
+    {
+      name: "auth",
+      routes: [
+        {
+          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          endpointName: "/other",
+          requestType: "delete",
+          description: "Write a description here...",
+          controllerName: "postUserCreate",
+          middlewares: ["Token", "+"],
+          params: [],
+          query: [],
+          body: [],
+          responseBody: []
+        },
       ]
     }
   ],

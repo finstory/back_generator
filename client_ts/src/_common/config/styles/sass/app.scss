@@ -4,8 +4,8 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    @include dim_height();
-    @include dim_width();
+    @include dim_height(100%, auto, 100vh);
+    @include dim_width(100%, auto, 100vw);
 
 }
 
@@ -13,17 +13,23 @@ div {
     box-sizing: border-box;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     @include dim_height();
     @include dim_width();
+    @include flex();
     @include font(normal, normal, var(--text-color-primary), 'Inter');
     @include gradient(black_bg);
 }
 
 #root {
     position: relative;
-    @include dim_height();
-    @include dim_width();
+    @include dim_width(100%, 192rem);
+    @include dim_height(100%, 108rem);
     @include flex(flex-start, center, column);
     background-size: cover;
     background-position: top right;
@@ -43,13 +49,13 @@ body {
 
 }
 
-
 .main_container {
-    padding: 8rem;
-    @include dim_width(auto, 160rem, 100%);
-    @include dim_height(auto, auto, 100%);
+    padding: 2rem 4rem;
+    margin: 0;
+    overflow-y: scroll;
+    @include dim_width(100%);
+    @include dim_height(auto, auto, calc(100% - 14rem));
     @include flex(center, center, row, 4rem, wrap);
-    align-content: flex-start;
     transition: 0.2s linear;
     animation: opacity 0.5s alternate;
 }
@@ -73,30 +79,25 @@ body {
 }
 
 /* SCROLL */
-::-webkit-scrollbar {
-    width: 1.2rem;
+body ::-webkit-scrollbar {
+    width: 1rem;
+    background-color: var(--bg-color);
 }
 
-::-webkit-scrollbar-track {
+body ::-webkit-scrollbar-track {
+    margin: 1rem 0;
     // -webkit-box-shadow: inset 0 0 6px rgba(196, 196, 196, 0.813);
     // background-color: #1c1c1c;
 }
 
-::-webkit-scrollbar-thumb {
+body ::-webkit-scrollbar-thumb {
     border: 1px solid var(--text-primary-color);
     background-color: #1c1c1c;
-    border-radius: 10px;
+    border-radius: .4rem;
+    border: 1px solid var(--border-secondary);
 }
 
 p {
     margin: 0;
     padding: 0;
-}
-
-
-
-
-@media (max-width: 1000px) {
-    .main_container {}
-
 }

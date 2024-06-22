@@ -10,6 +10,7 @@
       
       "@routes/*": ["./src/_common/routes/*"],
       "@config/*": ["./src/_common/config*"],
+      "@helpers/*": ["./src/_common/helpers/*"],
       "@components": ["./src/components"],
       "@redux_config": ["./src/_common/config/redux/decorators/redux-config.ts"],
       "@services_config/*": ["./src/_common/config/services/*"],
