@@ -2,14 +2,69 @@ import S from "@services";
 import { User } from "./../app/user/_dtos/user.dto";
 import { printInfo, printMsg } from "@/_common/helpers/wordsManager";
 import { delay } from "@helpers/delay";
-import DB from "@/_common/db/json/main";
+import DB from "@common/db/json";
+import RouteModel from "@/_common/db/json/entities/route.model";
+import { v4 as uuid4 } from 'uuid';
 
 
 const testMain = async () => {
 
     try {
+
+        const newRoute: RouteModel = {
+            id: uuid4(),
+            endpointName: "/create",
+            requestType: "get",
+            description: "Write a description here...",
+            controllerName: "postUserCreate",
+            middlewares: ["Token", "+"],
+            params: [],
+            query: [
+                {
+                    key: "id",
+                    type: "UUID",
+                    elementType: "",
+                    optional: true,
+                    value: "ER334WE"
+                }
+            ],
+            body: [
+                {
+                    key: "id",
+                    type: "UUID",
+                    elementType: "",
+                    optional: true,
+                    value: "ER334WE"
+                },
+                {
+                    key: "first_name",
+                    type: "string",
+                    elementType: "facundo",
+                    optional: true,
+                    value: null
+                },
+                {
+                    key: "password",
+                    type: "string",
+                    elementType: "",
+                    optional: true,
+                    value: "2329Icx/"
+                },
+                {
+                    key: "age",
+                    type: "number",
+                    elementType: "",
+                    optional: false,
+                    value: "32"
+                }
+            ],
+            responseBody: []
+        };
+
         const db = await DB();
-        await db.module.createModule("modul4e12");
+        // await db.route.createRoute("auth", newRoute);
+        //  await db.module.rename("hello", "auth");
+        await db.route.deleteRoute("auth", "13a52111-72b4-4648-ae8b-cb864fd18798");
         // await db.module.createModule("dfdfdf42");
         // await S.validation.model.createFile("auth", "getEmailUserById");
         // await S.validation.model.removeBarrelExport("auth", "getEmailUserById");
@@ -65,7 +120,7 @@ const testMain = async () => {
         //     });
         // console.log(vali);
     } catch (error) {
-      
+
         printMsg(error.message || "error", "error");
     }
 };

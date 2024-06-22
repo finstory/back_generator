@@ -19,7 +19,7 @@ export class ErrorResponse extends Error {
 
 }
 
-const customPayload = (key: string, message?: string, defaultMessage?: string): ErrorFormat[] => [
+const customPayload = (key = "", message?: string, defaultMessage?: string): ErrorFormat[] => [
   {
     parameter: "internal",
     from: null,
@@ -50,5 +50,27 @@ const throwErrorResponse = (type: typeError, key: string = "", message?: string,
 
 }
 
+
+type ServiceType = "AST" | "FS" | "JSON_DB" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
+
+
+export const throwErrorMessage = (type: typeError, serviceType: ServiceType, key: string = "", message?: string, status?: number, payload?: ErrorFormat[]) => {
+
+  if (status)
+    throw new ErrorResponse(type, message, status, payload ? payload : customPayload("", message));
+
+  function defaultError(defaultMessage: string, status: number) {
+
+    throw new ErrorResponse(
+      type,
+      message ? message : defaultMessage,
+      status,
+      payload ? payload : customPayload(key, message, defaultMessage)
+    );
+  }
+
+  errorsList(defaultError, type, key, serviceType);
+
+}
 
 export default throwErrorResponse;

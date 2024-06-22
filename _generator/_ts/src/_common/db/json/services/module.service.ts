@@ -1,6 +1,6 @@
 import { printInfo } from '@helpers/wordsManager';
 import { DB_Schema } from '../connection/db.connection';
-import throwError from "@throw_error";
+import { throwErrorMessage as throwError } from "@throw_error";
 
 class ModuleService {
 
@@ -10,38 +10,49 @@ class ModuleService {
         this.db = db;
     }
 
-    createModule = async (name: string) => {
+    readDB = async () => {
+        return await this.db.read();
+    }
 
-        const _db = await this.db.read();
+    create = async (name: string) => {
+        const moduleExists = this.db.get('module').find({ name }).value();
 
-        // if (_db.get('module').find({ name }).value())
-        //     throwError("not_found", `[JSON_DB] Module already exists.`);
+        if (moduleExists) throwError("already_exists", "JSON_DB", `Module '${name}'`);
 
-        await _db.get('module')
+        else await this.db.get('module')
             .push({ name, routes: [] })
             .write()
             .then(() => {
-                printInfo("JSON_DB", `Module ${name} created successfully.`);
+                printInfo("JSON_DB", `Module '${name}' created successfully.`);
             });
 
 
     }
 
-    updateModuleName(oldName: string, newName: string) {
-        try {
-            this.db.get('module')
-                .find({ name: oldName })
-                .assign({ name: newName })
+    rename = async (oldName: string, newName: string) => {
 
-        } catch (error) {
-            console.log(error);
-        }
+        await this.db.get('module')
+            .find({ name: oldName })
+            .tap((module) => { if (!module) throwError("not_found", "JSON_DB", `Module '${oldName}'`) })
+            .assign({ name: newName })
+            .write()
+            .then(() => {
+                printInfo("JSON_DB", `Module '${oldName}' updated to ${newName} successfully.`);
+            });
+
+
     }
 
-    deleteModuleByName(name: string) {
-        this.db.get('module')
+    delete = async (name: string) => {
+        const moduleGetting = !this.db.get('module').find({ name }).value();
+
+        if (moduleGetting) throwError("not_found", "JSON_DB", `Module '${name}'`);
+        else await this.db.get('module')
             .remove({ name })
-            .write();
+            .write()
+            .then(() => {
+                printInfo("JSON_DB", `Module '${name}' deleted successfully.`);
+            });
     }
 }
 

@@ -6,6 +6,7 @@ type requestErrors =
     "unauthorized" | //! status = 401
     "forbidden" | //! status = 403
     "conflict" | //! status = 409
+    "already_exists" | //! status = 409
     "internal_server_error" | //! status = 500
     "not_implemented" | //! status = 501
     "service_unavailable" | //! status = 503
@@ -24,58 +25,97 @@ type successErrors =
     "not_modified"; //% status = 304
 
 
-export const errorsList = (defaultError: any, type: typeError, key: string) => {
+export const errorsList = (defaultError: any, type: typeError, key: string, serviceType?: string) => {
     let upperKey: string = key.charAt(0).toUpperCase() + key.slice(1);
 
-    switch (type) {
+    const listErrors = [
+        {
+            type: "bad_request",
+            status: 400,
+            message: `Bad request to input ${key}.`,
+            messageWithService: `[${serviceType}] Bad request to input ${key}.`
+        },
+        {
+            type: "not_found",
+            status: 404,
+            message: `${upperKey} not found.`,
+            messageWithService: `[${serviceType}] ${key} not found.`
+        },
+        {
+            type: "unauthorized",
+            status: 401,
+            message: `${upperKey} is unauthorized.`,
+            messageWithService: `[${serviceType}] ${key} is unauthorized.`
+        },
+        {
+            type: "forbidden",
+            status: 403,
+            message: `The ${key} is forbidden.`,
+            messageWithService: `[${serviceType}] ${key} is forbidden.`
+        },
+        {
+            type: "conflict",
+            status: 409,
+            message: `Conflict in ${key}.`,
+            messageWithService: `[${serviceType}] Conflict in ${key}.`
+        },
+        {
+            type: "already_exists",
+            status: 409,
+            message: `${upperKey} already exists.`,
+            messageWithService: `[${serviceType}] ${key} already exists.`
+        },
+        {
+            type: "internal_server_error",
+            status: 500,
+            message: `Internal server error, check ${key}.`,
+            messageWithService: `[${serviceType}] Internal server error, check ${key}.`
+        },
+        {
+            type: "not_implemented",
+            status: 501,
+            message: `${upperKey} is not Implemented.`,
+            messageWithService: `[${serviceType}] ${key} is not Implemented.`
+        },
+        {
+            type: "service_unavailable",
+            status: 503,
+            message: `Service unavailable.`,
+            messageWithService: `[${serviceType}] Service unavailable.`
+        },
+        {
+            type: "not_allowed",
+            status: 405,
+            message: `Method or ${key} not allowed.`,
+            messageWithService: `[${serviceType}] Method or ${key} not allowed.`
+        },
+        {
+            type: "request_timeout",
+            status: 408,
+            message: `Request timed out.`,
+            messageWithService: `[${serviceType}] Request timed out.`
+        },
+        {
+            type: "bad_gateway",
+            status: 502,
+            message: `Bad gateway error.`,
+            messageWithService: `[${serviceType}] Bad gateway error.`
+        },
+        {
+            type: "gateway_timeout",
+            status: 504,
+            message: `Gateway timeout.`,
+            messageWithService: `[${serviceType}] Gateway timeout.`
+        }
+    ]
+    if (serviceType) {
+        const errorMessage = listErrors.find((err) => err.type === type);
+        defaultError(errorMessage.messageWithService, errorMessage.status);
 
-        case "bad_request":
-            defaultError(`Bad request to input ${key}.`, 400);
-            break;
-
-        case "not_found":
-            defaultError(`${upperKey} not found.`, 404);
-            break;
-
-        case "unauthorized":
-            defaultError(`${upperKey} is unauthorized.`, 401);
-            break;
-
-        case "forbidden":
-            defaultError(`The ${key} is forbidden.`, 403);
-            break;
-
-        case "conflict":
-            defaultError(`Conflict in ${key}.`, 409);
-            break;
-
-        case "internal_server_error":
-            defaultError(`Internal server error, check ${key}.`, 500);
-            break;
-
-        case "not_implemented":
-            defaultError(`${upperKey} is not Implemented.`, 501);
-            break;
-
-        case "service_unavailable":
-            defaultError(`Service unavailable.`, 503);
-            break;
-
-        case "not_allowed":
-            defaultError(`Method or ${key} not allowed.`, 405);
-            break;
-
-        case "request_timeout":
-            defaultError(`Request timed out.`, 408);
-            break;
-
-        case "bad_gateway":
-            defaultError(`Bad gateway error.`, 502);
-            break;
-
-        case "gateway_timeout":
-            defaultError(`Gateway timeout.`, 504);
-            break;
+    }
+    else {
+        const errorMessage = listErrors.find((error) => error.type === type);
+        defaultError(errorMessage.message, errorMessage.status);
     }
 
     fsErrorsList(defaultError, type, key);
