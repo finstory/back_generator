@@ -5,9 +5,9 @@
       "routes": [
         {
           "id": "13a52111-72b4-4648-ae8b-cb864fd18793",
-          "endpointName": "/create",
-          "requestType": "get",
-          "description": "Write a description here...",
+          "endpointName": "/register",
+          "requestType": "post",
+          "description": "is for register",
           "controllerName": "postUserCreate",
           "middlewares": [
             "Token",

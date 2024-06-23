@@ -14,6 +14,7 @@ export class AllServices {
   public readonly fs = new FS();
   public readonly ast = new Ast();
 
+  public readonly package = new PackageService();
   public readonly validation = new ValidationService();
   public readonly endpoint = new EndpointService();
   public readonly controller = new ControllerService();

@@ -1,11 +1,10 @@
 {
   "extends": "./path.tsconfig.json",
+  "target": "ES2022",
+  "module": "commonjs",
+  "lib": ["ES2022"],
   "noUnusedLocals": true,
   "compilerOptions": {
-    "target": "es2022",
-    "module": "commonjs",
-    "lib": ["es2022"],
-  
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,

@@ -1,7 +1,7 @@
 import { printInfo } from '@helpers/wordsManager';
 import { DB_Schema } from '../connection/db.connection';
 import { throwErrorMessage as throwError } from "@throw_error";
-import RouteModel from '../entities/route.model';
+import RouteModel, { RouteModelEdition } from '../entities/route.model';
 
 const exampleModules = [
     {
@@ -75,7 +75,7 @@ class RouteService {
         return await this.db.read();
     }
 
-    createRoute = async (moduleName: string, route: RouteModel) => {
+    create = async (moduleName: string, route: RouteModel) => {
         const modulesList = (await this.readDB()).get('module')
         const moduleGetting = modulesList.find({ name: moduleName })
 
@@ -83,9 +83,9 @@ class RouteService {
             throwError("not_found", "JSON_DB", `Module '${moduleName}'`);
 
         const routesList = moduleGetting.get('routes');
-        const routeGetting = routesList.find({ id: route.id });
+        const routeGetting = routesList.find({ endpointName: route.endpointName, requestType: route.requestType });
 
-        if (routeGetting)
+        if (routeGetting.value())
             throwError("already_exists", "JSON_DB", `Route (${route.requestType}) '${route.endpointName}'`);
 
         else await routesList
@@ -96,7 +96,38 @@ class RouteService {
             });
     }
 
-    deleteRoute = async (moduleName: string, routeId: string) => {
+    edit = async (moduleName: string, routeId: string, route: RouteModelEdition) => {
+
+        const modulesList = (await this.readDB()).get('module')
+        const moduleGetting = modulesList.find({ name: moduleName })
+
+        if (!moduleGetting.value())
+            throwError("not_found", "JSON_DB", `Module '${moduleName}'`);
+
+        const routesList = moduleGetting.get('routes');
+        const routeGetting = routesList.find({ id: routeId });
+        const _route = routeGetting.value();
+
+        if (!routeGetting.value())
+            throwError("not_found", "JSON_DB", `Route ID '${routeId}'`);
+        
+        else {
+            const oldRequestType = _route.requestType;
+            const oldEndpointName = _route.endpointName;
+            const listPropsUpdated = Object.keys(route).map((key) => `'${key}: ${route[key]}'`).join(' - ');
+
+            await routesList
+                .find({ id: routeId })
+                .assign({ ..._route, ...route })
+                .write()
+                .then(() => {
+                    printInfo("JSON_DB", `Route (${oldRequestType}) '${oldEndpointName}' updated => ${listPropsUpdated}`);
+                });
+        }
+    }
+
+
+    delete = async (moduleName: string, routeId: string) => {
         const modulesList = (await this.readDB()).get('module')
         const moduleGetting = modulesList.find({ name: moduleName })
 

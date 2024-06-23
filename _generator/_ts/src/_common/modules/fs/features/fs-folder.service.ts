@@ -11,7 +11,11 @@ class FSFolder {
         const nameFolder = getName(folderPath);
         await promise<void>((resolve, reject) => {
             fs.mkdir(folderPath, (err) => {
-                if (err) reject({ type: "create_folder", key: nameFolder });
+                if (err) {
+                    if (err.message.includes("EEXIST"))
+                        reject({ type: "create_folder", key: nameFolder + ", already exists" });
+                    reject({ type: "create_folder", key: nameFolder });
+                }
                 resolve();
             });
         }).then(() => printInfo("FS", `Folder '${nameFolder}' created.`));

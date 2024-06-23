@@ -1,17 +1,18 @@
-import ServicesInjector from "@services_injector";
+import { AllServices as S, BasicInject, BasicInjectable } from "@services_injector";
 import throwError from "@throw_error";
 import { module_controller, controller_entity, module_service, module_route } from "@mockups";
+import JsonDB from "@/_common/db/json";
 
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
-const commonPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/common";
 
-class PackageService extends ServicesInjector {
+class PackageService extends BasicInjectable {
 
-    private createFolder = this.S.fs.folder.createFolder;
-    private createFile = this.S.fs.file.createFile;
-    private createFoldersList = this.S.fs.folder.createFoldersList;
-    private createFilesList = this.S.fs.file.createFilesList;
+    @BasicInject private _fs_folder: S["fs"]["folder"];
+    @BasicInject private _fs_file: S["fs"]["file"];
 
+    getAllModuleDB = async () => {
+        return (await JsonDB()).module.getAll();
+    };
     createModule = async (name: string, commonModule: boolean = false) => {
         let folderPath: string;
 
@@ -30,8 +31,7 @@ class PackageService extends ServicesInjector {
                 `${folderPath}/features`
             ];
 
-            await this.createFoldersList(foldersList);
-
+            await this._fs_folder.createFoldersList(foldersList);
             //% Creation of the files
 
             const filesList = [
@@ -57,7 +57,7 @@ class PackageService extends ServicesInjector {
                 }
             ];
 
-            await this.createFilesList(filesList);
+            await this._fs_file.createFilesList(filesList);
 
         }
         else {
@@ -71,7 +71,7 @@ class PackageService extends ServicesInjector {
                 `${folderPath}/features`
             ];
 
-            await this.createFoldersList(foldersList);
+            await this._fs_folder.createFoldersList(foldersList);
 
             //% Creation of the files
 
@@ -80,10 +80,15 @@ class PackageService extends ServicesInjector {
                 code: module_service(name)
             }];
 
-            await this.createFilesList(filesList);
+            await this._fs_file.createFilesList(filesList);
         }
 
+        return `Module '${name}' created successfully.`;
+    }
 
+    deleteModule = async (name: string) => {
+        const folderPath = `${appPath}/${name}`;
+        await this._fs_folder.deleteFolder(folderPath);
     }
 }
 

@@ -14,6 +14,11 @@ class ModuleService {
         return await this.db.read();
     }
 
+    getAll = async () => {
+        await this.db.read();
+        return this.db.get('module').value();
+    }
+
     create = async (name: string) => {
         const moduleExists = this.db.get('module').find({ name }).value();
 

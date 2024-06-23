@@ -33,7 +33,7 @@ class FSFile {
                 if (err) reject({ type: "create_file", key: nameFile });
                 resolve();
             });
-        }).then(() => printInfo("FS", `File '${nameFile}' modified.`));
+        }).then(() => printInfo("FS", `File '${nameFile}' created.`));
     };
 
     createFilesList = async (filesList: { path: string; code: TextCode }[]): Promise<void> => {

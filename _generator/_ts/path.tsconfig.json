@@ -21,6 +21,10 @@
       "@services": ["./_common/services/all-services.ts"],
       "@services_injector": ["./_common/config/services/service-injector.ts"],
       
+      //? Database:
+      "@json_db": ["./_common/db/json/index.ts"],
+
+
       //<APP_MODULES>
       "@user/*": ["./app/user/*"],
       "@package/*": ["./app/package/*"],

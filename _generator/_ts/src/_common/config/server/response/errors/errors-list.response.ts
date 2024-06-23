@@ -115,11 +115,11 @@ export const errorsList = (defaultError: any, type: typeError, key: string, serv
     }
     else {
         const errorMessage = listErrors.find((error) => error.type === type);
+        fsErrorsList(defaultError, type, key);
+        astErrorsList(defaultError, type, key);
         defaultError(errorMessage.message, errorMessage.status);
     }
 
-    fsErrorsList(defaultError, type, key);
-    astErrorsList(defaultError, type, key);
 }
 
 //% File System Errors:
@@ -143,37 +143,37 @@ const fsErrorsList = (defaultError: any, type: typeError, key: string) => {
         //% Files:
 
         case "file_not_found":
-            defaultError(`File '${upperKey}' not found.`, 404);
+            defaultError(`[FS] File '${key}' not found.`, 404);
             break;
 
         case "create_file":
-            defaultError(`Error to create file '${upperKey}'.`, 409);
+            defaultError(`[FS] Error to create file '${key}'.`, 409);
             break;
 
         case "rename_file":
-            defaultError(`Conflict to rename file '${upperKey}'.`, 409);
+            defaultError(`[FS] Conflict to rename file '${key}'.`, 409);
             break;
 
         case "delete_file":
-            defaultError(`Error to delete file '${upperKey}'.`, 404);
+            defaultError(`[FS] Error to delete file '${key}'.`, 404);
             break;
 
         //% Folders:
 
         case "folder_not_found":
-            defaultError(`Folder '${upperKey}' not found.`, 404);
+            defaultError(`[FS] Folder '${key}' not found.`, 404);
             break;
 
         case "create_folder":
-            defaultError(`Error to create folder '${upperKey}'.`, 409);
+            defaultError(`[FS] Error to create folder '${key}'.`, 409);
             break;
 
         case "rename_folder":
-            defaultError(`Conflict to rename folder '${upperKey}'.`, 409);
+            defaultError(`[FS] Conflict to rename folder '${key}'.`, 409);
             break;
 
         case "delete_folder":
-            defaultError(`Error to delete folder '${upperKey}'.`, 404);
+            defaultError(`[FS] Error to delete folder '${key}'.`, 404);
             break;
     }
 
@@ -191,11 +191,11 @@ const astErrorsList = (defaultError: any, type: typeError, key: string) => {
     switch (type) {
 
         case "transform_code":
-            defaultError(`Error to transform code '${upperKey}'.`, 422);
+            defaultError(`[AST] Error to transform code '${key}'.`, 422);
             break;
 
         case "parse_code":
-            defaultError(`Error to parse code '${upperKey}'.`, 422);
+            defaultError(`[AST] Error to parse code '${key}'.`, 422);
             break;
     }
 }

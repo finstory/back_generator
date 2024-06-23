@@ -1,11 +1,14 @@
+//<IMPORTS>
 import { Router } from "express";
-import { controller, validation } from "@package/package.controller";
+import { controller, validation } from "../user.controller";
 import controllerMiddlewares from "@common/middlewares/controller.middleware";
 
+//<CONFIGS>
 controllerMiddlewares(controller, { error_wrapper: true });
-
 const router = Router();
 
-router.get("/all", controller.getAllPackage);
-router.post("/", controller.postPackage);
+
+//<ROUTES>
+
+
 export default router;

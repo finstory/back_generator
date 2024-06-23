@@ -3,7 +3,7 @@ import { UpFirst } from "../helpers/wordsManager";
 
 export const module_controller = (moduleName: string): string => `//<IMPORTS>
 import throwError from "@throw_error";
-import { controller, validation } from "../_entities/${moduleName}-controller.entity";
+import { controller, validation } from "./_entities/${moduleName}-controller.entity";
 import S from "@services";
 
 //<CONTROLLERS>

@@ -8,6 +8,10 @@ controllerMiddlewares(controller, { error_wrapper: true });
 const router = Router();
 
 //<ROUTES>
+router.get("/allk/:id", validation.getAuthAllkById, controller.getAuthAllkById);
+router.get("/all/:id", validation.getAllAuthById, controller.getAllAuthById);
+router.get("/all", validation.getAllAuth, controller.getAllAuth);
+router.get("/all", validation.getAllAuth, controller.getAllAuth);
 
 router.post("/all/:id", validation);
 

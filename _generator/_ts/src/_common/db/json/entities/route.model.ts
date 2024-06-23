@@ -1,12 +1,26 @@
 import RequestParamsModel from "./request-params.model";
 
+export interface RouteModelEdition {
+    id?: string;
+    endpointName?: string;
+    controllerName?: string;
+    requestType?: "get" | "post" | "put" | "delete" | "patch";
+    description?: string;
+    // middlewares?: string[];
+    // params?: RequestParamsModel[];
+    // query?: RequestParamsModel[];
+    // body?: RequestParamsModel[];
+    // responseBody?: RequestParamsModel[];
+
+}
+
 class RouteModel {
     id: string;
     endpointName: string;
-    requestType: "get" | "post" | "put" | "delete" | "patch";
-    description: string;
     controllerName: string;
-    middlewares: string[];
+    requestType: "get" | "post" | "put" | "delete" | "patch";
+    description?: string;
+    middlewares?: string[];
     params?: RequestParamsModel[];
     query?: RequestParamsModel[];
     body?: RequestParamsModel[];

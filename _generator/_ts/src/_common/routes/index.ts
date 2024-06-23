@@ -1,10 +1,10 @@
 import { Router } from "express";
 //IMPORTS
-import User from "@user/_routes/user.routes";
+import Package from "@package/_routes/package.routes";
 
 export const routes = Router();
 
 //ROUTES
-routes.use("/user", User);
+routes.use("/module", Package);
 
 export default routes;

@@ -11,11 +11,11 @@ export interface JsonSchema {
 
 const defaultSchema: { module: ModuleModel[] } = { module: [] };
 
-class JsonDB {
+class JsonDBConfig {
     protected db!: DB_Schema;
 
     async initializeDB() {
-        const filePath = join(__dirname, "db.json");
+        const filePath = join(__dirname, "../db.json");
         const adapter = new FileAsync<JsonSchema>(filePath);
         await low(adapter)
             .then((db) => {
@@ -26,4 +26,4 @@ class JsonDB {
 
 }
 
-export default JsonDB;
+export default JsonDBConfig;

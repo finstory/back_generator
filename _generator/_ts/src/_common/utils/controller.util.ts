@@ -34,10 +34,14 @@ export const generateControllerName = (moduleName: string, endpoint: string = "/
 
     let controllerName: string;
     const { endpointList, params } = getEndpointNames(endpoint, false);
-    console.log(params)
-    for (let i = 0; i < endpointList.length; i++)
-        moduleName += UpFirst(endpointList[i]);
 
+    for (let i = 0; i < endpointList.length; i++) {
+        if (i === 0 && endpointList[0] === "all") {
+            moduleName = "all" + UpFirst(moduleName); continue;
+        }
+
+        moduleName += UpFirst(endpointList[i]);
+    }
     controllerName = requestType + UpFirst(moduleName);
     if (params) controllerName += "By" + UpFirst(params);
 

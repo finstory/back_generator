@@ -5,7 +5,7 @@ import morgan from "morgan";
 import path from "path";
 import cors from "cors";
 
-import { routes } from "@config/routes";
+import { routes } from "@/_common/routes";
 
 //% Initial Methods:
 const server: Express = express();

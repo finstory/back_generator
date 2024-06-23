@@ -1,8 +1,7 @@
 import S from "@services";
-import { User } from "./../app/user/_dtos/user.dto";
-import { printInfo, printMsg } from "@/_common/helpers/wordsManager";
+import { printInfo, printMsg } from "@helpers/wordsManager";
 import { delay } from "@helpers/delay";
-import DB from "@common/db/json";
+import JsonDB from "@json_db";
 import RouteModel from "@/_common/db/json/entities/route.model";
 import { v4 as uuid4 } from 'uuid';
 
@@ -14,7 +13,7 @@ const testMain = async () => {
         const newRoute: RouteModel = {
             id: uuid4(),
             endpointName: "/create",
-            requestType: "get",
+            requestType: "post",
             description: "Write a description here...",
             controllerName: "postUserCreate",
             middlewares: ["Token", "+"],
@@ -61,11 +60,15 @@ const testMain = async () => {
             responseBody: []
         };
 
-        const db = await DB();
-        // await db.route.createRoute("auth", newRoute);
-        //  await db.module.rename("hello", "auth");
-        await db.route.deleteRoute("auth", "13a52111-72b4-4648-ae8b-cb864fd18798");
-        // await db.module.createModule("dfdfdf42");
+        // const db = await JsonDB();
+        //   await S.endpoint.expressRoute.create("auth", { endpoint: "/all/:id", requestType: "get" });
+        // await S.package.test();
+        // await S.package.createModule("user");
+        //  await db.module.create("auth");
+        //  await db.route.create("auth", newRoute);
+        // await db.route.edit("auth", "ed0182a1-3eb3-46a4-ab62-a9f1ad649fa9", { endpointName: "/register", requestType: "post", description: "is for register" });
+        // await db.route.edit("auth", "13a52111-72b4-4648-ae8b-cb864fd18793", { endpointName: "/register", requestType: "post", description: "is for register" });
+        //  await db.route.delete("auth", "ed0182a1-3eb3-46a4-ab62-a9f1ad649fa9");
         // await S.validation.model.createFile("auth", "getEmailUserById");
         // await S.validation.model.removeBarrelExport("auth", "getEmailUserById");
         //  await   S.controller.file.createController("auth", "userGetting");
@@ -75,7 +78,7 @@ const testMain = async () => {
 
         // await S.endpoint.create("auth", { endpoint: "/all", requestType: "get" });
 
-        // await delay(5000);
+
         // await S.endpoint.edit("auth", {
         //     endpoint: "/all",
         //     requestType: "get",
@@ -120,7 +123,7 @@ const testMain = async () => {
         //     });
         // console.log(vali);
     } catch (error) {
-
+        // console.log(error)
         printMsg(error.message || "error", "error");
     }
 };
