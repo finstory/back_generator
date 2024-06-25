@@ -5,6 +5,7 @@ import { module_controller, module_service } from "@mockups";
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/app/";
 const commonPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/_common/modules/";
 
+
 class PackageService extends ServicesInjector {
 
     createModule = async (name: string, commonModule: boolean = false) => {
