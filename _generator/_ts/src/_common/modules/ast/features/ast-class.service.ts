@@ -48,7 +48,7 @@ class AstClassService {
             },
         });
 
-        !ok && throwError("not_found", `[AST] Class property '${propName}' in class '${className}'`);
+        !ok && throwError("AST","not_found", `[AST] Class property '${propName}' in class '${className}'`);
 
         printInfo("AST", `Class property '${propName}' in class '${className}' removed.`);
 

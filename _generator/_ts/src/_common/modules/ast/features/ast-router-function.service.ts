@@ -46,7 +46,7 @@ class AstRouteFunctionService {
             }
 
         });
-        !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
         return await astToTextCode(ast);
 
 
@@ -71,7 +71,7 @@ class AstRouteFunctionService {
 
         });
 
-        !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
         return await astToTextCode(ast);
     }
 
@@ -98,7 +98,7 @@ class AstRouteFunctionService {
 
         });
 
-        !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
         return await astToTextCode(ast);
     }
 
@@ -152,7 +152,7 @@ class AstRouteFunctionService {
             }
         });
 
-        !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
         return await astToTextCode(ast);
     }
 
@@ -181,7 +181,7 @@ class AstRouteFunctionService {
                 }
             }
         });
-        !ok && throwError("not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
         printInfo("AST", `Endpoint '${endpoint}' removed.`);
         return await astToTextCode(ast);
     }

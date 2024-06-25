@@ -18,7 +18,7 @@ class GeneratorRouteFn extends Injector {
 
     edit = async (filePath: Path, { endpoint, requestType, validateActive }: RouteExpressDtoV2, { newEndpoint, newRequestType, newController }: EditRouteFnDto) => {
         console.log("ok")
-        !endpoint || !requestType && throwError("bad_request", "endpoint or requestType");
+        !endpoint || !requestType && throwError("GENERATOR","bad_request", "endpoint or requestType");
 
         const textCode = await this._fs_file.getFile(filePath);
         let newTextCode: string;
@@ -32,7 +32,7 @@ class GeneratorRouteFn extends Injector {
         }
 
         if (newController) {
-            !newController && throwError("bad_request", "newController");
+            !newController && throwError("GENERATOR","bad_request", "newController");
             newTextCode = await this._ast_route_function.renameController(textCode, { endpoint, requestType }, newController);
         }
 

@@ -30,7 +30,7 @@ class AstFunctionCompilerService {
         });
 
 
-        !ok && throwError("not_found", `[AST] Compiler function '${propName}'`);
+        !ok && throwError("AST","not_found", `[AST] Compiler function '${propName}'`);
 
         printInfo("AST", `Compiler function '${propName}' renamed successfully.`);
 
@@ -55,7 +55,7 @@ class AstFunctionCompilerService {
             },
         });
 
-        !ok && throwError("not_found", `[AST] Compiler function '${propName}'`);
+        !ok && throwError("AST","not_found", `[AST] Compiler function '${propName}'`);
 
         printInfo("AST", `Compiler function '${propName}' removed successfully.`);
 
@@ -79,7 +79,7 @@ class AstFunctionCompilerService {
             },
         });
 
-        !columnPosition && throwError("not_found", `[AST] Compiler function '${propName}'`);
+        !columnPosition && throwError("AST","not_found", `[AST] Compiler function '${propName}'`);
 
         const position = getTextPosition(textCode, propName, columnPosition);
 

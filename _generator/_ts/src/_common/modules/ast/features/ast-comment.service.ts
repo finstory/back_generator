@@ -47,7 +47,7 @@ class AstCommentService {
             printInfo("AST", `Position obtained for the comment '${comment}'.`);
             return pos;
         }
-        else throwError("not_found", `[AST] Comment '${comment}'`);
+        else throwError("AST","not_found", `[AST] Comment '${comment}'`);
 
     }
 

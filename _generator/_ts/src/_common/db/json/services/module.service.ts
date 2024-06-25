@@ -1,6 +1,6 @@
 import { printInfo } from '@helpers/wordsManager';
 import { DB_Schema } from '../connection/db.connection';
-import { throwErrorMessage as throwError } from "@throw_error";
+import throwError from "@throw_error";
 
 class ModuleService {
 
@@ -23,7 +23,7 @@ class ModuleService {
         await this.db.read();
         const moduleExists = this.db.get('module').find({ name }).value();
 
-        if (moduleExists) throwError("already_exists", "JSON_DB", `Module '${name}'`);
+        if (moduleExists) throwError("JSON_DB", "already_exists", `Module '${name}'`);
 
         else await this.db.get('module')
             .push({ name, routes: [] })
@@ -39,7 +39,7 @@ class ModuleService {
         await this.db.read();
         await this.db.get('module')
             .find({ name: oldName })
-            .tap((module) => { if (!module) throwError("not_found", "JSON_DB", `Module '${oldName}'`) })
+            .tap((module) => { if (!module) throwError("JSON_DB", "not_found", `Module '${oldName}'`) })
             .assign({ name: newName })
             .write()
             .then(() => {
@@ -53,7 +53,7 @@ class ModuleService {
         await this.db.read();
         const moduleGetting = !this.db.get('module').find({ name }).value();
 
-        if (moduleGetting) throwError("not_found", "JSON_DB", `Module '${name}'`);
+        if (moduleGetting) throwError("JSON_DB", "not_found", `Module '${name}'`);
         else await this.db.get('module')
             .remove({ name })
             .write()

@@ -1,6 +1,6 @@
 import { printInfo } from '@helpers/wordsManager';
 import { DB_Schema } from '../connection/db.connection';
-import { throwErrorMessage as throwError } from "@throw_error";
+import throwError from "@throw_error";
 import RouteModel, { RouteModelEdition } from '../entities/route.model';
 
 const exampleModules = [
@@ -80,13 +80,13 @@ class RouteService {
         const moduleGetting = modulesList.find({ name: moduleName })
 
         if (!moduleGetting.value())
-            throwError("not_found", "JSON_DB", `Module '${moduleName}'`);
+            throwError("JSON_DB", "not_found", `Module '${moduleName}'`);
 
         const routesList = moduleGetting.get('routes');
         const routeGetting = routesList.find({ endpointName: route.endpointName, requestType: route.requestType });
 
         if (routeGetting.value())
-            throwError("already_exists", "JSON_DB", `Route (${route.requestType}) '${route.endpointName}'`);
+            throwError("JSON_DB", "already_exists", `Route (${route.requestType}) '${route.endpointName}'`);
 
         else await routesList
             .push(route)
@@ -102,15 +102,15 @@ class RouteService {
         const moduleGetting = modulesList.find({ name: moduleName })
 
         if (!moduleGetting.value())
-            throwError("not_found", "JSON_DB", `Module '${moduleName}'`);
+            throwError("JSON_DB", "not_found", `Module '${moduleName}'`);
 
         const routesList = moduleGetting.get('routes');
         const routeGetting = routesList.find({ id: routeId });
         const _route = routeGetting.value();
 
         if (!routeGetting.value())
-            throwError("not_found", "JSON_DB", `Route ID '${routeId}'`);
-        
+            throwError("JSON_DB", "not_found", `Route ID '${routeId}'`);
+
         else {
             const oldRequestType = _route.requestType;
             const oldEndpointName = _route.endpointName;
@@ -132,12 +132,12 @@ class RouteService {
         const moduleGetting = modulesList.find({ name: moduleName })
 
         if (!moduleGetting.value())
-            throwError("not_found", "JSON_DB", `Module '${moduleName}'`);
+            throwError("JSON_DB", "not_found", `Module '${moduleName}'`);
 
         const routesList = moduleGetting.get('routes');
         const routeGetting = routesList.find({ id: routeId });
         if (!routeGetting.value())
-            throwError("not_found", "JSON_DB", `Route ID '${routeId}'`);
+            throwError("JSON_DB", "not_found", `Route ID '${routeId}'`);
         else {
 
             const endpoint = routeGetting.get('endpointName').value();

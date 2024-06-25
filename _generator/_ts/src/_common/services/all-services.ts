@@ -8,7 +8,7 @@ import PackageService from "@package/package.service";
 import ControllerService from "@/app/controller/controller.service";
 import ValidationService from "@/app/validation/validation.service";
 
-export type ServiceType = "AST" | "FS" | "JSON_DB" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR" | "PACKAGE" | "PROMISE";
+export type ServiceType = "AST" | "FS" | "JSON_DB" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR" | "PACKAGE" | "PROMISE" | "ENDPOINT";
 
 @InitialServices
 export class AllServices {

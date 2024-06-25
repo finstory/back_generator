@@ -1,11 +1,11 @@
-import typeError from "@config/server/request-api/send-error";
+import { ErrorResponseType } from "@config/errors/interfaces/error-response.interface";
 import throwError from "@throw_error";
 import dotenv from "dotenv";
 
 dotenv.config();
 const showSuccessMsg = process.env.PRINT_SUCCESS_MSG_IN_PROMISE_WRAPPER === "true";
 
-type callback = (resolve: (value?: any) => void, reject: (reason?: { type: typeError, key: string }) => void) => void;
+type callback = (resolve: (value?: any) => void, reject: (reason?: { type: ErrorResponseType, key: string }) => void) => void;
 
 const promise = async <T>(
     callback: callback,

@@ -5,7 +5,7 @@ import controllerMiddlewares from "@common/middlewares/controller.middleware";
 controllerMiddlewares(controller, { error_wrapper: true });
 
 const router = Router();
-router.get("/test", validation.getAllPackage);
+router.get("/test", validation.test);
 router.get("/all", controller.getAllPackage);
 router.post("/", controller.postPackage);
 export default router;

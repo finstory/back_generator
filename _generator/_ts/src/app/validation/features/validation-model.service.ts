@@ -35,7 +35,7 @@ class ValidateModelService extends Injectable {
             const textCodeLines = textCode.split("\n");
             const newCode = textCodeLines.find(line => line.includes(`${convertToSnakeCase(controllerName)}.validate"`));
 
-            !newCode && throwError("not_found", `[Validation] model export '${convertToSnakeCase(controllerName)}'`);
+            !newCode && throwError("VALIDATION","not_found", `model export '${convertToSnakeCase(controllerName)}'`);
 
             return textCodeLines.filter(line => line !== newCode).join("\n");
         });

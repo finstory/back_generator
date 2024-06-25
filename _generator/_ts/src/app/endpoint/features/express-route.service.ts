@@ -44,7 +44,7 @@ class ExpressRouteService extends Injectable {
         const filePath = `${appPath}/${moduleName}/_routes/${moduleName}.route.ts`;
         let message = `to endpoint '${endpoint}' successfully.`;
 
-        !endpoint || !requestType && throwError("bad_request", "endpoint or requestType");
+        !endpoint || !requestType && throwError("ENDPOINT","bad_request", "endpoint or requestType");
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
@@ -61,7 +61,7 @@ class ExpressRouteService extends Injectable {
             }
 
             if (newController) {
-                !newController && throwError("bad_request", "newController");
+                !newController && throwError("ENDPOINT","bad_request", "newController");
                 textCode = await this._ast_routeFunction.renameController(textCode, { endpoint, requestType }, newController);
                 message = `controller_name | ${message}`;
             }
