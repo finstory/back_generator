@@ -1,0 +1,252 @@
+@import ".index";
+
+#root {
+
+    //% COLOR:
+    --color-base-off: #797979;
+    --color-base: #F2F2F2;
+    --color-base-dark: #0b0b0b;
+
+    --color-primary: #03D3D3;
+    --color-primary-hover: #85f9f9;
+    --color-secondary: #1addc6;
+    --color-secondary-hover: #46eeda;
+    --color-tertiary: #9934FD;
+
+    // request colors:
+    --color-get-off: #1addc63a;
+    --color-get: #1addc6;
+    --color-post-off: #dd8f1a34;
+    --color-post: #c4811b;
+    --color-put-off: #1a99dd59;
+    --color-put: #1a99dd;
+    --color-patch-off: #dd1a854e;
+    --color-patch: #dd1a85;
+    --color-delete-off: #dd1a1a46;
+    --color-delete: #c64040;
+    --color-middleware-off: #5130aa57;
+    --color-middleware: #5030AA;
+    --color-controller-off: #1addc63a;
+    --color-controller: #1addc6;
+
+    //% BG:
+    --bg-primary: transparent;
+    --bg-primary-hover: #1a6bdd4f;
+    --bg-secondary: #3EE6B4;
+    --bg-secondary-hover: #1addc6;
+
+    //% BORDER:
+    --border-primary: #f2f2f26d;
+    --border-secondary: #3D3D3D;
+    --border-radius-primary: 1rem;
+
+    //% FONT:
+    --font-family-primary: 'M PLUS Rounded 1c';
+    // M+PLUS+Rounded+1c
+    --font-family-secondary: 'Inter';
+
+    //% FONT SIZE:
+    --font-size-extra-small: 0.8rem;
+    --font-size-small: 1.2rem;
+    --font-size-normal: 1.4rem;
+    --font-size-medium: 1.6rem;
+    --font-size-large: 2.4rem;
+
+    //% FONT WEIGHT:
+    --font-weight-small: light;
+    --font-weight-normal: normal;
+    --font-weight-medium: semibold;
+    --font-weight-large: bold;
+
+    //% GRADIENT:
+    --gradient-primary: linear-gradient(180deg, #3D3D3D 0%, #5a5a5a 20%, #3D3D3D 80%, #3D3D3D 100%);
+    --gradient-secondary: linear-gradient(90deg, #03D3D3 0%, #1AA3C2 100%);
+}
+
+header {
+    @include dim_width(100%, 168rem);
+    @include dim_height(8rem);
+    @include flex(space-between);
+    padding: 0 1rem;
+    box-sizing: border-box;
+    //   background-color: blueviolet;
+
+    nav {
+        //  background-color: blueviolet;
+        @include dim_height();
+        @include flex();
+
+        ul {
+            @include dim_height();
+            @include flex($gap: 2.5rem);
+
+            a {
+                padding-top: 15%;
+                @include dim_height();
+                @include flex(flex-start, center, column, $gap: 1rem);
+                text-decoration: none;
+
+                &:nth-child(2) {
+                    p {
+                        color: var(--color-primary)
+                    }
+                }
+
+                .selector {
+                    @include dim_height(.1rem);
+                    @include dim_width();
+                    @include flex();
+                    background-color: var(--color-primary);
+                    transition: 0.2s linear;
+                }
+
+
+            }
+        }
+    }
+
+    .logo {
+        position: relative;
+        @include dim_height();
+        padding-top: 1rem;
+        aspect-ratio: 1.06;
+        @include flex();
+        cursor: pointer;
+
+        .particles_container {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+
+            .particle {
+                position: absolute;
+                width: .5rem;
+                height: .5rem;
+                transform: rotate(45deg);
+                background-color: var(--color-primary);
+                animation: particleAnimation 5s infinite alternate;
+
+                &.p1 {
+                    top: 45%;
+                    left: 0;
+                }
+
+                &.p2 {
+                    top: 0;
+                    right: 45%;
+                }
+
+                &.p3 {
+                    bottom: 49%;
+                    right: 0%;
+                }
+
+                &.p4 {
+                    bottom: 0;
+                    right: 49%;
+                }
+            }
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: scale(1) rotate(45deg);
+                ;
+            }
+
+            30% {
+                transform: scale(1) rotate(0);
+                ;
+            }
+
+            50% {
+                transform: scale(0.2) rotate(45deg);
+                border-radius: 50%;
+            }
+
+            70% {
+                transform: scale(1) rotate(0);
+                ;
+            }
+
+            100% {
+                transform: scale(1) rotate(45deg);
+                ;
+            }
+        }
+
+        .circle {
+            @include dim_width(45%);
+            @include dim_height(45%);
+            @include flex();
+            border-radius: 1rem;
+            border: 1px solid var(--color-primary);
+            background-color: var(--color-base-dark);
+            z-index: 1;
+
+        }
+
+    }
+
+    .config_container {
+        padding-top: 1rem;
+        margin-right: 2rem;
+        @include dim_height();
+        @include flex($gap: 1.5rem);
+
+        .tech_btn {
+            @include dim_width(8rem);
+            @include dim_height(3.5rem);
+            @include flex();
+
+            background: var(--gradient-secondary);
+            color: var(--color-base);
+
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: 0.7s linear;
+
+            &:hover {
+                transition: 0s linear;
+                background: var(--color-primary-hover);
+            }
+
+            div:nth-child(1) {
+                @include flex(center, center);
+                @include gradient(black_bg);
+                border-radius: 1rem;
+            }
+        }
+
+
+        .config_btn {
+            @include dim_width(3.5rem);
+            @include dim_height(3.5rem);
+            @include flex();
+
+            background: var(--gradient-primary);
+            color: var(--color-base);
+
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: 0.7s linear;
+
+            &:hover {
+                transition: 0s linear;
+                background: var(--color-base-off);
+            }
+
+            div:nth-child(1) {
+                @include flex(center, center);
+                @include gradient(black_bg);
+                border-radius: 1rem;
+
+            img{
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+            }
+        }
+    }
+
+}

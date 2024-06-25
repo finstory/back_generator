@@ -1,6 +1,5 @@
 import InitialServices from "@config/services/initial-services";
 
-
 import GeneratorService from "@generator/generator.service";
 import FS from "@fs/fs.service";
 import Ast from "@ast/ast.service";
@@ -9,15 +8,20 @@ import PackageService from "@package/package.service";
 import ControllerService from "@/app/controller/controller.service";
 import ValidationService from "@/app/validation/validation.service";
 
+export type ServiceType = "AST" | "FS" | "JSON_DB" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR" | "PACKAGE" | "PROMISE" | "ENDPOINT";
+
 @InitialServices
 export class AllServices {
   public readonly generator = new GeneratorService();
   public readonly fs = new FS();
   public readonly ast = new Ast();
+
+  public readonly package = new PackageService();
   public readonly validation = new ValidationService();
   public readonly endpoint = new EndpointService();
   public readonly controller = new ControllerService();
 }
+
 
 const S = new AllServices();
 export default S;

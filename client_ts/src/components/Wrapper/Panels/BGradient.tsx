@@ -12,7 +12,7 @@ export const BGradient = ({ children, color, className, borderSize = "2px", onCl
   return (
     <div
       onClick={onClick}
-      className={`border_gradient ${className}`}
+      className={`${className}`}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -20,13 +20,13 @@ export const BGradient = ({ children, color, className, borderSize = "2px", onCl
       }}
       >
       <div
-        className={`children ${className}`}
+        className={`children`}
         style={{
           right: "auto",
           left: "auto",
           top: "auto",
           bottom: "auto",
-          // background: "transparent",
+          
           width: `calc(100% - ${borderSize})`,
           height: `calc(100% - ${borderSize})`,
         }}

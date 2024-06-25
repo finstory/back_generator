@@ -1,0 +1,103 @@
+@import "./base";
+@import "./constants";
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    @include dim_height(100%, auto, 100vh);
+    @include dim_width(100%, auto, 100vw);
+
+}
+
+div {
+    box-sizing: border-box;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    @include dim_height();
+    @include dim_width();
+    @include flex();
+    @include font(normal, normal, var(--text-color-primary), 'Inter');
+    @include gradient(black_bg);
+}
+
+#root {
+    position: relative;
+    @include dim_width(100%, 192rem);
+    @include dim_height(100%, 108rem);
+    @include flex(flex-start, center, column);
+    background-size: cover;
+    background-position: top right;
+    background-repeat: no-repeat;
+
+    // --white-color: #F2F2F2;
+    // --off-white-color: #DDDDDD;
+    // --null-color: #6339c6;
+    // --text-primary-color: #2FABCF;
+
+    // --off-green-color: rgba(103, 141, 193, 0.648);
+    // --strong-green-color: #286d66;
+    // --hover-green-color: #1addc689;
+    // --normal-green-color: #3EE6B4;
+    // --gray-color: #3D3D3D;
+    // --off-gray-color: #f2f2f26d;
+
+}
+
+.main_container {
+    padding: 2rem 4rem;
+    margin: 0;
+    overflow-y: scroll;
+    @include dim_width(100%);
+    @include dim_height(auto, auto, calc(100% - 14rem));
+    @include flex(center, center, row, 4rem, wrap);
+    transition: 0.2s linear;
+    animation: opacity 0.5s alternate;
+}
+
+
+.border_gradient {
+    position: relative;
+    @include flex();
+    background: var(--gradient-primary);
+
+    .children {
+        position: absolute;
+        z-index: 21;
+        @include gradient(black_bg);
+    }
+}
+
+::selection {
+    background-color: map-get($text_color, base);
+    color: #141414;
+}
+
+/* SCROLL */
+body ::-webkit-scrollbar {
+    width: 1rem;
+    background-color: var(--bg-color);
+}
+
+body ::-webkit-scrollbar-track {
+    margin: 1rem 0;
+    // -webkit-box-shadow: inset 0 0 6px rgba(196, 196, 196, 0.813);
+    // background-color: #1c1c1c;
+}
+
+body ::-webkit-scrollbar-thumb {
+    border: 1px solid var(--text-primary-color);
+    background-color: #1c1c1c;
+    border-radius: .4rem;
+    border: 1px solid var(--border-secondary);
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}

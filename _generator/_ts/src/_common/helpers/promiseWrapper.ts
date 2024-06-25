@@ -1,11 +1,11 @@
-import { typeError } from "@config/server/response/errors/errors-list.response";
+import { ErrorResponseType } from "@config/errors/interfaces/error-response.interface";
 import throwError from "@throw_error";
 import dotenv from "dotenv";
 
 dotenv.config();
 const showSuccessMsg = process.env.PRINT_SUCCESS_MSG_IN_PROMISE_WRAPPER === "true";
 
-type callback = (resolve: (value?: any) => void, reject: (reason?: { type: typeError, key: string }) => void) => void;
+type callback = (resolve: (value?: any) => void, reject: (reason?: { type: ErrorResponseType, key: string }) => void) => void;
 
 const promise = async <T>(
     callback: callback,
@@ -30,10 +30,9 @@ const promise = async <T>(
             if (result) return result;
         })
         .catch((err) => {
-
             clearTimeout(setTimer);
-            if (err === "timeout") throwError("request_timeout", "promise_wrapper");
-            else throwError(err.type, err.key)
+            if (err === "timeout") throwError("PROMISE", "request_timeout", "promise_wrapper");
+            else throwError("PROMISE", err.type, err.key)
         })
 }
 

@@ -1,11 +1,10 @@
-import ServicesInjector, { AllServices, Auto, Initial, Initialization, AutoInstance } from "@services_injector";
+import { Auto, Initial, Initialization, AutoInstance } from "@services_injector";
 
 import GeneratorFn from "./features/generator-fn.service";
 import GeneratorImport from "./features/generator-import.service";
 import GeneratorTagService from "./features/generator-tag.service";
 import GeneratorRouteFn from "./features/generator-route-fn.service";
 import GeneratorWrapperService from "./features/generator-wrapper.service";
-
 @AutoInstance
 @Initialization
 class GeneratorService {

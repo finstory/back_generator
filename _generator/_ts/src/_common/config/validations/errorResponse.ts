@@ -1,5 +1,4 @@
 import { Response } from "express";
-import throwError from "@throw_error";
 import { ErrorFormat } from "./formatErrors";
 import colors from "colors";
 import dotenv from 'dotenv';

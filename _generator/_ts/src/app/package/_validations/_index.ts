@@ -1,5 +1,4 @@
 
-export * as getUser from './get-user.validate';
-export * as postUserCreate from './post-user-create.validate';
+export * as test from './test.validate';
 
 export default {};

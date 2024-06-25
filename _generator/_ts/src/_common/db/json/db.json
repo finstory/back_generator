@@ -1,0 +1,12 @@
+{
+  "module": [
+    {
+      "name": "auth",
+      "routes": []
+    },
+    {
+      "name": "fast",
+      "routes": []
+    }
+  ]
+}

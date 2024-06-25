@@ -1,11 +1,11 @@
 import React, { FC, ChangeEvent, CSSProperties } from 'react';
 import scss from './mark.module.scss';
-import { ColorStyle } from '@/interfaces/IStyles';
+import { ColorStyle } from '@/_common/interfaces/IStyles';
 
 export interface IMark {
     className?: string;
     style?: CSSProperties;
-    variant?: "circle" | "rhombus" | "triangle";
+    variant?: "circle" | "rhombus" | "triangle" | "bar";
     onClick?: () => void;
     width?: string;
     height?: string;

@@ -1,11 +1,13 @@
 //<IMPORTS>
 import * as C from "../_validations/_index";
 import getValidations from "@/_common/config/validations/getValidations";
-
+import { Request, Response } from "express";
 export class PackageController {
   //<CONTROLLERS>
-  getUser = async (req: C.getUser.Req, res: C.getUser.Res) => { };
-  postUserCreate = async (req: C.postUserCreate.Req, res: C.postUserCreate.Res) => { };
+  test = async (req: C.test.Req, res: C.test.Res) => { };
+  getAllPackage = async (req: Request, res: Response) => { };
+  postPackage = async (req: Request, res: Response) => { };
+  deletePackage = async (req: Request, res: Response) => { };
 }
 
 //<EXPORTS>

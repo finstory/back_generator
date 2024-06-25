@@ -38,7 +38,7 @@ class AstImportService {
             },
         });
 
-        !ok && throwError("not_found", `[AST] Import '${importName}'`);
+        !ok && throwError("AST","not_found", `[AST] Import '${importName}'`);
         printInfo("AST", `Import of '${importName}' edited.`);
         return await astToTextCode(ast);
     };
@@ -61,7 +61,7 @@ class AstImportService {
             printInfo("AST", ` Getting position of import '${importName}' successfully.`);
             return pos;
         }
-        else throwError("not_found", `[AST] Import '${importName}'`);
+        else throwError("AST","not_found", `[AST] Import '${importName}'`);
     };
 }
 

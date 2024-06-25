@@ -1,67 +1,4 @@
-@import "../../../_config/styles/sass";
-
-#root {
-
-    //% COLOR:
-    --color-base-off: #f2f2f26d;
-    --color-base: #F2F2F2;
-    --color-base-dark: #0b0b0b;
-
-    --color-primary: #2FABCF;
-    --color-primary-hover: #67cfef;
-    --color-secondary: #1addc6;
-    --color-secondary-hover: #46eeda;
-
-    // request colors:
-    --color-get-off: #1addc63a;
-    --color-get: #1addc6;
-    --color-post-off: #dd8f1a34;
-    --color-post: #dd8f1a;
-    --color-put-off: #1a99dd59;
-    --color-put: #1a99dd;
-    --color-patch-off: #dd1a854e;
-    --color-patch: #dd1a85;
-    --color-delete-off: #dd1a1a46;
-    --color-delete: #dd1a1a;
-    --color-middleware-off: #5130aa57;
-    --color-middleware: #5030AA;
-    --color-controller-off: #1addc63a;
-    --color-controller: #1addc6;
-
-    //% BG:
-    --bg-primary: transparent;
-    --bg-primary-hover: #1a6bdd4f;
-    --bg-secondary: #3EE6B4;
-    --bg-secondary-hover: #1addc6;
-
-    //% BORDER:
-    --border-primary: #f2f2f26d;
-    --border-secondary: #3D3D3D;
-    --border-radius-primary: 1rem;
-
-    //% FONT:
-    --font-family-primary: 'M PLUS Rounded 1c';
-    // M+PLUS+Rounded+1c
-    --font-family-secondary: 'Inter';
-
-    //% FONT SIZE:
-    --font-size-extra-small: 0.8rem;
-    --font-size-small: 1.2rem;
-    --font-size-normal: 1.4rem;
-    --font-size-medium: 1.6rem;
-    --font-size-large: 2.4rem;
-
-    //% FONT WEIGHT:
-    --font-weight-small: light;
-    --font-weight-normal: normal;
-    --font-weight-medium: semibold;
-    --font-weight-large: bold;
-
-    //% GRADIENT:
-    --gradient-primary: linear-gradient(90deg, #3757b5 0%, #1addc6 100%);
-    --gradient-hover: linear-gradient(90deg, #1addc6 0%, #3757b5 100%);
-}
-
+@import "../../../_common/config/styles/sass";
 
 .circle {
     @include dim_height(1.2rem);
@@ -85,6 +22,13 @@
     transition: 0.2s linear;
 }
 
+
+.bar {
+    @include dim_width(1rem);
+    @include dim_height(.2rem);
+    background-color: var(--color-base-off);
+    transition: 0.2s linear;
+}
 
 .hover_primary {
     &:hover {

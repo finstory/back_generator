@@ -1,13 +1,14 @@
 //<IMPORTS>
 import throwError from "@throw_error";
 import { controller, validation } from "@package/_entities/package-controller.entity";
-
+import S from "@services";
 
 //<CONTROLLERS>
 
 controller.getUser = async ({ query }, res) => {
     // S.product.test();
     console.log(query);
+
     throwError("bad_request", "id");
 
     res.status(200).json(query.age);

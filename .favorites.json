@@ -6,7 +6,7 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "oArFVTwn5mCjsx27",
-        "iconColor": "rgb(127, 255, 212)"
+        "iconColor": "rgb(128, 128, 128)"
     },
     {
         "type": "Group",
@@ -91,30 +91,111 @@
         "id": "91LMFncwBilVYqJf"
     },
     {
-        "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\modules",
-        "parent_id": "gLGhYV8DIlTcNvUd",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\modules",
+        "type": "Group",
+        "name": "Front",
+        "parent_id": null,
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "8xNcSpfLok6XbmI1"
+        "id": "Ah1VUEYm8WXTI0c3",
+        "iconColor": "rgb(0, 128, 128)"
+    },
+    {
+        "type": "Group",
+        "name": "_Editor",
+        "parent_id": "Ah1VUEYm8WXTI0c3",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "x5etClhGs1kbypBH",
+        "iconColor": "rgb(102, 205, 170)"
+    },
+    {
+        "type": "Group",
+        "name": "Resources",
+        "parent_id": "Ah1VUEYm8WXTI0c3",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "MzYFarJ5LpDVbZhk",
+        "iconColor": "rgb(154, 205, 50)"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\config\\styles\\sass\\constants.scss",
+        "parent_id": "MzYFarJ5LpDVbZhk",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\config\\styles\\sass\\constants.scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "w92Dp0CKL57JF3lb"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\services\\all-services.ts",
+        "parent_id": "MzYFarJ5LpDVbZhk",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\services\\all-services.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "4KS1zLNZOC5cDYjp"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\redux\\stores\\store.ts",
+        "parent_id": "MzYFarJ5LpDVbZhk",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\redux\\stores\\store.ts",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "TiWBgCejDMpXyHwZ"
     },
     {
         "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\validation",
-        "parent_id": "gLGhYV8DIlTcNvUd",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\validation",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components",
+        "parent_id": "MzYFarJ5LpDVbZhk",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\components",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "yplSDvuCj2BwYXor"
+        "id": "Jl6FWK2HVORU4yu8"
     },
     {
         "type": "Directory",
-        "name": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\user",
-        "parent_id": "gLGhYV8DIlTcNvUd",
-        "fsPath": "d:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\user",
+        "name": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\services\\module",
+        "parent_id": "x5etClhGs1kbypBH",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\services\\module",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "1ARSMu4vPK0Tcd3e"
+        "id": "PJjRNUw6gYoDZQkC"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\components\\EndpointPanel",
+        "parent_id": "x5etClhGs1kbypBH",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\components\\EndpointPanel",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Slw7kjJUcxazMfbu"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\_scss",
+        "parent_id": "x5etClhGs1kbypBH",
+        "fsPath": "d:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\_scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "NF9crH0nKEYDjbGA"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\services",
+        "parent_id": "x5etClhGs1kbypBH",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\services",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "RfSX815dBe2ztmIT"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\db\\json",
+        "parent_id": "gLGhYV8DIlTcNvUd",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\db\\json",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Az7NqBWUOQ2LMpHY"
     }
 ]
