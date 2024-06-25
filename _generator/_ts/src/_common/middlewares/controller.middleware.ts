@@ -1,4 +1,4 @@
-import errorWrapper from "@config/server/response/errors/throw-error-wrapper.response";
+import errorWrapper from "@/_common/config/server/request/throw-error-wrapper.response";
 
 type MiddlewareOptions = { error_wrapper: boolean };
 

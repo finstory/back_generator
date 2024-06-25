@@ -20,6 +20,7 @@ class ModuleService {
     }
 
     create = async (name: string) => {
+        await this.db.read();
         const moduleExists = this.db.get('module').find({ name }).value();
 
         if (moduleExists) throwError("already_exists", "JSON_DB", `Module '${name}'`);
@@ -35,7 +36,7 @@ class ModuleService {
     }
 
     rename = async (oldName: string, newName: string) => {
-
+        await this.db.read();
         await this.db.get('module')
             .find({ name: oldName })
             .tap((module) => { if (!module) throwError("not_found", "JSON_DB", `Module '${oldName}'`) })
@@ -49,6 +50,7 @@ class ModuleService {
     }
 
     delete = async (name: string) => {
+        await this.db.read();
         const moduleGetting = !this.db.get('module').find({ name }).value();
 
         if (moduleGetting) throwError("not_found", "JSON_DB", `Module '${name}'`);

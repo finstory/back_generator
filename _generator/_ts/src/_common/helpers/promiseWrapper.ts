@@ -1,4 +1,4 @@
-import { typeError } from "@config/server/response/errors/errors-list.response";
+import typeError from "@config/server/request-api/send-error";
 import throwError from "@throw_error";
 import dotenv from "dotenv";
 
@@ -30,10 +30,9 @@ const promise = async <T>(
             if (result) return result;
         })
         .catch((err) => {
-
             clearTimeout(setTimer);
-            if (err === "timeout") throwError("request_timeout", "promise_wrapper");
-            else throwError(err.type, err.key)
+            if (err === "timeout") throwError("PROMISE", "request_timeout", "promise_wrapper");
+            else throwError("PROMISE", err.type, err.key)
         })
 }
 

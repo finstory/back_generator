@@ -4,8 +4,10 @@ import getValidations from "@/_common/config/validations/getValidations";
 import { Request, Response } from "express";
 export class PackageController {
   //<CONTROLLERS>
+  test = async (req: C.test.Req, res: C.test.Res) => { };
   getAllPackage = async (req: Request, res: Response) => { };
   postPackage = async (req: Request, res: Response) => { };
+  deletePackage = async (req: Request, res: Response) => { };
 }
 
 //<EXPORTS>

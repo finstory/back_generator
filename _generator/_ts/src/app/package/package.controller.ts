@@ -13,10 +13,19 @@ controller.getAllPackage = async ({ params, query, body }, res) => {
 };
 
 controller.postPackage = async ({ body: { moduleName } }, res) => {
-    
-    !moduleName && throwError("bad_request", "moduleName");
+
+    !moduleName && throwError("PACKAGE", "bad_request", "moduleName");
 
     const data = await S.package.createModule(moduleName);
+
+    res.status(200).json(data);
+};
+
+controller.deletePackage = async ({ params: { moduleName } }, res) => {
+
+    !moduleName && throwError("PACKAGE", "bad_request", "moduleName");
+
+    const data = await S.package.deleteModule(moduleName);
 
     res.status(200).json(data);
 };

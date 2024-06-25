@@ -3,30 +3,18 @@ import ModuleService from './services/module.service';
 import throwError from "@throw_error";
 import RouteService from './services/route.service';
 
-class MainDB extends JsonDBConfig {
+export class MainDB extends JsonDBConfig {
 
     public module: ModuleService;
     public route: RouteService;
 
-    initializeServices(db: MainDB) {
-        db.module = new ModuleService(this.db);
-        db.route = new RouteService(this.db);
-
+    async _initial() {
+        await this.initializeDB();
+        this.module = new ModuleService(this.db);
+        this.route = new RouteService(this.db);
     }
 }
 
-const db = new MainDB();
-let initialized = false;
+export const json_db = new MainDB();
 
-const JsonDB = async (): Promise<MainDB> => {
-    if (initialized) return db;
-    else {
-        await db.initializeDB();
-        db.initializeServices(db);
-        initialized = true;
-        return db;
-    }
-}
-
-
-export default JsonDB;
+export default { moduleDB: json_db.module, routeDB: json_db.route };

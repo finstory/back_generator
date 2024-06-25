@@ -6,7 +6,12 @@ import path from "path";
 import cors from "cors";
 
 import { routes } from "@/_common/routes";
+import { json_db } from "@/_common/db/json";
 
+//? Async Initial Methods:
+export const asyncInitial = async () => {
+  await json_db._initial();
+};
 //% Initial Methods:
 const server: Express = express();
 server.use(cors());

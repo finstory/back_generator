@@ -19,7 +19,7 @@ export const astToTextCode = async (ast: Node) => {
         transformFromAst(ast, null,
             { retainLines: true, comments: true },
             (err, result) => {
-                if (err) throwError("transform_code", err.message);
+                if (err) throwError("AST","transform_code", err.message);
                 if (err) reject({ type: "transform_code", key: textCode });
                 resolve(result.code);
             });

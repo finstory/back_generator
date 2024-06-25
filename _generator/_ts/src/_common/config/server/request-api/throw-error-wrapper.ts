@@ -1,9 +1,9 @@
-import { Mark } from "@config/errors/stack-filter.error";
-import sendError from "./send-error.response";
+import { Mark } from "@config/errors/utils/stack-filter";
+import sendError from "./send-error";
 import dotenv from 'dotenv';
 dotenv.config();
 
-const errorWrapper =  (fn: any) => async (req: any, res: any) => {
+const errorWrapper = (fn: any) => async (req: any, res: any) => {
     try {
         await fn(req, res);
     } catch (error) {

@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { ErrorResponse } from "./errors.response";
+import ErrorResponse from "../../errors/models/error-response";
 
 function sendError(res: Response, error: ErrorResponse) {
     res.status(error.status || 400).json({
