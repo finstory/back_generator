@@ -9,6 +9,7 @@ class ErrorResponse extends Error {
   stack: any;
   constructor(type: string, message: string, status: number, payload: ErrorFormat[]) {
     super();
+    this.name = "ErrorResponse";
     this.type = type;
     this.status = status;
     this.message = message;

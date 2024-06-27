@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { controller, validation } from "@user/user.controller";
-import controllerMiddlewares from "@common/middleware/controller.middleware";
+import controllerMiddlewares from "@middlewares/controller.middleware";
 
 controllerMiddlewares(controller, { error_wrapper: true });
 

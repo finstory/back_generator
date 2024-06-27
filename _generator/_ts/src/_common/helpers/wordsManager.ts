@@ -1,4 +1,5 @@
 import colors from "colors";
+import { ServiceType } from "../services/all-services";
 
 function UpFirst(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -25,7 +26,6 @@ function textColor(str: string, color: string = "green"): string {
 
 type Info = "AST" | "FS" | "JSON_DB" | "GENERATOR" | "ROUTE" | "CONTROLLER" | "VALIDATION" | "SERVICE" | "INJECTOR" | "UTILS" | "ERROR";
 
-const blueList = ["GENERATOR", "ROUTE", "CONTROLLER", "SERVICE", "INJECTOR", "UTILS", "VALIDATION"];
 
 const showFSLogs = true;
 const showASTLogs = true;
@@ -34,7 +34,7 @@ const showJsonDBLogs = true;
 const showBlueList = true;
 
 
-function printInfo(type: Info, str: string): void {
+function printInfo(type: ServiceType, str: string): void {
     if (type === "FS" && showFSLogs) console.log(`[${colors.green(type)}]` + colors.green(" ⭍  ") + (str) + colors.green(" ⭍  "));
     else if (type === "AST" && showASTLogs) console.log(`[${colors.yellow(type)}]` + colors.yellow(" ⭍  ") + (str) + colors.yellow(" ⭍  "));
 
@@ -42,7 +42,7 @@ function printInfo(type: Info, str: string): void {
 
     else if (type === "JSON_DB" && showJsonDBLogs) console.log(`[${colors.gray(type)}]` + colors.gray(" ⭍  ") + (str) + colors.gray(" ⭍  "));
 
-    else if (blueList.includes(type) && showBlueList) console.log(`[${colors.blue(type)}]` + colors.blue(" ⭍  ") + (str) + colors.blue(" ⭍  "));
+    else console.log(`[${colors.blue(type)}]` + colors.blue(" ⭍  ") + (str) + colors.blue(" ⭍  "));
 }
 
 function printMsg(str: string, color: string = "generator"): void {

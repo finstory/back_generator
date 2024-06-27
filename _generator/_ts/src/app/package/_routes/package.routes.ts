@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { controller, validation } from "@package/package.controller";
-import controllerMiddlewares from "@common/middlewares/controller.middleware";
+import { controller } from "@package/package.controller";
+import controllerMiddlewares from "@middlewares/controller.middleware";
 
-controllerMiddlewares(controller, { error_wrapper: true });
+controllerMiddlewares(controller);
 
 const router = Router();
-router.get("/test", validation.test);
+
 router.get("/all", controller.getAllPackage);
 router.post("/", controller.postPackage);
+router.delete("/:moduleName", controller.deletePackage);
+
 export default router;

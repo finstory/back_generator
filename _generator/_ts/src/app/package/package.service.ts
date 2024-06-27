@@ -2,6 +2,7 @@ import { AllServices as S, BasicInject, BasicInjectable } from "@services_inject
 import throwError from "@throw_error";
 import { json_db } from "@/_common/db/json";
 import { module_controller, controller_entity, module_service, module_route } from "@mockups";
+import { printInfo } from "@/_common/helpers/wordsManager";
 
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
 
@@ -10,17 +11,15 @@ class PackageService extends BasicInjectable {
     @BasicInject private _fs_folder: S["fs"]["folder"];
     @BasicInject private _fs_file: S["fs"]["file"];
 
-    test = async () => {
-        const moduleDB = await json_db.module.getAll();
-    }
-
     getAllModuleDB = async () => {
-        // return (await JsonDB()).module.getAll();
+        printInfo("JSON_DB", "Getting all modules from the database.");
+        return await json_db.module.getAll();
     };
+
     createModule = async (moduleName: string, moduleCommon: boolean = false) => {
         let folderPath: string;
 
-        // await json_db.module.create(moduleName);
+        await json_db.module.create(moduleName);
 
         if (!moduleCommon) {
             folderPath = `${appPath}/${moduleName}`;
@@ -38,15 +37,15 @@ class PackageService extends BasicInjectable {
             ];
 
             await this._fs_folder.createFoldersList(foldersList);
-            //% Creation of the files
 
+            //% Creation of the files
             const filesList = [
                 {
                     path: `${folderPath}/_entities/${moduleName}-controller.entity.ts`,
                     code: controller_entity(moduleName)
                 },
                 {
-                    path: `${folderPath}/${name}.controller.ts`,
+                    path: `${folderPath}/${moduleName}.controller.ts`,
                     code: module_controller(moduleName)
                 },
                 {
@@ -92,9 +91,13 @@ class PackageService extends BasicInjectable {
         return `Module '${moduleName}' created successfully.`;
     }
 
-    deleteModule = async (name: string) => {
-        const folderPath = `${appPath}/${name}`;
+    deleteModule = async (moduleName: string) => {
+        await json_db.module.delete(moduleName);
+
+        const folderPath = `${appPath}/${moduleName}`;
         await this._fs_folder.deleteFolder(folderPath);
+
+        printInfo("PACKAGE", `Module '${moduleName}' deleted successfully.`);
     }
 }
 

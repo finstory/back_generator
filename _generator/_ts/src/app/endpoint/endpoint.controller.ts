@@ -1,7 +1,7 @@
 //<IMPORTS>
 import throwError from "@throw_error";
 import { controller, validation } from "@package/_entities/package-controller.entity";
-import S from "@/_common/config/services/all-services";
+import S from "@services";
 
 //<CONTROLLERS>
 

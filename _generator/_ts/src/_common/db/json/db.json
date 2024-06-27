@@ -3,10 +3,6 @@
     {
       "name": "auth",
       "routes": []
-    },
-    {
-      "name": "fast",
-      "routes": []
     }
   ]
 }

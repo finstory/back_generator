@@ -1,5 +1,6 @@
 //<IMPORTS>
 import throwError from "@throw_error";
+import controllerMiddlewares from "@middlewares/controller.middleware";
 import { controller, validation } from "@package/_entities/package-controller.entity";
 import S from "@services";
 
@@ -24,14 +25,15 @@ controller.postPackage = async ({ body: { moduleName } }, res) => {
 };
 
 controller.deletePackage = async ({ params: { moduleName } }, res) => {
-
     !moduleName && throwError("PACKAGE", "bad_request", "moduleName");
 
-    const data = await S.package.deleteModule(moduleName);
+    await S.package.deleteModule(moduleName);
 
-    res.status(200).json(data);
+    res.status(200).json(`Module '${moduleName}' deleted successfully.`);
+
 };
 
+controllerMiddlewares(controller, { error_wrapper: true });
 
 //<EXPORTS>
 export { validation, controller };
