@@ -4,7 +4,7 @@ type MiddlewareOptions = { error_wrapper: boolean };
 
 const defaultOptions = { error_wrapper: true };
 
-const controllerMiddlewares = (controllers: any, middlewareOptions: MiddlewareOptions = defaultOptions) => {
+const controllerSettings = (controllers: any, middlewareOptions: MiddlewareOptions = defaultOptions) => {
     for (const key in controllers) {
 
         if (middlewareOptions.error_wrapper)
@@ -14,4 +14,4 @@ const controllerMiddlewares = (controllers: any, middlewareOptions: MiddlewareOp
     }
     return controllers;
 }
-export default controllerMiddlewares;
+export default controllerSettings;

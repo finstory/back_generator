@@ -1,11 +1,10 @@
 import { Router } from "express";
-import { controller, validation } from "@user/user.controller";
-import controllerMiddlewares from "@common/middleware/controller.middleware";
-
-controllerMiddlewares(controller, { error_wrapper: true });
+import { controller, validation } from "@endpoint/endpoint.controller";
 
 const router = Router();
 
-router.get("/all", validation.getUser, controller.getUser);
+router.post("/", controller.postEndpoint);
+router.patch("/", controller.patchEndpoint);
+router.delete("/", controller.deleteEndpoint);
 
 export default router;

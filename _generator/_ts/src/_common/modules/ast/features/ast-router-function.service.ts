@@ -25,16 +25,15 @@ class AstRouteFunctionService {
 
     //% Express Router :
 
-    renameEndpoint = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newEndpoint: string): Promise<TextCode> => {
+    renameEndpoint = async (textCode: TextCode, { endpointName, requestType }: RouteExpressDto, newEndpoint: string): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
         traverse(ast, {
 
             ExpressionStatement: (path) => {
-
                 const expression = path.node.expression as AstRouteExpress;
-                const check = this.hasRouteFunction(expression, endpoint, requestType);
+                const check = this.hasRouteFunction(expression, endpointName, requestType);
 
                 if (check) expression.arguments.forEach(arg => {
                     if (arg.type === "StringLiteral") {
@@ -46,14 +45,14 @@ class AstRouteFunctionService {
             }
 
         });
-        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST", "not_found", `Endpoint (${requestType}) ${endpointName}`);
         return await astToTextCode(ast);
 
 
     }
 
 
-    changeRequestType = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newRequestType: RequestType): Promise<TextCode> => {
+    changeRequestType = async (textCode: TextCode, { endpointName, requestType }: RouteExpressDto, newRequestType: RequestType): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
@@ -62,7 +61,7 @@ class AstRouteFunctionService {
             ExpressionStatement: (path) => {
 
                 const expression = path.node.expression as AstRouteExpress;
-                const check = this.hasRouteFunction(expression, endpoint, requestType);
+                const check = this.hasRouteFunction(expression, endpointName, requestType);
 
                 if (check) expression.callee.property.name = newRequestType;
                 ok = true;
@@ -71,11 +70,11 @@ class AstRouteFunctionService {
 
         });
 
-        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST", "not_found", `Endpoint (${requestType}) ${endpointName}`);
         return await astToTextCode(ast);
     }
 
-    renameController = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto, newController: string): Promise<TextCode> => {
+    renameController = async (textCode: TextCode, { endpointName, requestType }: RouteExpressDto, newController: string): Promise<TextCode> => {
         const ast = codeToAst(textCode);
         let ok = false;
 
@@ -83,7 +82,7 @@ class AstRouteFunctionService {
             ExpressionStatement: (path) => {
 
                 const expression = path.node.expression as AstRouteExpress;
-                const check = this.hasRouteFunction(expression, endpoint, requestType);
+                const check = this.hasRouteFunction(expression, endpointName, requestType);
 
                 if (check) expression.arguments.forEach(arg => {
 
@@ -98,11 +97,11 @@ class AstRouteFunctionService {
 
         });
 
-        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST", "not_found", `Endpoint (${requestType}) ${endpointName}`);
         return await astToTextCode(ast);
     }
 
-    switchValidation = async (textCode: TextCode, { endpoint, requestType, validateActive }: RouteExpressDtoV1): Promise<TextCode> => {
+    switchValidation = async (textCode: TextCode, { endpointName, requestType, validateActive }: RouteExpressDtoV1): Promise<TextCode> => {
         const ast = codeToAst(textCode);
         let ok = false;
 
@@ -110,7 +109,7 @@ class AstRouteFunctionService {
             ExpressionStatement: (path) => {
 
                 const expression = path.node.expression as AstRouteExpress;
-                const check = this.hasRouteFunction(expression, endpoint, requestType);
+                const check = this.hasRouteFunction(expression, endpointName, requestType);
 
                 if (check) {
                     const middleware_ast = expression.arguments.filter(arg => arg.type === "MemberExpression" && arg.object.name === "middleware");
@@ -152,11 +151,11 @@ class AstRouteFunctionService {
             }
         });
 
-        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
+        !ok && throwError("AST", "not_found", `Endpoint (${requestType}) ${endpointName}`);
         return await astToTextCode(ast);
     }
 
-    removeRoute = async (textCode: TextCode, { endpoint, requestType }: RouteExpressDto): Promise<TextCode> => {
+    removeRoute = async (textCode: TextCode, { endpointName, requestType }: RouteExpressDto): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;
@@ -173,7 +172,7 @@ class AstRouteFunctionService {
                     expression.callee.object.name === "router" &&
                     expression.callee.property.name === requestType &&
                     expression.arguments.some(
-                        arg => arg.type === "StringLiteral" && arg.value === endpoint
+                        arg => arg.type === "StringLiteral" && arg.value === endpointName
                     )
                 ) {
                     path.remove();
@@ -181,8 +180,8 @@ class AstRouteFunctionService {
                 }
             }
         });
-        !ok && throwError("AST","not_found", `[AST] Endpoint '${endpoint}'`);
-        printInfo("AST", `Endpoint '${endpoint}' removed.`);
+        !ok && throwError("AST", "not_found", `Endpoint (${requestType}) ${endpointName}`);
+        printInfo("AST", `Endpoint '${endpointName}' removed.`);
         return await astToTextCode(ast);
     }
 }

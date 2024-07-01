@@ -1,7 +1,7 @@
 import { RequestType } from "@interfaces";
 
 export class RouteExpressDto {
-    endpoint: string;
+    endpointName: string;
     requestType: RequestType;
 }
 
@@ -10,5 +10,6 @@ export class RouteExpressDtoV1 extends RouteExpressDto {
 }
 
 export class RouteExpressDtoV2 extends RouteExpressDto {
+    controllerName?: string;
     validateActive?: boolean;
 }

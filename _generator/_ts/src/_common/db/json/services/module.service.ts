@@ -53,7 +53,7 @@ class ModuleService {
         await this.db.read();
         const moduleGetting = !this.db.get('module').find({ name }).value();
 
-        if (moduleGetting) throwError("JSON_DB", "not_found", `Module '${name}'`);
+        if (moduleGetting) throwError("JSON_DB", "not_found", `Module ${name}`);
         else await this.db.get('module')
             .remove({ name })
             .write()

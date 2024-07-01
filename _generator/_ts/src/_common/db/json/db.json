@@ -6,7 +6,21 @@
     },
     {
       "name": "fast",
-      "routes": []
+      "routes": [
+        {
+          "id": "0dcdf7c4-f085-4a27-b110-0cff3e21b840",
+          "controllerName": "getFastRegister",
+          "endpointName": "/register",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
     }
   ]
 }

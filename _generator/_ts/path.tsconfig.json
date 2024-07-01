@@ -13,6 +13,8 @@
       "@envs": ["./_common/config/plugins/env/env-var.plugin.ts"],
       "@mockups": ["./_common/mockups/_index.ts"],
       "@app/*": ["./app/*"],
+      "@middlewares/*": ["./_common/middlewares/*"],
+
       //% Errors:
       "@throw_error": ["./_common/config/errors/throw-error.ts"],
       "@throw_error_response_wrap": ["./_common/config/server/response/errors/throw-error-wrapper.response.ts"],

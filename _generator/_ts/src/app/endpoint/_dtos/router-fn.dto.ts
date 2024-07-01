@@ -1,9 +1,10 @@
 import { RequestType } from "@interfaces";
 
-export class EditRouteFnDto {
-    newEndpoint?: string;
-    newRequestType?: RequestType;
-    newController?: string;
+export class EditRouteDto {
+    endpointName?: string;
+    requestType?: RequestType;
+    controllerName?: string;
+    validateActive?: boolean;
 }
 
 export class RouteImportDto {

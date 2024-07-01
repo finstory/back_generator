@@ -197,5 +197,23 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "Az7NqBWUOQ2LMpHY"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\db\\json\\db.json",
+        "parent_id": "mgPq8GHSBLfDFjbu",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\_common\\db\\json\\db.json",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "anp9Sjm7XWCFeZYM"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\endpoint",
+        "parent_id": "gLGhYV8DIlTcNvUd",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\_generator\\_ts\\src\\app\\endpoint",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "MyINFrxtknmpujDQ"
     }
 ]

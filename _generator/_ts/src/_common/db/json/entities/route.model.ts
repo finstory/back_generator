@@ -1,10 +1,10 @@
+import { RequestType } from "@/_common/interfaces/_index";
 import RequestParamsModel from "./request-params.model";
 
 export interface RouteModelEdition {
-    id?: string;
     endpointName?: string;
     controllerName?: string;
-    requestType?: "get" | "post" | "put" | "delete" | "patch";
+    requestType?: RequestType;
     description?: string;
     // middlewares?: string[];
     // params?: RequestParamsModel[];
@@ -18,7 +18,8 @@ class RouteModel {
     id: string;
     endpointName: string;
     controllerName: string;
-    requestType: "get" | "post" | "put" | "delete" | "patch";
+    requestType: RequestType;
+    validateActive?: boolean;
     description?: string;
     middlewares?: string[];
     params?: RequestParamsModel[];
@@ -30,13 +31,14 @@ class RouteModel {
         this.id = id;
         this.endpointName = endpointName;
         this.requestType = requestType;
-        this.description = description;
         this.controllerName = controllerName;
-        this.middlewares = middlewares;
-        this.params = params;
-        this.query = query;
-        this.body = body;
-        this.responseBody = responseBody;
+        this.description = description;
+        this.validateActive = true;
+        this.middlewares = middlewares || [];
+        this.params = params || [];
+        this.query = query || [];
+        this.body = body || [];
+        this.responseBody = responseBody || [];
     }
 }
 

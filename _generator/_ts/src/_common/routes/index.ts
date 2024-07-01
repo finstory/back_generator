@@ -1,10 +1,12 @@
 import { Router } from "express";
-//IMPORTS
+//<IMPORTS>
 import Package from "@package/_routes/package.routes";
+import Endpoint from "@endpoint/_routes/endpoint.route";
 
 export const routes = Router();
 
-//ROUTES
+//<ROUTES>
 routes.use("/module", Package);
+routes.use("/endpoint", Endpoint);
 
 export default routes;

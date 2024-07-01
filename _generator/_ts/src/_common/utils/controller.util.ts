@@ -30,7 +30,7 @@ export const getEndpointNames = (endpoint: string, underscore: boolean = false)
     return { endpointList, params };
 };
 
-export const generateControllerName = (moduleName: string, endpoint: string = "/", requestType: RequestType) => {
+export const generateControllerName = (moduleName: string, endpoint: string = "/", requestType: RequestType): string => {
 
     let controllerName: string;
     const { endpointList, params } = getEndpointNames(endpoint, false);

@@ -2,19 +2,23 @@ import { UpFirst } from "../helpers/wordsManager";
 
 
 export const module_controller = (moduleName: string): string => `//<IMPORTS>
-import throwError from "@throw_error";
 import { controller, validation } from "./_entities/${moduleName}-controller.entity";
+import controllerSettings from "@config/controllers/controller-settings";
+import throwError from "@throw_error";
 import S from "@services";
 
 //<CONTROLLERS>
 
+
+//<SETTINGS>
+controllerSettings(controller);
 
 //<EXPORTS>
 export { validation, controller };`
 
 export const controller = (controllerName: string): string => `
 controller.${controllerName} = async ({ params, query, body }, res) => {
-  const data: any = { controllerName: ${controllerName} };
+  const data: any = { controllerName: "${controllerName}" };
 
 
   res.status(200).json(data);
