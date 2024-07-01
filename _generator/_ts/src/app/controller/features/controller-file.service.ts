@@ -9,7 +9,7 @@ const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-te
 class ControllerFileService extends Injectable {
 
     @Inject private _fs_file: S['fs']['file'];
-    @Inject private _ast_compiler_function: S['ast']['compilerFunction'];
+    @Inject private _ast_compilerFunction: S['ast']['compilerFunction'];
     @Inject private _generator_tag: S['generator']['tag'];
     @Inject private _ast_import: S['ast']['import'];
 
@@ -44,7 +44,7 @@ class ControllerFileService extends Injectable {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
-            return await this._ast_compiler_function.renameProperty(textCode, { compilerName: "controller", propName: controllerName }, newControllerName);
+            return await this._ast_compilerFunction.renameProperty(textCode, { compilerName: "controller", propName: controllerName }, newControllerName);
         });
 
         printInfo("CONTROLLER", `Renaming '${controllerName}' controller.`);
@@ -57,7 +57,7 @@ class ControllerFileService extends Injectable {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
-            return await this._ast_compiler_function.removeProperty(textCode, { compilerName: "controller", propName: controllerName });
+            return await this._ast_compilerFunction.removeProperty(textCode, { compilerName: "controller", propName: controllerName });
         });
 
         printInfo("CONTROLLER", `Controller removed successfully.`);
@@ -70,7 +70,7 @@ class ControllerFileService extends Injectable {
         const textCode = await this._fs_file.getFile(filePath);
 
 
-        const pos = this._ast_compiler_function.getPosProperty(textCode, { compilerName: "controller", propName: controllerName });
+        const pos = this._ast_compilerFunction.getPosProperty(textCode, { compilerName: "controller", propName: controllerName });
 
         printInfo("CONTROLLER", `Position obtained for controller: '${controllerName}' successfully.`);
 

@@ -1,8 +1,5 @@
 import { Router } from "express";
 import { controller } from "@package/package.controller";
-import controllerMiddlewares from "@middlewares/controller.middleware";
-
-controllerMiddlewares(controller);
 
 const router = Router();
 

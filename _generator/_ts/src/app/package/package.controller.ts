@@ -1,12 +1,10 @@
 //<IMPORTS>
-import throwError from "@throw_error";
-import controllerMiddlewares from "@middlewares/controller.middleware";
 import { controller, validation } from "@package/_entities/package-controller.entity";
+import controllerSettings from "@config/controllers/controller-settings";
+import throwError from "@throw_error";
 import S from "@services";
 
 //<CONTROLLERS>
-
-
 
 controller.getAllPackage = async ({ params, query, body }, res) => {
 
@@ -33,7 +31,8 @@ controller.deletePackage = async ({ params: { moduleName } }, res) => {
 
 };
 
-controllerMiddlewares(controller, { error_wrapper: true });
+//<SETTINGS>
+controllerSettings(controller);
 
 //<EXPORTS>
 export { validation, controller };

@@ -22,13 +22,18 @@ class ResponseBody { };
 
 //BODY TO SEND:
 
-const body: ResponseBody = {};
+const body = {} as Body;
 
 
 //<EXPORTS>:
 export interface Req extends Request<Params, {}, Body, Query> { }
 export interface Res extends Response<ResponseBody> { }
 export const parameters = { Params, Query, Body };`;
+}
+
+export const validation_barrel = (): string => {
+    return `//<EXPORTS>
+export default {};`
 }
 
 export const export_validation = (controllerName: string): string => {

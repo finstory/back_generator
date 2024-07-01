@@ -16,35 +16,35 @@ class GeneratorRouteFn extends Injector {
         console.log(this._fs_file)
     }
 
-    edit = async (filePath: Path, { endpoint, requestType, validateActive }: RouteExpressDtoV2, { newEndpoint, newRequestType, newController }: EditRouteFnDto) => {
+    edit = async (filePath: Path, { endpointName, requestType, validateActive }: RouteExpressDtoV2, { newEndpoint, newRequestType, newController }: EditRouteFnDto) => {
         console.log("ok")
-        !endpoint || !requestType && throwError("GENERATOR","bad_request", "endpoint or requestType");
+        !endpointName || !requestType && throwError("GENERATOR","bad_request", "endpoint or requestType");
 
         const textCode = await this._fs_file.getFile(filePath);
         let newTextCode: string;
 
         if (newEndpoint) {
-            newTextCode = await this._ast_route_function.renameEndpoint(textCode, { endpoint, requestType }, newEndpoint);
+            newTextCode = await this._ast_route_function.renameEndpoint(textCode, { endpointName, requestType }, newEndpoint);
         }
 
         if (newRequestType) {
-            newTextCode = await this._ast_route_function.changeRequestType(textCode, { endpoint, requestType }, newRequestType);
+            newTextCode = await this._ast_route_function.changeRequestType(textCode, { endpointName, requestType }, newRequestType);
         }
 
         if (newController) {
             !newController && throwError("GENERATOR","bad_request", "newController");
-            newTextCode = await this._ast_route_function.renameController(textCode, { endpoint, requestType }, newController);
+            newTextCode = await this._ast_route_function.renameController(textCode, { endpointName, requestType }, newController);
         }
 
-        newTextCode = await this._ast_route_function.switchValidation(textCode, { endpoint, requestType, validateActive })
+        newTextCode = await this._ast_route_function.switchValidation(textCode, { endpointName, requestType, validateActive })
 
         await this._fs_file.createFile(filePath, newTextCode);
     }
 
-    remove = async (filePath: Path, { endpoint, requestType }: RouteExpressDto) => {
+    remove = async (filePath: Path, { endpointName, requestType }: RouteExpressDto) => {
         let textCode = await this._fs_file.getFile(filePath);
 
-        const newTextCode = await this._ast_route_function.removeRoute(textCode, { endpoint, requestType });
+        const newTextCode = await this._ast_route_function.removeRoute(textCode, { endpointName, requestType });
 
         await this._fs_file.createFile(filePath, newTextCode);
         printInfo("GENERATOR", "Route removed successfully.");

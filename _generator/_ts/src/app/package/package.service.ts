@@ -1,7 +1,7 @@
 import { AllServices as S, BasicInject, BasicInjectable } from "@services_injector";
 import throwError from "@throw_error";
 import { json_db } from "@/_common/db/json";
-import { module_controller, controller_entity, module_service, module_route } from "@mockups";
+import { module_controller, controller_entity, module_service, module_route, validation_barrel } from "@mockups";
 import { printInfo } from "@/_common/helpers/wordsManager";
 
 const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
@@ -50,7 +50,7 @@ class PackageService extends BasicInjectable {
                 },
                 {
                     path: `${folderPath}/_validations/_index.ts`,
-                    code: "export default {};",
+                    code: validation_barrel(),
                 },
                 {
                     path: `${folderPath}/${moduleName}.service.ts`,
