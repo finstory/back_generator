@@ -6,6 +6,7 @@ export class PackageController {
   //<CONTROLLERS>
   test = async (req: C.test.Req, res: C.test.Res) => { };
   getAllPackage = async (req: Request, res: Response) => { };
+  patchPackageRename = async (req: Request, res: Response) => { };
   postPackage = async (req: Request, res: Response) => { };
   deletePackage = async (req: Request, res: Response) => { };
 }

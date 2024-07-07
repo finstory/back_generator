@@ -23,7 +23,7 @@ export const module: ModuleState = {
           responseBody: []
         },
         {
-          id: "13a52111-72b4-4648-ae8b-cb864fd18793",
+          id: "13a52111-72b4-4648-ae8b-cb864fd187934",
           endpointName: "/create",
           requestType: "post",
           description: "Write a description here...",
@@ -70,7 +70,7 @@ export const module: ModuleState = {
           responseBody: []
         },
         {
-          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          id: "14a52111-72b4-4648-ae8b-cb864fd18773",
           endpointName: "/other",
           requestType: "get",
           description: "Write a description here...",
@@ -82,7 +82,7 @@ export const module: ModuleState = {
           responseBody: []
         },
         {
-          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          id: "14a52111-72b4-4648-ae8b-cb864fd1876693",
           endpointName: "/other",
           requestType: "get",
           description: "Write a description here...",
@@ -94,7 +94,7 @@ export const module: ModuleState = {
           responseBody: []
         },
         {
-          id: "13a52111-72b4-4648-ae8b-cb864fd18793",
+          id: "13a52111-72b4-4648-ae8b-cb864f788d18793",
           endpointName: "/create",
           requestType: "post",
           description: "Write a description here...",
@@ -141,7 +141,7 @@ export const module: ModuleState = {
           responseBody: []
         },
         {
-          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
+          id: "14a52111-72b4-4648-ae8b-cb86894fd18793",
           endpointName: "/other",
           requestType: "get",
           description: "Write a description here...",
@@ -154,40 +154,6 @@ export const module: ModuleState = {
         }
       ]
     },
-    {
-      name: "auth",
-      routes: [
-        {
-          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
-          endpointName: "/other",
-          requestType: "delete",
-          description: "Write a description here...",
-          controllerName: "postUserCreate",
-          middlewares: ["Token", "+"],
-          params: [],
-          query: [],
-          body: [],
-          responseBody: []
-        },
-      ]
-    },
-    {
-      name: "auth",
-      routes: [
-        {
-          id: "14a52111-72b4-4648-ae8b-cb864fd18793",
-          endpointName: "/other",
-          requestType: "delete",
-          description: "Write a description here...",
-          controllerName: "postUserCreate",
-          middlewares: ["Token", "+"],
-          params: [],
-          query: [],
-          body: [],
-          responseBody: []
-        },
-      ]
-    }
   ],
   loading: true,
 };

@@ -19,8 +19,29 @@
           "query": [],
           "body": [],
           "responseBody": []
+        },
+        {
+          "id": "4a30da1d-3ae8-4447-ac7f-9099b83f3f9d",
+          "controllerName": "postFastLogin",
+          "endpointName": "/login",
+          "requestType": "post",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
         }
       ]
+    },
+    {
+      "name": "ready",
+      "routes": []
+    },
+    {
+      "name": "list",
+      "routes": []
     }
   ]
 }

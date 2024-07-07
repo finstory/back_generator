@@ -13,7 +13,13 @@
         @include flex();
          border-top: 1px solid var(--border-primary);
 
-         p {}
+         span{
+            cursor: pointer;
+            transition: .2s ease-in-out;
+            &:hover {
+                color: var(--color-primary);
+            }
+         }
 
      }
  }

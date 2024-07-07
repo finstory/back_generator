@@ -13,7 +13,6 @@ import { BasicRouteDto, BasicRouteDtoV2 } from "@/_common/db/dto/route.dto";
 class Params {
     routeId: string;
     moduleName: string;
-
 };
 
 class Query { };

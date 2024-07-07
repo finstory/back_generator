@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { getObjState as state, setReducer, getState } from "@/_common/redux/hooks/useRedux";
 
-export type SetRedux = (data: any, actionName: string) => void;
+export type SetRedux = (data: object, actionName: string) => void;
 
 export function Redux(target: any, propertyKey: string) {
     const reduxProperties = Reflect.getMetadata('reduxProperties', target) || [];

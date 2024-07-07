@@ -13,7 +13,7 @@ export const Header: FC<IProps> = ({ }) => {
         { name: 'MIDDLEWARES', to: '/contact', active: false },
         { name: 'SOCKETS', to: '/contact', active: false },
         { name: 'TESTING', to: '/contact', active: false },
-        { name: 'SUPPORT', to: '/contact', active: false },
+        { name: 'HELP', to: '/contact', active: false },
 
     ])
 
@@ -42,7 +42,7 @@ export const Header: FC<IProps> = ({ }) => {
                     {linkList.map((link, index) => (
                         <Link onClick={() => { toggleNav(index) }} to={link.to} key={index}>
                             <div className={scss.text_wrap}>
-                                <Text label='p' size='medium' fontWeight='500'>{link.name}</Text>
+                                <Text label='p' size='medium' fontWeight='400' color={link.active ? "primary" : "base"}>{link.name}</Text>
                             </div>
                             {link.active && <div className={scss.selector} />}
                         </Link>

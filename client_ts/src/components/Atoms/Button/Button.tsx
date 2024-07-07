@@ -9,6 +9,7 @@ export const Button: FC<{
   //? request colors
   | "get" | "post" | "put" | "patch" | "delete" | "middleware"
   ;
+  type?: React.HTMLProps<HTMLButtonElement>["type"];
   width?: React.CSSProperties["width"];
   height?: React.CSSProperties["height"];
   padding?: React.CSSProperties["padding"];

@@ -22,6 +22,13 @@ controller.postPackage = async ({ body: { moduleName } }, res) => {
     res.status(200).json(data);
 };
 
+controller.patchPackageRename = async ({ params: { moduleName }, body: { newModuleName } }, res) => {
+    !moduleName && throwError("PACKAGE", "bad_request", "moduleName");
+    !newModuleName && throwError("PACKAGE", "bad_request", "newModuleName");
+
+    res.status(200).json(`Module '${moduleName}' renamed to '${newModuleName}' successfully.`);
+};
+
 controller.deletePackage = async ({ params: { moduleName } }, res) => {
     !moduleName && throwError("PACKAGE", "bad_request", "moduleName");
 

@@ -7,17 +7,17 @@ import S from "@S";
 
 
 export const EndpointPanel: FC = () => {
-
+  const { removeModule } = S.module;
   const props = childrenProps({});
 
   return (
-    <DGBorder  className={scss.endpoint_panel} {...props.endpoint_panel} >
+    <DGBorder className={scss.endpoint_panel} {...props.endpoint_panel} >
 
       <div className={scss.panel}>
         <Title _scss={scss} />
         <EndpointDir _scss={scss} />
       </div>
-      
+
     </DGBorder>
   )
 };

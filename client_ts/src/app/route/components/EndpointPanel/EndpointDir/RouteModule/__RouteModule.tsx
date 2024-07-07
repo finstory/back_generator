@@ -1,7 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { IconButton, Mark, Text } from "@/components";
 import { IModule, IRoute } from "@/services/module/_interfaces/module.interface";
-import { upFirst } from "@helpers/wordsManager";
+import S from "@S";
+import RenameModule from "./__RenameModule";
+import Endpoint from "../Endpoint/__Endpoint";
 
 interface IProps {
   _scss: CSSModuleClasses;
@@ -9,43 +11,36 @@ interface IProps {
 }
 
 export const RouteModule: FC<IProps> = ({ _scss, module }) => {
+  const { removeModule } = S.module;
+  const [renameModeActive, setRenameModeActive] = useState<boolean>(false);
+ 
+ return <div className={_scss.module_container}>
 
-  return <div className={_scss.module_container}>
-    <div className={_scss.module}>
-      <div className={_scss.wrap}>
-
-        <Mark cursor="pointer" />
-        <Text label="h2" color="primary" cursor="pointer">{module.name.toUpperCase()}</Text>
-
-        <div className={_scss.wrap_editor}>
-          <IconButton icon="edit_primary" />
-          <IconButton icon="delete_primary" />
-        </div>
-
-      </div>
-
-    </div>
-
-    {module.routes.map((route) => (
-      <div key={route.id} className={_scss.endpoint}>
-
+    {renameModeActive ?
+      <RenameModule _scss={_scss} moduleName={module.name} active={setRenameModeActive} />
+      :
+      <div className={_scss.module}>
         <div className={_scss.wrap}>
-          <Mark className={_scss.mark} variant="bar" />
 
-          <Text className={_scss.text} label="p" color="base-off" >
-            {route.endpointName.toUpperCase()} -
-
-            <Text className={_scss.text} label="span" color={route.requestType}> {route.requestType.toUpperCase()} </Text>
-
+          <Mark cursor="pointer" />
+          <Text label="h2" color="primary" cursor="pointer">
+            {module.name.toUpperCase()}
           </Text>
 
           <div className={_scss.wrap_editor}>
-            <IconButton icon="edit_primary" />
-            <IconButton icon="delete_primary" />
+            <IconButton icon="edit_primary" onClick={() => { setRenameModeActive(true) }} />
+            <IconButton icon="delete_primary" onClick={() => { removeModule(module.name) }} />
           </div>
 
         </div>
+
       </div>
+    }
+
+
+    {module.routes.length > 0 && module.routes.map((route) => (
+      <Endpoint _scss={_scss} route={route} key={route.id} />
     ))}
+
   </div>;
 };

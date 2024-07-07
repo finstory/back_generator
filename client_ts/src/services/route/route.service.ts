@@ -12,14 +12,9 @@ class RouteService extends BasicInjectable {
     @Redux private _setRoute!: SetRedux;
 
     toggleModuleEditor = () => {
-        const { endpointPanel: { moduleEditorOpen } } = this._route;
-        this._setRoute({ endpointPanel: { moduleEditorOpen: !moduleEditorOpen } }, "TOGGLE_MODULE_EDITOR");
+        const { endpointPanel } = this._route;
+        const { moduleEditorOpen } = endpointPanel;
+        this._setRoute({ endpointPanel: { ...endpointPanel, moduleEditorOpen: !moduleEditorOpen } }, "TOGGLE_MODULE_EDITOR");
     };
-
-    login(username: string, password: string) {
-        // this._product.getProduct("heloo", "world");
-        console.log(username);
-        console.log(password);
-    }
 }
 export default RouteService;

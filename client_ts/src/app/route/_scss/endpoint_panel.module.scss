@@ -149,6 +149,12 @@
                 border-bottom: 1px solid var(--border-secondary);
                 animation: fadeIn 0.2s ease-in forwards;
 
+                .rename_module {
+                    @include dim_width();
+                    @include dim_height(3rem);
+                    @include flex(flex-start, $gap: 1rem);
+                }
+
                 .module {
                     @include dim_width();
                     @include dim_height(3rem);
@@ -184,6 +190,8 @@
                     @include dim_height(3rem);
                     @include flex(flex-start, $gap: 1rem);
 
+
+
                     .wrap {
                         @include flex(flex-start, $gap: .8rem);
                         cursor: pointer;
@@ -210,7 +218,26 @@
                     }
 
                     .wrap_editor {
-                        @include flex(flex-start, $gap: .5rem);
+                        @include flex(flex-start, $gap: 1rem);
+
+                        select {
+                            @include dim_width(10rem);
+                            @include dim_height(4rem);
+                            border-radius: 1rem;
+                            border: 1px solid var(--border-secondary);
+                            padding: 0rem 1rem;
+                            background: var(--color-base-dark);
+                            color: var(--color-base);
+                            border: 1px solid var(--border-primary);
+                            font-size: var(--font-size-small);
+                            cursor: pointer;
+
+                            &:focus {
+                                outline: none;
+                                border: 1px solid var(--color-primary);
+                                color: var(--color-primary);
+                            }
+                        }
                     }
                 }
 

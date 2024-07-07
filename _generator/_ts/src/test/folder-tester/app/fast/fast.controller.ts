@@ -6,6 +6,18 @@ import S from "@services";
 
 //<CONTROLLERS>
 
+controller.postFastLogin = async ({ params, query, body }, res) => {
+    const data: any = { controllerName: "postFastLogin" };
+
+    res.status(200).json(data);
+};
+
+controller.undefinedFast = async ({ params, query, body }, res) => {
+    const data: any = { controllerName: "undefinedFast" };
+
+    res.status(200).json(data);
+};
+
 controller.getFastRegister = async ({ params, query, body }, res) => {
     const data: any = { controllerName: "postFastLogin" };
 
