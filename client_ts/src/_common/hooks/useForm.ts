@@ -1,8 +1,8 @@
 import { useState } from "react";
 type Values = { [key: string]: string };
-export const useForm = (initialState: Values = {}) => {
+export const useForm = <T>(initialState: T) => {
 
-  const [values, setValues] = useState<Values>(initialState);
+  const [values, setValues] = useState<T>(initialState);
 
 
 
@@ -10,7 +10,7 @@ export const useForm = (initialState: Values = {}) => {
     setValues(initialState);
   };
 
-  const handleInputChange = ({ target }: { target: HTMLInputElement|HTMLSelectElement }) => {
+  const handleInputChange = ({ target }: { target: HTMLInputElement | HTMLSelectElement }) => {
     setValues({
       ...values,
       [target.name]: target.value,

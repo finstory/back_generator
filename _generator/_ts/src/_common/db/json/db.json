@@ -8,7 +8,20 @@
       "name": "fast",
       "routes": [
         {
-          "id": "0dcdf7c4-f085-4a27-b110-0cff3e21b840",
+          "id": "45bab0f1-ba9f-4015-82df-5efb7c129a6e",
+          "controllerName": "putFastLoginByName",
+          "endpointName": "/login/:name",
+          "requestType": "put",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "a6b962db-7277-4d60-8b24-b2bffe4fb89f",
           "controllerName": "getFastRegister",
           "endpointName": "/register",
           "requestType": "get",
@@ -21,10 +34,10 @@
           "responseBody": []
         },
         {
-          "id": "4a30da1d-3ae8-4447-ac7f-9099b83f3f9d",
-          "controllerName": "postFastLogin",
-          "endpointName": "/login",
-          "requestType": "post",
+          "id": "9895e3f3-9855-4a9b-94f8-bbefb172d057",
+          "controllerName": "patchFastChanged",
+          "endpointName": "/changed",
+          "requestType": "patch",
           "validateActive": true,
           "description": "",
           "middlewares": [],
@@ -41,6 +54,10 @@
     },
     {
       "name": "list",
+      "routes": []
+    },
+    {
+      "name": "product",
       "routes": []
     }
   ]

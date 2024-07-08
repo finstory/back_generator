@@ -1,5 +1,5 @@
 //<EXPORTS>
-export * as postFastLogin from "./post-fast-login.validate";
-export * as undefinedFast from "./undefined-fast.validate";
+export * as patchFastChanged from "./patch-fast-changed.validate";
 export * as getFastRegister from "./get-fast-register.validate";
+export * as putFastLoginByName from "./put-fast-login-by-name.validate";
 export default {};

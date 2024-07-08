@@ -13,8 +13,8 @@ interface IProps {
 export const RouteModule: FC<IProps> = ({ _scss, module }) => {
   const { removeModule } = S.module;
   const [renameModeActive, setRenameModeActive] = useState<boolean>(false);
- 
- return <div className={_scss.module_container}>
+
+  return <div className={_scss.module_container}>
 
     {renameModeActive ?
       <RenameModule _scss={_scss} moduleName={module.name} active={setRenameModeActive} />
@@ -39,7 +39,7 @@ export const RouteModule: FC<IProps> = ({ _scss, module }) => {
 
 
     {module.routes.length > 0 && module.routes.map((route) => (
-      <Endpoint _scss={_scss} route={route} key={route.id} />
+      <Endpoint _scss={_scss} moduleName={module.name} route={route} key={route.id} />
     ))}
 
   </div>;

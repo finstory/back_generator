@@ -38,13 +38,12 @@ class EndpointEndpoint {
     }
 
     patchEndpoint = async ({ moduleName, route, newRoute }: I.PatchEndpointDto) => {
-
-        const fetch = await this._api.post("/module", { moduleName, route, newRoute });
+        const fetch = await this._api.patch("/endpoint", { moduleName, route, newRoute });
         return fetch.data;
     }
 
     deleteModule = async ({ moduleName, route }: I.DeleteEndpointDto) => {
-        const fetch = await this._api.delete(`/module/${moduleName}`, { data: { route } });
+        const fetch = await this._api.delete(`/endpoint/${moduleName}`, { data: { route } });
         return fetch.data;
 
 

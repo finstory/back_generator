@@ -8,7 +8,6 @@ export const Test = () => {
 
     const [first, setfirst] = useState<any>({})
     const testing =  () => {
-         addModule("");
     }
 
     useEffect(() => {

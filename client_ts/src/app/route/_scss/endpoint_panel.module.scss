@@ -190,8 +190,6 @@
                     @include dim_height(3rem);
                     @include flex(flex-start, $gap: 1rem);
 
-
-
                     .wrap {
                         @include flex(flex-start, $gap: .8rem);
                         cursor: pointer;
@@ -220,8 +218,8 @@
                     .wrap_editor {
                         @include flex(flex-start, $gap: 1rem);
 
-                        select {
-                            @include dim_width(10rem);
+                        .request_type_selector {
+                            @include dim_width(9rem);
                             @include dim_height(4rem);
                             border-radius: 1rem;
                             border: 1px solid var(--border-secondary);

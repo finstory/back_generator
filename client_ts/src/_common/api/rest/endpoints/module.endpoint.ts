@@ -41,7 +41,7 @@ class ModuleEndpoint {
     }
 
     postModule = async ({ moduleName }: PostModuleDto) => {
-        // await checkParams({ moduleName }, PostModuleDto);
+       await checkParams({ moduleName }, PostModuleDto);
         const fetch = await this._api.post("/module", { moduleName });
         return fetch.data;
     }

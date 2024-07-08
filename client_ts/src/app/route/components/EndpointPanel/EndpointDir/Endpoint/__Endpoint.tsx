@@ -7,15 +7,16 @@ import EndpointEditor from './__EndpointEditor';
 interface IProps {
     _scss: CSSModuleClasses;
     route: IRoute;
+    moduleName: string;
 }
 
-const Endpoint: FC<IProps> = ({ _scss, route }) => {
-    const [editModeActive, setEditModeActive] = useState<boolean>(true);
+const Endpoint: FC<IProps> = ({ _scss, moduleName, route }) => {
+    const [editModeActive, setEditModeActive] = useState<boolean>(false);
     return (
         <div key={route.id} className={_scss.endpoint}>
             {editModeActive
                 ?
-                <EndpointEditor _scss={_scss} route={route} active={setEditModeActive} />
+                <EndpointEditor _scss={_scss} moduleName={moduleName} route={route} active={setEditModeActive} />
                 :
                 <div className={_scss.wrap}>
                     <Mark className={_scss.mark} variant="bar" />
@@ -28,7 +29,7 @@ const Endpoint: FC<IProps> = ({ _scss, route }) => {
                     </Text>
 
                     <div className={_scss.wrap_editor}>
-                        <IconButton icon="edit_primary" />
+                        <IconButton icon="edit_primary" onClick={() => { setEditModeActive(true) }} />
                         <IconButton icon="delete_primary" />
                     </div>
 

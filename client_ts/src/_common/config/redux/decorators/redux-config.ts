@@ -20,7 +20,7 @@ export function ReduxConfig<T extends { new(...args: any[]): {} }>(constructor: 
             for (const propGetting of reduxProperties) {
                 const prop = propGetting.startsWith('_') ? propGetting.slice(1) : propGetting;
 
-                if (prop.endsWith("State")) {
+                if (prop.endsWith("State") && !propGetting.startsWith("_")) {
                     const stateName = prop.replace("State", "");
                     Object.defineProperty(this, propGetting, {
                         get: function () {
@@ -50,10 +50,11 @@ export function ReduxConfig<T extends { new(...args: any[]): {} }>(constructor: 
                 }
                 else {
                     if (!propGetting.startsWith("_")) throw new Error("set method must be private, please add '_' before the method name.");
+                    const stateName = prop.replace("State", "");
 
                     Object.defineProperty(this, propGetting, {
                         get: function () {
-                            return state[prop];
+                            return state[stateName];
                         },
                         enumerable: false,
                         configurable: true

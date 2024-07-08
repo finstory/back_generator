@@ -6,6 +6,7 @@ export interface IInput {
     variant?: "default" | "request" | "reset";
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
+    value?: string;
     name?: string;
     type?: string;
     width?: string;
@@ -18,6 +19,7 @@ export const Input: FC<IInput> = ({
     variant = "index",
     onChange,
     placeholder = "text here",
+    value,
     name,
     type = "text",
     width = "100%",
@@ -33,6 +35,7 @@ export const Input: FC<IInput> = ({
                 name={name}
                 placeholder={placeholder}
                 onChange={onChange}
+                value={value}
             />
         </div>
     );

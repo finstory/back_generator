@@ -1,53 +1,46 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useForm } from "@/_common/hooks/useForm";
 import { Button, Input, Mark, Text } from "@/components";
+import { RequestType } from "@/services/route/interfaces/routes.interface";
+import RequestTypeSelector from "./__RequestTypeSelector";
 import S from "@S";
 
 interface IProps {
   _scss: CSSModuleClasses;
   active: (active: boolean) => void;
   route: any;
+  moduleName: string;
 }
-const EndpointEditor: FC<IProps> = ({ _scss, route, active }) => {
-  const { renameModule } = S.module;
-  const { toggleModuleEditor } = S.route;
-  const { values, handleInputChange, reset } = useForm({ endpoint_input: "", request_type_input: "" });
-  console.log(route.requestType)
+interface IValues {
+  endpoint_input: string;
+  request_type_input: RequestType;
+}
+
+const EndpointEditor: FC<IProps> = ({ _scss, moduleName, route, active }) => {
+
+  const { editRoute } = S.route;
+  const { values, handleInputChange, reset } = useForm<IValues>(
+    { endpoint_input: route.endpointName, request_type_input: route.requestType }
+  );
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const { module_input } = values;
+    const { endpoint_input, request_type_input } = values;
+    const newRoute = { endpointName: endpoint_input, requestType: request_type_input };
     e.preventDefault();
+    editRoute(moduleName, route, newRoute);
     reset();
-    toggleModuleEditor();
+    active(false);
   }
 
   return (
     <form className={_scss.wrap_editor} onSubmit={(e) => handleSubmit(e)}>
-      <Mark variant="bar" />
-      <select
-        name="request_type_input"
-        onChange={handleInputChange}
-        style={{
-          color: values.request_type_input ? `var(--color-${values.request_type_input})` : `var(--color-${route.requestType})`
-        }}
-        value={values.request_type_input || route.requestType}
-      >
-        <option value="get">
-          GET
-        </option>
-        <option value="post">
-          POST
-        </option>
-        <option value="put">
-          PUT
-        </option>
-        <option value="delete">
-          DELETE
-        </option>
 
-      </select>
-      <Input width="18rem" placeholder="New Name..." name="endpoint_input" onChange={handleInputChange} />
+      <Mark variant="bar" />
+      <Input width="19rem" placeholder={route.endpointName} name="endpoint_input" onChange={handleInputChange} value={values.endpoint_input || route.endpointName} />
+      <RequestTypeSelector _scss={_scss} onChange={handleInputChange} values={values} route={route} />
       <Button type="submit">Save</Button>
       <Button width="4rem" variant="default" onClick={() => { active(false) }}>X</Button>
+
     </form>
   );
 };

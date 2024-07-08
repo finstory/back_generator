@@ -5,7 +5,8 @@ import { controller, validation } from "../fast.controller";
 const router = Router();
 
 //<ROUTES>
-router.post("/login", validation.postFastLogin, controller.postFastLogin);
+router.patch("/changed", controller.patchFastChanged);
 router.get("/register", controller.getFastRegister);
+router.put("/login/:name", controller.putFastLoginByName);
 
 export default router;
