@@ -1,14 +1,15 @@
 
 import S, { PrimaryService } from "@services_config/providers/providers-injector";
-import InitialServices from "@services_config/initial-services";
+import InitialServices from "@/_common/config/services/decorators/initial-services";
 
 //% SERVICES_IMPORTS:
-import ModuleService from "./module/module.service";
-import RouteService from "./route/route.service";
+import ModuleService from "@/_modules/module/services/module.service";
+import RouteService from "@route/services/route.service";
 import RestApi from "@/_common/api/rest";
+
 @InitialServices
 export class AllServices {
-    
+
     protected api = new RestApi();
 
     @PrimaryService module = new ModuleService();

@@ -1,11 +1,10 @@
+import { S, BasicInject, BasicInjectable, Redux, ReduxConfig, PrintError, PrintErrRes, SetRedux } from "@decorators";
 
-import { BasicInject, BasicInjectable, AllServices as S } from "@services_injector";
-import { PrintError, PrintErrRes } from "@/_common/config/errors/decorators/print-errors";
-import { Redux, ReduxConfig, type SetRedux } from "@redux_config";
-import type RouteState from "./route.store";
-import { Route, NewRoute } from "./interfaces/routes.interface";
+import RouteState from "./route.store";
+import { NewRoute, Route } from "../_interfaces/routes.interface";
+
 import printAlert from "@/_common/plugins/toast-alerts";
-
+import { confirmAlert } from "@/_common/helpers/alert";
 
 @ReduxConfig
 @PrintErrRes
@@ -17,6 +16,7 @@ class RouteService extends BasicInjectable {
     @BasicInject private _api: S["api"];
     @BasicInject private _module: S["module"];
 
+
     @PrintError
     editRoute = async (moduleName: string, route: Route, newRoute: NewRoute) => {
         await this._api.endpoint.patchEndpoint({ moduleName, route, newRoute });
@@ -25,6 +25,7 @@ class RouteService extends BasicInjectable {
     }
 
     toggleModuleEditor = () => {
+        confirmAlert("Are you sure you want to toggle the module editor?");
         const { endpointPanel } = this._routeState;
         const { moduleEditorOpen } = endpointPanel;
         this._setRoute({ endpointPanel: { ...endpointPanel, moduleEditorOpen: !moduleEditorOpen } }, "TOGGLE_MODULE_EDITOR");

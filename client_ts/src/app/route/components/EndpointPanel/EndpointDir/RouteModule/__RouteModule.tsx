@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { IconButton, Mark, Text } from "@/components";
-import { IModule, IRoute } from "@/services/module/_interfaces/module.interface";
+import { IModule, IRoute } from "@/_modules/module/_interfaces/module.interface";
 import S from "@S";
 import RenameModule from "./__RenameModule";
 import Endpoint from "../Endpoint/__Endpoint";

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { IRoute } from '@/services/module/_interfaces/module.interface';
+import { IRoute } from '@/_modules/module/_interfaces/module.interface';
 import { Text, Mark, IconButton } from '@components';
 import EndpointEditor from './__EndpointEditor';
 

@@ -12,7 +12,7 @@ const settingDark = (bg: string): ToastOptions => {
             background: bg,
             fontSize: 'var(--font-size-normal)',
             paddingTop: '1rem',
-    
+
             color: '#ffffff', border: '2px solid #379dad'
         },
         duration: 2400,
@@ -25,10 +25,6 @@ const settingDark = (bg: string): ToastOptions => {
     }
 }
 
-const alertConfirm = async (msg = "") => {
-    const result = window.confirm(msg);
-    return result;
-};
 type AlertType = "success" | "error" | "alert" | "info";
 
 export const printAlert = (msg: string, type: AlertType = "success") => {

@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
-import { useForm } from "@/_common/hooks/useForm";
 import { Button, Input, Mark, Text } from "@/components";
-import { RequestType } from "@/services/route/interfaces/routes.interface";
+import React, { FC, useState } from "react";
+
+import { RequestType } from "@/app/route/_interfaces/routes.interface";
 import RequestTypeSelector from "./__RequestTypeSelector";
 import S from "@S";
+import { useForm } from "@/_common/hooks/useForm";
 
 interface IProps {
   _scss: CSSModuleClasses;
@@ -36,7 +37,7 @@ const EndpointEditor: FC<IProps> = ({ _scss, moduleName, route, active }) => {
     <form className={_scss.wrap_editor} onSubmit={(e) => handleSubmit(e)}>
 
       <Mark variant="bar" />
-      <Input width="19rem" placeholder={route.endpointName} name="endpoint_input" onChange={handleInputChange} value={values.endpoint_input || route.endpointName} />
+      <Input width="rem" placeholder={route.endpointName} name="endpoint_input" onChange={handleInputChange} value={values.endpoint_input || route.endpointName} />
       <RequestTypeSelector _scss={_scss} onChange={handleInputChange} values={values} route={route} />
       <Button type="submit">Save</Button>
       <Button width="4rem" variant="default" onClick={() => { active(false) }}>X</Button>

@@ -1,8 +1,8 @@
 import { AxiosInstance } from "axios";
 import * as I from "../_dtos/route.dto";
-import ErrorResponse from "@/_common/config/errors/models/error-response";
-import { ErrorFormat } from "@/_common/config/errors/interfaces/error-format.interface";
-import classValidator from "@/_common/config/validations";
+import ErrorResponse from "@config/errors/models/error-response";
+import { ErrorFormat } from "@config/errors/interfaces/error-format.interface";
+import classValidator from "@config/validations";
 
 const checkParams = async (paramsRequest: any, classDto: any) => {
     const payload: ErrorFormat[] = await classValidator(classDto, paramsRequest);

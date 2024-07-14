@@ -11,8 +11,8 @@ class RestApi {
     protected readonly awaitRequest = true;
     protected readonly toggleRequest = false;
 
-    public readonly module!: ModuleEndpoint;
-    public readonly endpoint!: EndpointEndpoint;
+    public readonly module: ModuleEndpoint;
+    public readonly endpoint: EndpointEndpoint;
 
     constructor() {
 
@@ -22,4 +22,5 @@ class RestApi {
 }
 
 export const rest_api = new RestApi();
+
 export default RestApi;

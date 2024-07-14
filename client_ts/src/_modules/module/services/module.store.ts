@@ -1,4 +1,4 @@
-import { IModule } from "./_interfaces/module.interface";
+import { IModule } from "../_interfaces/module.interface";
 
 export default interface ModuleState {
   modulesList: IModule[];

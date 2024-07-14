@@ -1,8 +1,9 @@
 import { BasicInject, BasicInjectable, AllServices as S } from "@services_injector";
 import { Redux, ReduxConfig, type SetRedux } from "@redux_config";
-import { PrintError, PrintErrRes } from "@/_common/config/errors/decorators/print-errors";
-import printAlert from "@/_common/plugins/toast-alerts";
 import type ModuleState from "./module.store";
+
+import { PrintError, PrintErrRes } from "@print_errors";
+import printAlert from "@/_common/plugins/toast-alerts";
 
 @ReduxConfig
 @PrintErrRes
