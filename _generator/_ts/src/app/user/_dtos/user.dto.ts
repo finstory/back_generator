@@ -1,5 +1,7 @@
-import * as V from "class-validator";
 import "reflect-metadata";
+
+import * as V from "class-validator";
+
 import { Transform, Type } from 'class-transformer';
 
 //% MAIN DTO:

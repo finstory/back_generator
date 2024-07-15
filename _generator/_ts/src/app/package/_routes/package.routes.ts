@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { controller } from "@package/package.controller";
+import { controller, validation } from "@package/package.controller";
 
 const router = Router();
 
 router.get("/all", controller.getAllPackage);
-router.post("/", controller.postPackage);
+router.post("/", validation.postPackage, controller.postPackage);
+router.patch("/rename", validation.patchPackageRename, controller.patchPackageRename);
 router.delete("/:moduleName", controller.deletePackage);
 
 export default router;

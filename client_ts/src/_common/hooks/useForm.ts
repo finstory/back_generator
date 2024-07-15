@@ -1,13 +1,16 @@
 import { useState } from "react";
+type Values = { [key: string]: string };
+export const useForm = <T>(initialState: T) => {
 
-export const useForm = (initialState: object = {}) => {
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState<T>(initialState);
+
+
 
   const reset = () => {
     setValues(initialState);
   };
 
-  const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
+  const handleInputChange = ({ target }: { target: HTMLInputElement | HTMLSelectElement }) => {
     setValues({
       ...values,
       [target.name]: target.value,

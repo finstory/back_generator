@@ -2,16 +2,9 @@ import "dotenv/config";
 import * as env from "env-var";
 
 const envs = {
-    // MAILER_PORT: env.get("PORT_MAILER").required().asPortNumber(),
-    // MAILER_HOST: env.get("HOST").required().asString(),
-    // MAILER_SERVICE: env.get("MAILER_SERVICE").required().asString(),
-    // MAILER_SECURE: env.get("MAILER_SECURE").required().asBool(),
-    // REJECT_UNAUTHORIZED: env.get("REJECT_UNAUTHORIZED").required().asBool(),
-    // MIN_VERSION: env.get("MINVERSION").required().asString(),
-    // MAILER_EMAIL: env.get("MAILER_EMAIL").required().asEmailString(),
-    // MAILER_SECRET_KEY: env.get("MAILER_SECRET_KEY").required().asString(),
+    //% PRINTS:
+    PRINT_INTERNAL_ERROR: env.get("PRINT_INTERNAL_ERROR").required().asBool(),
 
-    // PROD: env.get("PROD").required().asBool(),
     MONGO_URI: env.get("MONGO_URI").required().asString(),
     MONGO_DB_NAME: env.get("MONGO_DB_NAME").required().asString(),
     MONGO_USER: env.get("MONGO_USER").required().asString(),

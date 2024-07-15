@@ -57,6 +57,10 @@
     --font-weight-large: bold;
 
     //% GRADIENT:
-    --gradient-primary: linear-gradient(180deg, #3D3D3D 0%, #5a5a5a 20%,#3D3D3D 80%, #3D3D3D 100%);
+    --gradient-primary: linear-gradient(180deg, #3D3D3D 0%, #5a5a5a 20%, #3D3D3D 80%, #3D3D3D 100%);
     --gradient-secondary: linear-gradient(90deg, #03D3D3 0%, #1AA3C2 100%);
+
+    --gradient-success: linear-gradient(180deg, #2b6c64 0%, #22444a 100%);
+
+    --gradient-error: linear-gradient(180deg, #3114d4ab 0%, #5303d38d 100%);
 }

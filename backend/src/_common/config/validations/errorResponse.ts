@@ -15,7 +15,6 @@ const errorsResponse = <BR>(res: Response<BR | ErrorResponse>, formattedErrors: 
         console.error(colors.bgRed.italic(`ERROR THROWN FOR BAD REQUEST`));
         console.error(colors.red.italic(` ${JSON.stringify(formattedErrors, null, 3)}`));
     }
-
     res.status(400).json({
         type: "bad_request",
         message: "Errors in Request Parameters.",

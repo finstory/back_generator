@@ -124,7 +124,8 @@
         "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\config\\styles\\sass\\constants.scss",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "w92Dp0CKL57JF3lb"
+        "id": "w92Dp0CKL57JF3lb",
+        "label": "varaibles"
     },
     {
         "type": "File",
@@ -215,5 +216,31 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "MyINFrxtknmpujDQ"
+    },
+    {
+        "type": "Group",
+        "name": "_Front_API",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "6RKOqStZfiWjuozm"
+    },
+    {
+        "type": "Directory",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\api\\rest",
+        "parent_id": "6RKOqStZfiWjuozm",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\_common\\api\\rest",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "9wMkaWmN5qZ68AK0"
+    },
+    {
+        "type": "File",
+        "name": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\_pages\\RoutesPage.tsx",
+        "parent_id": "6RKOqStZfiWjuozm",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\client_ts\\src\\app\\route\\_pages\\RoutesPage.tsx",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "RMW7PAryb8FgphZQ"
     }
 ]

@@ -1,0 +1,21 @@
+import { User } from "@/_common/config/db/mongoDB";
+import S from "@services";
+
+const testMain = async () => {
+    try {
+
+        User.findOne({ where: { name: "facundo" } });
+        const filePath = "d:/Programacion_Extra/Node_ts/_generator/_ts/src/_common/modules/ast/file.ts";
+        // await S.package.createModule("product");
+        // const file = await S.generator.fs.getFile(filePath)
+        // const files = await S.generator.fs.createFolder(filePath);
+        // const file = await S.generator.fs.deleteFolder(filePath);
+
+
+    } catch (error) {
+        // console.error(error.type);
+        console.error(error.message);
+    }
+};
+
+export default testMain;

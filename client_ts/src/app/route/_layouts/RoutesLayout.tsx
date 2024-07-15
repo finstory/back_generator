@@ -8,18 +8,8 @@ interface IProps {
 }
 
 export const RoutesLayout: FC<IProps> = ({ children }) => {
-    const { testAuth, authState: { name } } = S.auth;
-    const { listProduct } = S.product;
-    // const { testAuth } = S.auth;
-    // const { authState: { name } } = S.auth;
-    const test = () => {
-        testAuth();
-    }
 
-    useEffect(() => {
 
-        console.log(name)
-    }, [name]);
     return (
         <div className={"main_container"}>
             {children}

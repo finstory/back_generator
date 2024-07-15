@@ -12,7 +12,9 @@ export const Footer: FC = () => {
     <footer>
 
       <div className={scss.wrap}>
-        <Text label="p" color="base-off">DEVELOPED BY : FACUNDO ALVAREZ - GENERATOR @ ALL RIGHTS RESERVED 2024</Text>
+        <Text label="p" color="base-off">DEVELOPED BY : <span onClick={
+          ()=>{window.open("https://www.linkedin.com/in/facundo-alvarez-full-stack/")}
+        }>FACUNDO ALVAREZ</span> - GENERATOR @ ALL RIGHTS RESERVED 2024</Text>
       </div>
 
     </footer>

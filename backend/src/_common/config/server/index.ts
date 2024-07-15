@@ -5,8 +5,11 @@ import morgan from "morgan";
 import path from "path";
 import cors from "cors";
 
-import { routes } from "@config/routes";
+import { routes } from "@common/routes";
 
+//? Async Initial Methods:
+export const asyncInitial = async () => {
+};
 //% Initial Methods:
 const server: Express = express();
 server.use(cors());

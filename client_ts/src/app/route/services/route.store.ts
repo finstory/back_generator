@@ -3,9 +3,11 @@ export default interface RouteState {
     moduleEditorOpen: boolean;
     moduleSelected: string;
   };
+  name: string;
 }
 
 export const route: RouteState = {
+  name: "user",
   endpointPanel: {
     moduleEditorOpen: false,
     moduleSelected: "some",

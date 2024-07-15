@@ -16,5 +16,6 @@
     "local-history.browser.descending": true,
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.codeLens.authors.enabled": true,
-    "gitlens.currentLine.enabled": true
+    "gitlens.currentLine.enabled": true,
+    "favorites.sortDirection": "ASC"
 }

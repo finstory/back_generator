@@ -1,17 +1,23 @@
-const functionAsync = async (): Promise<{ say: string }> => {
-    await new Promise<void>((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-        }, 1000);
-    });
-    return { say: "hello" }
+function errorHandling(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = (...args: any[]) => {
+        try {
+            return originalMethod.apply(this, args);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    return descriptor;
 }
 
-const otherFn = async () => {
-    return await functionAsync();
+class MyClass {
+    @errorHandling
+    myMethod = () => {
+        throw new Error("Error");
+    }
 }
 
-const main = async () => {
-    const result = (await otherFn()).say;
-    console.log(result);
-};
+const instance = new MyClass();
+instance.myMethod();

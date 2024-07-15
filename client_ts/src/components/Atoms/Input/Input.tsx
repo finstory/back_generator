@@ -6,6 +6,8 @@ export interface IInput {
     variant?: "default" | "request" | "reset";
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
+    value?: string;
+    name?: string;
     type?: string;
     width?: string;
     height?: string;
@@ -17,6 +19,8 @@ export const Input: FC<IInput> = ({
     variant = "index",
     onChange,
     placeholder = "text here",
+    value,
+    name,
     type = "text",
     width = "100%",
     height = "3.6rem",
@@ -28,8 +32,10 @@ export const Input: FC<IInput> = ({
                 className={`${scss.default} ${variant ? scss[variant] : null}`}
                 style={{ ...style, ...(color && { color }) }}
                 type={type}
+                name={name}
                 placeholder={placeholder}
                 onChange={onChange}
+                value={value}
             />
         </div>
     );

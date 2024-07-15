@@ -11,7 +11,7 @@ export const Title = ({ _scss }) => {
   return (
     <div className={_scss.title}>
 
-      <Text label="h2" size="medium" fontWeight="400">ENDPOINTS</Text>
+      <Text label="h2" size="medium" fontWeight="300">ENDPOINTS</Text>
       <BGradient className={_scss.add_route} {...props.add_route}
       >+</BGradient>
 
