@@ -1,0 +1,29 @@
+.module {
+    @include dim_width();
+    @include dim_height(3rem);
+    @include flex(flex-start, $gap: 1.3rem);
+
+    .wrap {
+        @include flex(flex-start, $gap: 1rem);
+        cursor: pointer;
+
+        &:hover {
+
+            p {
+                color: var(--color-primary)
+            }
+
+            .mark {
+                background-color: var(--color-primary);
+            }
+
+            .wrap_editor {
+                @include flex(flex-start, $gap: .5rem);
+            }
+        }
+
+        .wrap_editor {
+            display: none;
+        }
+    }
+}

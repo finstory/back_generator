@@ -1,6 +1,6 @@
 import axios from 'axios';
-import ModuleEndpoint from "./endpoints/module.endpoint";
-import EndpointEndpoint from './endpoints/endpoint.endpoint';
+import ModuleEndpoint from "./module/module.endpoint";
+import EndpointEndpoint from './enpoint/endpoint.endpoint';
 
 const BASE_URL = "http://localhost:3002";
 

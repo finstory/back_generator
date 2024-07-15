@@ -7,7 +7,6 @@ import formatErrors, { ErrorFormat } from "./format-errors";
  const classValidator = async (BaseClass: any, comparisonObject: any) => {
 
     const checkClass = await V.validate(plainToClass(BaseClass, comparisonObject));
-
     if (checkClass.length > 0) {
         const formattedErrors: ErrorFormat[] = formatErrors(checkClass, 'params')
         return formattedErrors;

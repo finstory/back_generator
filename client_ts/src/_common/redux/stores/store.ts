@@ -1,2 +1,2 @@
-export { module } from "@/_modules/module/services/module.store";
+export { module } from "@/modules/module/services/module.store";
 export { route } from "@/app/route/services/route.store";

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { Text, IText, DGBorder, Button, IDGBorder } from "@components";
-import scss from "@route/_scss/endpoint_panel.module.scss";
+import scss from "@route/_scss/endpoint_panel/endpoint_panel.module.scss";
 import { Title } from "./Title/_Title";
 import { EndpointDir } from "./EndpointDir/_EndpointDir";
 import S from "@S";

@@ -5,9 +5,9 @@
   "main": "_server.ts",
   "type": "commonjs",
   "scripts": {
-    "start": "nodemon -r tsconfig-paths/register --ignore ./src/test/folder-tester _server.ts",
-    "dev": "ts-node-dev -r tsconfig-paths/register _server.ts",
-    "off": "ts-node-dev -r tsconfig-paths/register --respawn --quiet _server.ts"
+    "start": "nodemon -r tsconfig-paths/register --ignore ./src/test/folder-tester ./src/_server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register ./src/_server.ts",
+    "off": "ts-node-dev -r tsconfig-paths/register --respawn --quiet ./src/_server.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,8 +21,10 @@
     "@types/lodash": "^4.17.5",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.14.7",
+    "@vercel/ncc": "^0.38.1",
     "json-server": "^0.17.0",
-    "typescript": "^5.4.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "@babel/parser": "^7.24.5",
@@ -77,6 +79,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "paths": {
       "*": [
         "node_modules/*"
@@ -90,5 +94,14 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ]
+  ],
+    "pkg": {
+    "scripts": "dist/index.js",
+    "targets": [
+      "node14-linux-x64",
+      "node14-macos-x64",
+      "node14-win-x64"
+    ],
+    "outputPath": "./build"
+  }
 }

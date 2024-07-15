@@ -5,6 +5,6 @@ export const confirmAlert = async (msg?: string): Promise<boolean> => {
         setTimeout(() => {
             console.log("timeout");
             resolve(false);
-        }, 10000);
+        }, 20000);
     });
 }

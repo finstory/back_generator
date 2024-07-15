@@ -1,0 +1,1 @@
+export { PostModuleDto } from './post-module.dto';

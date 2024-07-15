@@ -3,7 +3,7 @@ import S, { PrimaryService } from "@services_config/providers/providers-injector
 import InitialServices from "@/_common/config/services/decorators/initial-services";
 
 //% SERVICES_IMPORTS:
-import ModuleService from "@/_modules/module/services/module.service";
+import ModuleService from "@/modules/module/services/module.service";
 import RouteService from "@route/services/route.service";
 import RestApi from "@/_common/api/rest";
 
