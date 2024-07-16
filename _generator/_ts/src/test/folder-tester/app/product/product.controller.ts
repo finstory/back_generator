@@ -6,7 +6,13 @@ import S from "@services";
 
 //<CONTROLLERS>
 
-controller.getProductRegister = async ({ params, query, body }, res) => {
+controller.postProductRegisterSd = async ({ params, query, body }, res) => {
+    const data: any = { controllerName: "postProductRegister" };
+
+    res.status(200).json(data);
+};
+
+controller.patchProductRegisterById = async ({ params, query, body }, res) => {
     const data: any = { controllerName: "getProductRegister" };
 
     res.status(200).json(data);

@@ -3,7 +3,6 @@
     "baseUrl": "./src",
     "paths": {
 
-      //% Global Directories:
       "@/*": ["./*"],
       "@common/*": ["./_common/*"],
       "@config/*": ["./_common/config/*"],
@@ -14,28 +13,21 @@
       "@mockups": ["./_common/mockups/_index.ts"],
       "@app/*": ["./app/*"],
       "@middlewares/*": ["./_common/middlewares/*"],
-
-      //% Errors:
       "@throw_error": ["./_common/config/errors/throw-error.ts"],
       "@throw_error_response_wrap": ["./_common/config/server/response/errors/throw-error-wrapper.response.ts"],
 
-      //% Services:
       "@services": ["./_common/services/all-services.ts"],
       "@services_injector": ["./_common/config/services/service-injector.ts"],
       
-      //? Database:
       "@json_db": ["./_common/db/json/index.ts"],
 
-
-      //<APP_MODULES>
       "@user/*": ["./app/user/*"],
       "@package/*": ["./app/package/*"],
       "@endpoint/*": ["./app/endpoint/*"],
       
-      //<MODULES>
       "@ast/*": ["./_common/modules/ast/*"],
       "@fs/*": ["./_common/modules/fs/*"],
-      "@generator/*": ["./_common/modules/generator/*"],
+      "@generator/*": ["./_common/modules/generator/*"]
     }
   }
 }

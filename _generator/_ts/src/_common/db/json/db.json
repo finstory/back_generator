@@ -1,17 +1,26 @@
 {
   "module": [
     {
-      "name": "user",
-      "routes": []
-    },
-    {
       "name": "product",
       "routes": [
         {
-          "id": "98113c7c-503d-4a74-acf3-c2dcd599ed66",
-          "controllerName": "getProductRegister",
-          "endpointName": "/register",
-          "requestType": "get",
+          "id": "f808454c-b245-4fad-913d-2326226b2e39",
+          "controllerName": "patchProductRegisterById",
+          "endpointName": "/register/:id",
+          "requestType": "patch",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "171dcb86-385e-4ea3-b513-9eda72f1ddcd",
+          "controllerName": "postProductRegisterSd",
+          "endpointName": "/register_sd",
+          "requestType": "post",
           "validateActive": true,
           "description": "",
           "middlewares": [],

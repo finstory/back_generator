@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const package_controller_1 = require("../package.controller");
+const router = (0, express_1.Router)();
+router.get("/all", package_controller_1.controller.getAllPackage);
+router.post("/", package_controller_1.validation.postPackage, package_controller_1.controller.postPackage);
+router.patch("/rename", package_controller_1.validation.patchPackageRename, package_controller_1.controller.patchPackageRename);
+router.delete("/:moduleName", package_controller_1.controller.deletePackage);
+exports.default = router;

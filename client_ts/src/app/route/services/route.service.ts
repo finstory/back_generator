@@ -16,6 +16,7 @@ class RouteService extends BasicInjectable {
     @BasicInject private _api: S["api"];
     @BasicInject private _module: S["module"];
 
+
     @PrintError
     addRoute = async (moduleName: string, route: BasicRoute) => {
         await this._api.endpoint.postEndpoint({ moduleName, route });

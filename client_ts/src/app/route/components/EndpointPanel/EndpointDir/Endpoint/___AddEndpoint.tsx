@@ -5,6 +5,7 @@ import { RequestType } from "@/app/route/_interfaces/routes.interface";
 import RequestTypeSelector from "./___RequestTypeSelector";
 import S from "@S";
 import { useForm } from "@/_common/hooks/useForm";
+import { checkFormatEndpoint } from "@/app/route/utils/check-format-endpoint";
 
 interface IProps {
   _scss: CSSModuleClasses;
@@ -22,9 +23,14 @@ const AddEndpoint: FC<IProps> = ({ _scss, moduleName, active }) => {
   const { values, handleInputChange, reset } = useForm<IValues>({ endpoint_input: "", request_type_input: "get" });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const { endpoint_input, request_type_input } = values;
-    const route = { endpointName: endpoint_input, requestType: request_type_input };
     e.preventDefault();
+    const { endpoint_input, request_type_input } = values;
+    const route = {
+      endpointName: endpoint_input,
+      requestType: request_type_input
+    };
+
+    checkFormatEndpoint(endpoint_input);
     addRoute(moduleName, route);
     reset();
     active(false);

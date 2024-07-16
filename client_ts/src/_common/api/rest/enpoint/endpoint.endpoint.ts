@@ -33,6 +33,7 @@ class EndpointEndpoint {
     }
 
     patchEndpoint = async ({ moduleName, route, newRoute }: PatchEndpoint) => {
+        await checkParams({ moduleName, route, newRoute }, PatchEndpoint);
         const fetch = await this._api.patch("/endpoint", { moduleName, route, newRoute });
         return fetch.data;
     }

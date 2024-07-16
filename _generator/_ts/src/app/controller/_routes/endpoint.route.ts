@@ -1,8 +1,5 @@
 import { Router } from "express";
 import { controller, validation } from "@user/user.controller";
-import controllerMiddlewares from "@common/middleware/controller.middleware";
-
-controllerMiddlewares(controller, { error_wrapper: true });
 
 const router = Router();
 

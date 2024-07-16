@@ -5,6 +5,7 @@ import { controller, validation } from "../product.controller";
 const router = Router();
 
 //<ROUTES>
-router.get("/register", validation.getProductRegister, controller.getProductRegister);
+router.post("/register_sd", controller.postProductRegisterSd);
+router.patch("/register/:id", controller.patchProductRegisterById);
 
 export default router;

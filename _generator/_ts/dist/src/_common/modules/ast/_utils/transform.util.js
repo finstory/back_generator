@@ -1,0 +1,78 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatCode = exports.astToTextCode = exports.codeToAst = void 0;
+const parser = __importStar(require("@babel/parser"));
+const core_1 = require("@babel/core");
+const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.js"));
+const prettier_1 = __importDefault(require("prettier"));
+const promiseWrapper_1 = __importDefault(require("../../../helpers/promiseWrapper"));
+const codeToAst = (textCode) => {
+    return parser.parse(textCode, {
+        sourceType: 'module',
+        plugins: ['typescript'],
+    });
+};
+exports.codeToAst = codeToAst;
+const astToTextCode = (ast) => __awaiter(void 0, void 0, void 0, function* () {
+    const textCode = yield (0, promiseWrapper_1.default)((resolve, reject) => {
+        (0, core_1.transformFromAst)(ast, null, { retainLines: true, comments: true }, (err, result) => {
+            if (err)
+                (0, _throw_error_1.default)("AST", "transform_code", err.message);
+            if (err)
+                reject({ type: "transform_code", key: textCode });
+            resolve(result.code);
+        });
+    })
+        .then((data) => {
+        return data;
+    });
+    return yield (0, exports.formatCode)(textCode);
+});
+exports.astToTextCode = astToTextCode;
+const formatCode = (textCode) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prettier_1.default.format(textCode, {
+        parser: 'babel-ts',
+        semi: true,
+        singleQuote: false,
+        trailingComma: 'es5',
+        tabWidth: 4,
+        printWidth: 1000,
+        useTabs: false,
+    });
+});
+exports.formatCode = formatCode;

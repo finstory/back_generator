@@ -6,7 +6,7 @@ import S from "@/_common/services/all-services";
 
 controller.getUser = async ({ body }, res) => {
 
-    throwError("not_found", "id");
+    // throwError("not_found", "id");
 
     res.status(200).json({ });
 };

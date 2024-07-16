@@ -5,20 +5,20 @@ import S from "@services";
 
 //<CONTROLLERS>
 
-controller.getUser = async ({ query }, res) => {
-    // S.product.test();
-    console.log(query);
+// controller.getUser = async ({ query }, res) => {
+//     // S.product.test();
+//     console.log(query);
 
-    throwError("bad_request", "id");
+//     throwError("bad_request", "id");
 
-    res.status(200).json(query.age);
-};
+//     res.status(200).json(query.age);
+// };
 
-controller.postUserCreate = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "getUser" };
+// controller.postUserCreate = async ({ params, query, body }, res) => {
+//     const data: any = { controllerName: "getUser" };
 
-    res.status(200).json(data);
-};
+//     res.status(200).json(data);
+// };
 
 //<EXPORTS>
 export { validation, controller };

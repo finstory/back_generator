@@ -7,12 +7,16 @@
   ],
   "noUnusedLocals": true,
   "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": false,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "plugins": [
     {

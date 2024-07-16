@@ -5,7 +5,9 @@ import getValidations from "@config/validations/getValidations";
 export class ProductController {
     //<CONTROLLERS>
 
-    getProductRegister = async (req: C.getProductRegister.Req, res: C.getProductRegister.Res) => {};
+    postProductRegisterSd = async (req: C.postProductRegisterSd.Req, res: C.postProductRegisterSd.Res) => {};
+
+    patchProductRegisterById = async (req: C.patchProductRegisterById.Req, res: C.patchProductRegisterById.Res) => {};
 }
 
 //<EXPORTS>

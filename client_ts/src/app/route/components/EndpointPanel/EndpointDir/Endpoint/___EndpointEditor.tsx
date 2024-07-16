@@ -5,6 +5,7 @@ import { RequestType } from "@/app/route/_interfaces/routes.interface";
 import RequestTypeSelector from "./___RequestTypeSelector";
 import S from "@S";
 import { useForm } from "@/_common/hooks/useForm";
+import { checkFormatEndpoint } from "@/app/route/utils/check-format-endpoint";
 
 interface IProps {
   _scss: CSSModuleClasses;
@@ -28,6 +29,7 @@ const EndpointEditor: FC<IProps> = ({ _scss, moduleName, route, active }) => {
     const { endpoint_input, request_type_input } = values;
     const newRoute = { endpointName: endpoint_input, requestType: request_type_input };
     e.preventDefault();
+    checkFormatEndpoint(endpoint_input);
     editRoute(moduleName, route, newRoute);
     reset();
     active(false);

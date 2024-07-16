@@ -124,9 +124,13 @@ class RouteService {
 
         const routesList = moduleGetting.get('routes');
         const routeGetting = routesList.find({ endpointName: route.endpointName, requestType: route.requestType });
+        const newRouteExists = routesList.find({ endpointName: newRoute.endpointName, requestType: newRoute.requestType }).value();
         const _route = routeGetting.value();
 
-        if (!routeGetting.value())
+
+        if (newRouteExists)
+            throwError("JSON_DB", "already_exists", `Route (${newRoute.requestType}) ${newRoute.endpointName}`);
+        else if (!_route)
             throwError("JSON_DB", "not_found", `Route (${route.requestType}) ${route.endpointName}`);
         else {
             const oldRequestType = _route.requestType;
