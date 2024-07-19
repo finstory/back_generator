@@ -1,0 +1,87 @@
+{
+  "module": [
+    {
+      "name": "user",
+      "routes": [
+        {
+          "id": "c1ae5569-8dad-420a-8b20-980b1f63eb8f",
+          "controllerName": "deleteUserRegister",
+          "endpointName": "/register",
+          "requestType": "delete",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "63035bea-fd87-47d4-8faf-349f21f516ac",
+          "controllerName": "getUserLoginUser",
+          "endpointName": "/login/user",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "7cf5c629-1331-4b04-a7b7-884643af86a5",
+          "controllerName": "postUser",
+          "endpointName": "/",
+          "requestType": "post",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "c0cad498-8f89-4ce8-bd54-f812a92c9475",
+          "controllerName": "patchUser",
+          "endpointName": "/",
+          "requestType": "patch",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "f36489ba-b7d4-4d2a-b53d-9e759f2af933",
+          "controllerName": "deleteUser",
+          "endpointName": "/",
+          "requestType": "delete",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "fe562e21-d683-4ce4-a062-deb233ceaa2e",
+          "controllerName": "putUser",
+          "endpointName": "/",
+          "requestType": "put",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    }
+  ]
+}
