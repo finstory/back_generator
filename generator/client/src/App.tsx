@@ -13,7 +13,7 @@ function App() {
     <Provider store={store}>
       <ServicesProvider>
         <Toaster position="top-center" reverseOrder={false} />
-        <Test />
+        {/* <Test /> */}
         <AppMain /> 
         <Toaster />
       </ServicesProvider>

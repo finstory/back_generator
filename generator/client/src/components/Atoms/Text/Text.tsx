@@ -16,6 +16,7 @@ export interface IText {
     size?: SizeStyle,
     fontWeight?: FontWeightStyle,
     hoverColor?: ColorStyle,
+    onClick?: () => void,
 }
 
 export const Text: FC<IText> = ({ style = {},
@@ -30,6 +31,7 @@ export const Text: FC<IText> = ({ style = {},
     padding = "0",
     fontWeight = "400",
     hoverColor = "none",
+    onClick,
     className
 }) => {
     return React.createElement(
@@ -39,6 +41,7 @@ export const Text: FC<IText> = ({ style = {},
 
             style: { ...style, padding, cursor, fontWeight },
             title,
+            onClick,
         },
         children
     )

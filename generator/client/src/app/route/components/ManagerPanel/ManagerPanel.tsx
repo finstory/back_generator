@@ -4,6 +4,9 @@ import scss from "@route/_scss/manager_panel.module.scss";
 import S from "@S";
 import { Title } from "./Title/_Title";
 import { Parameters } from "./Parameters/_Parameters";
+import RequestInput from "./RequestInput/_RequestInput";
+import ParamsSelector from "./ParamsSelector/_ParamsSelector";
+import PropertiesList from "./PropertiesList/_PropertiesList";
 
 
 export const ManagerPanel: FC = () => {
@@ -21,6 +24,9 @@ export const ManagerPanel: FC = () => {
             <div className={scss.panel}>
                 <Title _scss={scss} />
                 <Parameters _scss={scss} />
+                <RequestInput _scss={scss} />
+                <ParamsSelector _scss={scss} />
+                <PropertiesList _scss={scss} />
             </div>
 
         </DGBorder >
