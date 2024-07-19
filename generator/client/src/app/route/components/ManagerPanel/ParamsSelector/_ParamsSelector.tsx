@@ -17,7 +17,7 @@ const ParamsSelector: FC<IProps> = ({ _scss }) => {
         {
             name: "PARAMS",
             color: "primary",
-            isNull: true,
+            isNull: false,
         },
         {
             name: "QUERY",

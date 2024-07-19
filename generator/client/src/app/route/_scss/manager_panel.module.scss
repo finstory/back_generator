@@ -133,6 +133,7 @@
             @include flex(flex-start, center, column);
             @include font_M_PLUS(medium, 400);
             padding: 2rem;
+            background-color: var(--color-base-dark);
             border-bottom: 1px solid var(--border-secondary);
             overflow-y: auto;
 
@@ -357,21 +358,6 @@
 
         }
 
-        //     <table className={_scss.properties_list}>
-        //     <thead>
-        //         <tr>
-        //             <th><Text label="p">KEY</Text></th>
-        //             <th><Text label="p">VALUE</Text></th>
-        //             <th><Text label="p">TYPE</Text></th>
-        //         </tr>
-        //     </thead>
-        //     <tr>
-        //         <td><Text label="p">id_team</Text></td>
-        //         <td><Text label="p">23423432</Text></td>
-        //         <td><Text label="p">string</Text></td>
-        //     </tr>
-        // </table>
-
         .properties_list {
 
             @include dim_width();
@@ -417,6 +403,7 @@
                         @include flex();
 
                         .checkbox {
+                            cursor: pointer;
                             appearance: unset;
                             background: transparent;
                             border: 1px solid var(--color-base-off);

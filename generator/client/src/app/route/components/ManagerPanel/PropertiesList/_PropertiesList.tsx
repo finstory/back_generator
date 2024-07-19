@@ -11,10 +11,10 @@ const PropertiesList: FC<IProps> = ({ _scss }) => {
             <table >
                 <tbody>
                     <tr>
-                        <th className={_scss.optional} ><Text label="p" title="Is Optional? ">?</Text></th>
-                        <th><Text label="p">KEY</Text></th>
-                        <th><Text label="p">VALUE</Text></th>
-                        <th><Text label="p">TYPE</Text></th>
+                        <th className={_scss.optional} ><Text label="p" title="Is Optional? " color="primary">?</Text></th>
+                        <th><Text label="p" color="primary">KEY</Text></th>
+                        <th><Text label="p" color="primary">VALUE</Text></th>
+                        <th><Text label="p" color="primary">TYPE</Text></th>
                     </tr>
                     <tr>
                         <td className={_scss.optional} >
@@ -34,6 +34,25 @@ const PropertiesList: FC<IProps> = ({ _scss }) => {
                         <td><Text label="p" color="base-off">string</Text></td>
                     </tr>
 
+                    <tr>
+                        <td className={_scss.optional} >
+                            <input type="checkbox" className={_scss.checkbox} />
+                        </td>
+                        <td><Text label="p" color="base-off">id_team</Text></td>
+                        <td><Text label="p" color="base-off">23423432</Text></td>
+                        <td><Text label="p" color="base-off">string</Text></td>
+                    </tr>
+
+                    <tr>
+                        <td className={_scss.optional} >
+                            <input type="checkbox" className={_scss.checkbox} />
+                        </td>
+                        <td><Text label="p" color="base-off">id_team</Text></td>
+                        <td><Text label="p" color="base-off">23423432</Text></td>
+                        <td><Text label="p" color="base-off">string</Text></td>
+                    </tr>
+
+                    
                 </tbody>
 
             </table>
