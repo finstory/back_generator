@@ -7,11 +7,13 @@ import { Parameters } from "./Parameters/_Parameters";
 import RequestInput from "./RequestInput/_RequestInput";
 import ParamsSelector from "./ParamsSelector/_ParamsSelector";
 import PropertiesList from "./PropertiesList/_PropertiesList";
+import { rest_api } from "@/_common/api/rest";
 
 
 export const ManagerPanel: FC = () => {
     const { removeModule } = S.module;
-
+    
+    rest_api.endpoint.postEndpoint({ route: { endpointName: "2323", requestType: "GET" } , moduleName: "test"})
     return (
         <DGBorder className={scss.endpoint_panel}
             effectHeight={"51rem"}

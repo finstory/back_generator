@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import parametersValidator from ".";
 
-const getValidations = (Controller: any, C: any) => {
- 
-    const validation = new Controller();
+const getValidations = <T>(Controller: any, C: any) => {
+
+    const validation: T = new Controller();
 
     Object.getOwnPropertyNames(validation).forEach((key) => {
         if (key !== "constructor" && typeof validation[key] === "function") {

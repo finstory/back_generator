@@ -6,39 +6,15 @@ import S from "@services";
 
 //<CONTROLLERS>
 
-controller.putUser = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "putUser" };
-
-    res.status(200).json(data);
-};
-
-controller.deleteUser = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "deleteUser" };
-
-    res.status(200).json(data);
-};
-
-controller.patchUser = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "patchUser" };
-
-    res.status(200).json(data);
-};
-
-controller.postUser = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "postUser" };
-
-    res.status(200).json(data);
-};
-
-controller.getUserLoginUser = async ({ params, query, body }, res) => {
+controller.getUser = async ({ params, query, body }, res) => {
     const data: any = { controllerName: "getUser" };
 
     res.status(200).json(data);
 };
 
-controller.deleteUserRegister = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "getUserRegister" };
-
+controller.postUserRegisterById = async ({ params, query, body }, res) => {
+    const { id, name } = params;
+    const data: any = { controllerName: "postUserRegister" };
     res.status(200).json(data);
 };
 

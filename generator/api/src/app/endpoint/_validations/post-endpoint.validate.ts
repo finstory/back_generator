@@ -4,7 +4,7 @@ import "reflect-metadata";
 import { Request, Response } from "express";
 import { Transform, Type } from 'class-transformer';
 import RouteModel from "@/_common/db/json/entities/route.model";
-import { BasicRouteDto } from "@/_common/db/dto/route.dto";
+import { BasicRouteDto } from "../_dtos/route.dto";
 
 //<IMPORTS>
 

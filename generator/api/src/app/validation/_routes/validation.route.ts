@@ -1,11 +1,15 @@
+//<IMPORTS>
 import { Router } from "express";
-import { controller, validation } from "@user/user.controller";
-import controllerMiddlewares from "@common/middlewares/controller.middleware";
-
-controllerMiddlewares(controller, { error_wrapper: true });
+import { controller, validation } from "../validation.controller";
 
 const router = Router();
 
-router.get("/all", validation.getUser, controller.getUser);
+//<ROUTES>
+router.delete("/validate_params", validation.deleteValidationValidateParams, controller.deleteValidationValidateParams);
+router.patch("/validate_params", validation.patchValidationValidateParams, controller.patchValidationValidateParams);
+router.post("/validate_params", validation.postValidationValidateParams, controller.postValidationValidateParams);
+router.delete("/request_params", validation.deleteValidationRequestParams, controller.deleteValidationRequestParams);
+router.post("/request_params", validation.postValidationRequestParams, controller.postValidationRequestParams);
+router.patch("/request_params", validation.patchValidationRequestParams, controller.patchValidationRequestParams);
 
 export default router;

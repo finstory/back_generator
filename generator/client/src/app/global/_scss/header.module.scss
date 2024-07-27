@@ -201,7 +201,7 @@ header {
             transition: 0.7s linear;
 
             &:hover {
-                transition: 0s linear;
+                transition: .2s linear;
                 background: var(--color-primary-hover);
             }
 
@@ -226,7 +226,7 @@ header {
             transition: 0.7s linear;
 
             &:hover {
-                transition: 0s linear;
+                transition: .2s linear;
                 background: var(--color-base-off);
             }
 
@@ -235,10 +235,10 @@ header {
                 @include gradient(black_bg);
                 border-radius: 1rem;
 
-            img{
-                width: 1.5rem;
-                height: 1.5rem;
-            }
+                img {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
             }
         }
     }

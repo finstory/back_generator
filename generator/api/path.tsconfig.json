@@ -24,6 +24,7 @@
       "@user/*": ["./app/user/*"],
       "@package/*": ["./app/package/*"],
       "@endpoint/*": ["./app/endpoint/*"],
+      "@validation/*":["./app/validation/*"],
       
       "@ast/*": ["./_common/modules/ast/*"],
       "@fs/*": ["./_common/modules/fs/*"],

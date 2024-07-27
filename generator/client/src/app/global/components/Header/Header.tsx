@@ -53,7 +53,7 @@ export const Header: FC<IProps> = ({ }) => {
             <div className={scss.config_container}>
                 <BGradient className={scss.config_btn}
                 >
-                    <img src="https://res.cloudinary.com/dz9smi3nc/image/upload/v1718958048/Generator/Icons/Vector_9_qdpbrv.png" alt="config" />
+                    <img src="https://res.cloudinary.com/dz9smi3nc/image/upload/v1721418791/Generator/Icons/Vector_12_qyat6z.png" alt="config" />
                 </BGradient>
                 <BGradient className={scss.tech_btn}
                 ><Text label='p' >NODE.JS</Text></BGradient>

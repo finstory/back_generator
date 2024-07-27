@@ -1,17 +1,22 @@
+import { ValidationModel } from "./validation.model";
+
 class RequestParamsModel {
-    key: string;
+    name: string;
     type: string;
-    elementType: string;
+    containType: string;
     optional: boolean;
     value: any;
+    validations?: ValidationModel[];
 
-    constructor({ key, type, elementType, optional, value }) {
-        this.key = key;
+    constructor(name: string, type: string, containType: string, optional: boolean, value: any, validations?: ValidationModel[]) {
+        this.name = name;
         this.type = type;
-        this.elementType = elementType;
+        this.containType = containType;
         this.optional = optional;
         this.value = value;
+        this.validations = validations;
     }
 }
+
 
 export default RequestParamsModel;

@@ -1,16 +1,31 @@
-import { AllServices as S, Injector, Injectable, Inject } from "@services_injector";
+import { AllServices as S, Injector, Injectable, Inject, AllServices } from "@services_injector";
 import throwError from "@throw_error";
-import { generateControllerName } from "@utils";
+import { env } from "process";
 import { express_endpoint } from "@mockups";
 import { printInfo } from "@helpers/wordsManager";
-import { EditRouteDto } from "../_dtos/router-fn.dto";
-import { RouteExpressDto, RouteExpressDtoV2 } from "@ast/_dtos/ast-route-function.dto";
-import { BasicRouteDto, OptionalRouteDto, PartialRouteDto } from "@/_common/db/dto/route.dto";
-import { json_db } from "@/_common/db/json";
-import { env } from "process";
+import { BasicRouteDto, OptionalRouteDto, FragmentRouteDto } from "../_dtos/route.dto";
 
 const appPath = env.BACKEND_PATH;
 
+interface SM {
+    updateControllerImport: (
+        moduleName: string,
+        features?: string[]
+    ) => Promise<void>;
+    createRoute: (
+        moduleName: string,
+        { endpointName, requestType, controllerName }: FragmentRouteDto
+    ) => Promise<void>;
+    editRoute: (
+        moduleName: string,
+        { controllerName, endpointName, requestType, validateActive }: FragmentRouteDto,
+        newRoute: OptionalRouteDto
+    ) => Promise<void>;
+    removeRoute: (
+        moduleName: string,
+        { endpointName, requestType }: BasicRouteDto
+    ) => Promise<void>;
+}
 
 class ExpressRouteService extends Injectable {
 
@@ -18,7 +33,6 @@ class ExpressRouteService extends Injectable {
     @Inject private _ast_import: S['ast']['import'];
     @Inject private _ast_routeFunction: S['ast']['routeFunction'];
     @Inject private _generator_tag: S['generator']['tag'];
-
 
     updateControllerImport = async (moduleName: string, features?: string[]) => {
 
@@ -32,7 +46,9 @@ class ExpressRouteService extends Injectable {
         printInfo("ROUTE", `Updated import to module '${moduleName}'.`);
     };
 
-    createRoute = async (moduleName: string, { endpointName, requestType, controllerName }: PartialRouteDto) => {
+    createRoute: SM["createRoute"] = async (moduleName, route) => {
+
+        const { endpointName, requestType, controllerName } = route;
 
         const endpointPath = `${appPath}/${moduleName}/_routes/${moduleName}.route.ts`;
         const textCode = express_endpoint(endpointName, requestType, controllerName);
@@ -41,7 +57,7 @@ class ExpressRouteService extends Injectable {
         printInfo("ROUTE", "Endpoint added successfully.");
     }
 
-    editRoute = async (moduleName: string, route: PartialRouteDto, newRoute: OptionalRouteDto) => {
+    editRoute: SM["editRoute"] = async (moduleName, route, newRoute) => {
 
         let { endpointName, requestType } = route;
         const filePath = `${appPath}/${moduleName}/_routes/${moduleName}.route.ts`;
@@ -82,8 +98,9 @@ class ExpressRouteService extends Injectable {
         printInfo("ROUTE", `Reissue | ${message} `);
     }
 
-    removeRoute = async (moduleName: string, { endpointName, requestType }: BasicRouteDto) => {
+    removeRoute: SM["removeRoute"] = async (moduleName, route) => {
 
+        const { endpointName, requestType } = route;
         const filePath = `${appPath} /${moduleName}/_routes / ${moduleName}.route.ts`;
 
         await this._fs_file.updateFile(filePath, async (textCode) => {

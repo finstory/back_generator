@@ -7,7 +7,8 @@ import { Transform, Type } from 'class-transformer';
 
 //<REQUEST TYPES>
 
-class Params { };
+class Params {
+ };
 
 class Query { };
 
@@ -17,7 +18,7 @@ class ResponseBody { };
 
 //BODY TO SEND:
 
-const body: ResponseBody = {};
+const body = {} as Body;
 
 
 //<EXPORTS>:

@@ -1,13 +1,9 @@
+import { ValidationModel } from "@/_common/db/json/entities/validation.model";
 import { RequestType } from "@interfaces";
 
-export class EditRouteFnDto {
-    newEndpoint?: string;
-    newRequestType?: RequestType;
-    newController?: string;
-}
-
-export class RouteImportDto {
-    importName: string;
-    newImportName?: string;
-    newPath?: string;
+export class ValidatorOptionDto implements ValidationModel {
+    name: string;
+    decoratorType: "ClassValidator" | "TransformValidator" | "TypeValidator";
+    message?: string;
+    callBack?: string;
 }

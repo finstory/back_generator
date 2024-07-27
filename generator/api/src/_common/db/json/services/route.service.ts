@@ -2,7 +2,7 @@ import throwError from "@throw_error";
 import { printInfo } from '@helpers/wordsManager';
 import RouteModel, { RouteModelEdition } from '../entities/route.model';
 import { type DB_Schema } from '../connection/db.connection';
-import { BasicRouteDto } from '../../dto/route.dto';
+import { BasicRouteDto, OptionalRouteDto } from '../../../../app/endpoint/_dtos/route.dto';
 import { generateControllerName } from '@utils';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -114,7 +114,7 @@ class RouteService {
         }
     }
 
-    edit = async (moduleName: string, route: BasicRouteDto, newRoute: RouteModelEdition): Promise<RouteModel> => {
+    edit = async (moduleName: string, route: BasicRouteDto, newRoute: OptionalRouteDto): Promise<RouteModel> => {
 
         const modulesList = (await this.readDB()).get('module')
         const moduleGetting = modulesList.find({ name: moduleName })

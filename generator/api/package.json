@@ -33,6 +33,7 @@
   "dependencies": {
     "@babel/parser": "^7.24.5",
     "@babel/traverse": "^7.24.5",
+    "@nestjs/mapped-types": "^2.0.5",
     "@types/babel-core": "^6.25.10",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
@@ -70,6 +71,7 @@
     "tsconfig-paths": "^4.2.0",
     "tscpaths": "^0.0.9",
     "typescript-transform-paths": "^3.4.7",
+    "utility-types": "^3.11.0",
     "uuid": "^9.0.1",
     "uuidv4": "^6.2.13",
     "validator": "^13.12.0"

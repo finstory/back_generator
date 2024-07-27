@@ -36,6 +36,7 @@ class ModuleService extends BasicInjectable {
     @PrintError
     removeModule = async (moduleName: string) => {
         const confirm = await confirmAlert(`Are you sure you want to remove module ${moduleName}?`);
+        
         if (!confirm) return;
 
         await this._api.module.deleteModule({ moduleName });
@@ -43,7 +44,6 @@ class ModuleService extends BasicInjectable {
 
         printAlert(`Module ${moduleName} removed successfully`);
     }
-
 
 }
 export default ModuleService;

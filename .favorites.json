@@ -28,11 +28,11 @@
     },
     {
         "type": "File",
-        "name": "D:\\Programacion_Extra\\Node_ts\\generator\\api\\src\\_common\\db\\json\\connection\\db.json",
+        "name": "D:\\Programacion_Extra\\Node_ts\\generator\\api\\src\\_common\\db\\json\\db.json",
         "parent_id": "mhr5egzPQxwjEpAi",
-        "fsPath": "D:\\Programacion_Extra\\Node_ts\\generator\\api\\src\\_common\\db\\json\\connection\\db.json",
+        "fsPath": "D:\\Programacion_Extra\\Node_ts\\generator\\api\\src\\_common\\db\\json\\db.json",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "FWViLS71rC3PvcXZ"
+        "id": "TwyOqH76DpKP40YA"
     }
 ]

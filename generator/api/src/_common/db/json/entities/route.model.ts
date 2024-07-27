@@ -15,11 +15,11 @@ export interface RouteModelEdition {
 
 }
 
-class RouteModel {
+export class RouteModel {
     id: string;
     endpointName: string;
     controllerName: string;
-    requestType: RequestType;
+    requestType: "get" | "post" | "put" | "delete" | "patch" | "options" | "head" | "connect" | "trace";
     validateActive: boolean;
     description?: string;
     middlewares?: string[];

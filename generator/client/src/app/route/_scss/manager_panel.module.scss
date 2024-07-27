@@ -129,7 +129,7 @@
 
         .parameters {
             @include dim_width();
-            @include dim_height(14rem);
+            @include dim_height(16rem);
             @include flex(flex-start, center, column);
             @include font_M_PLUS(medium, 400);
             padding: 2rem;

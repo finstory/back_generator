@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import * as C from "../_validations/_index";
 import getValidations from "@config/validations/getValidations";
 
-export class PackageController {
+export class EndpointController {
   //<CONTROLLERS>
   postEndpoint = async (req: C.postEndpoint.Req, res: C.postEndpoint.Res) => { };
   patchEndpoint = async (req: C.patchEndpoint.Req, res: C.patchEndpoint.Res) => { };
@@ -11,5 +11,5 @@ export class PackageController {
 }
 
 //<EXPORTS>
-export const controller = new PackageController();
-export const validation = getValidations(PackageController, C);
+export const controller = new EndpointController();
+export const validation = getValidations(EndpointController, C);

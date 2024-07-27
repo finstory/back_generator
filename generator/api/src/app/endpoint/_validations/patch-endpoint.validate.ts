@@ -4,7 +4,7 @@ import "reflect-metadata";
 import { Request, Response } from "express";
 import { Transform, Type } from 'class-transformer';
 import { RequestType } from "../_interfaces/endpoint.interface";
-import { OptionalRouteDto, PartialRouteDto, } from "@/_common/db/dto/route.dto";
+import { OptionalRouteDto, FragmentRouteDto } from "../_dtos/route.dto";
 
 //<IMPORTS>
 
@@ -17,7 +17,7 @@ class Query { };
 class Body {
 
     moduleName: string;
-    route: PartialRouteDto;
+    route: FragmentRouteDto;
     newRoute: OptionalRouteDto;
 };
 

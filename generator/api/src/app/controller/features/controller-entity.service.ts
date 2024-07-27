@@ -31,7 +31,7 @@ class ControllerEntityService extends Injectable {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 
-            return await this._ast_class.removeProperty(textCode, { className: `${UpFirst(moduleName)}Controller`, propName: controllerName, comment: "<CONTROLLERS>" })
+            return await this._ast_class.removeProperty(textCode, { className: `${UpFirst(moduleName)}Controller`, name: controllerName, comment: "<CONTROLLERS>" })
 
         });
 

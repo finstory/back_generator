@@ -51,7 +51,7 @@ export interface AstClassDeclaration {
             };
         };
         body: AstClassProperty[];
-    innerComments?: CommentLine[];
+        innerComments?: CommentLine[];
     };
 
 }
@@ -59,48 +59,43 @@ export interface AstClassDeclaration {
 
 export interface AstClassProperty {
     type: "ClassProperty";
-    start: number;
-    end: number;
-    loc: {
-        start: {
-            line: number;
-            column: number;
-            index: number;
-        };
-        end: {
-            line: number;
-            column: number;
-            index: number;
-        };
-    };
-    static: boolean;
-    variance: null;
+    // start: number;
+    // end: number;
+    // loc: {
+    //     start: {
+    //         line: number;
+    //         column: number;
+    //         index: number;
+    //     };
+    //     end: {
+    //         line: number;
+    //         column: number;
+    //         index: number;
+    //     };
+    // };
+    // static: boolean;
+    // variance: null;
+    decorators?: AstClassDecorators[];
     key: {
         type: "Identifier";
-        start: number;
-        end: number;
+        // start: number;
+        // end: number;
         name: string;
     };
-    // computed: boolean;
-    // value: {
-    //     type: "ArrowFunctionExpression";
-    //     start: number;
-    //     end: number;
-    //     loc: {
-    //         start: {
-    //             line: number;
-    //             column: number;
-    //             index: number;
-    //         };
-    //         end: {
-    //             line: number;
-    //             column: number;
-    //             index: number;
-    //         };
-    //     };
-    //     id: null;
-    //     generator: boolean;
-    //     async: boolean;
+    typeAnnotation: {
+        type: "TypeAnnotation",
+        typeAnnotation: any;
+    };
+    // typeAnnotation: {
+    //     type: "TypeAnnotation",
+    //     typeAnnotation: {
+    //         type: "GenericTypeAnnotation",
+    //         id: {
+    //             type: "Identifier",
+    //             name: "RouteDto",
+    //         },
+    //     }
+    // }
     //     params: [
     //         {
     //             type: "Identifier";
@@ -413,7 +408,7 @@ export interface AstClassProperty {
     //         directives: any[];
     //     };
     // };
-    leadingComments: CommentLine[];
+    leadingComments?: CommentLine[];
 }
 
 export interface CommentLine {
@@ -421,3 +416,45 @@ export interface CommentLine {
     value: string;
     start: number;
 }
+
+export interface AstClassDecorators {
+    type: "Decorator";
+    expression: {
+        type: "CallExpression";
+        callee: BasicDecorator | ValidationDecorator;
+        arguments?: (TypeArguments | LiteralArguments)[];
+    };
+}
+
+interface ValidationDecorator {
+    type: "MemberExpression";
+    object: {
+        type: "Identifier";
+        name: string;
+    };
+    property: {
+        type: "Identifier";
+        name: string;
+    };
+};
+
+interface TypeArguments {
+
+    type: "ArrowFunctionExpression",
+    params: any[],
+    body: {
+        type: "Identifier",
+        name: string,
+    },
+}
+
+interface LiteralArguments {
+    type: "NumericLiteral" | "StringLiteral",
+    value: any,
+}
+
+
+interface BasicDecorator {
+    type: "Identifier",
+    name: string,
+};

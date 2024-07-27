@@ -5,6 +5,7 @@ import AstImportService from "./features/ast-import.service";
 import AstRouteFunctionService from "./features/ast-router-function.service";
 import AstFunctionCompilerService from "./features/ast-compiler-function.service";
 import AstClassService from "./features/ast-class.service";
+import AstClassDecoratorService from "./features/ast-class-decorator.service";
 
 @AutoInstance
 class Ast {
@@ -13,7 +14,7 @@ class Ast {
     @Auto public compilerFunction: AstFunctionCompilerService;
     @Auto public routeFunction: AstRouteFunctionService;
     @Auto public class: AstClassService;
-
+    @Auto public classDecorator: AstClassDecoratorService;
 }
 
 export default Ast;

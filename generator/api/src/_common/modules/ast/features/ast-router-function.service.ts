@@ -10,7 +10,7 @@ import { printInfo } from "@/_common/helpers/wordsManager";
 
 class AstRouteFunctionService {
 
-    private hasRouteFunction = (expression: AstRouteExpress, endpoint: string, requestType: RequestType): boolean => {
+    private hasRouteFunction = (expression: AstRouteExpress, endpoint: string, requestType: string): boolean => {
         if (
             expression.type === "CallExpression" &&
             expression.callee.type === "MemberExpression" &&
@@ -52,7 +52,7 @@ class AstRouteFunctionService {
     }
 
 
-    changeRequestType = async (textCode: TextCode, { endpointName, requestType }: RouteExpressDto, newRequestType: RequestType): Promise<TextCode> => {
+    changeRequestType = async (textCode: TextCode, { endpointName, requestType }: RouteExpressDto, newRequestType: string): Promise<TextCode> => {
 
         const ast = codeToAst(textCode);
         let ok = false;

@@ -25,7 +25,6 @@ class EndpointEndpoint {
         this._toggleRequestList = this._toggleRequestList.filter((request) => request !== nameRequest);
     }
 
-
     postEndpoint = async ({ moduleName, route }: PostEndpoint) => {
         await checkParams({ moduleName, route }, PostEndpoint);
         const fetch = await this._api.post("/endpoint", { moduleName, route });

@@ -10,7 +10,7 @@ export interface AstRouteExpress {
         }
         property: {
             type: "Identifier";
-            name: RequestType;
+            name: string;
         }
     }
 

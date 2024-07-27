@@ -4,35 +4,9 @@
       "name": "user",
       "routes": [
         {
-          "id": "c1ae5569-8dad-420a-8b20-980b1f63eb8f",
-          "controllerName": "deleteUserRegister",
-          "endpointName": "/register",
-          "requestType": "delete",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "63035bea-fd87-47d4-8faf-349f21f516ac",
-          "controllerName": "getUserLoginUser",
-          "endpointName": "/login/user",
-          "requestType": "get",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "7cf5c629-1331-4b04-a7b7-884643af86a5",
-          "controllerName": "postUser",
-          "endpointName": "/",
+          "id": "b7cb7f83-a9b6-4a80-a407-dafa70d6c50d",
+          "controllerName": "postUserRegisterById",
+          "endpointName": "/register/:id",
           "requestType": "post",
           "validateActive": true,
           "description": "",
@@ -43,9 +17,27 @@
           "responseBody": []
         },
         {
-          "id": "c0cad498-8f89-4ce8-bd54-f812a92c9475",
-          "controllerName": "patchUser",
+          "id": "b0096400-00a5-4699-9a52-5eaf84713394",
+          "controllerName": "getUser",
           "endpointName": "/",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "validation",
+      "routes": [
+        {
+          "id": "30e07bcc-097c-4648-b103-60c461cc6dff",
+          "controllerName": "patchValidationRequestParams",
+          "endpointName": "/request_params",
           "requestType": "patch",
           "validateActive": true,
           "description": "",
@@ -56,9 +48,22 @@
           "responseBody": []
         },
         {
-          "id": "f36489ba-b7d4-4d2a-b53d-9e759f2af933",
-          "controllerName": "deleteUser",
-          "endpointName": "/",
+          "id": "91b75f47-88f9-44d6-89f7-cc534632dbdd",
+          "controllerName": "postValidationRequestParams",
+          "endpointName": "/request_params",
+          "requestType": "post",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "d71d81ca-6f25-44f0-8e38-99c13787c0da",
+          "controllerName": "deleteValidationRequestParams",
+          "endpointName": "/request_params",
           "requestType": "delete",
           "validateActive": true,
           "description": "",
@@ -69,10 +74,36 @@
           "responseBody": []
         },
         {
-          "id": "fe562e21-d683-4ce4-a062-deb233ceaa2e",
-          "controllerName": "putUser",
-          "endpointName": "/",
-          "requestType": "put",
+          "id": "ee50557b-03e0-44e6-a6e0-b3d4cef8eb1c",
+          "controllerName": "postValidationValidateParams",
+          "endpointName": "/validate_params",
+          "requestType": "post",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "0673f0c2-9af8-44e8-9a4a-1097758f8265",
+          "controllerName": "patchValidationValidateParams",
+          "endpointName": "/validate_params",
+          "requestType": "patch",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "4d510b56-44ce-459a-b3a7-965c41f89faa",
+          "controllerName": "deleteValidationValidateParams",
+          "endpointName": "/validate_params",
+          "requestType": "delete",
           "validateActive": true,
           "description": "",
           "middlewares": [],

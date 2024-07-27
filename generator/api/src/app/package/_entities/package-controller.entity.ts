@@ -7,10 +7,11 @@ export class PackageController {
   test = async (req: C.test.Req, res: C.test.Res) => { };
   getAllPackage = async (req: Request, res: Response) => { };
   patchPackageRename = async (req: Request, res: Response) => { };
-  postPackage = async (req: Request, res: Response) => { };
+  postPackage = async (req: C.postPackage.Req, res: C.postPackage.Res) => { };
   deletePackage = async (req: Request, res: Response) => { };
 }
 
 //<EXPORTS>
 export const controller = new PackageController();
-export const validation = getValidations(PackageController, C);
+export const validation = getValidations<PackageController>(PackageController, C);
+

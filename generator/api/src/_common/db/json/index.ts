@@ -1,7 +1,7 @@
 import JsonDBConfig from './connection/db.connection';
 import ModuleService from './services/module.service';
-import throwError from "@throw_error";
 import RouteService from './services/route.service';
+import throwError from "@throw_error";
 
 export class MainDB extends JsonDBConfig {
 
