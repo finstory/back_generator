@@ -4,7 +4,7 @@ import { delay } from "@helpers/delay";
 import JsonDB from "@json_db";
 import RouteModel from "@/_common/db/json/entities/route.model";
 import { v4 as uuid4 } from 'uuid';
-
+import fs from 'fs';
 
 const testMain = async () => {
 
@@ -13,10 +13,22 @@ const testMain = async () => {
         const textCode = `class Params {
         user: ({id:name})[];
         last_name: string;
-        };`;
+        };
+        
+class Query {
+        other: ({id:name})[];
+        first_name: string;
+        };
 
-        const getAll = await S.ast.class.getAllProperties(textCode, "Params");
-        console.log(getAll);
+        `;
+
+        // const getAllParams = await S.validation.requestParams.getAllProperties("user", "getUser", "params");
+        // const getAllQuery = await S.validation.requestParams.getAllProperties("user", "getUser", "query");
+        //  const getAllBody = await S.validation.requestParams.getAllProperties("user", "getUser", "body");
+        // fs.writeFileSync('constants.json', JSON.stringify(getAllQuery));
+        // console.log(getAllParams);
+        // console.log(getAllQuery);
+        //  console.log(getAllBody);
         // await S.validation.requestParams.addValidation("user", "getUser", { from: "query", name: "user", type: "User" }, { decoratorName: "ValidateNested", decoratorType: "ClassValidator" });
 
         // await S.validation.requestParams.addValidation("user", "getUser", { from: "query", name: "user", type: "User" }, { decoratorName: "Type", decoratorType: "TypeValidator" });
@@ -32,7 +44,7 @@ const testMain = async () => {
 
     } catch (error) {
         // console.log(error)
-        printMsg(error.message || "error", "error");
+        // printMsg(error.message || "error", "error");
     }
 };
 

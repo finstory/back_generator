@@ -1,4 +1,4 @@
 //<EXPORTS>
 export * as getUser from "./get-user.validate";
-export * as postUserRegisterById from "./post-user-register-by-id.validate";
+export * as postUserRegister from "./post-user-register.validate";
 export default {};

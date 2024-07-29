@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import RestApi from "..";
+import RestApi from "../rest.api";
 import classValidator from "@/_common/config/validations";
 import { ErrorFormat } from "@/_common/config/validations/format-errors";
 import ErrorResponse from "@/_common/config/errors/models/error-response";

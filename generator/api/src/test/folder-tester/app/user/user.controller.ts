@@ -12,9 +12,9 @@ controller.getUser = async ({ params, query, body }, res) => {
     res.status(200).json(data);
 };
 
-controller.postUserRegisterById = async ({ params, query, body }, res) => {
-    const { id, name } = params;
+controller.postUserRegister = async ({ params, query, body }, res) => {
     const data: any = { controllerName: "postUserRegister" };
+
     res.status(200).json(data);
 };
 

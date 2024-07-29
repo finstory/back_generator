@@ -13,18 +13,32 @@ interface IProps {
 }
 
 const Endpoint: FC<IProps> = ({ _scss, moduleName, route }) => {
-    const { deleteRoute } = S.route;
+    const { deleteRoute, loadRouteManager } = S.route;
+    const { reloadRequestParams } = S.validation;
+    const { routeManager: { routeId } } = S.route.routeState;
     const [editModeActive, setEditModeActive] = useState<boolean>(false);
+
+    const toggleSelected = () => {
+        loadRouteManager(moduleName, route.id, route.controllerName);
+        // reloadRequestParams(moduleName, route.controllerName);
+    };
+
     return (
         <div key={route.id} className={_scss.endpoint}>
             {editModeActive
                 ?
                 <EndpointEditor _scss={_scss} moduleName={moduleName} route={route} active={setEditModeActive} />
                 :
-                <div className={_scss.wrap}>
-                    <Mark className={_scss.mark} variant="bar" />
+                <div className={_scss.wrap} onClick={toggleSelected} >
+                    <Mark
+                        className={_scss.mark}
+                        variant={routeId === route.id ? 'rhombus' : 'bar'}
+                        color={routeId === route.id ? 'primary' : 'base-off'}
+                    />
 
-                    <Text className={_scss.text} label="p" color="base-off" >
+
+
+                    <Text className={_scss.text} label="p" color={routeId === route.id ? 'primary' : 'base-off'} >
                         {route.endpointName.toUpperCase()} -
 
                         <Text className={_scss.text} label="span" color={route.requestType}> {route.requestType.toUpperCase()} </Text>

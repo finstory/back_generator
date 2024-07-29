@@ -4,6 +4,12 @@ export default interface RouteState {
     moduleSelected: string;
   };
   name: string;
+  routeManager: {
+    status: "ok" | "loading";
+    paramsSelected: "params" | "query" | "body" | "bodyResponse";
+    moduleName: string;
+    routeId: string;
+  };
 }
 
 export const route: RouteState = {
@@ -11,5 +17,11 @@ export const route: RouteState = {
   endpointPanel: {
     moduleEditorOpen: false,
     moduleSelected: "some",
+  },
+  routeManager: {
+    status: "ok",
+    paramsSelected: "params",
+    moduleName: "",
+    routeId: "",
   }
 };

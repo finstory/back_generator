@@ -6,20 +6,30 @@ export interface IModule {
 export interface IRoute {
     id: string;
     endpointName: string;
-    requestType: "get" | "post" | "put" | "delete" | "patch";
-    description: string;
     controllerName: string;
-    middlewares: string[];
-    params?: RequestParams[];
-    query?: RequestParams[];
-    body?: RequestParams[];
-    responseBody?: RequestParams[];
+    requestType: "get" | "post" | "put" | "delete" | "patch";
+    validateActive: boolean;
+    description?: string;
+    middlewares?: string[];
+    params?: IRequestParams[];
+    query?: IRequestParams[];
+    body?: IRequestParams[];
+    responseBody?: IRequestParams[];
 }
 
-interface RequestParams {
-    key: string;
+export interface IRequestParams {
+    name: string;
     type: string;
-    elementType: string;
     optional: boolean;
-    value: any;
+    containType?: string;
+    value?: any;
+    validations?: IValidation[];
+
+}
+
+export interface IValidation {
+    name: string;
+    decoratorType: "ClassValidator" | "TransformValidator" | "TypeValidator";
+    message?: string;
+    callBack?: string;
 }

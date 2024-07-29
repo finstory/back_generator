@@ -9,9 +9,9 @@ export class RequestParamsDto implements RequestParamsModel {
     name: string;
     type: string;
     typePosition?: Pos;
-    containType: string;
+    containType?: string;
     optional: boolean;
-    value: any;
+    value?: any;
     validations?: ValidatorOptionDto[];
 }
 

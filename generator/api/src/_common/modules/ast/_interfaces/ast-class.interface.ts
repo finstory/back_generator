@@ -59,6 +59,7 @@ export interface AstClassDeclaration {
 
 export interface AstClassProperty {
     type: "ClassProperty";
+    optional: boolean;
     // start: number;
     // end: number;
     // loc: {

@@ -3,6 +3,7 @@ import { Pos } from "../_interfaces/ast.interface";
 export class ClassPropertyDto {
     className: string;
     name: string;
+    optional?: boolean;
     typeStringified?: string;
     typePosition?: Pos;
     objectType?: string;

@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import scss from "./icon_button.module.scss";
-import images from './../../../../../client/src/assets/images/index';
 
 export type IconsName = "edit_primary" | "delete" | "edit_blue" | "delete_primary" | "add_primary";
 

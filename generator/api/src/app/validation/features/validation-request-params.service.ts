@@ -1,4 +1,4 @@
-import { hyphenToClassName, printInfo, UpFirst, upperCaseToHyphen } from "@helpers/wordsManager";
+import { hyphenToClassName, printInfo, underscoreToClassName, underscoreToUpperCase, UpFirst, upperCaseToHyphen } from "@helpers/wordsManager";
 import { controller_model } from "@/_common/mockups/controller.mockup";
 import { AllServices as S, Injectable, Inject } from "@services_injector";
 import throwError from "@throw_error";
@@ -8,6 +8,7 @@ import { ValidatorOptionDto } from "../_dtos/validation-fn.dto";
 import { BasicRequestParamsDto, RequestParamsDto } from "@/app/endpoint/_dtos/request-params.dto";
 import { omit } from "lodash";
 import { PropertyDecoratorDto } from "@/_common/modules/ast/_dtos/ast-class.dto";
+import promise from "@/_common/helpers/promiseWrapper";
 
 const appPath = env.BACKEND_PATH;
 
@@ -16,24 +17,31 @@ class ValidationRequestParamsService extends Injectable {
     @Inject private _fs_file: S['fs']['file'];
     @Inject private _ast_classDecorator: S['ast']['classDecorator'];
     @Inject private _ast_class: S['ast']['class'];
-    // addBarrelExport = async (moduleName: string, controllerName: string) => {
 
-    //     const filePath = `${appPath}/${moduleName}/_validations/_index.ts`;
-    //     const textCode = export_validation(controllerName);
+    getAllProperties = async (
+        moduleName: string, controllerName: string, from: RequestParamsDto["from"]
+    ): Promise<RequestParamsDto[]> => {
 
-    //     await this._generator_tag.addCodeAfterTag(filePath, "<EXPORTS>", textCode);
+        const result: RequestParamsDto[] = [];
+        const className = underscoreToClassName(from);
+        const hyphenControllerName = upperCaseToHyphen(controllerName);
+        const filePath = `${appPath}/${moduleName}/_validations/${hyphenControllerName}.validate.ts`;
+        const textCode = await this._fs_file.getFile(filePath);
+        const requestParamsList = await this._ast_class.getAllProperties(textCode, className);
 
-    //     printInfo("VALIDATION", `Validation model export added successfully.`);
-    // }
-
-    // readAllProperties = async (moduleName: string, controllerName: string, from: string) => {
-
-    //     const hyphenControllerName = upperCaseToHyphen(controllerName);
-    //     const filePath = `${appPath}/${moduleName}/_validations/${hyphenControllerName}.validate.ts`;
-
-    //     const properties = await this._ast_class.getProperties(filePath, className);
-    //     return properties;
-    // }
+        await promise<void>(async (resolve, reject) => {
+            for (let prop of requestParamsList) {
+                result.push({
+                    from,
+                    name: prop.name,
+                    type: prop.typeStringified,
+                    optional: prop.optional,
+                    validations: await this._ast_classDecorator.getDecoratorByProperty(textCode, { className, name: prop.name })
+                } as RequestParamsDto);
+            } resolve();
+        })
+        return result;
+    }
 
     addProperty = async (
         moduleName: string,
@@ -46,7 +54,7 @@ class ValidationRequestParamsService extends Injectable {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
             textCode = await this._ast_class.addProperty(textCode,
-                { className, name, type }
+                { className, name, typeStringified: type }
             );
             return textCode;
         });
@@ -66,7 +74,7 @@ class ValidationRequestParamsService extends Injectable {
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
             textCode = await this._ast_classDecorator.addDecoratorToProperty(textCode,
-                { className, name, type },
+                { className, name, typeStringified: type },
                 { decoratorName, decoratorType, decoratorArguments }
             );
             return textCode;

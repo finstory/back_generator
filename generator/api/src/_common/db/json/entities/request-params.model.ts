@@ -3,9 +3,9 @@ import { ValidationModel } from "./validation.model";
 class RequestParamsModel {
     name: string;
     type: string;
-    containType: string;
     optional: boolean;
-    value: any;
+    containType?: string;
+    value?: any;
     validations?: ValidationModel[];
 
     constructor(name: string, type: string, containType: string, optional: boolean, value: any, validations?: ValidationModel[]) {

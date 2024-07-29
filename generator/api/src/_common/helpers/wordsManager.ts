@@ -18,6 +18,16 @@ function underscoreToUpperCase(str: string): string {
         .join("");
 }
 
+function underscoreToClassName(str: string): string {
+    return str
+        .split("_")
+        .map((word) => {
+            return UpFirst(word);
+        })
+        .join("");
+
+}
+
 function upperCaseToHyphen(str: string): string {
     return str
         .split("")
@@ -37,7 +47,8 @@ function hyphenToClassName(str: string): string {
             return UpFirst(word);
         })
         .join("");
-};
+}
+
 
 function textColor(str: string, color: string = "green"): string {
     if (color === "green") return colors.green(str);
@@ -72,4 +83,4 @@ function printMsg(str: string, color: string = "generator"): void {
     if (color === "error") console.log(colors.red(str));
 }
 
-export { UpFirst, underscoreToUpperCase, textColor, printInfo, printMsg, lowerCaseToFirstLetter, upperCaseToHyphen, hyphenToClassName };
+export { UpFirst, underscoreToUpperCase, textColor, printInfo, printMsg, lowerCaseToFirstLetter, upperCaseToHyphen, hyphenToClassName, underscoreToClassName };

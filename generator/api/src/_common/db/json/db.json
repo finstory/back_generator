@@ -4,21 +4,71 @@
       "name": "user",
       "routes": [
         {
-          "id": "b7cb7f83-a9b6-4a80-a407-dafa70d6c50d",
-          "controllerName": "postUserRegisterById",
-          "endpointName": "/register/:id",
+          "id": "5d948f23-8cab-4566-97a1-0257cc6b722f",
+          "controllerName": "postUserRegister",
+          "endpointName": "/register",
           "requestType": "post",
           "validateActive": true,
-          "description": "",
+          "description": "Aqui se registra un usuario, debes enviar un email y una contraseña:\n Body: {\n  email: string,\n  password: string\n}",
           "middlewares": [],
-          "params": [],
-          "query": [],
+          "params": [
+            {
+              "from": "params",
+              "name": "moduleName",
+              "type": "string",
+              "optional": true,
+              "validations": []
+            },
+            {
+              "from": "params",
+              "name": "user",
+              "type": "UserDto",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "ValidateNested"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "Type"
+                }
+              ]
+            }
+          ],
+          "query": [
+            {
+              "from": "query",
+              "name": "age",
+              "type": "number",
+              "optional": true,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNumber"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                }
+              ]
+            }
+          ],
           "body": [],
           "responseBody": []
-        },
+        }
+      ]
+    },
+    {
+      "name": "product",
+      "routes": [
         {
-          "id": "b0096400-00a5-4699-9a52-5eaf84713394",
-          "controllerName": "getUser",
+          "id": "0c77ca0e-8f7c-4a04-8fd5-2d3c4c09fd10",
+          "controllerName": "getProduct",
           "endpointName": "/",
           "requestType": "get",
           "validateActive": true,
@@ -28,29 +78,11 @@
           "query": [],
           "body": [],
           "responseBody": []
-        }
-      ]
-    },
-    {
-      "name": "validation",
-      "routes": [
-        {
-          "id": "30e07bcc-097c-4648-b103-60c461cc6dff",
-          "controllerName": "patchValidationRequestParams",
-          "endpointName": "/request_params",
-          "requestType": "patch",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
         },
         {
-          "id": "91b75f47-88f9-44d6-89f7-cc534632dbdd",
-          "controllerName": "postValidationRequestParams",
-          "endpointName": "/request_params",
+          "id": "98b95316-fb43-4e28-a4df-5c472b41fbfa",
+          "controllerName": "postProduct",
+          "endpointName": "/",
           "requestType": "post",
           "validateActive": true,
           "description": "",
@@ -61,49 +93,10 @@
           "responseBody": []
         },
         {
-          "id": "d71d81ca-6f25-44f0-8e38-99c13787c0da",
-          "controllerName": "deleteValidationRequestParams",
-          "endpointName": "/request_params",
-          "requestType": "delete",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "ee50557b-03e0-44e6-a6e0-b3d4cef8eb1c",
-          "controllerName": "postValidationValidateParams",
-          "endpointName": "/validate_params",
-          "requestType": "post",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "0673f0c2-9af8-44e8-9a4a-1097758f8265",
-          "controllerName": "patchValidationValidateParams",
-          "endpointName": "/validate_params",
+          "id": "5db55454-3f82-4ea4-910d-9ed6430b34ba",
+          "controllerName": "patchProductLogin",
+          "endpointName": "/login",
           "requestType": "patch",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "4d510b56-44ce-459a-b3a7-965c41f89faa",
-          "controllerName": "deleteValidationValidateParams",
-          "endpointName": "/validate_params",
-          "requestType": "delete",
           "validateActive": true,
           "description": "",
           "middlewares": [],

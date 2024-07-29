@@ -7,7 +7,7 @@ export class UserController {
 
     getUser = async (req: C.getUser.Req, res: C.getUser.Res) => {};
 
-    postUserRegisterById = async (req: C.postUserRegisterById.Req, res: C.postUserRegisterById.Res) => {};
+    postUserRegister = async (req: C.postUserRegister.Req, res: C.postUserRegister.Res) => {};
 }
 
 //<EXPORTS>

@@ -5,7 +5,8 @@ import InitialServices from "@/_common/config/services/decorators/initial-servic
 //% SERVICES_IMPORTS:
 import ModuleService from "@/modules/module/services/module.service";
 import RouteService from "@route/services/route.service";
-import RestApi from "@/_common/api/rest";
+import RestApi from "@/_common/api/rest/rest.api";
+import ValidationService from "@/modules/validation/services/validation.service";
 
 @InitialServices
 export class AllServices {
@@ -14,6 +15,7 @@ export class AllServices {
 
     @PrimaryService module = new ModuleService();
     @PrimaryService route = new RouteService();
+    @PrimaryService validation = new ValidationService();
 }
 
 export default new S as AllServices;

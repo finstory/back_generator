@@ -89,6 +89,14 @@
         @include gradient(black_bg);
         @include font_M_PLUS(normal, semibold);
 
+        &.disabled {
+
+            h2 {
+                animation: blink 2s ease-in-out infinite;
+            }
+
+        }
+
         .title {
             position: relative;
             @include dim_width();
@@ -129,13 +137,14 @@
 
         .parameters {
             @include dim_width();
-            @include dim_height(16rem);
+            @include dim_height(auto, auto, 10rem);
             @include flex(flex-start, center, column);
             @include font_M_PLUS(medium, 400);
             padding: 2rem;
             background-color: var(--color-base-dark);
             border-bottom: 1px solid var(--border-secondary);
             overflow-y: auto;
+            overflow-x: hidden;
 
             .options_list {
                 @include dim_width();
@@ -149,8 +158,8 @@
                 position: relative;
                 @include dim_width();
                 @include dim_height(auto);
-                @include flex(center, flex-start);
-                padding: 1rem 2rem;
+                @include flex(flex-start, flex-start);
+                padding: 1rem 2rem 0rem 2rem;
 
                 .mark {
                     position: absolute;
@@ -158,8 +167,21 @@
                     left: 0;
                 }
 
-                p {
+                textarea {
+                    @include dim_width();
+                    @include dim_height(auto);
+                    white-space: "pre-line";
                     line-height: 2rem;
+                    background-color: transparent;
+                    color: var(--color-base-off);
+                    border: none;
+                    resize: vertical;
+                    //max resize
+                    max-height: 12rem;
+
+                    &:hover {
+                        color: var(--color-base);
+                    }
                 }
             }
 
@@ -383,23 +405,37 @@
                     margin: 0;
                     @include dim_width();
                     @include dim_height(4rem);
-                    @include flex(space-between, center, row);
+                    @include flex(flex-start, center, row);
                     border-bottom: 1px solid var(--border-secondary);
 
                     th {
-                        @include dim_width(calc((100% / 3) - 3rem));
+                        @include dim_width(calc(50% - 2rem));
                         @include flex(flex-start, center);
 
-
+                        &:last-child {
+                            @include dim_width(10rem);
+                        }
                     }
 
                     td {
-                        @include dim_width(calc((100% / 3) - 3rem));
+                        @include dim_width(calc(50% - 2rem));
                         @include flex(flex-start, center);
+
+                        &:last-child {
+                            @include flex(flex-start, center, row, 1rem);
+                            @include dim_width(10rem);
+
+                            p {
+                                &:hover {
+                                    cursor: pointer;
+                                    color: var(--color-primary);
+                                }
+                            }
+                        }
                     }
 
                     .optional {
-                        @include dim_width(3rem);
+                        @include dim_width(6rem);
                         @include flex();
 
                         .checkbox {
@@ -418,6 +454,13 @@
                         }
                     }
                 }
+
+                .empty {
+                    @include dim_width();
+                    @include dim_height(100%,auto,10rem);
+                    @include flex(center, center);
+                    color: var(--color-base-off);
+                }
             }
         }
     }
@@ -433,5 +476,19 @@
         border-radius: 2rem;
         border-bottom: 1px solid var(--gray-color);
         opacity: .9;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: .6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .6;
     }
 }

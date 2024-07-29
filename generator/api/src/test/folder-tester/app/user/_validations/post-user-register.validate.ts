@@ -3,35 +3,44 @@ import * as V from "class-validator";
 import "reflect-metadata";
 import { Request, Response } from "express";
 import { Transform, Type } from 'class-transformer';
-// import { UserDto } from "../_dtos/user.dto";
 
 
 //<REQUEST TYPES>
 
-class Params {
+class UserDto {
     @V.IsString()
     @V.IsNotEmpty()
-    id: string;
-
-    @V.IsString()
-    @V.IsNotEmpty()
+    @V.Length(1, 100)
     name: string;
-};
 
-class Query { };
+    @V.IsString()
+    @V.IsNotEmpty()
+    @V.Length(1, 100)
+    email?: string;
 
-class Body {
+}
+
+class Params {
+    // @V.IsString()
+    // @V.IsNotEmpty()
+    // @V.Length(1, 100)
+    moduleName?: string;
 
     @V.IsNotEmpty()
     @V.ValidateNested()
+    @Type(() => UserDto)
     user: UserDto;
+
 };
 
-class UserDto {
-    @V.IsString()
-    @V.IsAlpha()
-    user_name: string;
-}
+class Query {
+    @V.IsNumber()
+    @V.IsNotEmpty()
+    // @V.Length(1, 100)
+    age?: number;
+};
+
+class Body { };
 
 class ResponseBody { };
 

@@ -36,10 +36,10 @@ export const printAlert = (msg: string, type: AlertType = "success") => {
             toast.error("🚨 Error : \n\n" + msg, settingDark(`var(--gradient-error)`));
             break;
         case "alert":
-            toast.error(msg, settingDark(`linear-gradient(180deg, rgba(218, 191, 41, 0.59) 0%, rgba(207, 171, 27, 0.53) 100%)`));
+            toast.error(msg, settingDark(`linear-gradient(180deg, rgba(58, 58, 58, 0.23) 0%, rgba(0, 0, 0, 0.55)`));
             break;
         case "info":
-            toast.success(msg, settingDark(`linear-gradient(180deg, rgba(100, 208, 192, 0.51) 0%, rgba(90, 186, 151, 0.51) 100%)`));
+            toast.success(msg, settingDark(`linear-gradient(180deg, rgba(100, 104, 208, 0.51) 0%, rgb(24, 36, 147)`));
             break;
         default:
             toast.success(msg, settingDark(`linear-gradient(180deg, rgba(100, 208, 192, 0.51) 0%, rgba(90, 186, 151, 0.51) 100%)`));
@@ -47,5 +47,8 @@ export const printAlert = (msg: string, type: AlertType = "success") => {
     }
 }
 
+export const featureNotAvailable = () => {
+    printAlert("Sorry, this feature not available yet...", "alert");
+}
 
 export default printAlert;

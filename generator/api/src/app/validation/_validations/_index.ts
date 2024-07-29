@@ -1,4 +1,5 @@
 //<EXPORTS>
+export * as patchValidationReload from "./patch-validation-reload.validate";
 export * as deleteValidationValidateParams from "./delete-validation-validate-params.validate";
 export * as patchValidationValidateParams from "./patch-validation-validate-params.validate";
 export * as postValidationValidateParams from "./post-validation-validate-params.validate";

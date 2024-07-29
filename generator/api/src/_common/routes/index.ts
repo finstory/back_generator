@@ -9,5 +9,5 @@ export const routes = Router();
 //<ROUTES>
 routes.use("/module", PackageRoute);
 routes.use("/endpoint", EndpointRoute);
-
+routes.use("/validation", ValidationRoute);
 export default routes;

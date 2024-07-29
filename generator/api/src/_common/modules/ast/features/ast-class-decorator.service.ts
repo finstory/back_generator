@@ -27,12 +27,14 @@ class AstClassDecoratorService {
             {
                 ClassDeclaration: (path) => {
                     const expression = path.node as AstClassDeclaration;
-
+                    
                     if (expression.id.name === className) {
+                        
+                        ok = true;
 
                         expression.body.body.forEach((prop: AstClassProperty) => {
                             if (prop.key.name === name && prop.decorators) {
-
+                                
                                 prop.decorators.forEach((decorator) => {
 
                                     const decoratorsCallee = decorator.expression.callee;
@@ -40,7 +42,6 @@ class AstClassDecoratorService {
                                     if (decoratorsCallee.type === "MemberExpression" &&
                                         decoratorsCallee.object?.name === "V"
                                     ) {
-                                        ok = true;
                                         decoratorsList.push({ decoratorType: "ClassValidator", name: decoratorsCallee.property.name });
                                     }
                                     else if (decoratorsCallee.type === "Identifier") {
@@ -55,7 +56,7 @@ class AstClassDecoratorService {
                 },
             });
 
-        !ok && throwError("AST", "not_found", `[AST] Class property '${name}' in class '${className}'`);
+        !ok && throwError("AST", "not_found", `Class property ${name} in class ${className}`);
 
         printInfo("AST", `Decorators of class property '${name}' in class '${className}' found.`);
 
@@ -64,7 +65,7 @@ class AstClassDecoratorService {
 
     addDecoratorToProperty = async (
         textCode: string,
-        { className, name, type }: ClassPropertyDto,
+        { className, name, typeStringified }: ClassPropertyDto,
         { decoratorName, decoratorType, decoratorArguments = [] }: PropertyDecoratorDto
     ): Promise<TextCode> => {
 
@@ -104,7 +105,7 @@ class AstClassDecoratorService {
                                         arguments: [{
                                             type: "ArrowFunctionExpression",
                                             params: [],
-                                            body: { type: "Identifier", name: type },
+                                            body: { type: "Identifier", name: typeStringified },
                                         }],
                                     }
                                 });

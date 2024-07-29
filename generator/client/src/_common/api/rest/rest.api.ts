@@ -1,6 +1,7 @@
 import axios from 'axios';
 import ModuleEndpoint from "./module/module.endpoint";
 import EndpointEndpoint from './enpoint/endpoint.endpoint';
+import RequestParamsEndpoint from './request-params/request-params.endpoint';
 
 const BASE_URL = "http://localhost:3002";
 
@@ -11,13 +12,16 @@ class RestApi {
     protected readonly awaitRequest = true;
     protected readonly toggleRequest = false;
 
+    //<Endpoints>
     public readonly module: ModuleEndpoint;
     public readonly endpoint: EndpointEndpoint;
+    public readonly requestParams: RequestParamsEndpoint;
 
     constructor() {
 
         this.module = new ModuleEndpoint(this.api, this.awaitRequest);
         this.endpoint = new EndpointEndpoint(this.api, this.awaitRequest);
+        this.requestParams = new RequestParamsEndpoint(this.api);
     }
 }
 

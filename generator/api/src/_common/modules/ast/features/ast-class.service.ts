@@ -45,12 +45,16 @@ class AstClassService {
                     const expression = path.node as AstClassDeclaration;
 
                     if (expression.id.name === className) {
-                        expression.body.body.forEach((prop: AstClassProperty, i) => {
+
+                        ok = true;
+
+                        expression.body.body.forEach((prop: AstClassProperty) => {
                             const typeAnnotation = prop.typeAnnotation.typeAnnotation;
 
                             const propResult: ClassPropertyDto = {
                                 className,
                                 name: prop.key.name,
+                                optional: prop.optional || false,
                                 typePosition: {
                                     start: typeAnnotation.start, end: typeAnnotation.end
                                 },
@@ -59,21 +63,20 @@ class AstClassService {
                             propertiesList.push(propResult);
                         });
 
-                        ok = true;
                     }
                 },
             });
 
-        !ok && throwError("AST", "not_found", `[AST] Class '${className}'`);
+        !ok && throwError("AST", "not_found", `Class ${className}`);
 
         propertiesList.length > 0 &&
             printInfo("AST", `Properties of class '${className}' found.`);
 
         propertiesList = propertiesList.map((prop) => {
             const { start, end } = prop.typePosition;
-            const typeToString = textCode.substring(start, end);
+            const typeStringified = textCode.substring(start, end);
 
-            return { ...prop, typeToString };
+            return { ...prop, typeStringified };
         });
 
         return propertiesList;
@@ -96,6 +99,7 @@ class AstClassService {
                     const newProp: AstClassProperty = {
                         type: "ClassProperty",
                         key: { type: "Identifier", name: name },
+                        optional: false,
                         typeAnnotation: {
                             type: "TypeAnnotation",
                             typeAnnotation: { type: "StringLiteralTypeAnnotation", value: `<EDIT>${typeStringified}${objectType ? "[]" : ""}<END_EDIT>` },
@@ -108,7 +112,7 @@ class AstClassService {
             },
         });
 
-        !ok && throwError("AST", "not_found", `[AST] Class '${className}'`);
+        !ok && throwError("AST", "not_found", `Class ${className}`);
 
         printInfo("AST", `Class property '${name}' in class '${className}' added.`);
 
@@ -157,7 +161,7 @@ class AstClassService {
             },
         });
 
-        !ok && throwError("AST", "not_found", `[AST] Class property '${name}' in class '${className}'`);
+        !ok && throwError("AST", "not_found", `Class property ${name} in class ${className}`);
 
         printInfo("AST", `Class property '${name}' in class '${className}' removed.`);
 

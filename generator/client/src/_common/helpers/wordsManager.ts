@@ -16,6 +16,23 @@ function underscoreToUpperCase(str: string): string {
         .join("");
 }
 
+function underscoreToClassName(str: string): string {
+    return str
+        .split("_")
+        .map((word) => {
+            return upFirst(word);
+        })
+        .join("");
 
+}
 
-export { upFirst, underscoreToUpperCase, lowerCaseToFirstLetter };
+function hyphenToClassName(str: string): string {
+    return str
+        .split("-")
+        .map((word) => {
+            return upFirst(word);
+        })
+        .join("");
+}
+
+export { upFirst, underscoreToUpperCase, lowerCaseToFirstLetter, hyphenToClassName, underscoreToClassName };

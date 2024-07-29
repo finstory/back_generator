@@ -21,6 +21,9 @@ export class RouteDto implements RouteModel {
 export class BasicRouteDto extends PickType(RouteDto,
     ["endpointName", "requestType"]) { }
 
+export class OnlyRequestParamsRouteDto extends PickType(RouteDto,
+    ["params", "query", "body", "responseBody"]) { }
+
 export class FragmentRouteDto extends PickType(RouteDto,
-    ["endpointName", "requestType", "controllerName", "validateActive"]) {}
+    ["endpointName", "requestType", "controllerName", "validateActive"]) { }
 export class OptionalRouteDto extends PartialType(RouteDto) { }

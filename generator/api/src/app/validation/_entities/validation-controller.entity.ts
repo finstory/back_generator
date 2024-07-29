@@ -5,6 +5,8 @@ import getValidations from "@config/validations/getValidations";
 export class ValidationController {
     //<CONTROLLERS>
 
+    patchValidationReload = async (req: C.patchValidationReload.Req, res: C.patchValidationReload.Res) => {};
+
     deleteValidationValidateParams = async (req: C.deleteValidationValidateParams.Req, res: C.deleteValidationValidateParams.Res) => {};
 
     patchValidationValidateParams = async (req: C.patchValidationValidateParams.Req, res: C.patchValidationValidateParams.Res) => {};
