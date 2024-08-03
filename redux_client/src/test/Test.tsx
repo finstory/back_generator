@@ -1,14 +1,32 @@
-import { userActions } from "@/_common/redux";
-import { useAppDispatch, useAppSelector } from "@/_common/redux/hooks/redux"
-import { useSelector, useDispatch } from 'react-redux';
+import { createNestedTypedSelector, createTypedSelector, useAppDispatch, useSelector } from "@/_common/config/redux/hooks/redux";
+import { userActions, userSelector } from "@/_common/redux";
+import { RootState } from "@/_common/redux/store";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { bindActionCreators, ActionCreatorsMapObject } from '@reduxjs/toolkit';
+
+import S from "@S";
+
+export const useActions = <T extends ActionCreatorsMapObject>(actions: T) => {
+    const dispatch = useDispatch();
+    return bindActionCreators(actions, dispatch);
+};
 export const Test = () => {
-    const user = useAppSelector(state => state.user.name);
-    console.log(user);
-    const dispatch = useAppDispatch();
-    // dispatch(userSlice.actions.increment());
+    const { otherMethod } = S.other;
+    const { someMethod } = S.user;
+    const selector = userSelector(user => user.value);
+    useEffect(() => {
+        console.log(selector);
+    }, [selector])
+    useEffect(() => {
+        console.log("siiiiiii")
+        someMethod();
+    }, [])
+
     return (
         <div
-            onClick={() => dispatch(userActions.changeName("Hello"))}
+            onClick={() => otherMethod()}
             style={{
                 position: 'absolute',
                 top: '50%',
@@ -20,6 +38,6 @@ export const Test = () => {
                 padding: '1rem',
                 backgroundColor: 'purple'
             }}
-        >{user}</div>
+        >{"selector"}</div>
     )
 }
