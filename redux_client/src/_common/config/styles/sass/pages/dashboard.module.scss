@@ -1,0 +1,91 @@
+@import "../base";
+@import "../utilities/gradient";
+@import "../utilities/font";
+@import "../utilities/border";
+
+.game_tops {
+    position: relative;
+    @include dim_height(100%);
+    @include dim_width(100%, 192rem);
+    @include flex(space-between, center, column);
+    // background-color: #675b9c;
+
+    .main {
+        @include dim_width();
+        @include dim_height(calc(100% - 18rem));
+        @include flex();
+        padding: 0 5rem;
+        padding-top: 3rem;
+        // background-color: rgb(163, 76, 76);
+
+        .left_panel {
+            flex-basis: 33%;
+            @include dim_height();
+            @include flex(flex-start, flex-start, column);
+            // background-color: aqua;
+        }
+
+        .center_panel {
+            flex-basis: 33%;
+            @include dim_height();
+            @include flex(flex-start, center, column, 4rem);
+        }
+
+        .right_panel {
+            flex-basis: 33%;
+            @include dim_height();
+            @include flex(flex-start, flex-end, column);
+            // background-color: aqua;
+        }
+
+    }
+
+    .tops_carousel {
+        @include dim_width();
+        @include dim_height(18rem);
+        // background-color: rgb(76, 163, 122);
+    }
+}
+
+
+.title_banner {
+    @include flex(flex-start, center, column);
+    z-index: 21;
+
+    .title {
+        // overflow: hidden;
+        position: relative;
+        @include dim_width(45rem);
+        @include dim_height(4.5rem);
+        @include flex();
+        @include gradient(black_bg);
+        @include border(1px, 1rem);
+        @include font_M_PLUS(base, normal, bold);
+
+        .title_img {
+            @include pos_absolute($left: -5rem);
+            @include dim_width(7rem);
+            @include dim_height(7rem);
+            @include flex(center, center);
+            @include border(1px, 10rem);
+            overflow: hidden;
+
+            img {
+                @include image($height: 100%);
+            }
+        }
+
+    }
+
+    .subtitle {
+        @include font_M_PLUS(base, small, bold);
+        @include dim_height(4rem);
+        @include dim_width(35rem);
+        @include flex(center, center, row);
+        @include gradient(black_bg);
+        border-left: 1px solid #3D3D3D;
+        border-right: 1px solid #3D3D3D;
+        border-bottom: 1px solid #3D3D3D;
+        border-radius: 0 0 1rem 1rem;
+    }
+}

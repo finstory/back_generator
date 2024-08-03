@@ -1,0 +1,23 @@
+@mixin border($width, $radius :0rem, $color: #474747) {
+    border-width: $width;
+    border-style: solid;
+    border-color: $color;
+    border-radius: $radius;
+}
+
+// border-image: conic-gradient(lime, fuchsia, cyan) 1;
+
+
+@mixin border_bottom($width, $radius :0rem, $color: #474747) {
+    border-bottom: $width solid $color;
+    border-radius: $radius;
+
+}
+
+@mixin mask_border() {
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}

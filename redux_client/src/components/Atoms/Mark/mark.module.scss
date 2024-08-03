@@ -1,0 +1,68 @@
+@import "../../../_common/config/styles/sass";
+
+.circle {
+    @include dim_height(1.2rem);
+    @include dim_width(1.2rem);
+    background-color: var(--color-primary);
+    // border: 1px solid var(--color-base-off);
+    border-radius: 100%;
+
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-normal);
+    transition: 0.2s linear;
+
+}
+
+.rhombus {
+    @include dim_width(.8rem);
+    @include dim_height(.8rem);
+    transform: rotate(45deg);
+    background-color: var(--color-base-off);
+    transition: 0.2s linear;
+}
+
+
+.bar {
+    @include dim_width(1rem);
+    @include dim_height(.2rem);
+    background-color: var(--color-base-off);
+    transition: 0.2s linear;
+}
+
+.hover_primary {
+    &:hover {
+        background-color: var(--color-primary);
+    }
+}
+
+$colors: (
+    "base-off",
+    "base",
+    "primary",
+    "primary-hover",
+    "secondary",
+    "secondary-hover",
+    "get-off",
+    "get",
+    "post-off",
+    "post",
+    "put-off",
+    "put",
+    "patch-off",
+    "patch",
+    "delete-off",
+    "delete",
+    "middleware-off",
+    "middleware",
+    "controller-off",
+    "controller",
+);
+
+@for $i from 1 through length($colors) {
+    $color: nth($colors, $i);
+
+    .color_#{$color} {
+        background-color: var(--color-#{$color});
+    }
+}

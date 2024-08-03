@@ -4,99 +4,51 @@
       "name": "user",
       "routes": [
         {
-          "id": "5d948f23-8cab-4566-97a1-0257cc6b722f",
-          "controllerName": "postUserRegister",
-          "endpointName": "/register",
+          "id": "588b9eee-eba0-406d-8cf0-5fe3569823f4",
+          "controllerName": "postUserLoginById",
+          "endpointName": "/login/:id",
           "requestType": "post",
           "validateActive": true,
-          "description": "Aqui se registra un usuario, debes enviar un email y una contraseña:\n Body: {\n  email: string,\n  password: string\n}",
+          "description": "",
           "middlewares": [],
           "params": [
             {
               "from": "params",
-              "name": "moduleName",
+              "name": "userId",
               "type": "string",
-              "optional": true,
-              "validations": []
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "Length"
+                }
+              ]
             },
             {
               "from": "params",
               "name": "user",
               "type": "UserDto",
               "optional": false,
-              "validations": [
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "IsNotEmpty"
-                },
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "ValidateNested"
-                },
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "Type"
-                }
-              ]
+              "validations": []
             }
           ],
-          "query": [
-            {
-              "from": "query",
-              "name": "age",
-              "type": "number",
-              "optional": true,
-              "validations": [
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "IsNumber"
-                },
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "IsNotEmpty"
-                }
-              ]
-            }
-          ],
+          "query": [],
           "body": [],
           "responseBody": []
-        }
-      ]
-    },
-    {
-      "name": "product",
-      "routes": [
+        },
         {
-          "id": "0c77ca0e-8f7c-4a04-8fd5-2d3c4c09fd10",
-          "controllerName": "getProduct",
+          "id": "bd12edda-e932-4fa4-9dcb-25cf4b85ae2e",
+          "controllerName": "getUser",
           "endpointName": "/",
           "requestType": "get",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "98b95316-fb43-4e28-a4df-5c472b41fbfa",
-          "controllerName": "postProduct",
-          "endpointName": "/",
-          "requestType": "post",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "5db55454-3f82-4ea4-910d-9ed6430b34ba",
-          "controllerName": "patchProductLogin",
-          "endpointName": "/login",
-          "requestType": "patch",
           "validateActive": true,
           "description": "",
           "middlewares": [],

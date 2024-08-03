@@ -1,0 +1,150 @@
+@import "../base";
+@import "../utilities/gradient";
+@import "../utilities/font";
+@import "../utilities/border";
+
+.auth_container {
+    @include dim_height(100%);
+    @include dim_width(100%);
+    @include flex();
+    background-color: var(--strong-blue-color);
+    background-image: url("https://res.cloudinary.com/dz9smi3nc/image/upload/v1709849173/Agro/Auth/IMG_5295_rivzen.jpg");
+    background-size: cover;
+    animation: opacity 1s alternate;
+
+    .auth_panel {
+        @include dim_height(58rem);
+        @include dim_width(50rem);
+        @include flex(space-between);
+        border-radius: 2rem;
+        background: #ffffffb4;
+        overflow: hidden;
+
+        .form {
+            flex-basis: 100%;
+            @include dim_height();
+            @include flex(center, center, column, 6rem);
+
+            .auth_select {
+                @include font_Inter(base, large, bold);
+                @include flex(center, center, column);
+                color: var(--hover-blue-color);
+                cursor: pointer;
+
+                &:hover {
+                    .line {
+                        background-color: var(--normal-green-color);
+                    }
+                }
+
+                .line {
+                    @include dim_height(0.4rem);
+                    @include dim_width(7rem);
+                    background-color: var(--strong-green-color);
+
+                    transition: background-color 0.2s linear;
+
+                }
+
+            }
+
+        }
+    }
+
+}
+
+.input_group {
+    @include flex(center, flex-end, column, 2rem);
+
+    .input_container {
+        @include dim_height(5rem);
+        @include dim_width(36rem);
+
+        input {
+            @include dim_height();
+            @include dim_width();
+            @include font_Inter(base, normal, semibold);
+            color: var(--hover-blue-color);
+            background-color: transparent;
+            border: 0;
+            border-bottom: 2px solid var(--hover-blue-color);
+
+            &::placeholder {
+                color: var(--hover-blue-color);
+            }
+
+            &:focus {
+                color: var(--strong-blue-color);
+                outline: none;
+            }
+
+        }
+
+    }
+
+    .password_recovery {
+        @include dim_width();
+        @include flex(space-between, center, row, 3rem);
+        @include font_Inter(base, little, bold);
+        margin-top: 1rem;
+        color: var(--hover-blue-color);
+        transition: color 0.2s linear;
+
+
+        p:nth-child(2) {
+            cursor: pointer;
+
+            &:hover {
+                color: var(--strong-green-color);
+            }
+        }
+
+    }
+
+}
+
+.submit_container {
+    @include flex(center, center, column, 3rem);
+
+    button {
+        padding: 1.5rem 2.5rem;
+        border-radius: 1rem;
+        border: 0;
+        color: var(--white-color);
+        background-color: var(--strong-green-color);
+        @include font_Inter(base, medium, bold);
+        transition: background-color 0.2s linear;
+        transition: color 0.2s linear;
+
+        &:hover {
+            color: var(--gray-color);
+            background-color: var(--normal-green-color);
+        }
+    }
+
+    p {
+        @include font_Inter(base, little, medium);
+        color: var(--hover-blue-color);
+
+        span {
+            @include font_Inter(base, little, bold);
+            cursor: pointer;
+            transition: color 0.2s linear;
+
+            &:hover {
+                color: var(--strong-green-color);
+            }
+        }
+    }
+
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

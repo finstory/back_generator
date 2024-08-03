@@ -6,6 +6,6 @@ const router = Router();
 
 //<ROUTES>
 router.get("/", validation.getUser, controller.getUser);
-router.post("/register", validation.postUserRegister, controller.postUserRegister);
+router.post("/login/:id", validation.postUserLoginById, controller.postUserLoginById);
 
 export default router;

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@decorators": ["./src/_common/decorators/_index.ts"],
+      "@S": ["./src/_common/services/all-services.ts"],
+      "@services/*": ["./src/services/*"],
+      "@services_injector": ["./src/_common/config/services/decorators/service-injector.ts"],
+      
+      
+      "@routes/*": ["./src/_common/routes/*"],
+      "@config/*": ["./src/_common/config/*"],
+      "@helpers/*": ["./src/_common/helpers/*"],
+      "@components": ["./src/components"],
+      "@redux_config": ["./src/_common/config/redux/decorators/redux-config.ts"],
+      "@services_config/*": ["./src/_common/config/services/*"],
+
+      "@print_errors": ["./src/_common/config/errors/decorators/print-errors"],
+
+      "@route/*" : ["./src/app/route/*"],
+      "@module/*" : ["./src/_modules/module/*"]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+$text_color: (
+    base: #DDDDDD,
+    off_base: #48be9c,
+    primary: #7E56EF,
+    primary_light: #a082f3,
+);
+
+@function text_color($option) {
+    @if $option =="primary" {
+        @return var(--primary-color);
+    }
+}
+
+$font_size: (
+    small: .7rem,
+    little: .9rem,
+    normal: 1.4rem,
+    medium: 1.6rem,
+    semi_large: 1.8rem,
+    large : 2rem,
+);
+
+// $gradient_color: (
+//     primary: linear-gradient(180deg, #8466FB 19.35%, #36B2F8 100%),
+//     black_bg: linear-gradient(180deg, #000000 0%, #191919 100%),
+//     base_border:linear-gradient(180deg, #3D3D3D 0%, #303030 100%),
+// );

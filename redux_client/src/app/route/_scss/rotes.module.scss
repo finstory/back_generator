@@ -1,0 +1,7 @@
+ @import ".index";
+
+ .test {
+     @include dim_width(400px);
+     height: 100px;
+     background-color: aquamarine;
+ }

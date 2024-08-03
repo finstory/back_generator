@@ -7,7 +7,7 @@ class ControllerService {
 
     @Initial @Auto public entity: ControllerEntityService;
     @Initial @Auto public file: ControllerFileService;
-
+    
 }
 
 export default ControllerService;

@@ -1,0 +1,10 @@
+@import "../base";
+@import "../utilities/gradient";
+@import "../utilities/font";
+@import "../utilities/border";
+
+.main {
+    @include dim_height(60rem);
+    @include dim_width(60rem);
+    background-color: rgb(76, 180, 76);
+}

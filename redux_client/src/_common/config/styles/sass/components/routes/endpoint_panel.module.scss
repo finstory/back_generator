@@ -1,0 +1,320 @@
+@import "../base";
+@import "../utilities/gradient";
+@import "../utilities/font";
+@import "../utilities/border";
+
+.endpoint_panel {
+    @include dim_width(50rem);
+    @include dim_height(65rem);
+    @include flex(center, center);
+    border-radius: 1rem;
+    box-shadow: 0px 0px 40px rgba(102, 211, 251, 0.153);
+
+    .panel {
+        @include dim_width();
+        @include dim_height();
+        @include flex(flex-start, center, column, 1rem);
+        padding: 1rem;
+        border-radius: 2rem;
+        @include gradient(black_bg);
+        @include font_M_PLUS(normal, semibold);
+        animation: fadeIn 0.2s ease-in forwards;
+
+        .title {
+            position: relative;
+            @include dim_width();
+            @include dim_height(6.5rem);
+            @include flex();
+            @include font_M_PLUS(medium, 400);
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-color);
+
+            // p {
+            //     @include gradient(primary);
+            //     -webkit-background-clip: text;
+            //     -webkit-text-fill-color: transparent;
+            //     @include font_M_PLUS(medium, 500);
+            // }
+            .add_route {
+                position: absolute;
+                right: 2rem;
+                @include dim_width(3rem);
+                @include dim_height(3rem);
+                @include flex();
+                border-radius: 1rem;
+                cursor: pointer;
+                transition: 0.7s linear;
+
+                :hover {
+                    transition: 0.7s linear;
+                    @include gradient(primary);
+
+                }
+
+
+            }
+
+
+        }
+
+        .endpoint_dir {
+            @include dim_width();
+            @include dim_height(calc(100% - 6.5rem));
+            @include flex(flex-start, center, column);
+            overflow-y: scroll;
+            padding: 1rem;
+
+            .module {
+                @include dim_width();
+                @include dim_height(auto);
+                @include flex(flex-start, flex-start, column, 2rem);
+                padding: 2rem;
+                border-bottom: 1px solid var(--gray-color);
+                animation: fadeIn 0.2s ease-in forwards;
+
+                .module_edit {
+                    @include dim_height(3.5rem);
+                    @include flex($gap: 1.3rem);
+                    color: var(--text-primary-color);
+                    cursor: pointer;
+                    margin-bottom: 1rem;
+                    animation: fadeIn 0.2s ease-in forwards;
+
+                    .marker {
+                        @include dim_width(1.2rem);
+                        @include dim_height(1.2rem);
+                        border-radius: 50%;
+                        background-color: var(--text-primary-color);
+                    }
+
+                    .input_wrap {
+                        @include flex($gap: 1rem);
+                        @include dim_width(32rem);
+                        @include dim_height();
+
+                        transition: 0.2s linear;
+
+                        input {
+                            @include dim_width();
+                            @include dim_height();
+                            border: 1px solid var(--off-gray-color);
+                            border-radius: 1rem;
+                            padding: 0 1rem;
+                            color: var(--white-color);
+                            background-color: transparent;
+
+                            color: var(--text-primary-color);
+                            transition: border 0.2s linear;
+
+                            &::placeholder {
+                                color: var(--off-gray-color);
+                            }
+
+                            &:focus {
+                                border: 1px solid var(--text-primary-color);
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .save_btn {
+                        @include dim_height();
+                        @include flex(center, center);
+
+                        padding: 1rem;
+                        border-radius: 1rem;
+                        border: 1px solid var(--off-gray-color);
+
+                        color: var(--off-gray-color);
+                        @include gradient(black_bg);
+                        cursor: pointer;
+                        transition: border 0.2s linear;
+
+                        &:hover {
+                            // @include gradient(primary);
+                            border: 1px solid var(--text-primary-color);
+                            color: var(--text-primary-color);
+                        }
+                    }
+                }
+
+                .module_name {
+                    @include dim_width();
+                    color: var(--text-primary-color);
+                    @include flex(flex-start, $gap: 1rem);
+
+                    .name {
+                        @include flex($gap: 1rem);
+                        cursor: pointer;
+                    }
+
+                    .marker {
+                        @include dim_width(1rem);
+                        @include dim_height(1rem);
+                        border-radius: 50%;
+                        background-color: var(--text-primary-color);
+
+                    }
+
+                    .action_btn {
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        opacity: 0;
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover {
+                        .action_btn {
+                            opacity: 1;
+                        }
+                    }
+
+
+                }
+
+                .endpoint {
+                    @include flex($gap: 1rem);
+                    cursor: pointer;
+
+                    .marker {
+                        @include dim_width(.8rem);
+                        @include dim_height(.8rem);
+                        transform: rotate(45deg);
+                        background-color: var(--off-gray-color);
+                    }
+
+
+                    .action_btn {
+                        @include dim_height(2rem);
+                        @include dim_width(2rem);
+                        opacity: 0;
+                        transition: 0.2s linear;
+
+                        img {
+                            @include image();
+                            cursor: pointer;
+                        }
+                    }
+
+                    &:hover {
+                        .action_btn {
+                            opacity: 1;
+                        }
+                    }
+
+
+                }
+
+                .endpoint_editor {
+                    @include dim_width();
+                    @include dim_height(auto);
+                    @include flex(flex-start, center, row, 1rem);
+
+                    .marker {
+                        @include dim_width(1rem);
+                        @include dim_height(.7rem);
+                        transform: rotate(45deg);
+                        background-color: var(--off-gray-color);
+                    }
+
+                    .request_selector {
+                        @include dim_width(10rem);
+                        @include dim_height(3rem);
+                        @include flex($gap: 1rem);
+                        @include font_M_PLUS(normal, 300);
+                        padding: 0 1rem;
+                        color: var(--white-color);
+                        background-color: transparent;
+                        border-radius: .8rem;
+                        border: 1px solid var(--off-gray-color);
+                        cursor: pointer;
+
+                        &:hover {
+                            color: var(--text-primary-color);
+                            border: 1px solid var(--text-primary-color);
+                        }
+
+                        option {
+                            @include dim_height(2rem);
+                            @include dim_width();
+                            padding: 0 1rem;
+                            border-radius: .8rem;
+                            color: var(--white-color);
+                            background-color: var(--strong-green-color);
+                        }
+                    }
+
+                    .input_wrap {
+                        @include flex($gap: 1rem);
+                        @include dim_width(34rem);
+                        @include dim_height();
+
+                        transition: 0.2s linear;
+
+                        input {
+                            @include dim_width();
+                            @include dim_height();
+                            border: 1px solid var(--off-gray-color);
+                            border-radius: 1rem;
+                            padding: 0 1rem;
+                            color: var(--white-color);
+                            background-color: transparent;
+                            transition: border 0.2s linear;
+
+                            &::placeholder {
+                                color: var(--off-gray-color);
+                            }
+
+                            &:focus {
+                                color: var(--text-primary-color);
+                                border: 1px solid var(--text-primary-color);
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .save_btn {
+                        @include dim_height();
+                        @include flex(center, center);
+
+                        padding: .5rem;
+                        border-radius: 1rem;
+                        border: 1px solid var(--off-gray-color);
+
+                        color: var(--off-gray-color);
+                        @include gradient(black_bg);
+                        cursor: pointer;
+                        transition: border 0.2s linear;
+
+                        &:hover {
+                            // @include gradient(primary);
+                            border: 1px solid var(--text-primary-color);
+                            color: var(--text-primary-color);
+                        }
+                    }
+                }
+
+            }
+
+
+        }
+    }
+
+    .add_route_modal {
+        z-index: 30;
+        position: absolute;
+        top: 0;
+        @include dim_width();
+        @include dim_height(35rem);
+        @include flex(center, center);
+        @include gradient(black_bg);
+        border-radius: 2rem;
+        border-bottom: 1px solid var(--gray-color);
+        opacity: .9;
+    }
+}
