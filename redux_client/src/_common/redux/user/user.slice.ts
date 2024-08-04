@@ -1,9 +1,8 @@
-import { ActionCreatorsMapObject, bindActionCreators, PayloadAction } from '@reduxjs/toolkit';
+import { prepareSlice } from '@/_common/config/redux/utils/prepare-slice.util';
 import { InitializeSlice, ReduxSlice } from '@config/redux/decorators/redux-slice';
-import { createTypedSelector } from '@/_common/config/redux/hooks/redux';
-import { useDispatch } from 'react-redux';
+import { PayloadAction } from '@reduxjs/toolkit';
 
-export interface UserState {
+interface UserState {
     value: number;
     name?: string;
     children: {
@@ -34,20 +33,18 @@ class UserSlice extends ReduxSlice<UserSlice> {
         state.name = payload;
     }
 
+    changeChildrenName = (state: UserState, { payload }: PayloadAction<string>) => {
+        state.children.name = payload;
+    }
+
     ["testName/comp"] = (state: UserState, { payload }: PayloadAction<string>) => {
         state.children.name = payload;
     }
 
 }
 
-export const useActions = <T extends ActionCreatorsMapObject>(actions: T) => {
-    const dispatch = useDispatch();
-    return bindActionCreators(actions, dispatch);
-};
-
-
-//% Exports:
-const userSlice = new UserSlice().slice;
-export const userReducers = userSlice.reducer;
-export const userSelector = createTypedSelector("user");
-export const userActions = () => useActions(userSlice.actions);
+// //% Exports:
+const userSlice = new UserSlice()
+export const userReducers = userSlice.slice.reducer;
+export const userSelector = prepareSlice(userSlice).selector;
+export const userActions = prepareSlice(userSlice).actions;

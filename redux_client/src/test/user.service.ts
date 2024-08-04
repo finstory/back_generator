@@ -1,13 +1,18 @@
 import { S, BasicInject, BasicInjectable, PrintError, PrintErrRes } from "@decorators";
-import { userActions } from "@/_common/redux";
 
 @PrintErrRes
 class UserService extends BasicInjectable {
 
-    public actions = userActions();
+    @BasicInject private _state: S["state"];
+    @BasicInject private _action_user: S["action"]["user"];
 
     someMethod = () => {
-        this.actions["testName/comp"]("testName")
+        const { children } = this._state.user;
+        console.log("soy children", children.name);
+        this._action_user.increment();
+        this._action_user.changeChildrenName("facundo");
+        console.log("soy children", this._state.user.children.name)
+
     };
 }
 export default UserService;

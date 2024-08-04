@@ -6,7 +6,7 @@ class OtherService extends BasicInjectable {
     @BasicInject private _user: S["user"];
 
     otherMethod = () => {
-        this._user.actions.increment();
+        // this._user.actions.increment();
 
     };
 }

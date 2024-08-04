@@ -1,32 +1,26 @@
-import { createNestedTypedSelector, createTypedSelector, useAppDispatch, useSelector } from "@/_common/config/redux/hooks/redux";
-import { userActions, userSelector } from "@/_common/redux";
-import { RootState } from "@/_common/redux/store";
+import { userSelector } from "@/_common/redux/_index";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { bindActionCreators, ActionCreatorsMapObject } from '@reduxjs/toolkit';
-
 import S from "@S";
 
-export const useActions = <T extends ActionCreatorsMapObject>(actions: T) => {
-    const dispatch = useDispatch();
-    return bindActionCreators(actions, dispatch);
-};
 export const Test = () => {
-    const { otherMethod } = S.other;
+    // const { otherMethod } = S.other;
     const { someMethod } = S.user;
-    const selector = userSelector(user => user.value);
+    const selector = userSelector(user => user.name);
+
     useEffect(() => {
         console.log(selector);
     }, [selector])
+
     useEffect(() => {
-        console.log("siiiiiii")
         someMethod();
     }, [])
 
     return (
         <div
-            onClick={() => otherMethod()}
+
             style={{
                 position: 'absolute',
                 top: '50%',
@@ -38,6 +32,16 @@ export const Test = () => {
                 padding: '1rem',
                 backgroundColor: 'purple'
             }}
-        >{"selector"}</div>
+        >
+            <button
+                style={{
+                    padding: '2rem',
+                    fontSize: '1rem',
+                    backgroundColor: '#3b407b',
+                    color: 'white'
+                }}
+                onClick={someMethod}>Services</button>
+            {selector}
+        </div>
     )
 }

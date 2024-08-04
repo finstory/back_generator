@@ -19,7 +19,6 @@ export default defineConfig({
       "@services": path.resolve(__dirname, "./src/services"),
       "@helpers": path.resolve(__dirname, "./src/_common/helpers"),
       "@services_injector": path.resolve(__dirname, "./src/_common/config/services/decorators/service-injector.ts"),
-      "@redux_config": path.resolve(__dirname, "./src/_common/config/redux/decorators/redux-config.ts"),
       "@services_config": path.resolve(__dirname, "./src/_common/config/services"),
       "@print_errors": path.resolve(__dirname, "./src/_common/config/errors/decorators/print-errors"),
 

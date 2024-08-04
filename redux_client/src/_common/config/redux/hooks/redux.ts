@@ -1,13 +1,15 @@
 import { useDispatch, useSelector as useRootSelector } from 'react-redux'
-import type { RootState, AppDispatch } from '@/_common/redux/store'
-import { ReactNode } from 'react';
+import type { AppDispatch, RootState } from '@/_common/redux/store'
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useSelector = useRootSelector.withTypes<RootState>()
 
+
+// export type CreateSelector<StateKey extends keyof RootState> = <TSelected>(selector: (subState: RootState[StateKey]) => TSelected) => TSelected;
+
 // Función que crea un selector personalizado para cualquier porción del estado
-export const createTypedSelector = <StateKey extends keyof RootState>(key: StateKey) => {
+export const createSelector = <StateKey extends keyof RootState>(key: StateKey) => {
     return <TSelected>(selector: (subState: RootState[StateKey]) => TSelected): TSelected => {
         return useSelector((state: RootState) => selector(state[key]));
     };

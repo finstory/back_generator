@@ -8,18 +8,13 @@ import { Test } from "./test/Test";
 
 import { store } from "@/_common/redux/store";
 import { ServicesProvider } from "./_common/config/services/providers/ServicesProvider";
+import { Toaster } from "react-hot-toast";
 function App() {
 
-  //   <ServicesProvider>
-  //     <Toaster position="top-center" reverseOrder={false} />
-
-  //     <AppMain />
-  //     <Toaster />
-  //   </ServicesProvider>
   return (
     <Provider store={store}>
       <ServicesProvider>
-
+        <Toaster position="top-center" reverseOrder={false} />
         <Test />
       </ServicesProvider>
     </Provider>
