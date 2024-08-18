@@ -1,4 +1,5 @@
-import { RootState, store } from "@/_common/redux/store";
+import { RootState, store } from "@/integrations/redux/store";
+
 
 export function objectGetState(): RootState {
     const selection: any = {};

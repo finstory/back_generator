@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@S": path.resolve(__dirname, "./src/_common/services/all-services.ts"),
+      "@S": path.resolve(__dirname, "./src/integrations/services/main.service.ts"),
       "@app": path.resolve(__dirname, "./src/app"),
       "@config": path.resolve(__dirname, "./src/_common/config"),
       "@decorators": path.resolve(__dirname, "./src/_common/decorators/_index.ts"),

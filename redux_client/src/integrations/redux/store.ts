@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { userReducers } from './user/user.slice'
+import { moduleReducers, routeReducers, userReducers } from '.';
 
 export const store = configureStore({
     reducer: {
+        module: moduleReducers,
+        route: routeReducers,
         user: userReducers,
     },
 })

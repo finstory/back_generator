@@ -3,17 +3,14 @@ import S, { PrimaryService } from "@services_config/providers/providers-injector
 import InitialServices from "@/_common/config/services/decorators/initial-services";
 
 //% REDUX_IMPORTS:
+import { getAllActions } from "@/_common/config/redux/utils/actions-map.util";
+import { objectGetState } from "@/_common/config/redux/utils/object-get-state.util";
 
 
 //% SERVICES_IMPORTS:
-// import ValidationService from "@/modules/validation/services/validation.service";
-// import ModuleService from "@/modules/module/services/module.service";
-// import RouteService from "@route/services/route.service";
-import RestApi from "@/_common/api/rest/rest.api";
+import RestApi from "@/integrations/api/rest/rest.api";
 import UserService from "@/test/user.service";
 import OtherService from "@/test/other.service";
-import { getAllActions } from "../config/redux/utils/actions-map.util";
-import { objectGetState } from "../config/redux/utils/object-get-state.util";
 
 
 @InitialServices

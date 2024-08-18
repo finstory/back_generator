@@ -1,4 +1,4 @@
-import * as Redux from "@/_common/redux/_index";
+import * as Redux from "@/integrations/redux";
 
 export type ActionsMap = {
     [K in keyof typeof Redux as K extends `${infer Prefix}Actions` ? Uncapitalize<Prefix> : never]: ReturnType<typeof Redux[K]>;

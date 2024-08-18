@@ -1,7 +1,8 @@
 import axios from 'axios';
-import ModuleEndpoint from "./module/module.endpoint";
-import EndpointEndpoint from './enpoint/endpoint.endpoint';
-import RequestParamsEndpoint from './request-params/request-params.endpoint';
+
+import EndpointEndpoint from './endpoints/enpoint/endpoint.endpoint';
+import RequestParamsEndpoint from './endpoints/request-params/request-params.endpoint';
+import ModuleEndpoint from './endpoints/module/module.endpoint';
 
 const BASE_URL = "http://localhost:3002";
 
@@ -26,5 +27,4 @@ class RestApi {
 }
 
 export const rest_api = new RestApi();
-
 export default RestApi;

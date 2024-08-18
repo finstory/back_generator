@@ -6,9 +6,10 @@ import "@config/styles/sass/app.scss";
 import { Test } from "./test/Test";
 // import { Toaster } from "react-hot-toast";
 
-import { store } from "@/_common/redux/store";
+
 import { ServicesProvider } from "./_common/config/services/providers/ServicesProvider";
 import { Toaster } from "react-hot-toast";
+import { store } from "./integrations/redux/store";
 function App() {
 
   return (

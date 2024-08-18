@@ -1,1 +1,0 @@
-export type RequestType = "get" | "post" | "put" | "delete" | "patch" | "options" | "head" | "connect" | "trace";

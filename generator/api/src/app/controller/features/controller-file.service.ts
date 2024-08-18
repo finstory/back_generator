@@ -17,8 +17,8 @@ class ControllerFileService extends Injectable {
 
     updateControllerImport = async (moduleName: string, newModuleName: string, features?: string[]) => {
 
-        const endpointPath = `${appPath}/${moduleName}/${moduleName}.controller.ts`;
 
+        const endpointPath = `${appPath}/${moduleName}/${moduleName}.controller.ts`;
         await this._fs_file.updateFile(endpointPath, async (textCode) => {
             console.log(await this._ast_import.editImport(textCode, "controller", "controller", `./_entities/${newModuleName}-controller.entity`))
             return await this._ast_import.editImport(textCode, "controller", "controller", `./_entities/${newModuleName}-controller.entity`);

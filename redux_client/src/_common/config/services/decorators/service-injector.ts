@@ -1,9 +1,9 @@
-import { AllServices } from "@S";
+import { MainService } from "@S";
 import { Auto, AutoInstance } from "./auto-instantiate-services";
 import { Initial, Initialization, InitialAll } from "./initial-services";
 import "reflect-metadata";
 
-const initialInjector = (S: AllServices, secondTry: boolean = true) => {
+const initialInjector = (S: MainService, secondTry: boolean = true) => {
     for (const service of Object.values(S)) service._initial && service._initial(S);
     if (secondTry) for (const service of Object.values(S)) service._initial && service._initial(S);
 
@@ -32,7 +32,7 @@ function Inject(target: any, propertyKey: string) {
  * ( Only works with services that have been marked with '@Initialization' and '@Initial' in parent service or parent service include one _initial method. )
  */
 class Injectable {
-    constructor(S: AllServices) {
+    constructor(S: MainService) {
         const props = (this.constructor as any).__injectProps || [];
         for (const prop of props) {
 
@@ -45,7 +45,7 @@ class Injectable {
                 (this as any)[prop] = S[serviceGroup];
 
             else if (S)
-                throw new Error(`Service ${serviceGroup}.${serviceKey} not provided in AllServices`);
+                throw new Error(`Service ${serviceGroup}.${serviceKey} not provided in MainService`);
 
         }
     }
@@ -69,7 +69,7 @@ function BasicInject(target: any, propertyKey: string) {
  * ( Only works with top-level services that do not contain other subs services ).
  */
 class BasicInjectable {
-    _initial(S: AllServices) {
+    _initial(S: MainService) {
         const injectedProperties = Reflect.getMetadata('injectedProperties', this) || [];
 
         for (const prop of injectedProperties) {
@@ -82,13 +82,13 @@ class BasicInjectable {
                 (this as any)[prop] = S[serviceGroup];
 
             else if (S)
-                throw new Error(`Service ${serviceGroup}.${serviceKey} not provided in AllServices`);
+                throw new Error(`Service ${serviceGroup}.${serviceKey} not provided in MainService`);
         }
     }
 }
 
 export {
-    AllServices, Auto, AutoInstance, initialInjector,
+    MainService, Auto, AutoInstance, initialInjector,
     Inject, Injectable, Initial, Initialization, InitialAll,
     BasicInject, BasicInjectable,
 };

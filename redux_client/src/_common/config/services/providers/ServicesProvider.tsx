@@ -1,9 +1,9 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { AllServices } from '@S';
+import { MainService } from '@S';
 
 // Define la interfaz para tu contexto
 export interface MyContextProps {
-    S: AllServices;
+    S: MainService;
 }
 
 class MyClass {
@@ -22,7 +22,7 @@ const ServicesContext = createContext<MyContextProps | undefined>(undefined);
 
 export const ServicesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     // Instancia la clase solo una vez
-    const S = new AllServices();
+    const S = new MainService();
     // console.log("ready")
     return (
         <ServicesContext.Provider value={{ S }}>
