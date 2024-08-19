@@ -18,5 +18,4 @@ class ErrorResponse extends Error {
   }
 
 }
-throw new ErrorResponse("sd", "sdsd", 400, [{ message: "sdsd", field: "sdsd" }])
 export default ErrorResponse;

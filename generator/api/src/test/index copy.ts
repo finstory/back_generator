@@ -148,8 +148,8 @@ const testMain = async () => {
         // Utility type to get the functions for updating state
         type UpdateStateFunctions<T> = {
             [K in keyof T]: T[K] extends object
-            ? UpdateStateFunctions<T[K]> & { set: (newValue: Partial<T[K]>) => void, get: () => T[K] }
-            : { set: (newValue: T[K]) => void, get: () => T[K] };
+            ? UpdateStateFunctions<T[K]> & { set: (newValue: Partial<T[K]>) => void }
+            : { set: (newValue: T[K]) => void };
         };
 
 
@@ -163,9 +163,6 @@ const testMain = async () => {
                     set: (newValue: any) => {
                         setNewState(fullPath as any, newValue);
                     },
-                    get: () => {
-                        return state[key];
-                    },
                     ...(typeof state[key] === "object" && state[key] !== null
                         ? createUpdateState(state[key], [...path, key])
                         : {}),
@@ -175,16 +172,17 @@ const testMain = async () => {
             return updateState;
         }
 
-        function getNestedValue<T>(obj: T, path: string): any {
-            return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-        }
 
 
         // Create the dynamic updateState object
         const updateState = createUpdateState(state);
-        updateState.name.set("FACCU");
-        console.log(state.name); // FACCU
-        console.log(updateState.name.get()); // 00facundo
+        updateState.children.set({ name: "facu" });
+        updateState.other.set({ say: "hello" });
+        updateState.name.set("sds");
+        updateState.children.lastName.set("alvarez");
+        updateState.children.address.set({ street: "23423", number: 32 });
+        updateState.children.address.oneMore.set({ myStreet: "23423" });
+        console.log(state);
 
         // Define an object with a private variable to hold the value
 

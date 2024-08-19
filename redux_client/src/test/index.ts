@@ -94,58 +94,8 @@ const testMain = async () => {
             };
         }
 
-        // const updateState = {
-        //     name: (newValue: string) => {
-        //         setNewState('name', newValue);
-        //     },
-        //     lastName: (newValue: string) => {
-        //         setNewState('lastName', newValue);
-        //     },
-        //     other: {
-        //         set: (newValue: Partial<State['other']>) => {
-        //             setNewState('other', newValue);
-        //         },
-        //         say: (newValue: string) => {
-        //             setNewState('other.say', newValue);
-        //         }
-        //     },
-        //     children: {
-        //         set: (newValue: Partial<State['children']>) => {
-        //             setNewState('children', newValue);
-        //         },
-        //         name: (newValue: string) => {
-        //             setNewState('children.name', newValue);
-        //         },
-        //         lastName: (newValue: string) => {
-        //             setNewState('children.lastName', newValue);
-        //         },
-        //         address: {
-        //             set: (newValue: Partial<State['children']['address']>) => {
-        //                 setNewState('children.address', newValue);
-        //             },
-        //             street: (newValue: string) => {
-        //                 setNewState('children.address.street', newValue);
-        //             },
-        //             number: (newValue: number) => {
-        //                 setNewState('children.address.number', newValue);
-        //             },
-        //             height: (newValue: number) => {
-        //                 setNewState('children.address.height', newValue);
-        //             },
-        //             oneMore: {
-        //                 set: (newValue: Partial<State['children']['address']['oneMore']>) => {
-        //                     setNewState('children.address.oneMore', newValue);
-        //                 },
-        //                 myStreet: (newValue: string) => {
-        //                     setNewState('children.address.oneMore.myStreet', newValue);
-        //                 }
-        //             }
-
-        //         }
-        //     }
-        // };
-
         // Utility type to get the functions for updating state
+        
         type UpdateStateFunctions<T> = {
             [K in keyof T]: T[K] extends object
             ? UpdateStateFunctions<T[K]> & { set: (newValue: Partial<T[K]>) => void, get: () => T[K] }

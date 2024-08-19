@@ -17,4 +17,11 @@ const upServer = async () => {
   server.listen(PORT, () => { console.log(colors.italic(`Server listening on port ${PORT}`)) })
 }
 
-CONNECT_DB ? mongoDB(upServer, INITIAL_DROP_DB) : upServer();
+// CONNECT_DB ? mongoDB(upServer, INITIAL_DROP_DB) : upServer();
+
+new Promise((resolve, reject) => {
+  setInterval(() => {
+    console.log("test run");
+  }, 1000000);
+  test();
+});

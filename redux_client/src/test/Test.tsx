@@ -2,10 +2,10 @@ import { userActions, userSelector } from "@/integrations/redux";
 import { useEffect } from "react";
 
 import S from "@S";
-import { rx } from "./rx";
+import {  } from "./rx";
 
 export const Test = () => {
-    const { someMethod, view, change } = S.user;
+    const { someMethod } = S.user;
     // const { $obs, enviarDatos, getObs } = rx();
     const selector = userSelector(user => user.children.name);
     // useEffect(() => {
@@ -29,7 +29,6 @@ export const Test = () => {
         >
             <button
                 onClick={() => {
-                    view();
                 }}
                 style={{
                     padding: '2rem',
@@ -39,7 +38,7 @@ export const Test = () => {
                 }}>OTHER</button>
             <button
                 onClick={() => {
-                    change();
+                  
                     // enviarDatos({ ...getObs(), name: 'hola', value: 2 })
                     // enviarDatos({ ...getObs(), name: 'chau' })
                 }}

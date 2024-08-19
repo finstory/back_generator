@@ -1,7 +1,7 @@
 import { Router } from "express";
 //<IMPORTS>
 import PackageRoute from "@package/_routes/package.routes";
-import EndpointRoute from "@/app/endpoint/_validations/_routes/endpoint.route";
+import EndpointRoute from "@endpoint/_routes/endpoint.route";
 import ValidationRoute from "@validation/_routes/validation.route";
 
 export const routes = Router();
