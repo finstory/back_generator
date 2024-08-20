@@ -2,16 +2,16 @@ import { userActions, userSelector } from "@/integrations/redux";
 import { useEffect, useState } from "react";
 
 import S from "@S";
-import { useUserRx } from "@/integrations/rxjs/rx";
+import { useRouteRx } from "@/app/route/rxjs/route.rx";
 
 
 export const Test = () => {
-    const { userRx$, userRx } = useUserRx();
+    const { routeRx, routeRx$ } = useRouteRx();
     useEffect(() => {
-        console.log(userRx.name.get())
-        userRx.name.set('hola')
-        console.log(userRx.name.get())
-    }, [])
+        console.log("cambio")
+        // routeRx.lastName.set([])
+        // console.log(routeRx.lastName.get())
+    }, [routeRx$.lastName])
 
 
     return (
@@ -31,7 +31,8 @@ export const Test = () => {
         >
             <button
                 onClick={() => {
-
+                    routeRx.lastName.set([...routeRx.lastName.get(), { name: 'me', active: false }])
+                    // console.log(routeRx.lastName.get())
                 }}
                 style={{
                     padding: '2rem',
@@ -41,9 +42,7 @@ export const Test = () => {
                 }}>OTHER</button>
             <button
                 onClick={() => {
-                    // console.log(setRx.children.address.get())
-                    // enviarDatos({ ...getObs(), name: 'hola', value: 2 })
-                    // enviarDatos({ ...getObs(), name: 'chau' })
+                    routeRx.name.set("FACCsdsdU")
                 }}
                 style={{
                     padding: '2rem',
@@ -51,7 +50,7 @@ export const Test = () => {
                     backgroundColor: '#3b407b',
                     color: 'white'
                 }}
-            >Services</button>
+            >name</button>
 
         </div>
     )

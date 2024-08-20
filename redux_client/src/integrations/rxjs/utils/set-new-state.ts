@@ -35,6 +35,13 @@ function setNewStateRecursively(current: any, keys: string[], newValue: any): an
     const [firstKey, ...restKeys] = keys;
 
     if (restKeys.length === 0) {
+        if (Array.isArray(current[firstKey]) && Array.isArray(newValue)) {
+            return {
+                ...current,
+                [firstKey]: [...newValue],
+            };
+        }
+
         return {
             ...current,
             [firstKey]: typeof newValue === 'object' && newValue !== null

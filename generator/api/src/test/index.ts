@@ -10,7 +10,7 @@ const testMain = async () => {
             name: string;
             lastName: string;
             other: {
-                say: string;
+                array: string[];
             };
             children: {
                 name: string;
@@ -30,7 +30,7 @@ const testMain = async () => {
             name: "00facundo",
             lastName: "00garcia",
             other: {
-                say: "00hello"
+                array: ["hola", "chau"],
             },
             children: {
                 name: "00facundo",
@@ -80,12 +80,16 @@ const testMain = async () => {
             const [firstKey, ...restKeys] = keys;
 
             if (restKeys.length === 0) {
-                return {
-                    ...current,
-                    [firstKey]: typeof newValue === 'object' && newValue !== null
-                        ? { ...current[firstKey], ...newValue }
-                        : newValue,
-                };
+                if (Array.isArray(newValue)) {
+                    // Directly set the array
+                    return { ...current, [firstKey]: newValue };
+                } else if (typeof newValue === 'object' && newValue !== null) {
+                    // Merge with existing object
+                    return { ...current, [firstKey]: { ...current[firstKey], ...newValue } };
+                } else {
+                    // Set the value directly
+                    return { ...current, [firstKey]: newValue };
+                }
             }
 
             return {
@@ -94,60 +98,10 @@ const testMain = async () => {
             };
         }
 
-        // const updateState = {
-        //     name: (newValue: string) => {
-        //         setNewState('name', newValue);
-        //     },
-        //     lastName: (newValue: string) => {
-        //         setNewState('lastName', newValue);
-        //     },
-        //     other: {
-        //         set: (newValue: Partial<State['other']>) => {
-        //             setNewState('other', newValue);
-        //         },
-        //         say: (newValue: string) => {
-        //             setNewState('other.say', newValue);
-        //         }
-        //     },
-        //     children: {
-        //         set: (newValue: Partial<State['children']>) => {
-        //             setNewState('children', newValue);
-        //         },
-        //         name: (newValue: string) => {
-        //             setNewState('children.name', newValue);
-        //         },
-        //         lastName: (newValue: string) => {
-        //             setNewState('children.lastName', newValue);
-        //         },
-        //         address: {
-        //             set: (newValue: Partial<State['children']['address']>) => {
-        //                 setNewState('children.address', newValue);
-        //             },
-        //             street: (newValue: string) => {
-        //                 setNewState('children.address.street', newValue);
-        //             },
-        //             number: (newValue: number) => {
-        //                 setNewState('children.address.number', newValue);
-        //             },
-        //             height: (newValue: number) => {
-        //                 setNewState('children.address.height', newValue);
-        //             },
-        //             oneMore: {
-        //                 set: (newValue: Partial<State['children']['address']['oneMore']>) => {
-        //                     setNewState('children.address.oneMore', newValue);
-        //                 },
-        //                 myStreet: (newValue: string) => {
-        //                     setNewState('children.address.oneMore.myStreet', newValue);
-        //                 }
-        //             }
-
-        //         }
-        //     }
-        // };
-
-        // Utility type to get the functions for updating state
         type UpdateStateFunctions<T> = {
-            [K in keyof T]: T[K] extends object
+            [K in keyof T]: T[K] extends (infer U)[]
+            ? { set: (newValue: U[]) => void, get: () => U[] }
+            : T[K] extends object
             ? UpdateStateFunctions<T[K]> & { set: (newValue: Partial<T[K]>) => void, get: () => T[K] }
             : { set: (newValue: T[K]) => void, get: () => T[K] };
         };
@@ -159,17 +113,35 @@ const testMain = async () => {
             Object.keys(state).forEach((key) => {
                 const fullPath = [...path, key].join(".");
 
-                updateState[key] = {
-                    set: (newValue: any) => {
-                        setNewState(fullPath as any, newValue);
-                    },
-                    get: () => {
-                        return state[key];
-                    },
-                    ...(typeof state[key] === "object" && state[key] !== null
-                        ? createUpdateState(state[key], [...path, key])
-                        : {}),
-                };
+                if (Array.isArray(state[key])) {
+                    updateState[key] = {
+                        set: (newValue: any[]) => {
+                            setNewState(fullPath as any, newValue);
+                        },
+                        get: () => {
+                            return getNestedValue(state, fullPath);
+                        }
+                    };
+                } else if (typeof state[key] === "object" && state[key] !== null) {
+                    updateState[key] = {
+                        set: (newValue: any) => {
+                            setNewState(fullPath as any, newValue);
+                        },
+                        get: () => {
+                            return getNestedValue(state, fullPath);
+                        },
+                        ...createUpdateState(state[key], [...path, key])
+                    };
+                } else {
+                    updateState[key] = {
+                        set: (newValue: any) => {
+                            setNewState(fullPath as any, newValue);
+                        },
+                        get: () => {
+                            return getNestedValue(state, fullPath);
+                        }
+                    };
+                }
             });
 
             return updateState;
@@ -185,6 +157,12 @@ const testMain = async () => {
         updateState.name.set("FACCU");
         console.log(state.name); // FACCU
         console.log(updateState.name.get()); // 00facundo
+
+
+        console.log(state.other.array) //["hola", "chau"]
+        updateState.other.array.set(["facu"])
+        console.log(state.other.array) // ["facu"]
+
 
         // Define an object with a private variable to hold the value
 
