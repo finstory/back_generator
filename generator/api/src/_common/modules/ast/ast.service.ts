@@ -9,6 +9,7 @@ import AstClassDecoratorService from "./features/ast-class-decorator.service";
 
 @AutoInstance
 class Ast {
+
     @Auto public comment: AstCommentService;
     @Auto public import: AstImportService;
     @Auto public compilerFunction: AstFunctionCompilerService;

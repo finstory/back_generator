@@ -1,7 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import { setNewState } from "./set-new-state";
 
-type UpdateStateFunctions<T> = {
+export type UpdateStateFunctions<T> = {
     [K in keyof T]: T[K] extends object
     ? UpdateStateFunctions<T[K]> & { set: (newValue: Partial<T[K]>) => void, get: () => T[K] }
     : { set: (newValue: T[K]) => void, get: () => T[K] };

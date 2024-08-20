@@ -1,28 +1,19 @@
 import { userActions, userSelector } from "@/integrations/redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import S from "@S";
-import userRx from "@/integrations/rxjs/rx";
+import { useUserRx } from "@/integrations/rxjs/rx";
 
 
 export const Test = () => {
-    // const { userRx } = useRx();
-
-    // useEffect(() => {
-    //     if (userRx$) {
-    //         console.log(userRx$.children.address);
-    //     }
-    // }, [userRx$.children.address])
+    const { userRx$, userRx } = useUserRx();
     useEffect(() => {
-        console.log(userRx.children.address.get())
+        console.log(userRx.name.get())
+        userRx.name.set('hola')
+        console.log(userRx.name.get())
     }, [])
 
-    const { someMethod } = S.user;
-    // const { $obs, enviarDatos, getObs } = rx();
-    const selector = userSelector(user => user.children.name);
-    // useEffect(() => {
-    //     console.log($obs)
-    // }, [$obs]);
+
     return (
         <div
 
@@ -40,7 +31,7 @@ export const Test = () => {
         >
             <button
                 onClick={() => {
-                    setRx.children.address.set({ street: "22 fals", number: 2 })
+
                 }}
                 style={{
                     padding: '2rem',
@@ -50,7 +41,7 @@ export const Test = () => {
                 }}>OTHER</button>
             <button
                 onClick={() => {
-                    console.log(setRx.children.address.get())
+                    // console.log(setRx.children.address.get())
                     // enviarDatos({ ...getObs(), name: 'hola', value: 2 })
                     // enviarDatos({ ...getObs(), name: 'chau' })
                 }}
@@ -61,7 +52,7 @@ export const Test = () => {
                     color: 'white'
                 }}
             >Services</button>
-            {selector}
+
         </div>
     )
 }

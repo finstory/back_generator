@@ -25,7 +25,7 @@ class RouteSlice extends ReduxSlice<RouteSlice> {
 
     // % Actions:
 
-    increment = (state: RouteState) => {
+    routeInc = (state: RouteState) => {
         state.value += 2;
     };
 
