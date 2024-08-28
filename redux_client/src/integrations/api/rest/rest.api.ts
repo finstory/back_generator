@@ -23,6 +23,7 @@ class RestApi {
         this.module = new ModuleEndpoint(this.api, this.awaitRequest);
         this.endpoint = new EndpointEndpoint(this.api, this.awaitRequest);
         this.requestParams = new RequestParamsEndpoint(this.api);
+        
     }
 }
 

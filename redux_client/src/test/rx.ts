@@ -127,6 +127,7 @@ function createUpdateState<T>(state: T, path: string[] = []): UpdateStateFunctio
 const sharedSubject = new BehaviorSubject<State>(state);
 
 const updateState = createUpdateState(state);
+updateState.children.name.set("sdsd")
 console.log(updateState.children.address.get())
 updateState.children.address.set({ street: "22 fals", number: 2 })
 console.log(updateState.children.address.get())

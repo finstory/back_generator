@@ -1,4 +1,4 @@
-import { userFilteredSelector, userActions, userSelector } from "@/integrations/redux";
+import { filteredUserSelector, userActions, userSelector } from "@/integrations/redux";
 import { useEffect, useState } from "react";
 
 import S from "@S";
@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export const Test = () => {
     const { routeRx, routeRx$ } = useRouteRx();
-    const userList = userFilteredSelector("admin");
+    const userList = filteredUserSelector("admin");
     useEffect(() => {
         console.log(userList)
         // routeRx.lastName.set([])
@@ -42,7 +42,6 @@ export const Test = () => {
                     backgroundColor: '#3b407b',
                     color: 'white'
                 }}>OTHER</button>
-
             <button
                 onClick={() => {
                     routeRx.name.set("FACCsdsdU")

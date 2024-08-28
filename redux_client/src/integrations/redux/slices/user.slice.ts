@@ -181,13 +181,10 @@ const select = selectors.user;
 
 
 
-export const userFilteredSelector = (type: string) => {
-
+export const filteredUserSelector = (type: UserState["filterType"] = "user") => {
     return setSelector(
-
-        [select.users.get(), select.filterType.get(), select.children.get()],
-        (users, filterType, c) => {
-            console.log(c)
+        [select.users.get(), select.filterType.get()],
+        (users, filterType) => {
             if (type === 'all') return users;
             return users.filter(user => user.userType === filterType);
         }
