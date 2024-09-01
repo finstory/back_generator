@@ -18,7 +18,7 @@ function removeSliceWord(str: string): string {
 export class ReduxSlice<S> {
     public slice!: MyCustomSlice<InferInitialState<S>, S>;
 
-    protected selector: BuildSelectors<RootState>
+    protected select: BuildSelectors<RootState>
 
     protected initialize(derivedInstance: any, className: string) {
         const nameSlice = removeSliceWord(className);
@@ -36,7 +36,7 @@ export class ReduxSlice<S> {
             reducers: { ...prepareActions }
         })
         // this._selector = createselectors({ [this.slice.name]: this.slice.getinitialstate() } as any).user;
-        this.selector = createSelectors({ [nameSlice]: this.slice.getInitialState() } as any);
+        this.select = createSelectors({ [nameSlice]: this.slice.getInitialState() } as any);
     }
 
 }

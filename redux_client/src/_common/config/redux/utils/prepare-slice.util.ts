@@ -1,7 +1,5 @@
 import { ReduxSlice } from "@/_common/config/redux/decorators/redux-slice";
 import { useActions } from "@/_common/config/redux/hooks/blind-actions";
-import { createSelector } from "@/_common/config/redux/hooks/redux";
-import { type RootState } from "@/integrations/redux/store";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { createSelectors } from "./create-selector.util";
 

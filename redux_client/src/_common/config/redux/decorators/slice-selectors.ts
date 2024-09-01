@@ -24,3 +24,5 @@ export function SliceSelector<T extends { new(...args: any[]): {} }>(constructor
         }
     }
 }
+
+

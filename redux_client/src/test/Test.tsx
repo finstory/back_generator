@@ -1,20 +1,21 @@
-import { userAllSelectors, userActions, userSelector } from "@/integrations/redux";
+import { selectUser, userActions, userSelector } from "@/integrations/redux";
 import { useEffect, useState } from "react";
 
 import S from "@S";
 import { useRouteRx } from "@/app/route/rxjs/route.rx";
 import { useSelector } from "react-redux";
+import { json } from "stream/consumers";
 
 export const Test = () => {
     const { routeRx, routeRx$ } = useRouteRx();
-    const userList = userAllSelectors.filteredUserSelector("admin")
+    const userList = selectUser.filteredUserSelector('user');
     const { increment } = userActions();
     // increment()
     useEffect(() => {
         console.log(userList)
         // routeRx.lastName.set([])
         // console.log(routeRx.lastName.get())
-    }, [])
+    }, [JSON.stringify(userList)])
 
 
     return (

@@ -1,8 +1,9 @@
-import { createSelectors, setSelector } from '@config/redux/utils/create-selector.util';
+
 import { InitializeSlice, ReduxSlice } from '@config/redux/decorators/redux-slice';
+import { prepareSlice, setSelector } from '@config/redux/utils';
 import { PayloadAction, Reducer } from '@reduxjs/toolkit';
-import { prepareSlice } from '@config/redux/utils/prepare-slice.util';
-import { SliceSelector } from '@/_common/config/redux/decorators/slice-selectors';
+import { SliceSelector } from '@config/redux/decorators/slice-selectors';
+
 
 interface User {
     id: number;
@@ -25,8 +26,6 @@ export interface UserState {
 @SliceSelector
 @InitializeSlice
 class UserSlice extends ReduxSlice<UserSlice> {
-
-
     initialState: UserState = {
         list: [],
         users: [{ id: 1, name: 'Alice', userType: 'admin' },
@@ -60,9 +59,8 @@ class UserSlice extends ReduxSlice<UserSlice> {
     filteredUserSelector = (type: UserState["filterType"] = "user") => {
         return setSelector(
 
-            [this.selector.user.users.get(), this.selector.user.filterType.get()],
+            [this.select.user.users.get(), this.select.user.filterType.get()],
             (users, filterType) => {
-                console.log(users)
                 if (type === 'all') return users;
                 return users.filter(user => user.userType === filterType);
             }
@@ -79,21 +77,4 @@ const { selector, actions, reducers, allSelectors } = prepareSlice<UserSlice>(sl
 export const userReducers = reducers as Reducer<UserState>;
 export const userSelector = selector;
 export const userActions = actions;
-export const userAllSelectors = allSelectors;
-// type SelectorKeys<T> = Pick<T, {
-//     [K in keyof T]: K extends `${string}Selector` ? K : never;
-// }[keyof T]>;
-
-// //@ts-ignore
-// export const filter: SelectorKeys<UserSlice> = slice.allSelector;
-
-// export const filteredUserSelector = (type: UserState["filterType"] = "user") => {
-//     return setSelector(
-//         [select.users.get(), select.filterType.get()],
-//         (users, filterType) => {
-//             console.log(users)
-//             // if (type === 'all') return users;
-//             // return users.filter(user => user.userType === filterType);
-//         }
-//     );
-// }
+export const selectUser = allSelectors;
