@@ -1,4 +1,6 @@
 import { createSlice, Draft, Slice, SliceCaseReducers } from "@reduxjs/toolkit";
+import { BuildSelectors, createSelectors } from "../utils/create-selector.util";
+import { RootState } from "@/integrations/redux/store";
 
 interface MySlice<S, A extends SliceCaseReducers<Draft<S>>> extends Slice<Draft<S>, A> { }
 
@@ -16,6 +18,8 @@ function removeSliceWord(str: string): string {
 export class ReduxSlice<S> {
     public slice!: MyCustomSlice<InferInitialState<S>, S>;
 
+    protected selector: BuildSelectors<RootState>
+
     protected initialize(derivedInstance: any, className: string) {
         const nameSlice = removeSliceWord(className);
         const actionList: string[] = Object.getOwnPropertyNames(derivedInstance).filter((prop) => typeof derivedInstance[prop] === 'function');
@@ -31,6 +35,8 @@ export class ReduxSlice<S> {
             initialState: this.initialState,
             reducers: { ...prepareActions }
         })
+        // this._selector = createselectors({ [this.slice.name]: this.slice.getinitialstate() } as any).user;
+        this.selector = createSelectors({ [nameSlice]: this.slice.getInitialState() } as any);
     }
 
 }

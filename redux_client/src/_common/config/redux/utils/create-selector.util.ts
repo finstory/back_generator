@@ -5,14 +5,14 @@ import { useSelector } from "react-redux";
 type Selector<T> = (state: RootState) => T;
 
 // Recursive type to build selector object types
-type BuildSelectors<T> = {
+export type BuildSelectors<T> = {
     [K in keyof T]: T[K] extends object
     ? BuildSelectors<T[K]> & { get(): Selector<T[K]> }
     : { get(): Selector<T[K]> };
 };
 
 // Adjusted createSelectors function
-const createSelectors = <T extends RootState>(structure: T, path: string[] = []): BuildSelectors<T> => {
+export const createSelectors = (structure: RootState, path: string[] = []): BuildSelectors<RootState> => {
     return Object.keys(structure).reduce((acc, key) => {
         const currentPath = [...path, key];
         if (Array.isArray(structure[key])) {
@@ -26,10 +26,10 @@ const createSelectors = <T extends RootState>(structure: T, path: string[] = [])
             };
         }
         return acc;
-    }, {} as BuildSelectors<T>);
+    }, {} as BuildSelectors<RootState>);
 };
 
-const setSelector = <S extends Selector<any>[], R>(
+export const setSelector = <S extends Selector<any>[], R>(
     selectors: [...S],
     combinerFn: (...args: { [K in keyof S]: ReturnType<S[K]> }) => R
 ) => {

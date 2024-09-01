@@ -29,7 +29,7 @@ class ModuleSlice extends ReduxSlice<ModuleSlice> {
 }
 
 //% Exports:
-const slice = new ModuleSlice().slice;
+const slice = new ModuleSlice();
 const { selector, actions, reducers } = prepareSlice<ModuleSlice, "module">(slice);
 
 export const moduleReducers = reducers as Reducer<ModuleState>;

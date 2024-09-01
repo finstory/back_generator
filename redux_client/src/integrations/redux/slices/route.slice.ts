@@ -44,7 +44,7 @@ class RouteSlice extends ReduxSlice<RouteSlice> {
 }
 
 //% Exports:
-const slice = new RouteSlice().slice;
+const slice = new RouteSlice();
 const { selector, actions, reducers } = prepareSlice<RouteSlice, "route">(slice);
 
 export const routeReducers = reducers as Reducer<RouteState>;
