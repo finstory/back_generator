@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 
 import { RequestType } from "@/app/route/_interfaces/routes.interface";
 import RequestTypeSelector from "./___RequestTypeSelector";
-import S from "@S";
+import S from "@/services/main.service";
 import { useForm } from "@/_common/hooks/useForm";
 import { checkFormatEndpoint } from "@/app/route/utils/check-format-endpoint";
 

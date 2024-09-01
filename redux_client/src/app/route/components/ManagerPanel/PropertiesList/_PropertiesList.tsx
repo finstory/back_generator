@@ -3,7 +3,7 @@ import printAlert, { featureNotAvailable } from '@/_common/plugins/toast-alerts'
 import { IconButton, Mark, Text } from '@/components';
 import { IRequestParams, IRoute } from '@/modules/module/_interfaces/module.interface';
 import React, { FC, useState } from 'react';
-import S from '@S';
+import S from '@/services/main.service';
 interface IProps {
     _scss: CSSModuleClasses;
     route: IRoute;

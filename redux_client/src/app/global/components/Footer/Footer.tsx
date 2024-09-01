@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Text, IText, DGBorder, Button, IDGBorder } from "@components";
 import scss from "../../_scss/footer.module.scss";
-import S from "@S";
+import S from "@/services/main.service";
 
 
 export const Footer: FC = () => {

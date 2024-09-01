@@ -3,7 +3,7 @@ import { IRoute } from '@/modules/module/_interfaces/module.interface';
 import { Text, Mark, IconButton } from '@components';
 import EndpointEditor from './___EndpointEditor';
 import AddEndpoint from './___AddEndpoint';
-import S from '@S';
+import S from '@/services/main.service';
 
 
 interface IProps {

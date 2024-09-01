@@ -1,6 +1,6 @@
 import { Text } from "@/components";
 import React, { FC, useState } from "react";
-import S from "@S";
+import S from "@/services/main.service";
 import { IRoute } from "@/modules/module/_interfaces/module.interface";
 import { underscoreToClassName, upFirst } from "@/_common/helpers/wordsManager";
 

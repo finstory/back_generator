@@ -13,6 +13,7 @@ class UserService extends BasicInjectable {
 
     anotherMethod = async () => {
         this._action_user.changeName("Facu");
+  
         this._action_user.increment(this._state.user.name);
     }
 

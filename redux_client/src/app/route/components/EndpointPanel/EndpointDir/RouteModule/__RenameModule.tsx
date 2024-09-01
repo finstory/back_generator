@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Button, Input, Mark } from "@/components";
-import S from "@S";
+import S from "@/services/main.service";
 import { useForm } from "@/_common/hooks/useForm";
 
 interface IProps {

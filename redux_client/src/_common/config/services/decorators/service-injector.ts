@@ -1,4 +1,4 @@
-import { MainService } from "@S";
+import { MainService } from "@/services/main.service";
 import { Auto, AutoInstance } from "./auto-instantiate-services";
 import { Initial, Initialization, InitialAll } from "./initial-services";
 import "reflect-metadata";

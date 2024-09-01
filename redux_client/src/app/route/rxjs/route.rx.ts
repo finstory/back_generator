@@ -1,5 +1,5 @@
-import { useRxState } from "@/integrations/rxjs/hooks/useRxState";
-import RXJS from "@/integrations/rxjs/rx";
+import { useRxState } from "@/_common/config/rxjs/hooks/useRxState";
+import RXJS from "@/_common/config/rxjs/rx";
 
 interface RouteRxState {
     name: string;

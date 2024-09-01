@@ -72,7 +72,7 @@ class UserSlice extends ReduxSlice<UserSlice> {
 
 //% Exports:
 const slice = new UserSlice();
-const { selector, actions, reducers, allSelectors } = prepareSlice<UserSlice>(slice);
+const { selector, actions, reducers, allSelectors } = prepareSlice<UserSlice, "user">(slice);
 
 export const userReducers = reducers as Reducer<UserState>;
 export const userSelector = selector;

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import scss from '../../_scss/header.module.scss';
 import { Link } from 'react-router-dom';
 import { BGradient, Text } from '@/components';
-import { rest_api } from '@/integrations/api/rest/rest.api';
+import { rest_api } from '@/integrations/api-rest/rest.api';
 
 interface IProps {
 }

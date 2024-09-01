@@ -4,7 +4,7 @@
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@decorators": ["./src/_common/decorators/_index.ts"],
-      "@S": ["./src/integrations/services/main.service.ts"],
+      "@S": ["./src/services/main.service.ts"],
       "@services/*": ["./src/services/*"],
       "@services_injector": ["./src/_common/config/services/decorators/service-injector.ts"],
       
@@ -14,6 +14,8 @@
       "@helpers/*": ["./src/_common/helpers/*"],
       "@components": ["./src/components"],
       "@services_config/*": ["./src/_common/config/services/*"],
+      "@redux": ["./src/integrations/redux/slices/_index.ts"],
+
 
       "@print_errors": ["./src/_common/config/errors/decorators/print-errors"],
 

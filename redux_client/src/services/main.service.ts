@@ -7,7 +7,7 @@ import { getAllActions } from "@config/redux/utils/actions-map.util";
 import { objectGetState } from "@config/redux/utils/object-get-state.util";
 
 //% SERVICES_IMPORTS:
-import RestApi from "@/integrations/api/rest/rest.api";
+import RestApi from "@/integrations/api-rest/rest.api";
 import UserService from "@/test/user.service";
 
 @InitialServices

@@ -9,9 +9,6 @@ class UserService extends BasicInjectable {
     @BasicInject private _action: S["action"];
     @BasicInject private _state: S["state"];
 
-
-  
-
     otherMethod = () => {
         try {
             console.log(this._state.user.name);

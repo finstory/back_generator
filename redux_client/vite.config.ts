@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@S": path.resolve(__dirname, "./src/integrations/services/main.service.ts"),
+      "@S": path.resolve(__dirname, "./src/services/main.service.ts"),
       "@app": path.resolve(__dirname, "./src/app"),
       "@config": path.resolve(__dirname, "./src/_common/config"),
       "@decorators": path.resolve(__dirname, "./src/_common/decorators/_index.ts"),
@@ -21,6 +21,8 @@ export default defineConfig({
       "@services_injector": path.resolve(__dirname, "./src/_common/config/services/decorators/service-injector.ts"),
       "@services_config": path.resolve(__dirname, "./src/_common/config/services"),
       "@print_errors": path.resolve(__dirname, "./src/_common/config/errors/decorators/print-errors"),
+
+      "@redux": path.resolve(__dirname, "./src/integrations/redux/slices/_index.ts"),
 
       "@route": path.resolve(__dirname, "./src/app/route"),
       "@module": path.resolve(__dirname, "./src/_modules/module"),

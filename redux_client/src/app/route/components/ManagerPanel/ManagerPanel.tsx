@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Text, IText, DGBorder, Button, IDGBorder } from "@components";
 import scss from "@route/_scss/manager_panel.module.scss";
-import S from "@S";
+import S from "@/services/main.service";
 import { Title } from "./Title/_Title";
 import { Parameters } from "./Parameters/_Parameters";
 import RequestInput from "./RequestInput/_RequestInput";

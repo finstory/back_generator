@@ -1,21 +1,22 @@
-import { selectUser, userActions, userSelector } from "@/integrations/redux";
-import { useEffect, useState } from "react";
 
-import S from "@S";
+import { useEffect, useState } from "react";
+import S from "@/services/main.service";
 import { useRouteRx } from "@/app/route/rxjs/route.rx";
-import { useSelector } from "react-redux";
-import { json } from "stream/consumers";
+import { selectUser, userActions, userSelector } from "@redux";
 
 export const Test = () => {
     const { routeRx, routeRx$ } = useRouteRx();
+    const { someMethod } = S.user;
+
     const userList = selectUser.filteredUserSelector('user');
+    const users = userSelector(user => user)
     const { increment } = userActions();
     // increment()
     useEffect(() => {
-        console.log(userList)
+        someMethod()
         // routeRx.lastName.set([])
-        // console.log(routeRx.lastName.get())
-    }, [JSON.stringify(userList)])
+        console.log(routeRx$.lastName)
+    }, [JSON.stringify(routeRx$.lastName)])
 
 
     return (
