@@ -7,6 +7,7 @@ interface RouteRxState {
     other: {
         say: string;
     };
+    activeMenuModal: boolean;
     children: {
         name: string;
         lastName: string;
@@ -27,6 +28,7 @@ const initialState: RouteRxState = {
     other: {
         say: "hola"
     },
+    activeMenuModal: false,
     children: {
         name: "juanito",
         lastName: "perez",

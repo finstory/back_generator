@@ -1,4 +1,4 @@
-import printAlert from "@/_common/plugins/toast-alerts";
+import printAlert from "@/_common/_plugins/toast-alerts";
 
 export const checkFormatEndpoint = (endpoint: string) => {
     try {

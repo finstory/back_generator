@@ -1,7 +1,7 @@
 import { userActions, userSelector } from "@/integrations/redux";
 import { useEffect } from "react";
 
-import S from "@/services/main.service";
+import S from "@/_common/services/main.service";
 
 export const OtherTest = () => {
     // const { someMethod, test } = S.user;

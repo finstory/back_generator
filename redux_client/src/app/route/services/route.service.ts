@@ -4,7 +4,7 @@ import RouteState from "./route.store";
 import ModuleState from "@/modules/module/services/module.store";
 import { BasicRoute, NewRoute, Route } from "../_interfaces/routes.interface";
 
-import printAlert from "@/_common/plugins/toast-alerts";
+import printAlert from "@/_common/_plugins/toast-alerts";
 import { confirmAlert } from "@/_common/helpers/alert";
 import { IRoute } from "@/modules/module/_interfaces/module.interface";
 

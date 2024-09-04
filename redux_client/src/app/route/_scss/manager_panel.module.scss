@@ -67,6 +67,7 @@
     --gradient-error: linear-gradient(180deg, #3114d4ab 0%, #5303d38d 100%);
 }
 
+
 .endpoint_panel {
     @include dim_width(50rem);
     @include dim_height(70rem);
@@ -457,7 +458,7 @@
 
                 .empty {
                     @include dim_width();
-                    @include dim_height(100%,auto,10rem);
+                    @include dim_height(100%, auto, 10rem);
                     @include flex(center, center);
                     color: var(--color-base-off);
                 }

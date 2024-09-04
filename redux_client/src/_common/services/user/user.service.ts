@@ -1,6 +1,7 @@
 import { S, BasicInject, BasicInjectable, PrintErrRes } from "@decorators";
-import printAlert from "@/_common/plugins/toast-alerts";
+import printAlert from "@/_common/_plugins/toast-alerts";
 import { confirmAlert } from "@/_common/helpers/alert";
+import { useRouteRx } from "@/app/route/rxjs/route.rx";
 
 @PrintErrRes
 class UserService extends BasicInjectable {
@@ -11,8 +12,11 @@ class UserService extends BasicInjectable {
 
     otherMethod = () => {
         try {
+            const { routeRx } = useRouteRx();
+            if (routeRx.activeMenuModal.get()) { this._action.user.increment(); }
             console.log(this._state.user.name);
-            this._action.user.changeName("user");
+
+            this._action.user.increment
             console.log(this._state.user.name);
         } catch (err) {
             printAlert(err);

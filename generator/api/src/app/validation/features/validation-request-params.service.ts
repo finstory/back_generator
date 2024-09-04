@@ -62,6 +62,13 @@ class ValidationRequestParamsService extends Injectable {
     }
 
 
+    createUser = async () => {
+
+
+
+    }
+    aditionalInfoProfession = async () => { }
+
     addValidation = async (
         moduleName: string,
         controllerName: string,

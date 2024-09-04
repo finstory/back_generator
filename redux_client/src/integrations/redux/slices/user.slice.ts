@@ -13,7 +13,7 @@ interface User {
 
 export interface UserState {
     list: Array<{}>;
-    users: Array<User>;
+    users: User[];
     filterType: 'admin' | 'user' | 'guest' | 'all';
     value: number;
     name?: string;
@@ -26,6 +26,7 @@ export interface UserState {
 @SliceSelector
 @InitializeSlice
 class UserSlice extends ReduxSlice<UserSlice> {
+
     initialState: UserState = {
         list: [],
         users: [{ id: 1, name: 'Alice', userType: 'admin' },
@@ -67,6 +68,17 @@ class UserSlice extends ReduxSlice<UserSlice> {
         );
     }
 
+    
+    findOneUserSelector = (type: UserState["children"]) => {
+        return setSelector(
+
+            [this.select.user.users.get(), this.select.user.filterType.get()],
+            (users, filterType) => {
+
+                return users.filter(user => user.userType === filterType);
+            }
+        );
+    }
 }
 
 

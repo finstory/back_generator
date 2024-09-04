@@ -1,4 +1,4 @@
-import { featureNotAvailable } from '@/_common/plugins/toast-alerts';
+import { featureNotAvailable } from '@/_common/_plugins/toast-alerts';
 import { BGradient, Button, Input, Text } from '@/components';
 import React, { FC } from 'react';
 

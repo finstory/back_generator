@@ -1,9 +1,9 @@
 import { ColorStyle } from '@/_common/interfaces/IStyles';
-import printAlert, { featureNotAvailable } from '@/_common/plugins/toast-alerts';
+import printAlert, { featureNotAvailable } from '@/_common/_plugins/toast-alerts';
 import { IconButton, Mark, Text } from '@/components';
 import { IRequestParams, IRoute } from '@/modules/module/_interfaces/module.interface';
 import React, { FC, useState } from 'react';
-import S from '@/services/main.service';
+import S from '@/_common/services/main.service';
 interface IProps {
     _scss: CSSModuleClasses;
     route: IRoute;

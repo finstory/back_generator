@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import S from "@/services/main.service";
+import S from "@/_common/services/main.service";
 import { useRouteRx } from "@/app/route/rxjs/route.rx";
 import { selectUser, userActions, userSelector } from "@redux";
 
@@ -8,8 +8,7 @@ export const Test = () => {
     const { routeRx, routeRx$ } = useRouteRx();
     const { someMethod } = S.user;
 
-    const userList = selectUser.filteredUserSelector('user');
-    const users = userSelector(user => user)
+    const users = userSelector(user => user.users);
     const { increment } = userActions();
     // increment()
     useEffect(() => {

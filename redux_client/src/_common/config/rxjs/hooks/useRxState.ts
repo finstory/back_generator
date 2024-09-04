@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { UpdateStateFunctions } from "../utils/create-update-state";
-import { RXJS } from "../rx";
+import RXJS from "../rx";
+
 
 export const useRxState = <S, T extends string>(moduleName: T, rx: RXJS<S>) => {
 

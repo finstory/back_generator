@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import S from '@/services/main.service';
+import S from '@/_common/services/main.service';
 
 export const Other = () => {
     const { testAuth, authState: { user: { name } } } = S.auth;

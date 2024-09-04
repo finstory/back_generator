@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { RouteModule } from "./RouteModule/__RouteModule";
 import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
-import S from "@/services/main.service";
+import S from "@/_common/services/main.service";
 
 export const EndpointDir = ({ _scss }) => {
 

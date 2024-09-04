@@ -1,4 +1,4 @@
-import printAlert from "@/_common/plugins/toast-alerts";
+import printAlert from "@/_common/_plugins/toast-alerts";
 import payloadToString from "../utils/payload-to-string.util";
 
 export function PrintError(target: any, propertyKey: string) {

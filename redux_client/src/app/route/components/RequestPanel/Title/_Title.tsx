@@ -1,5 +1,5 @@
 
-import S from "@/services/main.service";
+import S from "@/_common/services/main.service";
 import { Button, Text } from "@/components";
 
 
