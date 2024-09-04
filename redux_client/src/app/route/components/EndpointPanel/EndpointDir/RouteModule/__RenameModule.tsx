@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Button, Input, Mark } from "@/components";
 import S from "@/_common/services/main.service";
 import { useForm } from "@/_common/hooks/useForm";
+import { useRouteRx } from "@/app/route/rxjs/route.rx";
 
 interface IProps {
   _scss: CSSModuleClasses;
@@ -10,7 +11,9 @@ interface IProps {
 }
 const RenameModule: FC<IProps> = ({ _scss, moduleName, active }) => {
   const { renameModule } = S.module;
-  const { toggleModuleEditor } = S.route;
+  const { routeRx } = useRouteRx();
+  const moduleEditorOpen = routeRx.endpointPanel.moduleEditorOpen;
+
   const { values, handleInputChange, reset } = useForm({ module_input: "" });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +21,7 @@ const RenameModule: FC<IProps> = ({ _scss, moduleName, active }) => {
     e.preventDefault();
     renameModule(moduleName, module_input);
     reset();
-    toggleModuleEditor();
+    moduleEditorOpen.set(false);
   }
   return (
     <form className={_scss.rename_module} onSubmit={(e) => handleSubmit(e)}>

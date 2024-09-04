@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import parametersValidator from ".";
 
-const getValidations = <T>(Controller: any, C: any) => {
+const getValidations = <T>(Controller: any, C: any): keyof T => {
 
     const validation: T = new Controller();
 
@@ -13,7 +13,7 @@ const getValidations = <T>(Controller: any, C: any) => {
         }
     });
 
-    return validation;
+    return validation as keyof T;
 }
 
 export default getValidations;

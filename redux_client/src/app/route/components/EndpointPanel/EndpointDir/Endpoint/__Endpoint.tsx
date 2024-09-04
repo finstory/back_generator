@@ -1,9 +1,10 @@
 import React, { FC, useState } from 'react';
-import { IRoute } from '@/modules/module/_interfaces/module.interface';
 import { Text, Mark, IconButton } from '@components';
 import EndpointEditor from './___EndpointEditor';
 import AddEndpoint from './___AddEndpoint';
 import S from '@/_common/services/main.service';
+import { IRoute } from '@/app/module/_interfaces/module.interface';
+import { routeSelector } from '@/integrations/redux/slices/route.slice';
 
 
 interface IProps {
@@ -13,13 +14,18 @@ interface IProps {
 }
 
 const Endpoint: FC<IProps> = ({ _scss, moduleName, route }) => {
-    const { deleteRoute, loadRouteManager } = S.route;
-    const { reloadRequestParams } = S.validation;
-    const { routeManager: { routeId } } = S.route.routeState;
+    const { deleteRoute, selectRoute } = S.route;
+    // const { reloadRequestParams } = S.validation;
+    // const { routeManager: { routeId } } = S.route.routeState;
+
+    const routeId$ = routeSelector(route => route.routeManager.routeId);
+
     const [editModeActive, setEditModeActive] = useState<boolean>(false);
 
+    //$MOSTRAR
     const toggleSelected = () => {
-        loadRouteManager(moduleName, route.id, route.controllerName);
+        if (routeId$ !== route.id)
+            selectRoute(moduleName, route.id, route.controllerName);
         // reloadRequestParams(moduleName, route.controllerName);
     };
 
@@ -32,13 +38,15 @@ const Endpoint: FC<IProps> = ({ _scss, moduleName, route }) => {
                 <div className={_scss.wrap} onClick={toggleSelected} >
                     <Mark
                         className={_scss.mark}
-                        variant={routeId === route.id ? 'rhombus' : 'bar'}
-                        color={routeId === route.id ? 'primary' : 'base-off'}
+                        variant={routeId$ === route.id ? 'rhombus' : 'bar'}
+                        color={routeId$ === route.id ? 'primary' : 'base-off'}
                     />
 
 
 
-                    <Text className={_scss.text} label="p" color={routeId === route.id ? 'primary' : 'base-off'} >
+                    <Text className={_scss.text} label="p"
+                        color={routeId$ === route.id ? 'primary' : 'base-off'}
+                    >
                         {route.endpointName.toUpperCase()} -
 
                         <Text className={_scss.text} label="span" color={route.requestType}> {route.requestType.toUpperCase()} </Text>

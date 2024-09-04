@@ -1,37 +1,39 @@
-import { prepareSlice } from '@/_common/config/redux/utils/prepare-slice.util';
 import { InitializeSlice, ReduxSlice } from '@config/redux/decorators/redux-slice';
-import { PayloadAction, Reducer } from '@reduxjs/toolkit';
+import { prepareSlice, setSelector } from '@config/redux/utils';
+import { PayloadAction as PA, Reducer } from '@reduxjs/toolkit';
+import { SliceSelector } from '@config/redux/decorators/slice-selectors';
+import { IModule } from '@/app/module/_interfaces/module.interface';
 
-interface ModuleState {
-    other: number;
-    facu: string;
+
+export default interface ModuleState {
+    name: { test: string };
+    modulesList: IModule[];
+    loading: boolean;
 }
-
+@SliceSelector
 @InitializeSlice
 class ModuleSlice extends ReduxSlice<ModuleSlice> {
 
     initialState: ModuleState = {
-        other: 0,
-        facu: "default",
+        name: { test: "module" },
+        modulesList: [],
+        loading: true,
     };
+
 
     // % Actions:
 
-    increment = (state: ModuleState) => {
-        // state.value += 2;
-    };
-
-    changeName = (state: ModuleState, { payload }: PayloadAction<string>) => {
-        state.facu = payload;
+    setModulesList = (state: ModuleState, action: PA<IModule[]>) => {
+        state.modulesList = action.payload;
     }
-
 
 }
 
 //% Exports:
 const slice = new ModuleSlice();
-const { selector, actions, reducers } = prepareSlice<ModuleSlice, "module">(slice);
+const { selector, actions, reducers, allSelectors } = prepareSlice<ModuleSlice, "module">(slice);
 
 export const moduleReducers = reducers as Reducer<ModuleState>;
 export const moduleSelector = selector;
 export const moduleActions = actions;
+export const selectModule = allSelectors;

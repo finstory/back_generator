@@ -1,9 +1,11 @@
 import React, { FC, useState } from "react";
 import { IconButton, Mark, Text } from "@/components";
-import { IModule, IRoute } from "@/modules/module/_interfaces/module.interface";
 import S from "@/_common/services/main.service";
-import RenameModule from "./__RenameModule";
+// import RenameModule from "./__RenameModule";
 import Endpoint from "../Endpoint/__Endpoint";
+// import AddEndpoint from "../Endpoint/___AddEndpoint";
+import { IModule } from "@/app/module/_interfaces/module.interface";
+import RenameModule from "./__RenameModule";
 import AddEndpoint from "../Endpoint/___AddEndpoint";
 
 interface IProps {
@@ -16,6 +18,7 @@ export const RouteModule: FC<IProps> = ({ _scss, module }) => {
   const { addRoute } = S.route;
   const [renameModeActive, setRenameModeActive] = useState<boolean>(false);
   const [addRouteActive, setAddRouteActive] = useState(false);
+
   return <div className={_scss.module_container}>
 
     {!renameModeActive ?
@@ -34,8 +37,7 @@ export const RouteModule: FC<IProps> = ({ _scss, module }) => {
         </div>
 
       </div>
-      :
-      <RenameModule _scss={_scss} moduleName={module.name} active={setRenameModeActive} />
+      : <RenameModule _scss={_scss} moduleName={module.name} active={setRenameModeActive} />
     }
 
     {addRouteActive && <AddEndpoint _scss={_scss} moduleName={module.name} active={setAddRouteActive} />}

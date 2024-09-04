@@ -36,8 +36,7 @@ export class ${UpFirst(moduleName)}Controller {
 
 //<EXPORTS>
 export const controller = new ${UpFirst(moduleName)}Controller();
-export const validation = getValidations(${UpFirst(moduleName)}Controller, C);
-`
+export const validation = getValidations(${UpFirst(moduleName)}Controller, C) as ${UpFirst(moduleName)}Controller;`
 
 export const controller_model = (controllerName: string): string => `
 ${controllerName} = async (req: C.${controllerName}.Req, res: C.${controllerName}.Res) => { };`;

@@ -1,14 +1,17 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RouteModule } from "./RouteModule/__RouteModule";
-import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
+// import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
 import S from "@/_common/services/main.service";
+import { moduleSelector } from "@/integrations/redux/slices/module.slice";
+import { useRouteRx } from "@/app/route/rxjs/route.rx";
+import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
 
 export const EndpointDir = ({ _scss }) => {
 
-  const { moduleState: { modulesList } } = S.module;
-  const { routeState: { endpointPanel: { moduleEditorOpen } } } = S.route;
-  const props = childrenProps({});
+  const modulesList = moduleSelector(module => module.modulesList);
+  const { routeRx$ } = useRouteRx();
+  const moduleEditorOpen = routeRx$.endpointPanel.moduleEditorOpen;
 
   return (
     <div className={_scss.endpoint_dir}>

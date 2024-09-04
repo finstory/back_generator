@@ -58,6 +58,50 @@
           "responseBody": []
         }
       ]
+    },
+    {
+      "name": "product",
+      "routes": [
+        {
+          "id": "db720da9-7c10-43ae-aa33-3dddf5fbc3fe",
+          "controllerName": "getProduct",
+          "endpointName": "/",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "e6cf12d7-a2d0-4a54-92de-b7afbead0b99",
+          "controllerName": "deleteProductRegister",
+          "endpointName": "/register",
+          "requestType": "delete",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "aa239e6a-304d-42d9-b9d3-e66eebc3faa9",
+          "controllerName": "postProductRegisterOpen",
+          "endpointName": "/register/open",
+          "requestType": "post",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
     }
   ]
 }

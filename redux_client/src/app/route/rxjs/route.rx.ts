@@ -1,46 +1,26 @@
 import { useRxState } from "@/_common/config/rxjs/hooks/useRxState";
 import RXJS from "@/_common/config/rxjs/rx";
 
-interface RouteRxState {
-    name: string;
-    lastName: { name: string, active: boolean }[],
-    other: {
-        say: string;
+export default interface RouteRxState {
+    endpointPanel: {
+        moduleEditorOpen: boolean;
+        moduleSelected: string;
     };
-    activeMenuModal: boolean;
-    children: {
-        name: string;
-        lastName: string;
-        address: {
-            street: string;
-            number: number;
-            height: number;
-            oneMore: {
-                myStreet: string;
-            }
-        };
+    routeManager: {
+        status?: "ok" | "loading";
+        paramsSelected?: "params" | "query" | "body" | "bodyResponse";
     };
 };
 
 const initialState: RouteRxState = {
-    name: "Juan",
-    lastName: [{ name: "Perez", active: true }],
-    other: {
-        say: "hola"
+    endpointPanel: {
+        moduleEditorOpen: false,
+        moduleSelected: "some",
     },
-    activeMenuModal: false,
-    children: {
-        name: "juanito",
-        lastName: "perez",
-        address: {
-            street: "falsa",
-            number: 123,
-            height: 2,
-            oneMore: {
-                myStreet: "falsa"
-            }
-        }
-    }
+    routeManager: {
+        status: "ok",
+        paramsSelected: "params",
+    },
 }
 
 const rx = new RXJS(initialState);

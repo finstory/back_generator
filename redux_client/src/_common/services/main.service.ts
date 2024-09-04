@@ -8,7 +8,8 @@ import { objectGetState } from "@config/redux/utils/object-get-state.util";
 
 //% SERVICES_IMPORTS:
 import RestApi from "@/integrations/api-rest/rest.api";
-import UserService from "@/test/user.service";
+import ModuleService from "@/app/module/services/module.service";
+import RouteService from "@/app/route/services/route.service";
 
 @InitialServices
 export class MainService {
@@ -16,8 +17,9 @@ export class MainService {
     protected api = new RestApi();
     protected action = getAllActions();
     protected state = objectGetState();
-    @PrimaryService user = new UserService();
 
+    @PrimaryService route = new RouteService();
+    @PrimaryService module = new ModuleService();
 }
 
 export default new S as MainService;

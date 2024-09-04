@@ -7,7 +7,10 @@ import S from "@/_common/services/main.service";
 
 
 export const EndpointPanel: FC = () => {
-  const { removeModule } = S.module;
+  const { fetchAllModules } = S.module;
+  useEffect(() => {
+    fetchAllModules();
+  }, [])
 
   return (
     <DGBorder className={scss.endpoint_panel}

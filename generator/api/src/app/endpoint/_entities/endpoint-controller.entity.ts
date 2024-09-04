@@ -12,4 +12,4 @@ export class EndpointController {
 
 //<EXPORTS>
 export const controller = new EndpointController();
-export const validation = getValidations(EndpointController, C);
+export const validation = getValidations(EndpointController, C) as EndpointController;

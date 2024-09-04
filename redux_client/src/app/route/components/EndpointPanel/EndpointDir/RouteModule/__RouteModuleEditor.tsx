@@ -2,18 +2,19 @@ import React, { FC } from "react";
 import { Button, Input, Mark } from "@/components";
 import S from "@/_common/services/main.service";
 import { useForm } from "@/_common/hooks/useForm";
+import { useRouteRx } from "@/app/route/rxjs/route.rx";
 
 interface IProps {
   _scss: any;
-  active?: boolean;
   mode?: string;
   moduleName?: string;
   setEditMode?: () => void;
 }
 
 export const RouteModuleEditor: FC<IProps> = ({ _scss }) => {
+  const { routeRx } = useRouteRx();
+  const moduleEditorOpen = routeRx.endpointPanel.moduleEditorOpen;
   const { addModule } = S.module;
-  const { toggleModuleEditor } = S.route;
   const { values, handleInputChange, reset } = useForm({ module_input: "" });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +22,7 @@ export const RouteModuleEditor: FC<IProps> = ({ _scss }) => {
     e.preventDefault();
     addModule(module_input);
     reset();
-    toggleModuleEditor();
+    moduleEditorOpen.set(false);
   }
   return (
     <form className={_scss.module_edit} onSubmit={(e) => handleSubmit(e)}>
