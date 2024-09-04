@@ -41,7 +41,48 @@
             }
           ],
           "query": [],
-          "body": [],
+          "body": [
+            {
+              "from": "body",
+              "name": "userId",
+              "type": "string",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "Length"
+                }
+              ]
+            },
+            {
+              "from": "body",
+              "name": "passwordToken",
+              "type": "{user:string, token:string}",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsBoolean"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsBooleanString"
+                }
+              ]
+            }
+          ],
           "responseBody": []
         },
         {
@@ -96,7 +137,24 @@
           "validateActive": true,
           "description": "",
           "middlewares": [],
-          "params": [],
+          "params": [
+            {
+              "from": "params",
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                }
+              ]
+            }
+          ],
           "query": [],
           "body": [],
           "responseBody": []

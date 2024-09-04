@@ -7,21 +7,24 @@ import { Parameters } from "./Parameters/_Parameters";
 import RequestInput from "./RequestInput/_RequestInput";
 import ParamsSelector from "./ParamsSelector/_ParamsSelector";
 import PropertiesList from "./PropertiesList/_PropertiesList";
+import { IRoute } from "@/app/module/_interfaces/module.interface";
+import { routeSelector, selectRoute } from "@/integrations/redux/slices/route.slice";
 
-import { IRoute } from "@/modules/module/_interfaces/module.interface";
 
 
 export const ManagerPanel: FC = () => {
 
-    const { findRoute } = S.route;
-    const { modulesList } = S.module.moduleState;
-    const { routeManager: { moduleName, routeId, status } } = S.route.routeState;
-    const [route, setRoute] = useState<IRoute>();
+    // const { selectRouteManager } = S.route;
+    // const { modulesList } = S.module.moduleState;
+    // const { routeManager: { moduleName, routeId, status } } = S.route.routeState;
+    // const [route, setRoute] = useState<IRoute>();
 
-    useEffect(() => {
-        if (routeId) setRoute(findRoute(moduleName, routeId));
+    // useEffect(() => {
+    //     if (routeId) setRoute(selectRoute(moduleName, routeId));
 
-    }, [routeId, modulesList])
+    // }, [routeId, modulesList])
+    const moduleName$ = routeSelector(route => route.routeManager.moduleName);
+    const route$ = selectRoute.findRouteSelector();
 
     return (
         <DGBorder className={scss.endpoint_panel}
@@ -32,13 +35,13 @@ export const ManagerPanel: FC = () => {
             borderBetween={"3px"}
         >
             {
-                route ?
+                route$ ?
                     <div className={scss.panel}>
-                        <Title _scss={scss} moduleName={moduleName} endpointName={route.endpointName} />
-                        <Parameters _scss={scss} route={route} requestParamsList={route.params} />
+                        <Title _scss={scss} moduleName={moduleName$} endpointName={route$.endpointName} />
+                        <Parameters _scss={scss} route={route$} requestParamsList={route$.params} />
                         <RequestInput _scss={scss} />
-                        <ParamsSelector _scss={scss} route={route} />
-                        <PropertiesList _scss={scss} route={route} />
+                        <ParamsSelector _scss={scss} route={route$} />
+                        <PropertiesList _scss={scss} route={route$} />
                     </div>
                     :
                     <div className={`${scss.panel} ${scss.disabled}`}

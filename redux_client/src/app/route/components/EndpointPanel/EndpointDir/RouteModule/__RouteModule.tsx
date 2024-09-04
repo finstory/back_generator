@@ -1,9 +1,7 @@
 import React, { FC, useState } from "react";
 import { IconButton, Mark, Text } from "@/components";
 import S from "@/_common/services/main.service";
-// import RenameModule from "./__RenameModule";
 import Endpoint from "../Endpoint/__Endpoint";
-// import AddEndpoint from "../Endpoint/___AddEndpoint";
 import { IModule } from "@/app/module/_interfaces/module.interface";
 import RenameModule from "./__RenameModule";
 import AddEndpoint from "../Endpoint/___AddEndpoint";
@@ -15,7 +13,6 @@ interface IProps {
 
 export const RouteModule: FC<IProps> = ({ _scss, module }) => {
   const { removeModule } = S.module;
-  const { addRoute } = S.route;
   const [renameModeActive, setRenameModeActive] = useState<boolean>(false);
   const [addRouteActive, setAddRouteActive] = useState(false);
 

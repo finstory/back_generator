@@ -10,6 +10,7 @@ import { objectGetState } from "@config/redux/utils/object-get-state.util";
 import RestApi from "@/integrations/api-rest/rest.api";
 import ModuleService from "@/app/module/services/module.service";
 import RouteService from "@/app/route/services/route.service";
+import ValidationService from "@/app/validation/services/validation.service";
 
 @InitialServices
 export class MainService {
@@ -20,6 +21,7 @@ export class MainService {
 
     @PrimaryService route = new RouteService();
     @PrimaryService module = new ModuleService();
+    @PrimaryService validation = new ValidationService();
 }
 
 export default new S as MainService;

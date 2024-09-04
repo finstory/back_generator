@@ -8,6 +8,7 @@ import { confirmAlert } from "@helpers/alert";
 class RouteService extends BasicInjectable {
 
     @BasicInject private _module: S["module"];
+    @BasicInject private _validation: S["validation"];
 
     @BasicInject private _api: S["api"];
     @BasicInject private _state: S["state"];
@@ -40,8 +41,9 @@ class RouteService extends BasicInjectable {
 
     //* Proxy Action:
 
-    selectRoute = (moduleName: string, routeId: string, controllerName: string) => {
+    selectRouteManager = async (moduleName: string, routeId: string, controllerName: string) => {
         this._action_route.setRouteManager({ moduleName, routeId });
+        await this._validation.reloadRequestParams(moduleName, controllerName);
     };
 
     // toggleParamsSelected = (requestParamsType: "params" | "query" | "body" | "bodyResponse") => { this._action_route.toggleParamsSelected(requestParamsType) };

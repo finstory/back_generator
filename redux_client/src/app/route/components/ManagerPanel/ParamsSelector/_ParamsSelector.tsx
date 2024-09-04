@@ -1,8 +1,9 @@
 import { Text } from "@/components";
 import React, { FC, useState } from "react";
 import S from "@/_common/services/main.service";
-import { IRoute } from "@/modules/module/_interfaces/module.interface";
 import { underscoreToClassName, upFirst } from "@/_common/helpers/wordsManager";
+import { IRoute } from "@/app/module/_interfaces/module.interface";
+import { useRouteRx } from "@/app/route/rxjs/route.rx";
 
 interface IProps {
     _scss: CSSModuleClasses;
@@ -16,8 +17,10 @@ type paramsOptions = {
 };
 
 const ParamsSelector: FC<IProps> = ({ _scss, route }) => {
-    const { toggleParamsSelector } = S.route;
-    const { routeManager: { paramsSelected } } = S.route.routeState;
+    const { routeRx, routeRx$ } = useRouteRx();
+    const paramsSelected = routeRx$.routeManager.paramsSelected;
+    // const { toggleParamsSelector } = S.route;
+    // const { routeManager: { paramsSelected } } = S.route.routeState;
     // const [paramsOptions, setParamsOptions] = useState<paramsOptions[]>([
     //     {
     //         name: "PARAMS",
@@ -49,8 +52,8 @@ const ParamsSelector: FC<IProps> = ({ _scss, route }) => {
         </div>
     );
 
-    const selectOption = (optionName: string) => {
-        toggleParamsSelector(optionName);
+    const selectOption = (optionName: "params" | "query" | "body" | "bodyResponse") => {
+        routeRx.routeManager.paramsSelected.set(optionName);
         // let newParamsOptions = paramsOptions.map((option) => {
         //     if (option.name === optionName)
         //         return { ...option, color: "primary" } as paramsOptions;
@@ -72,7 +75,7 @@ const ParamsSelector: FC<IProps> = ({ _scss, route }) => {
                         <Text
                             label="p"
                             color={paramsSelected === option ? "primary" : "base-off"}
-                            onClick={() => { selectOption(option) }}>
+                            onClick={() => { selectOption(option as any) }}>
                             {option === "responseBody" ? "Response" : upFirst(option)}
                         </Text>
                     </ul>

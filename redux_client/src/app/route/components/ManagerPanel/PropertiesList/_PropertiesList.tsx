@@ -1,9 +1,10 @@
 import { ColorStyle } from '@/_common/interfaces/IStyles';
 import printAlert, { featureNotAvailable } from '@/_common/_plugins/toast-alerts';
 import { IconButton, Mark, Text } from '@/components';
-import { IRequestParams, IRoute } from '@/modules/module/_interfaces/module.interface';
 import React, { FC, useState } from 'react';
 import S from '@/_common/services/main.service';
+import { IRequestParams, IRoute } from '@/app/module/_interfaces/module.interface';
+import { useRouteRx } from '@/app/route/rxjs/route.rx';
 interface IProps {
     _scss: CSSModuleClasses;
     route: IRoute;
@@ -17,7 +18,7 @@ type PropertiesList = {
 }
 
 const PropertiesList: FC<IProps> = ({ _scss, route }) => {
-    const { routeManager: { paramsSelected } } = S.route.routeState;
+    const paramsSelected$ = useRouteRx().routeRx$.routeManager.paramsSelected;
 
     const viewValidations = (validations: IRequestParams["validations"]) => {
         let validationsString = "";
@@ -55,9 +56,16 @@ const PropertiesList: FC<IProps> = ({ _scss, route }) => {
                     </tr>
 
                     {
-                        route && paramsSelected &&
-                            route[paramsSelected].length > 0 ?
-                            route[paramsSelected].map((property: IRequestParams) => {
+                        route && paramsSelected$ &&
+                            route[paramsSelected$].length > 0 ?
+                            route[paramsSelected$].map((property: IRequestParams) => {
+
+                                let propertyName = property.name;
+                                let propertyType = property.type;
+
+                                if (property.name.length > 14) propertyName = property.name.slice(0, 14) + "...";
+                                if (property.type.length > 19) propertyType = property.type.slice(0, 19) + "...";
+
                                 return (
                                     <tr key={property.name}>
                                         <td className={_scss.optional}>
@@ -68,10 +76,11 @@ const PropertiesList: FC<IProps> = ({ _scss, route }) => {
                                             />
                                         </td>
 
-                                        <td><Text label="p" color="base-off">{property.name}</Text></td>
+                                        <td><Text label="p" color="base-off" title={property.name}>{propertyName}</Text></td>
 
                                         <td>
-                                            <Text label="p" color={getTypeColor(property.type)} >{property.type}</Text>
+                                            <Text label="p" color={getTypeColor(property.type)}
+                                                title={property.type}>{propertyType}</Text>
                                         </td>
 
                                         <td>

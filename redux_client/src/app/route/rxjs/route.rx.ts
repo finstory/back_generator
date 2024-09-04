@@ -7,8 +7,8 @@ export default interface RouteRxState {
         moduleSelected: string;
     };
     routeManager: {
-        status?: "ok" | "loading";
-        paramsSelected?: "params" | "query" | "body" | "bodyResponse";
+        status: "ok" | "loading";
+        paramsSelected: "params" | "query" | "body" | "bodyResponse";
     };
 };
 

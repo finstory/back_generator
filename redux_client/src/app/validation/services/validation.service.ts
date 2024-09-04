@@ -1,35 +1,25 @@
-import { BasicInject, BasicInjectable, AllServices as S } from "@services_injector";
-import { Redux, ReduxConfig, type SetRedux } from "@redux_config";
-import { PrintError, PrintErrRes } from "@print_errors";
+import { S, BasicInject, BasicInjectable, PrintError, PrintErrRes } from "@decorators";
 import printAlert from "@/_common/_plugins/toast-alerts";
 import { confirmAlert } from "@/_common/helpers/alert";
-import ModuleState from "@/modules/module/services/module.store";
-import RouteState from "@/app/route/__services/route.store";
 
-@ReduxConfig
 @PrintErrRes
 class ValidationService extends BasicInjectable {
 
-    // @Redux public moduleState: ModuleState;
-    @Redux private _routeState: RouteState;
-    @Redux private _setRoute: SetRedux;
-    @BasicInject private _api: S["api"];
     @BasicInject private _module: S["module"];
 
+    @BasicInject private _api: S["api"];
+    @BasicInject private _state: S["state"];
+    @BasicInject private _action_module: S["action"]["module"];
+
     @PrintError
-    reloadRequestParams = async (
-        moduleName: string,
-        controllerName: string
-    ) => {
-        const { routeManager } = this._routeState;
+    reloadRequestParams = async (moduleName: string, controllerName: string) => {
 
         // this._setRoute({ routeManager: { ...routeManager, status: "loading" } }, "RELOAD_REQUEST_PARAMS");
-        console.log(moduleName, controllerName)
         await this._api.requestParams.patchValidationReload({ moduleName, controllerName });
-        await this._module.getAllModules();
+        await this._module.fetchAllModules();
 
         // this._setRoute({ routeManager: { ...routeManager, status: "ok" } }, "RELOAD_REQUEST_PARAMS");
     }
-
 }
+
 export default ValidationService;

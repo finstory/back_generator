@@ -33,6 +33,15 @@ class Params {
 class Query { };
 
 class Body {
+    @V.IsString()
+    @V.IsNotEmpty()
+    @V.Length(1, 100)
+    userId: string;
+
+    @V.IsBoolean()
+    @V.IsNotEmpty()
+    @V.IsBooleanString()
+    passwordToken: {user:string, token:string};
 };
 
 class ResponseBody { };

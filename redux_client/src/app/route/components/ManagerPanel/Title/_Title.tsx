@@ -7,7 +7,7 @@ import React from "react";
 
 export const Title = ({ _scss, moduleName, endpointName }) => {
 
-  const { toggleModuleEditor } = S.route;
+  // const { toggleModuleEditor } = S.route;
   const title = `/${moduleName}${endpointName === "/" ? "" : endpointName}`.toUpperCase();
   return (
     <div className={_scss.title}>

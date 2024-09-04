@@ -25,10 +25,6 @@ class RouteSlice extends ReduxSlice<RouteSlice> {
 
     // % Actions:
 
-    // toggleParamsSelected = (state: RouteState, { payload }: PA<RouteState["routeManager"]["paramsSelected"]>) => {
-    //     state.routeManager.paramsSelected = payload;
-    // };
-
     setRouteManager = (state: RouteState, { payload }: PA<RouteState["routeManager"]>) => {
         state.routeManager = payload;
     };
@@ -38,7 +34,7 @@ class RouteSlice extends ReduxSlice<RouteSlice> {
     findRouteSelector = () => {
         return setSelector(
 
-            [this.select.route.routeManager.get(), this.select.module.modulesList.get()],
+            [({ route }) => route.routeManager, ({ module }) => module.modulesList],
             (routeManager, modulesList) => {
 
                 const { moduleName, routeId } = routeManager;

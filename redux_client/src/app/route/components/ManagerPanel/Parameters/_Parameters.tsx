@@ -1,6 +1,6 @@
 
+import { IRoute } from '@/app/module/_interfaces/module.interface';
 import { Button, Text, Mark } from '@/components';
-import { IRoute } from '@/modules/module/_interfaces/module.interface';
 import React, { FC } from 'react';
 
 interface IProps {
