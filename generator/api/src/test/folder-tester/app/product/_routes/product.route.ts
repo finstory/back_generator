@@ -5,8 +5,6 @@ import { controller, validation } from "../product.controller";
 const router = Router();
 
 //<ROUTES>
-router.post("/register/open", validation.postProductRegisterOpen, controller.postProductRegisterOpen);
-router.delete("/register", validation.deleteProductRegister, controller.deleteProductRegister);
-router.get("/", validation.getProduct, controller.getProduct);
+router.get("/register", validation.getProductRegister, controller.getProductRegister);
 
 export default router;

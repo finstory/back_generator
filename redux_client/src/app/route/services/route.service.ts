@@ -33,8 +33,10 @@ class RouteService extends BasicInjectable {
     deleteRoute = async (moduleName: string, route: Route) => {
         const confirm = await confirmAlert(`Are you sure you want to remove route ${route.endpointName}?`);
         if (!confirm) return;
+
         await this._api.endpoint.deleteEndpoint({ moduleName, route });
         await this._module.fetchAllModules();
+
 
         printAlert(`Route ${route.endpointName} removed successfully`);
     }

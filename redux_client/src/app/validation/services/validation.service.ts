@@ -14,11 +14,9 @@ class ValidationService extends BasicInjectable {
     @PrintError
     reloadRequestParams = async (moduleName: string, controllerName: string) => {
 
-        // this._setRoute({ routeManager: { ...routeManager, status: "loading" } }, "RELOAD_REQUEST_PARAMS");
         await this._api.requestParams.patchValidationReload({ moduleName, controllerName });
         await this._module.fetchAllModules();
 
-        // this._setRoute({ routeManager: { ...routeManager, status: "ok" } }, "RELOAD_REQUEST_PARAMS");
     }
 }
 

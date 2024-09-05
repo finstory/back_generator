@@ -1,5 +1,4 @@
 import { AxiosInstance } from "axios";
-import RestApi from "../rest.api";
 import classValidator from "@/_common/config/validations";
 import { ErrorFormat } from "@/_common/config/validations/format-errors";
 import ErrorResponse from "@/_common/config/errors/models/error-response";
@@ -34,9 +33,7 @@ class ModuleEndpoint {
 
 
     getModule = async () => {
-        this._enqueue("getModule");
         const fetch = await this._api.get("/module/all");
-        this._dequeue("getModule");
         return fetch.data;
     }
 
@@ -47,9 +44,7 @@ class ModuleEndpoint {
     }
 
     deleteModule = async ({ moduleName }: PostModuleDto) => {
-        this._enqueue("deleteModule");
         const fetch = await this._api.delete(`/module/${moduleName}`);
-        this._dequeue("deleteModule");
         return fetch.data;
     }
 

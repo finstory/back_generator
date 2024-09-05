@@ -155,6 +155,7 @@ class RouteService {
     delete = async (moduleName: string, route: BasicRouteDto) => {
         const modulesList = (await this.readDB()).get('module')
         const moduleGetting = modulesList.find({ name: moduleName })
+        console.log(moduleGetting.value());
 
         if (!moduleGetting.value())
             throwError("JSON_DB", "not_found", `Module '${moduleName}'`);
@@ -167,7 +168,7 @@ class RouteService {
 
             const endpoint = routeGetting.get('endpointName').value();
             const requestType = routeGetting.get('requestType').value();
-
+         
             await routesList
                 .remove({ endpointName: route.endpointName, requestType: route.requestType })
                 .write()

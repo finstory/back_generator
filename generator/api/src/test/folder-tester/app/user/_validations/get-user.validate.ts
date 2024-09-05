@@ -11,7 +11,11 @@ class Params { };
 
 class Query { };
 
-class Body { };
+class Body {
+
+    
+
+ };
 
 class ResponseBody { };
 

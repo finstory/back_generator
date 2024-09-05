@@ -32,21 +32,25 @@ const Endpoint: FC<IProps> = ({ _scss, moduleName, route }) => {
                 ?
                 <EndpointEditor _scss={_scss} moduleName={moduleName} route={route} active={setEditModeActive} />
                 :
-                <div className={_scss.wrap} onClick={toggleSelected} >
+                <div className={_scss.wrap} >
                     <Mark
                         className={_scss.mark}
                         variant={routeId$ === route.id ? 'rhombus' : 'bar'}
                         color={routeId$ === route.id ? 'primary' : 'base-off'}
                     />
 
+
                     <Text className={_scss.text} label="p"
                         color={routeId$ === route.id ? 'primary' : 'base-off'}
+                        onClick={toggleSelected}
                     >
                         {route.endpointName.toUpperCase()} -
 
                         <Text className={_scss.text} label="span" color={route.requestType}> {route.requestType.toUpperCase()} </Text>
 
                     </Text>
+
+
 
                     <div className={_scss.wrap_editor}>
                         <IconButton icon="edit_primary" onClick={() => { setEditModeActive(true) }} />

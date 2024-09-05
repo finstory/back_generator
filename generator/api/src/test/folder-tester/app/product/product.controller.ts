@@ -6,20 +6,8 @@ import S from "@services";
 
 //<CONTROLLERS>
 
-controller.postProductRegisterOpen = async ({ params: { id }, query, body }, res) => {
-    const data: any = { controllerName: "getProductRegisterOpen" };
-
-    res.status(200).json(data);
-};
-
-controller.deleteProductRegister = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "postProductRegister" };
-
-    res.status(200).json(data);
-};
-
-controller.getProduct = async ({ params, query, body }, res) => {
-    const data: any = { controllerName: "getProduct" };
+controller.getProductRegister = async ({ params, query, body }, res) => {
+    const data: any = { controllerName: "getProductRegister" };
 
     res.status(200).json(data);
 };

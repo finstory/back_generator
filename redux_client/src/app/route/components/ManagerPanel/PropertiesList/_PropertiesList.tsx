@@ -93,9 +93,11 @@ const PropertiesList: FC<IProps> = ({ _scss, route }) => {
                                     </tr>
                                 )
                             })
-                            : <div className={_scss.empty} >
-                                <Text label="p" color="base-off" title="Empty List">No Properties Found... </Text>
-                            </div>
+                            : <tr className={_scss.empty} style={{ borderBottom: "0" }} >
+                                <td style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                                    <Text label="p" color="base-off" title="Empty List">No Properties Found... </Text>
+                                </td>
+                            </tr>
                     }
 
 

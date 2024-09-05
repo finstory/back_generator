@@ -104,57 +104,14 @@
       "name": "product",
       "routes": [
         {
-          "id": "db720da9-7c10-43ae-aa33-3dddf5fbc3fe",
-          "controllerName": "getProduct",
-          "endpointName": "/",
+          "id": "f2e09644-4ebb-4fe1-94b9-13a0d6c6121e",
+          "controllerName": "getProductRegister",
+          "endpointName": "/register",
           "requestType": "get",
           "validateActive": true,
           "description": "",
           "middlewares": [],
           "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "e6cf12d7-a2d0-4a54-92de-b7afbead0b99",
-          "controllerName": "deleteProductRegister",
-          "endpointName": "/register",
-          "requestType": "delete",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [],
-          "query": [],
-          "body": [],
-          "responseBody": []
-        },
-        {
-          "id": "aa239e6a-304d-42d9-b9d3-e66eebc3faa9",
-          "controllerName": "postProductRegisterOpen",
-          "endpointName": "/register/open",
-          "requestType": "post",
-          "validateActive": true,
-          "description": "",
-          "middlewares": [],
-          "params": [
-            {
-              "from": "params",
-              "name": "id",
-              "type": "string",
-              "optional": false,
-              "validations": [
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "IsString"
-                },
-                {
-                  "decoratorType": "ClassValidator",
-                  "name": "IsNotEmpty"
-                }
-              ]
-            }
-          ],
           "query": [],
           "body": [],
           "responseBody": []

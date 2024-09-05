@@ -101,7 +101,7 @@ class ExpressRouteService extends Injectable {
     removeRoute: SM["removeRoute"] = async (moduleName, route) => {
 
         const { endpointName, requestType } = route;
-        const filePath = `${appPath} /${moduleName}/_routes / ${moduleName}.route.ts`;
+        const filePath = `${appPath}/${moduleName}/_routes/${moduleName}.route.ts`;
 
         await this._fs_file.updateFile(filePath, async (textCode) => {
 

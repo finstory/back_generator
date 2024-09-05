@@ -13,5 +13,5 @@ export class PackageController {
 
 //<EXPORTS>
 export const controller = new PackageController();
-export const validation = getValidations<PackageController>(PackageController, C);
+export const validation = getValidations<PackageController>(PackageController, C) ;
 

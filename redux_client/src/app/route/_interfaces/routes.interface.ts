@@ -1,14 +1,15 @@
-import RequestParamsModel from "@/integrations/api/rest/_interfaces/_external/request-params-model";
+import RequestParamsModel from "@/integrations/api-rest/endpoints/enpoint/_interfaces/_external/request-params-model";
 
-export interface BasicRoute {
+
+export interface Route {
+    controllerName: string;
     endpointName: string;
     requestType: string;
 }
 
-export interface Route extends BasicRoute {
-    controllerName: string;
 
-}
+export interface BasicRoute extends Omit<Route, "controllerName"> { }
+
 
 export interface NewRoute {
     endpointName?: string;

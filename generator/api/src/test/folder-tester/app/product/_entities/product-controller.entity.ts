@@ -5,11 +5,7 @@ import getValidations from "@config/validations/getValidations";
 export class ProductController {
     //<CONTROLLERS>
 
-    deleteProductRegisterOpen = async (req: C.deleteProductRegisterOpen.Req, res: C.deleteProductRegisterOpen.Res) => {};
-
-    deleteProductRegister = async (req: C.deleteProductRegister.Req, res: C.deleteProductRegister.Res) => {};
-
-    getProduct = async (req: C.getProduct.Req, res: C.getProduct.Res) => {};
+    getProductRegister = async (req: C.getProductRegister.Req, res: C.getProductRegister.Res) => {};
 }
 
 //<EXPORTS>
