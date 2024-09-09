@@ -4,6 +4,7 @@ import scss from "./button.module.scss";
 export const Button: FC<{
   style?: React.CSSProperties;
   children: React.ReactNode;
+  className?: string;
   variant?:
   "default" | "reset" | "circle_one_char" | "gradient"
   //? request colors
@@ -15,7 +16,7 @@ export const Button: FC<{
   height?: React.CSSProperties["height"];
   padding?: React.CSSProperties["padding"];
   onClick?: () => void;
-}> = ({ children, style = {}, variant = "index", onClick, width = "auto", height = "auto", padding = "auto", title }) => {
+}> = ({ children, style = {}, variant = "index", onClick, width = "auto", height = "auto", padding = "auto", title, className }) => {
 
   const notClonedList: string[] = ["circle_one_char"];
   const includeDefault = notClonedList.includes(variant);
@@ -23,7 +24,7 @@ export const Button: FC<{
   return (
     <button
       title={title}
-      className={`${!includeDefault ? scss.default : ""} ${variant ? scss[variant] : ""}`}
+      className={`${className} ${!includeDefault ? scss.default : ""} ${variant ? scss[variant] : ""}`}
       style={{ ...style, width, height, padding }}
       onClick={onClick}
     >

@@ -18,6 +18,7 @@ export interface IRoute {
 }
 
 export interface IRequestParams {
+    id: string;
     name: string;
     type: string;
     optional: boolean;

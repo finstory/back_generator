@@ -311,7 +311,7 @@
 
                 @include flex();
                 padding: 1.9rem 3rem;
-                background: var(--gradient-secondary);
+                background: var(--gradient-primary);
                 color: var(--color-base);
 
                 border-radius: 1rem;
@@ -320,7 +320,7 @@
 
                 &:hover {
                     transition: 0.2s linear;
-                    background: var(--color-primary-hover);
+                    background: var(--color-primary);
                 }
 
                 div:nth-child(1) {

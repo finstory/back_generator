@@ -1,7 +1,7 @@
 @import "../../../_common/config/styles/sass";
 
 .wrapper {
-    
+
     @include flex();
 
 }
@@ -21,6 +21,12 @@
 
     transition: 0.2s linear;
 
+    &.off {
+        color: var(--color-base-off);
+        border: 1px solid var(--border-secondary);
+
+
+    }
     &::placeholder {
         color: var(--color-base-off);
     }
@@ -30,6 +36,7 @@
         color: var(--color-primary);
         outline: none;
     }
+
 }
 
 

@@ -25,5 +25,5 @@ export class OnlyRequestParamsRouteDto extends PickType(RouteDto,
     ["params", "query", "body", "responseBody"]) { }
 
 export class FragmentRouteDto extends PickType(RouteDto,
-    ["endpointName", "requestType", "controllerName", "validateActive"]) { }
+    ["endpointName", "requestType", "controllerName", "validateActive", "description"]) { }
 export class OptionalRouteDto extends PartialType(RouteDto) { }

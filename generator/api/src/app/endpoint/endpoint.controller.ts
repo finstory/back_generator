@@ -38,6 +38,12 @@ controller.patchEndpoint = async ({ body: { moduleName, route, newRoute } }, res
     res.status(200).json(`Endpoint ${moduleName} edited successfully.`);
 };
 
+controller.patchEndpointDescription = async ({ body: { moduleName, route, description } }, res) => {
+
+    await json_db.route.updateDescription(moduleName, route, description);
+    res.status(200).json(`Description ${moduleName} edited successfully.`);
+};
+
 controller.deleteEndpoint = async ({ body: { moduleName, route } }, res) => {
 
     await json_db.route.delete(moduleName, route);

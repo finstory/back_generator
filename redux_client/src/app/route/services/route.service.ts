@@ -41,6 +41,16 @@ class RouteService extends BasicInjectable {
         printAlert(`Route ${route.endpointName} removed successfully`);
     }
 
+    @PrintError
+    updateDescription = async (description: string) => {
+        const { moduleName, routeId } = this._state.route.routeManager;
+        const route = this._state.module.modulesList.find(module => module.name === moduleName)?.routes.find(route => route.id === routeId);
+        if (!route) throw new Error("Route not found");
+        await this._api.endpoint.patchEndpointDescription({ moduleName, route, description });
+        await this._module.fetchAllModules();
+        printAlert(`Description to ${route.endpointName} edited successfully`);
+    }
+
     //* Proxy Action:
 
     selectRouteManager = async (moduleName: string, routeId: string, controllerName: string) => {

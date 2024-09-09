@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 
 export const RoutePage: React.FC = () => {
+
     // const { getAllModules } = S.module;
 
     // useEffect(() => {
@@ -17,7 +18,7 @@ export const RoutePage: React.FC = () => {
         <div className="main_container">
             <EndpointPanel />
             <ManagerPanel />
-            <RequestPanel /> 
+            <RequestPanel />
         </div>
     )
 }

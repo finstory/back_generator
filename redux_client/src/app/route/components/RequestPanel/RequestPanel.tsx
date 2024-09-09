@@ -26,7 +26,7 @@ export const RequestPanel: FC = () => {
 
             <div className={scss.panel}>
                 <Title _scss={scss} />
-                {/* <MarkdownViewer /> */}
+                {/* <MarkdownViewer />  */}
                 <MarkdownEditor />
             </div>
 

@@ -67,7 +67,8 @@ const PropertiesList: FC<IProps> = ({ _scss, route }) => {
                                 if (property.type.length > 19) propertyType = property.type.slice(0, 19) + "...";
 
                                 return (
-                                    <tr key={property.name}>
+
+                                    <tr key={property.id}>
                                         <td className={_scss.optional}>
                                             <input type="checkbox"
                                                 className={_scss.checkbox}

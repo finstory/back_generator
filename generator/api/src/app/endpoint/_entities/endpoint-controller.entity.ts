@@ -8,6 +8,7 @@ export class EndpointController {
   postEndpoint = async (req: C.postEndpoint.Req, res: C.postEndpoint.Res) => { };
   patchEndpoint = async (req: C.patchEndpoint.Req, res: C.patchEndpoint.Res) => { };
   deleteEndpoint = async (req: C.deleteEndpointById.Req, res: C.deleteEndpointById.Res) => { };
+  patchEndpointDescription = async (req: C.patchEndpointDescription.Req, res: C.patchEndpointDescription.Res) => { };
 }
 
 //<EXPORTS>

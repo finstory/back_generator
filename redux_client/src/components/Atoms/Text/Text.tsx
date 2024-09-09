@@ -32,7 +32,7 @@ export const Text: FC<IText> = ({ style = {},
     fontWeight = "400",
     hoverColor = "none",
     onClick,
-    className
+    className 
 }) => {
     return React.createElement(
         label,

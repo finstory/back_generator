@@ -51,6 +51,19 @@ class RouteSlice extends ReduxSlice<RouteSlice> {
         );
     }
 
+    findRouteByIdSelector = () => {
+        return setSelector(
+            [({ module }) => module.modulesList],
+            (modulesList) => (routeId: string) => {
+                for (let module of modulesList) {
+                    const route = module.routes.find((route) => route.id === routeId);
+                    if (route) return route;
+                }
+                return null;
+            }
+        );
+    }
+
 }
 
 

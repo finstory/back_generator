@@ -11,12 +11,14 @@
           "validateActive": true,
           "description": "",
           "middlewares": [],
-          "params": [
+          "params": [],
+          "query": [
             {
-              "from": "params",
+              "from": "query",
+              "id": "ee5a0ed1-5ce3-442c-a356-38c6936aa4c4",
               "name": "userId",
               "type": "string",
-              "optional": false,
+              "optional": true,
               "validations": [
                 {
                   "decoratorType": "ClassValidator",
@@ -33,17 +35,18 @@
               ]
             },
             {
-              "from": "params",
+              "from": "query",
+              "id": "46543594-0350-4853-b2bd-5af4236086ca",
               "name": "user",
               "type": "UserDto",
               "optional": false,
               "validations": []
             }
           ],
-          "query": [],
           "body": [
             {
               "from": "body",
+              "id": "f4896fa1-bc45-41e8-88d3-cae642d3f62b",
               "name": "userId",
               "type": "string",
               "optional": false,
@@ -64,8 +67,9 @@
             },
             {
               "from": "body",
+              "id": "b79196a6-dc5b-4c37-950b-2abf00be9fa5",
               "name": "passwordToken",
-              "type": "{user:string, token:string}",
+              "type": "{ user: string, token: string }",
               "optional": false,
               "validations": [
                 {
@@ -91,7 +95,7 @@
           "endpointName": "/",
           "requestType": "get",
           "validateActive": true,
-          "description": "",
+          "description": "ásdasd",
           "middlewares": [],
           "params": [],
           "query": [],
@@ -109,7 +113,52 @@
           "endpointName": "/register",
           "requestType": "get",
           "validateActive": true,
-          "description": "",
+          "description": "\n\n ### *Description:*\n\nThis is one example Description. The property `ID` is necesary to find `USERS`.\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 201 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 200 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "routes": [
+        {
+          "id": "39a2cf15-f48e-4f86-b6c2-a4f31b3bf03f",
+          "controllerName": "putCompanyLogin",
+          "endpointName": "/login",
+          "requestType": "put",
+          "validateActive": true,
+          "description": "op´{po",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [
+            {
+              "from": "body",
+              "id": "e37b110b-eca5-4c9f-8048-6b1587d6d791",
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                }
+              ]
+            }
+          ],
+          "responseBody": []
+        },
+        {
+          "id": "a63f0b8e-3f75-4f12-805a-752582929f1f",
+          "controllerName": "getCompany",
+          "endpointName": "/",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "### *Description:*\n\nThis is one example Description. The property `ID` is necesary to find `USERS`.\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
           "middlewares": [],
           "params": [],
           "query": [],

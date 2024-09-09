@@ -21,16 +21,17 @@ class UserDto {
 }
 
 class Params {
+};
+
+class Query {
     @V.IsString()
     @V.IsNotEmpty()
     @V.Length(1, 100)
-    userId: string;
+    userId?: string;
 
-    
+
     user: UserDto;
 };
-
-class Query { };
 
 class Body {
     @V.IsString()
@@ -41,7 +42,7 @@ class Body {
     @V.IsBoolean()
     @V.IsNotEmpty()
     @V.IsBooleanString()
-    passwordToken: {user:string, token:string};
+    passwordToken: { user: string, token: string };
 };
 
 class ResponseBody { };

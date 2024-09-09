@@ -71,10 +71,103 @@
     --gradient-error: linear-gradient(180deg, #3114d4ab 0%, #5303d38d 100%);
 }
 
+
+.send_btn {
+    position: relative;
+
+    @include flex();
+    padding: 1.9rem 3rem;
+    background: var(--gradient-secondary);
+    color: var(--color-base);
+
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.1s linear;
+
+    &:hover {
+        transition: 0.2s linear;
+        background: var(--color-primary-hover);
+    }
+
+    div:nth-child(1) {
+        @include flex(center, center);
+        @include gradient(black_bg);
+        border-radius: 1rem;
+    }
+
+}
+
+.screen_btn {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    z-index: 23232;
+    @include flex();
+    padding: 1.9rem 3rem;
+    background: var(--gradient-primary);
+    color: var(--color-base);
+    border: 1px;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.1s linear;
+
+    &:hover {
+        transition: 0.1s linear;
+        background: var(--color-primary);
+    }
+
+    div:nth-child(1) {
+        @include flex(center, center);
+        @include gradient(black_bg);
+        border-radius: 1rem;
+    }
+
+    &.active {
+        border-radius: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+
+        div:nth-child(1) {
+            border-radius: 0;
+        }
+    }
+
+
+}
+
+.disabled_panel {
+
+    @include dim_width();
+    @include dim_height();
+    @include flex(center, center);
+
+    h2 {
+        animation: blink 2s ease-in-out infinite;
+        margin-bottom: 8rem;
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: .6;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: .6;
+        }
+    }
+}
+
 .markdown_editor_container {
     @include dim_width();
     @include dim_height(30rem);
-    background-color: #1e1e1e;
+    z-index: 4343;
+    // background-color: linear-gradient(180deg, #0b0b0b 0%, #121212 100%);
+    // background-color: #1e1e1e;
     color: #ffffff;
     border: 1px solid transparent;
 

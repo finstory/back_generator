@@ -60,15 +60,66 @@
     --gradient-error: linear-gradient(180deg, #3114d4ab 0%, #5303d38d 100%);
 }
 
+blockquote p {
+    color: var(--color-base-off);
+    padding-left: 1rem;
+}
+
+
+.rc-md-navigation {
+    background-color: #1d1e1e !important;
+    border-bottom: 1px solid var(--border-secondary) !important;
+
+}
+
 .rc-md-editor {
+    /* background-color: transparent; */
+
     background-color: transparent;
     border: none;
 
 }
 
-/* .rc-md-editor .editor-container>.section {
-    border: none;
-} */
+.sec-md textarea {
+    font-size: var(--font-size-medium) !important;
+    background-color: #1d1e1e !important;
+    color: var(--color-base) !important;
+
+}
+
+code {
+    background-color: #232424 !important;
+
+
+}
+
+.custom-html-style table th {
+    background-color: var(--border-secondary)
+}
+
+.custom-html-style table th {
+    color: var(--color-base);
+    border: 1px solid var(--border-secondary);
+}
+
+.custom-html-style table td {
+    border: 1px solid var(--border-secondary);
+
+}
+
+.custom-html-style table tbody td code {
+    color: var(--color-base);
+
+}
+
+hr {
+    border: 0 !important;
+    border-bottom: 1px solid var(--border-secondary) !important;
+}
+
+.language-js {
+    background-color: transparent !important
+}
 
 .custom-html-style {
     width: 100%;

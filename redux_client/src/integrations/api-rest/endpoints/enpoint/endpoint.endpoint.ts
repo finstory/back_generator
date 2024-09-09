@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import checkParams from "@config/errors/utils/check-errors.util";
-import { DeleteEndpoint, PatchEndpoint, PostEndpoint } from "./_validators/_index";
+import { DeleteEndpoint, PatchEndpoint, PatchEndpointDescription, PostEndpoint } from "./_validators/_index";
 
 
 class EndpointEndpoint {
@@ -38,10 +38,15 @@ class EndpointEndpoint {
     }
 
     deleteEndpoint = async ({ moduleName, route }: DeleteEndpoint) => {
+
         const fetch = await this._api.delete("/endpoint", { data: { moduleName, route } });
         return fetch.data;
 
+    }
 
+    patchEndpointDescription = async ({ moduleName, route, description }: PatchEndpointDescription) => {
+        const fetch = await this._api.patch("/endpoint/description", { moduleName, route, description });
+        return fetch.data;
     }
 
 }

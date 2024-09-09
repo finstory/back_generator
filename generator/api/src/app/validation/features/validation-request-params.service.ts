@@ -9,6 +9,7 @@ import { BasicRequestParamsDto, RequestParamsDto } from "@/app/endpoint/_dtos/re
 import { omit } from "lodash";
 import { PropertyDecoratorDto } from "@/_common/modules/ast/_dtos/ast-class.dto";
 import promise from "@/_common/helpers/promiseWrapper";
+import { v4 as uuidv4 } from "uuid";
 
 const appPath = env.BACKEND_PATH;
 
@@ -33,6 +34,7 @@ class ValidationRequestParamsService extends Injectable {
             for (let prop of requestParamsList) {
                 result.push({
                     from,
+                    id: uuidv4(),
                     name: prop.name,
                     type: prop.typeStringified,
                     optional: prop.optional,
@@ -67,7 +69,6 @@ class ValidationRequestParamsService extends Injectable {
 
 
     }
-    aditionalInfoProfession = async () => { }
 
     addValidation = async (
         moduleName: string,

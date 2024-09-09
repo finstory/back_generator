@@ -1,4 +1,5 @@
 class RequestParamsModel {
+    id: number;
     key: string;
     type: string;
     elementType: string;

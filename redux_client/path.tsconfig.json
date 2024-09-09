@@ -4,7 +4,7 @@
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@decorators": ["./src/_common/decorators/_index.ts"],
-      "@S": ["./src/services/main.service.ts"],
+      "@S": ["./src/_common/services/main.service.ts"],
       "@services/*": ["./src/services/*"],
       "@services_injector": ["./src/_common/config/services/decorators/service-injector.ts"],
       

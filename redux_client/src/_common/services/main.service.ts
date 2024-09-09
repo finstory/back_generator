@@ -1,5 +1,5 @@
 
-import S, { PrimaryService } from "@services_config/providers/providers-injector";
+import ServiceProvider, { PrimaryService } from "@services_config/providers/providers-injector";
 import InitialServices from "@/_common/config/services/decorators/initial-services";
 
 //% REDUX_IMPORTS:
@@ -23,5 +23,5 @@ export class MainService {
     @PrimaryService module = new ModuleService();
     @PrimaryService validation = new ValidationService();
 }
-
-export default new S as MainService;
+const S = new ServiceProvider as MainService;
+export default S;

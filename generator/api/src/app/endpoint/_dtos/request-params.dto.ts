@@ -5,6 +5,7 @@ import { PickType, OmitType, PartialType } from '@nestjs/mapped-types';
 
 
 export class RequestParamsDto implements RequestParamsModel {
+    id: string;
     from: "params" | "query" | "body" | "response_body";
     name: string;
     type: string;

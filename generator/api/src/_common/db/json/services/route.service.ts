@@ -152,6 +152,32 @@ class RouteService {
     }
 
 
+    updateDescription = async (moduleName: string, route: BasicRouteDto, description: string) => {
+        const modulesList = (await this.readDB()).get('module')
+        const moduleGetting = modulesList.find({ name: moduleName })
+
+        if (!moduleGetting.value())
+            throwError("JSON_DB", "not_found", `Module '${moduleName}'`);
+
+        const routesList = moduleGetting.get('routes');
+        const routeGetting = routesList.find({ endpointName: route.endpointName, requestType: route.requestType });
+
+        if (!routeGetting.value())
+            throwError("JSON_DB", "not_found", `Route (${route.requestType}) ${route.endpointName}`);
+        else {
+            const endpoint = routeGetting.get('endpointName').value();
+            const requestType = routeGetting.get('requestType').value();
+
+            await routesList
+                .find({ endpointName: route.endpointName, requestType: route.requestType })
+                .assign({ description })
+                .write()
+                .then(() => {
+                    printInfo("JSON_DB", `Route (${requestType}) '${endpoint}' updated => description: ${description}`);
+                });
+        }
+    }
+
     delete = async (moduleName: string, route: BasicRouteDto) => {
         const modulesList = (await this.readDB()).get('module')
         const moduleGetting = modulesList.find({ name: moduleName })
@@ -168,7 +194,7 @@ class RouteService {
 
             const endpoint = routeGetting.get('endpointName').value();
             const requestType = routeGetting.get('requestType').value();
-         
+
             await routesList
                 .remove({ endpointName: route.endpointName, requestType: route.requestType })
                 .write()

@@ -6,6 +6,7 @@ const router = Router();
 
 //<ROUTES>
 router.patch("/reload", validation.patchValidationReload, controller.patchValidationReload);
+
 router.delete("/validate_params", validation.deleteValidationValidateParams, controller.deleteValidationValidateParams);
 router.patch("/validate_params", validation.patchValidationValidateParams, controller.patchValidationValidateParams);
 router.post("/validate_params", validation.postValidationValidateParams, controller.postValidationValidateParams);

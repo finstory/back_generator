@@ -3,10 +3,12 @@ import scss from './input.module.scss';
 
 export interface IInput {
     style?: CSSProperties;
-    variant?: "default" | "request" | "reset";
+    variant?: "default" | "off" | "reset";
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
+    borderColor?: string;
     defaultValue?: string;
+    readOnly?: boolean;
     value?: string;
     name?: string;
     type?: string;
@@ -19,8 +21,10 @@ export const Input: FC<IInput> = ({
     style = {},
     variant = "index",
     onChange,
+    readOnly = false,
     placeholder = "text here",
     defaultValue,
+    borderColor,
     value,
     name,
     type = "text",
@@ -39,6 +43,7 @@ export const Input: FC<IInput> = ({
                 onChange={onChange}
                 defaultValue={defaultValue}
                 value={value}
+                readOnly={readOnly}
             />
         </div>
     );

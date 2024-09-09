@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { RoutePage } from './route.page';
+
 import { Route, Routes } from 'react-router-dom';
+import { RoutePage } from '../views/route.page';
 
 
 export const RouteRouter: React.FC = () => {
