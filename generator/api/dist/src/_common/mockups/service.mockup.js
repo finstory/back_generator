@@ -4,8 +4,8 @@ exports.module_service = void 0;
 const module_service = (moduleName) => {
     const UpModuleName = moduleName.charAt(0).toUpperCase() + moduleName.slice(1);
     return `//<IMPORTS>
-import { AllServices as S, BasicInject, BasicInjectable } from "../config/services/service-injector.js";
-import throwError from "../config/errors/throw-error.js";
+import { AllServices as S, BasicInject, BasicInjectable } from "../config/services/service-injector.ts";
+import throwError from "../config/errors/throw-error.ts";
 
 class ${UpModuleName}Service extends BasicInjectable {
 

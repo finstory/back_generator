@@ -37,16 +37,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const colors_1 = __importDefault(require("colors"));
 const server_1 = __importStar(require("./src/_common/config/server"));
-const connection_1 = __importDefault(require("./src/_common/config/db/mongoDB/connection"));
 const test_1 = __importDefault(require("./src/test"));
-const _envs_1 = __importDefault(require("./src/_common/config/plugins/env/env-var.plugin.js"));
+const _envs_1 = __importDefault(require("./src/_common/config/plugins/env/env-var.plugin.ts"));
+const security_1 = require("./src/_common/config/security");
 const ASYNC_INITIAL = true;
 //% SERVER CONFIG:
-const { PORT, CONNECT_DB, INITIAL_DROP_DB, TEST_MODE } = _envs_1.default;
+const { PORT, TEST_MODE } = _envs_1.default;
 //$ SERVER START:
 const upServer = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, security_1.check)();
     ASYNC_INITIAL && (yield (0, server_1.asyncInitial)());
     TEST_MODE && (0, test_1.default)();
     server_1.default.listen(PORT, () => { console.log(colors_1.default.italic(`Server listening on port ${PORT}`)); });
 });
-CONNECT_DB ? (0, connection_1.default)(upServer, INITIAL_DROP_DB) : upServer();
+upServer();

@@ -39,9 +39,6 @@ const newReduxTypes = () => {
 
 
 
-    _setRoute<User>((user: User) => {
-        user.name = "facu";
-    });
 
 
 

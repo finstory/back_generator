@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RouteModel = void 0;
 class RouteModel {
     constructor({ id, endpointName, requestType, description, controllerName, middlewares, params, query, body, responseBody }) {
         this.id = id;
@@ -15,4 +16,5 @@ class RouteModel {
         this.responseBody = responseBody || [];
     }
 }
+exports.RouteModel = RouteModel;
 exports.default = RouteModel;

@@ -9,6 +9,9 @@ exports.textColor = textColor;
 exports.printInfo = printInfo;
 exports.printMsg = printMsg;
 exports.lowerCaseToFirstLetter = lowerCaseToFirstLetter;
+exports.upperCaseToHyphen = upperCaseToHyphen;
+exports.hyphenToClassName = hyphenToClassName;
+exports.underscoreToClassName = underscoreToClassName;
 const colors_1 = __importDefault(require("colors"));
 function UpFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -21,6 +24,33 @@ function underscoreToUpperCase(str) {
         .split("_")
         .map((word, index) => {
         return index === 0 ? word : UpFirst(word);
+    })
+        .join("");
+}
+function underscoreToClassName(str) {
+    return str
+        .split("_")
+        .map((word) => {
+        return UpFirst(word);
+    })
+        .join("");
+}
+function upperCaseToHyphen(str) {
+    return str
+        .split("")
+        .map((letter, index) => {
+        if (index !== 0 && letter === letter.toUpperCase()) {
+            return "-" + letter.toLowerCase();
+        }
+        return letter.toLowerCase();
+    })
+        .join("");
+}
+function hyphenToClassName(str) {
+    return str
+        .split("-")
+        .map((word) => {
+        return UpFirst(word);
     })
         .join("");
 }

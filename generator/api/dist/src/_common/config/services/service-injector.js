@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BasicInjectable = exports.InitialAll = exports.Initialization = exports.Initial = exports.Injectable = exports.initialInjector = exports.AutoInstance = exports.Auto = exports.Injector = exports.AllServices = void 0;
 exports.Inject = Inject;
 exports.BasicInject = BasicInject;
-const _services_1 = require("../../services/all-services.js");
+const _services_1 = require("../../services/all-services.ts");
 Object.defineProperty(exports, "AllServices", { enumerable: true, get: function () { return _services_1.AllServices; } });
 const auto_instantiate_services_1 = require("./auto-instantiate.services");
 Object.defineProperty(exports, "Auto", { enumerable: true, get: function () { return auto_instantiate_services_1.Auto; } });

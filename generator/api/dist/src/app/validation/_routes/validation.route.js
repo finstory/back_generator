@@ -1,12 +1,15 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+//<IMPORTS>
 const express_1 = require("express");
-const user_controller_1 = require("../../user/user.controller");
-const controller_middleware_1 = __importDefault(require("../../../_common/middlewares/controller.middleware"));
-(0, controller_middleware_1.default)(user_controller_1.controller, { error_wrapper: true });
+const validation_controller_1 = require("../validation.controller");
 const router = (0, express_1.Router)();
-router.get("/all", user_controller_1.validation.getUser, user_controller_1.controller.getUser);
+//<ROUTES>
+router.patch("/reload", validation_controller_1.validation.patchValidationReload, validation_controller_1.controller.patchValidationReload);
+router.delete("/validate_params", validation_controller_1.validation.deleteValidationValidateParams, validation_controller_1.controller.deleteValidationValidateParams);
+router.patch("/validate_params", validation_controller_1.validation.patchValidationValidateParams, validation_controller_1.controller.patchValidationValidateParams);
+router.post("/validate_params", validation_controller_1.validation.postValidationValidateParams, validation_controller_1.controller.postValidationValidateParams);
+router.delete("/request_params", validation_controller_1.validation.deleteValidationRequestParams, validation_controller_1.controller.deleteValidationRequestParams);
+router.post("/request_params", validation_controller_1.validation.postValidationRequestParams, validation_controller_1.controller.postValidationRequestParams);
+router.patch("/request_params", validation_controller_1.validation.patchValidationRequestParams, validation_controller_1.controller.patchValidationRequestParams);
 exports.default = router;

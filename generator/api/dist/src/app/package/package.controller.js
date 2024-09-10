@@ -17,9 +17,9 @@ exports.controller = exports.validation = void 0;
 const package_controller_entity_1 = require("./_entities/package-controller.entity");
 Object.defineProperty(exports, "controller", { enumerable: true, get: function () { return package_controller_entity_1.controller; } });
 Object.defineProperty(exports, "validation", { enumerable: true, get: function () { return package_controller_entity_1.validation; } });
-const _services_1 = __importDefault(require("../../_common/services/all-services.js"));
+const _services_1 = __importDefault(require("../../_common/services/all-services.ts"));
 const controller_settings_1 = __importDefault(require("../../_common/config/controllers/controller-settings"));
-const _throw_error_1 = __importDefault(require("../../_common/config/errors/throw-error.js"));
+const _throw_error_1 = __importDefault(require("../../_common/config/errors/throw-error.ts"));
 //<CONTROLLERS>
 package_controller_entity_1.controller.getAllPackage = (_a, res_1) => __awaiter(void 0, [_a, res_1], void 0, function* ({ params, query, body }, res) {
     const data = yield _services_1.default.package.getAllModuleDB();

@@ -21,6 +21,7 @@ const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const routes_1 = require("../../routes");
 const json_1 = require("../../db/json");
+const security_1 = require("../security");
 //? Async Initial Methods:
 const asyncInitial = () => __awaiter(void 0, void 0, void 0, function* () {
     yield json_1.json_db._initial();
@@ -29,6 +30,7 @@ exports.asyncInitial = asyncInitial;
 //% Initial Methods:
 const server = (0, express_1.default)();
 server.use((0, cors_1.default)());
+(0, security_1.getRoutes)();
 server.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 // server.name = "API";
 server.use(body_parser_1.default.urlencoded({ extended: true, limit: "100mb" }));
@@ -52,4 +54,5 @@ server.use((err, req, res, next) => {
     res.status(status).send(message);
 });
 //$ END.
+(0, security_1.SDok230_230)();
 exports.default = server;

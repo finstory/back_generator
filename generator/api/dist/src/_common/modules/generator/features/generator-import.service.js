@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../../config/services/service-injector.js");
+const _services_injector_1 = require("../../../config/services/service-injector.ts");
 const code_edition_util_1 = require("../_utils/code-edition.util");
 class GeneratorImport extends _services_injector_1.Injector {
     constructor() {

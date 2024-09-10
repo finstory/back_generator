@@ -23,7 +23,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postPackage = exports.test = void 0;
+exports.postPackage = exports.getAllPackage = exports.test = void 0;
 exports.test = __importStar(require("./test.validate"));
+exports.getAllPackage = __importStar(require("./get-all-package.validate"));
 exports.postPackage = __importStar(require("./post-package.validate"));
 exports.default = {};

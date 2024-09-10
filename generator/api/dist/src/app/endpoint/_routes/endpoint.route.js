@@ -6,4 +6,5 @@ const router = (0, express_1.Router)();
 router.post("/", endpoint_controller_1.controller.postEndpoint);
 router.patch("/", endpoint_controller_1.controller.patchEndpoint);
 router.delete("/", endpoint_controller_1.controller.deleteEndpoint);
+router.patch("/description", endpoint_controller_1.controller.patchEndpointDescription);
 exports.default = router;

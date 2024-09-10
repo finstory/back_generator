@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class RequestParamsModel {
-    constructor({ key, type, elementType, optional, value }) {
-        this.key = key;
+    constructor(name, type, containType, optional, value, validations) {
+        this.name = name;
         this.type = type;
-        this.elementType = elementType;
+        this.containType = containType;
         this.optional = optional;
         this.value = value;
+        this.validations = validations;
     }
 }
 exports.default = RequestParamsModel;

@@ -38,17 +38,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.formatCode = exports.astToTextCode = exports.codeToAst = void 0;
 const parser = __importStar(require("@babel/parser"));
 const core_1 = require("@babel/core");
-const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.js"));
+const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.ts"));
 const prettier_1 = __importDefault(require("prettier"));
 const promiseWrapper_1 = __importDefault(require("../../../helpers/promiseWrapper"));
 const codeToAst = (textCode) => {
     return parser.parse(textCode, {
         sourceType: 'module',
-        plugins: ['typescript'],
+        plugins: ['typescript', "decorators-legacy"],
     });
 };
 exports.codeToAst = codeToAst;
-const astToTextCode = (ast) => __awaiter(void 0, void 0, void 0, function* () {
+const astToTextCode = (ast, printWidth) => __awaiter(void 0, void 0, void 0, function* () {
     const textCode = yield (0, promiseWrapper_1.default)((resolve, reject) => {
         (0, core_1.transformFromAst)(ast, null, { retainLines: true, comments: true }, (err, result) => {
             if (err)
@@ -61,17 +61,17 @@ const astToTextCode = (ast) => __awaiter(void 0, void 0, void 0, function* () {
         .then((data) => {
         return data;
     });
-    return yield (0, exports.formatCode)(textCode);
+    return yield (0, exports.formatCode)(textCode, printWidth);
 });
 exports.astToTextCode = astToTextCode;
-const formatCode = (textCode) => __awaiter(void 0, void 0, void 0, function* () {
+const formatCode = (textCode_1, ...args_1) => __awaiter(void 0, [textCode_1, ...args_1], void 0, function* (textCode, printWidth = 1000) {
     return yield prettier_1.default.format(textCode, {
         parser: 'babel-ts',
         semi: true,
         singleQuote: false,
         trailingComma: 'es5',
         tabWidth: 4,
-        printWidth: 1000,
+        printWidth,
         useTabs: false,
     });
 });

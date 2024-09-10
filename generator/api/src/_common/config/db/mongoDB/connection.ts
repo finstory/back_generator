@@ -12,10 +12,10 @@ interface ConnectionOption {
   };
 }
 
-const mongoUrl = envs.MONGO_URI;
-const dbName = envs.MONGO_DB_NAME;
-const username = envs.MONGO_USER;
-const password = envs.MONGO_PASS;
+const mongoUrl = "envs.MONGO_URI";
+const dbName = "envs.MONGO_DB_NAME";
+const username = "envs.MONGO_USER";
+const password = "envs.MONGO_PASS";
 
 const connectionOptions: ConnectionOption = { dbName, auth: { username, password } };
 

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const wordsManager_1 = require("../../../helpers/wordsManager");
-const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.js"));
+const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.ts"));
 class ModuleService {
     constructor(db) {
         this.readDB = () => __awaiter(this, void 0, void 0, function* () {

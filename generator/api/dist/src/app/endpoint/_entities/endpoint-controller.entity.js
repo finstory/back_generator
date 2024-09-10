@@ -35,18 +35,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validation = exports.controller = exports.PackageController = void 0;
+exports.validation = exports.controller = exports.EndpointController = void 0;
 const C = __importStar(require("../_validations/_index"));
 const getValidations_1 = __importDefault(require("../../../_common/config/validations/getValidations"));
-class PackageController {
+class EndpointController {
     constructor() {
         //<CONTROLLERS>
         this.postEndpoint = (req, res) => __awaiter(this, void 0, void 0, function* () { });
         this.patchEndpoint = (req, res) => __awaiter(this, void 0, void 0, function* () { });
         this.deleteEndpoint = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.patchEndpointDescription = (req, res) => __awaiter(this, void 0, void 0, function* () { });
     }
 }
-exports.PackageController = PackageController;
+exports.EndpointController = EndpointController;
 //<EXPORTS>
-exports.controller = new PackageController();
-exports.validation = (0, getValidations_1.default)(PackageController, C);
+exports.controller = new EndpointController();
+exports.validation = (0, getValidations_1.default)(EndpointController, C);

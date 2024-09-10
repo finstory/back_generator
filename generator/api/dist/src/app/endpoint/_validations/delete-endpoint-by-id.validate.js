@@ -6,13 +6,10 @@ require("reflect-metadata");
 //<REQUEST TYPES>
 class Params {
 }
-;
 class Query {
 }
-;
 class Body {
 }
-;
 //BODY TO SEND:
 const body = {};
 exports.parameters = { Params, Query, Body };

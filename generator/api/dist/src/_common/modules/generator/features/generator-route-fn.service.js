@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../../config/services/service-injector.js");
-const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.js"));
+const _services_injector_1 = require("../../../config/services/service-injector.ts");
+const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.ts"));
 const wordsManager_1 = require("../../../helpers/wordsManager");
 class GeneratorRouteFn extends _services_injector_1.Injector {
     constructor() {

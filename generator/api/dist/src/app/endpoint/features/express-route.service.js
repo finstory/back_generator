@@ -21,11 +21,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../../_common/config/services/service-injector.js");
-const _throw_error_1 = __importDefault(require("../../../_common/config/errors/throw-error.js"));
-const _mockups_1 = require("../../../_common/mockups/_index.js");
+const _services_injector_1 = require("../../../_common/config/services/service-injector.ts");
+const _throw_error_1 = __importDefault(require("../../../_common/config/errors/throw-error.ts"));
+const _mockups_1 = require("../../../_common/mockups/_index.ts");
 const wordsManager_1 = require("../../../_common/helpers/wordsManager");
-const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
+const _envs_1 = __importDefault(require("../../../_common/config/plugins/env/env-var.plugin.ts"));
+const appPath = _envs_1.default.APP_PATH;
 class ExpressRouteService extends _services_injector_1.Injectable {
     constructor() {
         super(...arguments);
@@ -36,7 +37,8 @@ class ExpressRouteService extends _services_injector_1.Injectable {
             }));
             (0, wordsManager_1.printInfo)("ROUTE", `Updated import to module '${moduleName}'.`);
         });
-        this.createRoute = (moduleName_1, _a) => __awaiter(this, [moduleName_1, _a], void 0, function* (moduleName, { endpointName, requestType, controllerName }) {
+        this.createRoute = (moduleName, route) => __awaiter(this, void 0, void 0, function* () {
+            const { endpointName, requestType, controllerName } = route;
             const endpointPath = `${appPath}/${moduleName}/_routes/${moduleName}.route.ts`;
             const textCode = (0, _mockups_1.express_endpoint)(endpointName, requestType, controllerName);
             yield this._generator_tag.addCodeAfterTag(endpointPath, "<ROUTES>", textCode);
@@ -63,12 +65,14 @@ class ExpressRouteService extends _services_injector_1.Injectable {
                     textCode = yield this._ast_routeFunction.renameController(textCode, { endpointName, requestType }, newControllerName);
                     message = `controller_name | ${message}`;
                 }
-                textCode = yield this._ast_routeFunction.switchValidation(textCode, { endpointName, requestType, validateActive: newRoute.validateActive });
+                if (typeof newRoute.validateActive === "boolean")
+                    textCode = yield this._ast_routeFunction.switchValidation(textCode, { endpointName, requestType, validateActive: newRoute.validateActive });
                 return textCode;
             }));
             (0, wordsManager_1.printInfo)("ROUTE", `Reissue | ${message} `);
         });
-        this.removeRoute = (moduleName_1, _a) => __awaiter(this, [moduleName_1, _a], void 0, function* (moduleName, { endpointName, requestType }) {
+        this.removeRoute = (moduleName, route) => __awaiter(this, void 0, void 0, function* () {
+            const { endpointName, requestType } = route;
             const filePath = `${appPath}/${moduleName}/_routes/${moduleName}.route.ts`;
             yield this._fs_file.updateFile(filePath, (textCode) => __awaiter(this, void 0, void 0, function* () {
                 textCode = yield this._ast_routeFunction.removeRoute(textCode, { endpointName, requestType });

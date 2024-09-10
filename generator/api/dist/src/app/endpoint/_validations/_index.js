@@ -23,8 +23,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEndpointById = exports.patchEndpoint = exports.postEndpoint = void 0;
+exports.patchEndpointDescription = exports.deleteEndpointById = exports.patchEndpoint = exports.postEndpoint = void 0;
 exports.postEndpoint = __importStar(require("./post-endpoint.validate"));
 exports.patchEndpoint = __importStar(require("./patch-endpoint.validate"));
 exports.deleteEndpointById = __importStar(require("./delete-endpoint-by-id.validate"));
+exports.patchEndpointDescription = __importStar(require("./patch-endpoint-description.validate"));
 exports.default = {};

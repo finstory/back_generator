@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Initial = Initial;
 exports.Initialization = Initialization;
 exports.InitialAll = InitialAll;
-const _services_injector_1 = require("./service-injector.js");
+const _services_injector_1 = require("./service-injector.ts");
 /**
  * [🇺🇸] Used to initialize all _initial methods of applied services.
  *
  * [🇪🇸] Se usa para inicializar todos los métodos _initial del los servicios aplicados.
  *
- * ( Only used on all-services.js. )
+ * ( Only used on all-services.ts. )
  */
 function InitialServices(target) {
     const originalConstructor = target;

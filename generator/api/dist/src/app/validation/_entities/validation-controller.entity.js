@@ -22,17 +22,36 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validation = exports.controller = exports.ControllerController = void 0;
+exports.validation = exports.controller = exports.ValidationController = void 0;
 //<IMPORTS>
 const C = __importStar(require("../_validations/_index"));
 const getValidations_1 = __importDefault(require("../../../_common/config/validations/getValidations"));
-class ControllerController {
+class ValidationController {
+    constructor() {
+        //<CONTROLLERS>
+        this.patchValidationReload = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.deleteValidationValidateParams = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.patchValidationValidateParams = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.postValidationValidateParams = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.deleteValidationRequestParams = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.postValidationRequestParams = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+        this.patchValidationRequestParams = (req, res) => __awaiter(this, void 0, void 0, function* () { });
+    }
 }
-exports.ControllerController = ControllerController;
+exports.ValidationController = ValidationController;
 //<EXPORTS>
-exports.controller = new ControllerController();
-exports.validation = (0, getValidations_1.default)(ControllerController, C);
+exports.controller = new ValidationController();
+exports.validation = (0, getValidations_1.default)(ValidationController, C);

@@ -17,11 +17,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const wordsManager_1 = require("../../../_common/helpers/wordsManager");
 const controller_mockup_1 = require("../../../_common/mockups/controller.mockup");
-const _services_injector_1 = require("../../../_common/config/services/service-injector.js");
-const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
+const _services_injector_1 = require("../../../_common/config/services/service-injector.ts");
+const _envs_1 = __importDefault(require("../../../_common/config/plugins/env/env-var.plugin.ts"));
+const appPath = _envs_1.default.APP_PATH;
 class ControllerEntityService extends _services_injector_1.Injectable {
     constructor() {
         super(...arguments);
@@ -34,7 +38,7 @@ class ControllerEntityService extends _services_injector_1.Injectable {
         this.removeControllerEntity = (moduleName, controllerName) => __awaiter(this, void 0, void 0, function* () {
             const filePath = `${appPath}/${moduleName}/_entities/${moduleName}-controller.entity.ts`;
             yield this._fs_file.updateFile(filePath, (textCode) => __awaiter(this, void 0, void 0, function* () {
-                return yield this._ast_class.removeProperty(textCode, { className: `${(0, wordsManager_1.UpFirst)(moduleName)}Controller`, propName: controllerName, comment: "<CONTROLLERS>" });
+                return yield this._ast_class.removeProperty(textCode, { className: `${(0, wordsManager_1.UpFirst)(moduleName)}Controller`, name: controllerName, comment: "<CONTROLLERS>" });
             }));
             (0, wordsManager_1.printInfo)("CONTROLLER", `Controller entity ${controllerName} removed successfully.`);
         });

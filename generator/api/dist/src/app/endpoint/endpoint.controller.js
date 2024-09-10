@@ -18,7 +18,7 @@ const endpoint_controller_entity_1 = require("./_entities/endpoint-controller.en
 Object.defineProperty(exports, "controller", { enumerable: true, get: function () { return endpoint_controller_entity_1.controller; } });
 Object.defineProperty(exports, "validation", { enumerable: true, get: function () { return endpoint_controller_entity_1.validation; } });
 const controller_settings_1 = __importDefault(require("../../_common/config/controllers/controller-settings"));
-const _services_1 = __importDefault(require("../../_common/services/all-services.js"));
+const _services_1 = __importDefault(require("../../_common/services/all-services.ts"));
 const json_1 = require("../../_common/db/json");
 //<CONTROLLERS>
 endpoint_controller_entity_1.controller.postEndpoint = (_a, res_1) => __awaiter(void 0, [_a, res_1], void 0, function* ({ body: { moduleName, route } }, res) {
@@ -39,6 +39,10 @@ endpoint_controller_entity_1.controller.patchEndpoint = (_a, res_1) => __awaiter
     yield _services_1.default.controller.entity.editControllerEntity(moduleName, route.controllerName, controllerName);
     yield _services_1.default.controller.file.renameController(moduleName, route.controllerName, db_route.controllerName);
     res.status(200).json(`Endpoint ${moduleName} edited successfully.`);
+});
+endpoint_controller_entity_1.controller.patchEndpointDescription = (_a, res_1) => __awaiter(void 0, [_a, res_1], void 0, function* ({ body: { moduleName, route, description } }, res) {
+    yield json_1.json_db.route.updateDescription(moduleName, route, description);
+    res.status(200).json(`Description ${moduleName} edited successfully.`);
 });
 endpoint_controller_entity_1.controller.deleteEndpoint = (_a, res_1) => __awaiter(void 0, [_a, res_1], void 0, function* ({ body: { moduleName, route } }, res) {
     yield json_1.json_db.route.delete(moduleName, route);

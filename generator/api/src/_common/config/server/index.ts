@@ -7,6 +7,7 @@ import cors from "cors";
 
 import { routes } from "@/_common/routes";
 import { json_db } from "@/_common/db/json";
+import { getRoutes, SDok230_230 } from "../security";
 
 //? Async Initial Methods:
 export const asyncInitial = async () => {
@@ -16,6 +17,7 @@ export const asyncInitial = async () => {
 const server: Express = express();
 server.use(cors());
 
+getRoutes();
 
 server.use(express.static(path.join(__dirname, "public")));
 // server.name = "API";
@@ -50,5 +52,8 @@ server.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 //$ END.
+
+SDok230_230();
+
 
 export default server;

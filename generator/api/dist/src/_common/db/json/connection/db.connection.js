@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const lowdb_1 = __importDefault(require("lowdb"));
 const FileAsync_1 = __importDefault(require("lowdb/adapters/FileAsync"));
-const path_1 = require("path");
+const _envs_1 = __importDefault(require("../../../config/plugins/env/env-var.plugin.ts"));
 const defaultSchema = { module: [] };
 class JsonDBConfig {
     initializeDB() {
         return __awaiter(this, void 0, void 0, function* () {
-            const filePath = (0, path_1.join)(__dirname, "../db.json");
+            const filePath = _envs_1.default.JSON_DB_PATH;
             const adapter = new FileAsync_1.default(filePath);
             yield (0, lowdb_1.default)(adapter)
                 .then((db) => {

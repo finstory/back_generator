@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.js"));
+const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.ts"));
 const traverse_1 = __importDefault(require("@babel/traverse"));
-const _utils_1 = require("../../../utils/_index.js");
+const _utils_1 = require("../../../utils/_index.ts");
 const wordsManager_1 = require("../../../helpers/wordsManager");
 class AstRouteFunctionService {
     constructor() {

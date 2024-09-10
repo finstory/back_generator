@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.js"));
+const _throw_error_1 = __importDefault(require("../../../config/errors/throw-error.ts"));
 const wordsManager_1 = require("../../../helpers/wordsManager");
-const _utils_1 = require("../../../utils/_index.js");
+const _utils_1 = require("../../../utils/_index.ts");
 const uuid_1 = require("uuid");
 const exampleModules = [
     {
@@ -107,8 +107,11 @@ class RouteService {
                 (0, _throw_error_1.default)("JSON_DB", "not_found", `Module '${moduleName}'`);
             const routesList = moduleGetting.get('routes');
             const routeGetting = routesList.find({ endpointName: route.endpointName, requestType: route.requestType });
+            const newRouteExists = routesList.find({ endpointName: newRoute.endpointName, requestType: newRoute.requestType }).value();
             const _route = routeGetting.value();
-            if (!routeGetting.value())
+            if (newRouteExists)
+                (0, _throw_error_1.default)("JSON_DB", "already_exists", `Route (${newRoute.requestType}) ${newRoute.endpointName}`);
+            else if (!_route)
                 (0, _throw_error_1.default)("JSON_DB", "not_found", `Route (${route.requestType}) ${route.endpointName}`);
             else {
                 const oldRequestType = _route.requestType;
@@ -126,9 +129,31 @@ class RouteService {
             }
             return routesList.find({ id: _route.id }).value();
         });
+        this.updateDescription = (moduleName, route, description) => __awaiter(this, void 0, void 0, function* () {
+            const modulesList = (yield this.readDB()).get('module');
+            const moduleGetting = modulesList.find({ name: moduleName });
+            if (!moduleGetting.value())
+                (0, _throw_error_1.default)("JSON_DB", "not_found", `Module '${moduleName}'`);
+            const routesList = moduleGetting.get('routes');
+            const routeGetting = routesList.find({ endpointName: route.endpointName, requestType: route.requestType });
+            if (!routeGetting.value())
+                (0, _throw_error_1.default)("JSON_DB", "not_found", `Route (${route.requestType}) ${route.endpointName}`);
+            else {
+                const endpoint = routeGetting.get('endpointName').value();
+                const requestType = routeGetting.get('requestType').value();
+                yield routesList
+                    .find({ endpointName: route.endpointName, requestType: route.requestType })
+                    .assign({ description })
+                    .write()
+                    .then(() => {
+                    (0, wordsManager_1.printInfo)("JSON_DB", `Route (${requestType}) '${endpoint}' updated => description: ${description}`);
+                });
+            }
+        });
         this.delete = (moduleName, route) => __awaiter(this, void 0, void 0, function* () {
             const modulesList = (yield this.readDB()).get('module');
             const moduleGetting = modulesList.find({ name: moduleName });
+            console.log(moduleGetting.value());
             if (!moduleGetting.value())
                 (0, _throw_error_1.default)("JSON_DB", "not_found", `Module '${moduleName}'`);
             const routesList = moduleGetting.get('routes');

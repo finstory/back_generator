@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../config/services/service-injector.js");
+const _services_injector_1 = require("../../config/services/service-injector.ts");
 const generator_fn_service_1 = __importDefault(require("./features/generator-fn.service"));
 const generator_import_service_1 = __importDefault(require("./features/generator-import.service"));
 const generator_tag_service_1 = __importDefault(require("./features/generator-tag.service"));

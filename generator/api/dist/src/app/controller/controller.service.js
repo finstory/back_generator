@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../_common/config/services/service-injector.js");
+const _services_injector_1 = require("../../_common/config/services/service-injector.ts");
 const controller_file_service_1 = __importDefault(require("./features/controller-file.service"));
 const controller_entity_service_1 = __importDefault(require("./features/controller-entity.service"));
 let ControllerService = class ControllerService {

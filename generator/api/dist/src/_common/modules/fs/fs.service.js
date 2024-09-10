@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../config/services/service-injector.js");
+const _services_injector_1 = require("../../config/services/service-injector.ts");
 const fs_file_service_1 = __importDefault(require("./features/fs-file.service"));
 const fs_folder_service_1 = __importDefault(require("./features/fs-folder.service"));
 let FS = class FS {

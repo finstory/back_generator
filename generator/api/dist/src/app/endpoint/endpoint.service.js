@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../_common/config/services/service-injector.js");
+const _services_injector_1 = require("../../_common/config/services/service-injector.ts");
 const express_route_service_1 = __importDefault(require("./features/express-route.service"));
 let EndpointService = class EndpointService {
 };

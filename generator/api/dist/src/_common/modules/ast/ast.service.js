@@ -12,12 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../config/services/service-injector.js");
+const _services_injector_1 = require("../../config/services/service-injector.ts");
 const ast_comment_service_1 = __importDefault(require("./features/ast-comment.service"));
 const ast_import_service_1 = __importDefault(require("./features/ast-import.service"));
 const ast_router_function_service_1 = __importDefault(require("./features/ast-router-function.service"));
 const ast_compiler_function_service_1 = __importDefault(require("./features/ast-compiler-function.service"));
 const ast_class_service_1 = __importDefault(require("./features/ast-class.service"));
+const ast_class_decorator_service_1 = __importDefault(require("./features/ast-class-decorator.service"));
 let Ast = class Ast {
 };
 __decorate([
@@ -40,6 +41,10 @@ __decorate([
     _services_injector_1.Auto,
     __metadata("design:type", ast_class_service_1.default)
 ], Ast.prototype, "class", void 0);
+__decorate([
+    _services_injector_1.Auto,
+    __metadata("design:type", ast_class_decorator_service_1.default)
+], Ast.prototype, "classDecorator", void 0);
 Ast = __decorate([
     _services_injector_1.AutoInstance
 ], Ast);

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.simpleThrowError = void 0;
-const _envs_1 = __importDefault(require("../plugins/env/env-var.plugin.js"));
+const _envs_1 = __importDefault(require("../plugins/env/env-var.plugin.ts"));
 const wordsManager_1 = require("../../helpers/wordsManager");
 const _index_1 = __importDefault(require("./mockups/_index"));
 const error_response_1 = __importDefault(require("./models/error-response"));

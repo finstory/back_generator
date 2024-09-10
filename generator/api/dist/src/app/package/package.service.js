@@ -17,12 +17,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../_common/config/services/service-injector.js");
+const _services_injector_1 = require("../../_common/config/services/service-injector.ts");
 const json_1 = require("../../_common/db/json");
-const _mockups_1 = require("../../_common/mockups/_index.js");
+const _mockups_1 = require("../../_common/mockups/_index.ts");
 const wordsManager_1 = require("../../_common/helpers/wordsManager");
-const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
+const _envs_1 = __importDefault(require("../../_common/config/plugins/env/env-var.plugin.ts"));
+const appPath = _envs_1.default.APP_PATH;
 class PackageService extends _services_injector_1.BasicInjectable {
     constructor() {
         super(...arguments);

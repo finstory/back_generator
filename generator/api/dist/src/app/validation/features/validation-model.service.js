@@ -22,10 +22,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const wordsManager_1 = require("../../../_common/helpers/wordsManager");
-const _services_injector_1 = require("../../../_common/config/services/service-injector.js");
-const _throw_error_1 = __importDefault(require("../../../_common/config/errors/throw-error.js"));
+const _services_injector_1 = require("../../../_common/config/services/service-injector.ts");
+const _throw_error_1 = __importDefault(require("../../../_common/config/errors/throw-error.ts"));
 const validation_mockup_1 = require("../../../_common/mockups/validation.mockup");
-const appPath = "D:/Programacion_Extra/Node_ts/_generator/_ts/src/test/folder-tester/app";
+const _envs_1 = __importDefault(require("../../../_common/config/plugins/env/env-var.plugin.ts"));
+const appPath = _envs_1.default.APP_PATH;
 const convertToSnakeCase = (text) => {
     return text.replace(/([A-Z])/g, "-$1").toLowerCase();
 };

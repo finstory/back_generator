@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const _services_injector_1 = require("../../_common/config/services/service-injector.js");
+const _services_injector_1 = require("../../_common/config/services/service-injector.ts");
 const validation_model_service_1 = __importDefault(require("./features/validation-model.service"));
+const validation_request_params_service_1 = __importDefault(require("./features/validation-request-params.service"));
 let ValidationService = class ValidationService {
 };
 __decorate([
@@ -21,6 +22,11 @@ __decorate([
     _services_injector_1.Auto,
     __metadata("design:type", validation_model_service_1.default)
 ], ValidationService.prototype, "model", void 0);
+__decorate([
+    _services_injector_1.Initial,
+    _services_injector_1.Auto,
+    __metadata("design:type", validation_request_params_service_1.default)
+], ValidationService.prototype, "requestParams", void 0);
 ValidationService = __decorate([
     _services_injector_1.AutoInstance,
     _services_injector_1.Initialization

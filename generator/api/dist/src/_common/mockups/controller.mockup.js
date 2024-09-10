@@ -5,8 +5,8 @@ const wordsManager_1 = require("../helpers/wordsManager");
 const module_controller = (moduleName) => `//<IMPORTS>
 import { controller, validation } from "./_entities/${moduleName}-controller.entity";
 import controllerSettings from "../config/controllers/controller-settings";
-import throwError from "../config/errors/throw-error.js";
-import S from "../services/all-services.js";
+import throwError from "../config/errors/throw-error.ts";
+import S from "../services/all-services.ts";
 
 //<CONTROLLERS>
 
@@ -36,8 +36,7 @@ export class ${(0, wordsManager_1.UpFirst)(moduleName)}Controller {
 
 //<EXPORTS>
 export const controller = new ${(0, wordsManager_1.UpFirst)(moduleName)}Controller();
-export const validation = getValidations(${(0, wordsManager_1.UpFirst)(moduleName)}Controller, C);
-`;
+export const validation = getValidations(${(0, wordsManager_1.UpFirst)(moduleName)}Controller, C) as ${(0, wordsManager_1.UpFirst)(moduleName)}Controller;`;
 exports.controller_entity = controller_entity;
 const controller_model = (controllerName) => `
 ${controllerName} = async (req: C.${controllerName}.Req, res: C.${controllerName}.Res) => { };`;
