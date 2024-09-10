@@ -1,0 +1,184 @@
+{
+  "module": [
+    {
+      "name": "user",
+      "routes": [
+        {
+          "id": "588b9eee-eba0-406d-8cf0-5fe3569823f4",
+          "controllerName": "postUserLoginById",
+          "endpointName": "/login/:id",
+          "requestType": "post",
+          "validateActive": true,
+          "description": "### *Description:*\n\nHola soy un endpoint:\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  {\n    \"user\": {\n        \"email\": \"facu@gmail.com\",\n        \"password\": \"lkjsdflkjWOEI\"\n    }\n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"facu\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [
+            {
+              "from": "query",
+              "id": "2ee07dc1-5fd2-4393-839f-2856d29d8488",
+              "name": "userId",
+              "type": "string",
+              "optional": true,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "Length"
+                }
+              ]
+            },
+            {
+              "from": "query",
+              "id": "41723310-1dfc-45d9-9f29-5d96ee743b2b",
+              "name": "user",
+              "type": "UserDto",
+              "optional": false,
+              "validations": []
+            }
+          ],
+          "body": [
+            {
+              "from": "body",
+              "id": "8e6a6b7d-1c1a-4e9b-9657-21c48c8bd962",
+              "name": "userId",
+              "type": "string",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "Length"
+                }
+              ]
+            },
+            {
+              "from": "body",
+              "id": "3e157a23-3df4-4fbc-92db-c16e8ace2666",
+              "name": "passwordToken",
+              "type": "{ user: string, token: string }",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsBoolean"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsNotEmpty"
+                },
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsBooleanString"
+                }
+              ]
+            }
+          ],
+          "responseBody": []
+        },
+        {
+          "id": "bd12edda-e932-4fa4-9dcb-25cf4b85ae2e",
+          "controllerName": "getUser",
+          "endpointName": "/",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "ásdasd",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "product",
+      "routes": [
+        {
+          "id": "f2e09644-4ebb-4fe1-94b9-13a0d6c6121e",
+          "controllerName": "getProductRegister",
+          "endpointName": "/register",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "\n\n ### *Description:*\n\nThis is one example Description. The property `ID` is necesary to find `USERS`.\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 201 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 200 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "routes": [
+        {
+          "id": "39a2cf15-f48e-4f86-b6c2-a4f31b3bf03f",
+          "controllerName": "putCompanyLogin",
+          "endpointName": "/login",
+          "requestType": "put",
+          "validateActive": true,
+          "description": "op´{po",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [
+            {
+              "from": "body",
+              "id": "386f68ec-bbd5-48a7-acdb-991ffc1542a4",
+              "name": "id",
+              "type": "string",
+              "optional": false,
+              "validations": [
+                {
+                  "decoratorType": "ClassValidator",
+                  "name": "IsString"
+                }
+              ]
+            }
+          ],
+          "responseBody": []
+        },
+        {
+          "id": "a63f0b8e-3f75-4f12-805a-752582929f1f",
+          "controllerName": "getCompany",
+          "endpointName": "/",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "### *Description:*\n\nThis is one example Description. The property `ID` is necesary to find `USERS`.\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "8471de8c-db22-447a-8213-98a04eae8fd0",
+          "controllerName": "patchCompanyRegister",
+          "endpointName": "/register",
+          "requestType": "patch",
+          "validateActive": true,
+          "description": "### *Description:*\n\niygiyugkgkuggguigigigig\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    }
+  ]
+}

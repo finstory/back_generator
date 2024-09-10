@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+
+      "@/*": ["./*"],
+      "@common/*": ["./_common/*"],
+      "@config/*": ["./_common/config/*"],
+      "@helpers/*": ["./_common/helpers/*"],
+      "@utils": ["./_common/utils/_index.ts"],
+      "@interfaces": ["./_common/interfaces/_index.ts"],
+      "@envs": ["./_common/config/plugins/env/env-var.plugin.ts"],
+      "@mockups": ["./_common/mockups/_index.ts"],
+      "@app/*": ["./app/*"],
+      "@middlewares/*": ["./_common/middlewares/*"],
+      "@throw_error": ["./_common/config/errors/throw-error.ts"],
+      "@throw_error_response_wrap": ["./_common/config/server/response/errors/throw-error-wrapper.response.ts"],
+
+      "@services": ["./_common/services/all-services.ts"],
+      "@services_injector": ["./_common/config/services/service-injector.ts"],
+      
+      "@json_db": ["./_common/db/json/index.ts"],
+
+      "@user/*": ["./app/user/*"],
+      "@package/*": ["./app/package/*"],
+      "@endpoint/*": ["./app/endpoint/*"],
+      "@validation/*":["./app/validation/*"],
+      
+      "@ast/*": ["./_common/modules/ast/*"],
+      "@fs/*": ["./_common/modules/fs/*"],
+      "@generator/*": ["./_common/modules/generator/*"]
+    }
+  }
+}

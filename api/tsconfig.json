@@ -1,0 +1,26 @@
+{
+  "extends": "./path.tsconfig.json",
+  "target": "es2020",
+  "module": "commonjs",
+  "lib": [
+    "es2020"
+  ],
+  "noUnusedLocals": true,
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true
+  },
+  "plugins": [
+    {
+      "transform": "typescript-transform-paths"
+    }
+  ]
+}
