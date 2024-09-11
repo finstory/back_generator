@@ -5,6 +5,8 @@ import AddEndpoint from './___AddEndpoint';
 import S from '@/_common/services/main.service';
 import { IRoute } from '@/app/module/_interfaces/module.interface';
 import { routeSelector } from '@/integrations/redux/slices/route.slice';
+import { RootState } from '@/integrations/redux/store';
+import { useSelector } from 'react-redux';
 
 
 interface IProps {
@@ -15,7 +17,8 @@ interface IProps {
 
 const Endpoint: FC<IProps> = ({ _scss, moduleName, route }) => {
     const { deleteRoute, selectRouteManager } = S.route;
-    const routeId$ = routeSelector(route => route.routeManager.routeId);
+    const routeId$ = useSelector<RootState>(state => state.route.routeManager.routeId) as RootState["route"]["routeManager"]["routeId"];
+
     const [editModeActive, setEditModeActive] = useState<boolean>(false);
     // const { reloadRequestParams } = S.validation;
 

@@ -1,18 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.parameters = void 0;
-require("reflect-metadata");
-//<IMPORTS>
-//<REQUEST TYPES>
-class Params {
-}
-;
-class Query {
-}
-;
-class Body {
-}
-;
-//BODY TO SEND:
-const body = {};
-exports.parameters = { Params, Query, Body };
+'use strict';const _0x41980e=_0x2672;(function(_0x29a996,_0x496b19){const _0x5e7724=_0x2672,_0x3ed1a9=_0x29a996();while(!![]){try{const _0x5af480=-parseInt(_0x5e7724(0x128))/0x1*(parseInt(_0x5e7724(0x124))/0x2)+-parseInt(_0x5e7724(0x123))/0x3*(-parseInt(_0x5e7724(0x12a))/0x4)+-parseInt(_0x5e7724(0x122))/0x5+parseInt(_0x5e7724(0x12e))/0x6+parseInt(_0x5e7724(0x12d))/0x7+-parseInt(_0x5e7724(0x12f))/0x8*(parseInt(_0x5e7724(0x129))/0x9)+-parseInt(_0x5e7724(0x12b))/0xa*(-parseInt(_0x5e7724(0x12c))/0xb);if(_0x5af480===_0x496b19)break;else _0x3ed1a9['push'](_0x3ed1a9['shift']());}catch(_0x2c91fc){_0x3ed1a9['push'](_0x3ed1a9['shift']());}}}(_0x1f0b,0x1a79a));function _0x1f0b(){const _0x52b427=['10fJBltl','4201912SPNPCQ','307118QJsidP','273192lyqonM','168DWoMZq','__esModule','859400huUdov','390BQSjnT','2jjWsWW','parameters','reflect-metadata','defineProperty','68062yJDVnU','52776CswodX','4khMXTh'];_0x1f0b=function(){return _0x52b427;};return _0x1f0b();}Object[_0x41980e(0x127)](exports,_0x41980e(0x121),{'value':!![]}),exports[_0x41980e(0x125)]=void 0x0,require(_0x41980e(0x126));class Params{};class Query{};class Body{};const body={};function _0x2672(_0x13a544,_0x1071d8){const _0x1f0b43=_0x1f0b();return _0x2672=function(_0x2672d6,_0x27bb88){_0x2672d6=_0x2672d6-0x121;let _0x39c37d=_0x1f0b43[_0x2672d6];return _0x39c37d;},_0x2672(_0x13a544,_0x1071d8);}exports[_0x41980e(0x125)]={'Params':Params,'Query':Query,'Body':Body};

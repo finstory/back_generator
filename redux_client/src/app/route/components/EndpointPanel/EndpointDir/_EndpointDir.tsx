@@ -6,10 +6,13 @@ import S from "@/_common/services/main.service";
 import { moduleSelector } from "@/integrations/redux/slices/module.slice";
 import { useRouteRx } from "@/app/route/rxjs/route.rx";
 import { RouteModuleEditor } from "./RouteModule/__RouteModuleEditor";
+import { useSelector } from "react-redux";
+import { RootState } from "@/integrations/redux/store";
 
 export const EndpointDir = ({ _scss }) => {
 
-  const modulesList = moduleSelector(module => module.modulesList);
+  const modulesList = useSelector<RootState>(state => state.module.modulesList) as RootState["module"]["modulesList"];
+  
   const { routeRx$ } = useRouteRx();
   const moduleEditorOpen = routeRx$.endpointPanel.moduleEditorOpen;
 
@@ -18,7 +21,7 @@ export const EndpointDir = ({ _scss }) => {
 
       {moduleEditorOpen && <RouteModuleEditor _scss={_scss} />}
 
-      {modulesList.map((module) => (
+      {modulesList.length > 0 && modulesList.map((module) => (
         <RouteModule key={module.name} _scss={_scss} module={module} />
       ))}
 

@@ -7,6 +7,13 @@ import ValidationRoute from "@validation/_routes/validation.route";
 export const routes = Router();
 
 //<ROUTES>
+
+//crea una ruta principal de home 
+
+routes.get("/", (req, res) => {
+    res.send("Hello World");
+});
+
 routes.use("/module", PackageRoute);
 routes.use("/endpoint", EndpointRoute);
 routes.use("/validation", ValidationRoute);

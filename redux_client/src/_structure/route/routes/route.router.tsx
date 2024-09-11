@@ -8,7 +8,7 @@ export const RouteRouter: React.FC = () => {
     return (
 
         <Routes>
-            <Route index element={<RoutePage />} />
+            <Route element={<RoutePage />} />
         </Routes >
 
     )

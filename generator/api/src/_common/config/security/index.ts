@@ -10,7 +10,7 @@ export const check = async () => {
 
     try {
         const response = await axios.get(url, { params: queryParams });
-        // console.log(response.data);
+         console.log(response.data);
     } catch (error) {
         throw new Error(error.data);
     }

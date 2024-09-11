@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import checkParams from "@config/errors/utils/check-errors.util";
-import { DeleteEndpoint, PatchEndpoint, PostEndpoint } from "./_validators/_index";
+import { DeleteEndpoint, PostEndpoint } from "./_validators/_index";
 import { PatchValidationReloadDto } from "./_validators/patch-request-params.validate";
 
 

@@ -1,13 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class RequestParamsModel {
-    constructor(name, type, containType, optional, value, validations) {
-        this.name = name;
-        this.type = type;
-        this.containType = containType;
-        this.optional = optional;
-        this.value = value;
-        this.validations = validations;
-    }
-}
-exports.default = RequestParamsModel;
+'use strict';var _0x57ff91=_0x21ad;(function(_0x50a3e0,_0x3899ae){var _0x1f5cf3=_0x21ad,_0xa3209b=_0x50a3e0();while(!![]){try{var _0x52b2c4=parseInt(_0x1f5cf3(0x124))/0x1+parseInt(_0x1f5cf3(0x118))/0x2+-parseInt(_0x1f5cf3(0x119))/0x3+-parseInt(_0x1f5cf3(0x120))/0x4+parseInt(_0x1f5cf3(0x11b))/0x5+-parseInt(_0x1f5cf3(0x11d))/0x6*(parseInt(_0x1f5cf3(0x11c))/0x7)+parseInt(_0x1f5cf3(0x121))/0x8*(parseInt(_0x1f5cf3(0x122))/0x9);if(_0x52b2c4===_0x3899ae)break;else _0xa3209b['push'](_0xa3209b['shift']());}catch(_0x392d57){_0xa3209b['push'](_0xa3209b['shift']());}}}(_0x3a73,0x36ede));Object[_0x57ff91(0x127)](exports,_0x57ff91(0x116),{'value':!![]});class RequestParamsModel{constructor(_0x48531f,_0xbac99b,_0x5f1e88,_0x478d2a,_0x39c44a,_0x471f79){var _0x321d6d=_0x57ff91,_0x182c5c='0|2|1|5|3|4'[_0x321d6d(0x11a)]('|'),_0x46db66=0x0;while(!![]){switch(_0x182c5c[_0x46db66++]){case'0':this[_0x321d6d(0x11e)]=_0x48531f;continue;case'1':this[_0x321d6d(0x123)]=_0x5f1e88;continue;case'2':this[_0x321d6d(0x115)]=_0xbac99b;continue;case'3':this[_0x321d6d(0x125)]=_0x39c44a;continue;case'4':this[_0x321d6d(0x11f)]=_0x471f79;continue;case'5':this[_0x321d6d(0x126)]=_0x478d2a;continue;}break;}}}exports[_0x57ff91(0x117)]=RequestParamsModel;function _0x21ad(_0x5b3f19,_0x1bb61f){var _0x3a73c3=_0x3a73();return _0x21ad=function(_0x21ad20,_0x1a1b36){_0x21ad20=_0x21ad20-0x115;var _0x4f81f7=_0x3a73c3[_0x21ad20];return _0x4f81f7;},_0x21ad(_0x5b3f19,_0x1bb61f);}function _0x3a73(){var _0x50e2a9=['322UgQQxI','38496CJMafY','name','validations','934216sFKqoo','150328pswZGc','207UZgGVe','containType','119149ddXDjV','value','optional','defineProperty','type','__esModule','default','381188lOzxog','190449mBSxZD','split','376135qiVMin'];_0x3a73=function(){return _0x50e2a9;};return _0x3a73();}

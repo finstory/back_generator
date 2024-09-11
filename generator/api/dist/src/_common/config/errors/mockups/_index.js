@@ -1,13 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const ast_errors_mockup_1 = require("./ast-errors.mockup");
-const fs_errors_mockup_1 = require("./fs-errors.mockup");
-const standard_errors_mockup_1 = require("./standard-errors.mockup");
-const responseMockup = (type, serviceType, key) => {
-    let errorResponse;
-    errorResponse || (errorResponse = (0, standard_errors_mockup_1.standardResponseMockup)(type, serviceType, key));
-    errorResponse || (errorResponse = (0, fs_errors_mockup_1.fsResponseMockup)(type, key));
-    errorResponse || (errorResponse = (0, ast_errors_mockup_1.astResponseMockup)(type, key));
-    return errorResponse;
-};
-exports.default = responseMockup;
+'use strict';const _0x3cc01b=_0x41e9;function _0x41e9(_0x359748,_0x3f3bdf){const _0x1bd794=_0x1bd7();return _0x41e9=function(_0x41e960,_0x556448){_0x41e960=_0x41e960-0xc9;let _0x11c5f2=_0x1bd794[_0x41e960];return _0x11c5f2;},_0x41e9(_0x359748,_0x3f3bdf);}(function(_0xc05607,_0x58bdcc){const _0x49085e=_0x41e9,_0x2987c3=_0xc05607();while(!![]){try{const _0x219b8a=parseInt(_0x49085e(0xd4))/0x1*(parseInt(_0x49085e(0xcb))/0x2)+-parseInt(_0x49085e(0xd5))/0x3+-parseInt(_0x49085e(0xce))/0x4+-parseInt(_0x49085e(0xcc))/0x5*(parseInt(_0x49085e(0xd6))/0x6)+-parseInt(_0x49085e(0xd1))/0x7*(-parseInt(_0x49085e(0xd0))/0x8)+parseInt(_0x49085e(0xd2))/0x9+-parseInt(_0x49085e(0xd3))/0xa;if(_0x219b8a===_0x58bdcc)break;else _0x2987c3['push'](_0x2987c3['shift']());}catch(_0x3cf4c2){_0x2987c3['push'](_0x2987c3['shift']());}}}(_0x1bd7,0x75ebb));Object['defineProperty'](exports,'__esModule',{'value':!![]});function _0x1bd7(){const _0xffe957=['fsResponseMockup','13502EXLCGi','18805nlhiIU','./fs-errors.mockup','2478748dGsPIh','astResponseMockup','6346824gyaMYo','7epsNwc','4005405sQWlcF','2498930vWImsd','107OktoKZ','1598856OsQAjL','120sNgxaH','standardResponseMockup'];_0x1bd7=function(){return _0xffe957;};return _0x1bd7();}const ast_errors_mockup_1=require('./ast-errors.mockup'),fs_errors_mockup_1=require(_0x3cc01b(0xcd)),standard_errors_mockup_1=require('./standard-errors.mockup'),responseMockup=(_0x1fa976,_0x2bbc07,_0x304317)=>{const _0x102063=_0x3cc01b;let _0x18d52f;return _0x18d52f||(_0x18d52f=(0x0,standard_errors_mockup_1[_0x102063(0xc9)])(_0x1fa976,_0x2bbc07,_0x304317)),_0x18d52f||(_0x18d52f=(0x0,fs_errors_mockup_1[_0x102063(0xca)])(_0x1fa976,_0x304317)),_0x18d52f||(_0x18d52f=(0x0,ast_errors_mockup_1[_0x102063(0xcf)])(_0x1fa976,_0x304317)),_0x18d52f;};exports['default']=responseMockup;

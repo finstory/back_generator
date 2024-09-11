@@ -23,7 +23,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
   },

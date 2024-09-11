@@ -15,7 +15,7 @@
           "query": [
             {
               "from": "query",
-              "id": "2ee07dc1-5fd2-4393-839f-2856d29d8488",
+              "id": "4147c4fc-6680-4156-8b74-2efda05487f2",
               "name": "userId",
               "type": "string",
               "optional": true,
@@ -36,7 +36,7 @@
             },
             {
               "from": "query",
-              "id": "41723310-1dfc-45d9-9f29-5d96ee743b2b",
+              "id": "7b7a1c9f-e532-4f04-83dd-2d8d8f022552",
               "name": "user",
               "type": "UserDto",
               "optional": false,
@@ -46,7 +46,7 @@
           "body": [
             {
               "from": "body",
-              "id": "8e6a6b7d-1c1a-4e9b-9657-21c48c8bd962",
+              "id": "7e8c4111-a157-4117-90e1-9a16a4ba5eb2",
               "name": "userId",
               "type": "string",
               "optional": false,
@@ -67,7 +67,7 @@
             },
             {
               "from": "body",
-              "id": "3e157a23-3df4-4fbc-92db-c16e8ace2666",
+              "id": "2e65c52f-1a85-4ecc-8a61-41771f36220b",
               "name": "passwordToken",
               "type": "{ user: string, token: string }",
               "optional": false,
@@ -172,6 +172,104 @@
           "requestType": "patch",
           "validateActive": true,
           "description": "### *Description:*\n\niygiyugkgkuggguigigigig\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "validation",
+      "routes": [
+        {
+          "id": "ddbad33e-9a2d-4cce-b5ad-d59005ccdf48",
+          "controllerName": "getValidationRegister",
+          "endpointName": "/register",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "### *Description:*\n\nThis is one example Description. The property `ID` is necesary to find `USERS`.\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "b90fe811-d2a2-47f2-902c-c961e7c02190",
+          "controllerName": "patchValidationLogin",
+          "endpointName": "/login",
+          "requestType": "patch",
+          "validateActive": true,
+          "description": "",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "list",
+      "routes": [
+        {
+          "id": "d21af9d0-f056-4c68-b2f3-b965412abb22",
+          "controllerName": "putListRegister",
+          "endpointName": "/register",
+          "requestType": "put",
+          "validateActive": true,
+          "description": "### *Description:*\n\nThis is one exampasd\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        },
+        {
+          "id": "d86daa33-74f8-4588-b858-06960abcae72",
+          "controllerName": "getListRegister",
+          "endpointName": "/register",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "### *Description:*\n\nSDADSASDASDA\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "facu",
+      "routes": [
+        {
+          "id": "45f84d53-f96c-4328-956c-474ed6e59b41",
+          "controllerName": "getFacu",
+          "endpointName": "/",
+          "requestType": "get",
+          "validateActive": true,
+          "description": "### *Description:*\n\ndsdssdsd\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  { \n\"name\": \"John Doe\",\n  \"email\": \"john@example.com\" \n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\n\"Getting all modules from the database.\" \n```\n\n* STATUS 201 OK:\n```json \nJSON {\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
+          "middlewares": [],
+          "params": [],
+          "query": [],
+          "body": [],
+          "responseBody": []
+        }
+      ]
+    },
+    {
+      "name": "mati",
+      "routes": [
+        {
+          "id": "0c3977b3-2bf4-449f-ae5c-b3d1e0b17371",
+          "controllerName": "patchMatiHello",
+          "endpointName": "/hello",
+          "requestType": "patch",
+          "validateActive": true,
+          "description": "### *Description:*\n\nsdfsdfsdfsdfsdfds\n\n---\n\n### *Example Body :*\n\n```CSS\nJSON  {\n \"username\": \"facu_neutral\",\n    \"secret_key\": \"Generator9764*\",\n}\n```\n---\n \n\n ### *Response Body :*\n\n* STATUS 200 OK:\n\n```js\neyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZmFjdV9uZXV0cmFsIiwiY3JlYXRlZEF0IjoiMjAyNC0wOS0xMFQwNjo0NTo1Ny40MTNaIiwiaWF0IjoxNzI1OTUwNzU3LCJleHAiOjE3Mjg1NDI3NTd9.adgT7ExY9yxmxQvqeRSzIBZz_VyP29vGSLbVO0C9o9c\n```\n\n* STATUS 401Unauthorized:\n```json \nInvalid secret key\n```\n\n*  STATUS 404 NOT FOUND:\n```json \nErrorResponse {\n    \"type\": \"not_found\",\n    \"message\": \"'Module 'codmpany'' not found.\",\n    \"payload\": [\n        {\n            \"parameter\": \"internal\",\n            \"from\": null,\n            \"property\": \"Module 'codmpany'\",\n            \"constraints\": {\n                \"internal\": \"'Module 'codmpany'' not found.\"\n            }\n        }\n    ]\n}\n```",
           "middlewares": [],
           "params": [],
           "query": [],

@@ -1,14 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSchema = void 0;
-const mongoose_1 = require("mongoose");
-const getSchema = (name, schema) => {
-    let ModelResult = (0, mongoose_1.model)(name, schema);
-    return ModelResult;
-};
-exports.getSchema = getSchema;
-const createSchema = (name, options, timestamps) => {
-    const schema = new mongoose_1.Schema(Object.assign(Object.assign({}, options), { deleted: { type: Boolean, required: false, default: false }, deletedAt: { type: Date, required: false } }), timestamps);
-    return (0, exports.getSchema)(name, schema);
-};
-exports.default = createSchema;
+'use strict';const _0xd79d92=_0x1b05;(function(_0x4646df,_0x758e41){const _0x276acb=_0x1b05,_0x288fc5=_0x4646df();while(!![]){try{const _0x27da02=-parseInt(_0x276acb(0x94))/0x1+-parseInt(_0x276acb(0x97))/0x2+parseInt(_0x276acb(0x89))/0x3*(parseInt(_0x276acb(0x91))/0x4)+-parseInt(_0x276acb(0x8c))/0x5+-parseInt(_0x276acb(0x9a))/0x6*(-parseInt(_0x276acb(0x96))/0x7)+-parseInt(_0x276acb(0x8b))/0x8*(parseInt(_0x276acb(0x8a))/0x9)+parseInt(_0x276acb(0x90))/0xa;if(_0x27da02===_0x758e41)break;else _0x288fc5['push'](_0x288fc5['shift']());}catch(_0x4e282c){_0x288fc5['push'](_0x288fc5['shift']());}}}(_0x2dcb,0x37fbe));Object[_0xd79d92(0x8d)](exports,_0xd79d92(0x95),{'value':!![]}),exports['getSchema']=void 0x0;function _0x1b05(_0x456788,_0x5f2f48){const _0x2dcb17=_0x2dcb();return _0x1b05=function(_0x1b0520,_0x36cbd1){_0x1b0520=_0x1b0520-0x89;let _0x5405cc=_0x2dcb17[_0x1b0520];return _0x5405cc;},_0x1b05(_0x456788,_0x5f2f48);}const mongoose_1=require(_0xd79d92(0x98)),getSchema=(_0x1e0fe0,_0x13c620)=>{const _0x47e355=_0xd79d92;let _0x54af5f=(0x0,mongoose_1[_0x47e355(0x99)])(_0x1e0fe0,_0x13c620);return _0x54af5f;};exports[_0xd79d92(0x8e)]=getSchema;function _0x2dcb(){const _0x5f30f4=['58161QgXnNa','1413441sYMgVj','8WhegcJ','18065ELSeMW','defineProperty','getSchema','assign','47030vjdtOd','76nbGvxy','default','Schema','203275LAMBSR','__esModule','343Gxcavo','438972XbWCvk','mongoose','model','53838ejsxnL'];_0x2dcb=function(){return _0x5f30f4;};return _0x2dcb();}const createSchema=(_0x3407cd,_0x34394a,_0x189bb2)=>{const _0x27f6d2=_0xd79d92,_0x37924a=new mongoose_1[(_0x27f6d2(0x93))](Object[_0x27f6d2(0x8f)](Object[_0x27f6d2(0x8f)]({},_0x34394a),{'deleted':{'type':Boolean,'required':![],'default':![]},'deletedAt':{'type':Date,'required':![]}}),_0x189bb2);return(0x0,exports[_0x27f6d2(0x8e)])(_0x3407cd,_0x37924a);};exports[_0xd79d92(0x92)]=createSchema;

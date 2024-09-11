@@ -68,17 +68,17 @@ class UserSlice extends ReduxSlice<UserSlice> {
         );
     }
 
-    
-    findOneUserSelector = (type: UserState["children"]) => {
-        return setSelector(
 
-            [this.select.user.users.get(), this.select.user.filterType.get()],
-            (users, filterType) => {
+    // findOneUserSelector = (type: UserState["children"]) => {
+    //     return setSelector(
 
-                return users.filter(user => user.userType === filterType);
-            }
-        );
-    }
+    //         [this.select.user.users.get(), this.select.user.filterType.get()],
+    //         (users, filterType) => {
+
+    //             return users.filter(user => user.userType === filterType);
+    //         }
+    //     );
+    // }
 }
 
 

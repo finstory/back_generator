@@ -21,14 +21,7 @@ class Body {
     newRoute: string[];
 };
 
-class MergedClass extends Params, Query, Body {
-    // Properties from Params, Query, and Body classes
-    name: string;
-    lastName: string;
-    moduleName: string;
-    route: string[];
-    newRoute: string[];
-}
+
 
 type ResponseBody = string;
 

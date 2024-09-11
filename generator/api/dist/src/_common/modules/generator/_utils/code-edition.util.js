@@ -1,15 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeCodeBetweenPos = exports.insertCodeAfterPosition = void 0;
-const insertCodeAfterPosition = (textCode, codeToAdd, pos, addSpace) => {
-    return textCode.slice(0, pos.end) + `\n${codeToAdd}${addSpace ? "\n" : ""}` + textCode.slice(pos.end);
-};
-exports.insertCodeAfterPosition = insertCodeAfterPosition;
-const removeCodeBetweenPos = (textCode, pos, removeDownLine = true, removeUpLine = true) => {
-    let numUp = removeDownLine ? (-1) : 0;
-    // if (typeof numUp === "number") numUp = removeDownLine;
-    const numDown = removeUpLine ? 1 : 0;
-    let codeGetting = textCode.slice(0, pos.start + numUp) + textCode.slice(pos.end + numDown);
-    return codeGetting;
-};
-exports.removeCodeBetweenPos = removeCodeBetweenPos;
+'use strict';const _0x337c74=_0x4a2f;(function(_0x1882a4,_0x338d4e){const _0x4ac0ba=_0x4a2f,_0x386ab3=_0x1882a4();while(!![]){try{const _0x280b48=parseInt(_0x4ac0ba(0x18d))/0x1*(parseInt(_0x4ac0ba(0x195))/0x2)+-parseInt(_0x4ac0ba(0x197))/0x3+parseInt(_0x4ac0ba(0x19a))/0x4*(parseInt(_0x4ac0ba(0x191))/0x5)+-parseInt(_0x4ac0ba(0x199))/0x6+-parseInt(_0x4ac0ba(0x194))/0x7*(-parseInt(_0x4ac0ba(0x18f))/0x8)+parseInt(_0x4ac0ba(0x196))/0x9+parseInt(_0x4ac0ba(0x193))/0xa*(parseInt(_0x4ac0ba(0x18a))/0xb);if(_0x280b48===_0x338d4e)break;else _0x386ab3['push'](_0x386ab3['shift']());}catch(_0x38893e){_0x386ab3['push'](_0x386ab3['shift']());}}}(_0x5086,0xc335d));Object['defineProperty'](exports,_0x337c74(0x188),{'value':!![]}),exports[_0x337c74(0x189)]=exports['insertCodeAfterPosition']=void 0x0;function _0x4a2f(_0x385b61,_0x3016ac){const _0x508637=_0x5086();return _0x4a2f=function(_0x4a2f42,_0x495a0e){_0x4a2f42=_0x4a2f42-0x188;let _0x2c549e=_0x508637[_0x4a2f42];return _0x2c549e;},_0x4a2f(_0x385b61,_0x3016ac);}const insertCodeAfterPosition=(_0x50e1ce,_0x16306d,_0x3f2e1c,_0x5c4426)=>{const _0x18f8a6=_0x337c74,_0x1760a7={'hGFXA':function(_0x1f18b3,_0x1e88d7){return _0x1f18b3+_0x1e88d7;}};return _0x1760a7[_0x18f8a6(0x18e)](_0x50e1ce[_0x18f8a6(0x198)](0x0,_0x3f2e1c[_0x18f8a6(0x18b)])+('\x0a'+_0x16306d+(_0x5c4426?'\x0a':'')),_0x50e1ce[_0x18f8a6(0x198)](_0x3f2e1c[_0x18f8a6(0x18b)]));};function _0x5086(){const _0x115bc3=['removeCodeBetweenPos','11jrdwlO','end','insertCodeAfterPosition','735441tDAgUo','hGFXA','3755888WgeCff','BSCTG','50ZcyhHU','start','1258850WCAdRM','21NJKuES','2yFQXQJ','8348157ERsYvv','4166811IrXpdb','slice','8589894fpGwHC','169124hOKjwp','__esModule'];_0x5086=function(){return _0x115bc3;};return _0x5086();}exports[_0x337c74(0x18c)]=insertCodeAfterPosition;const removeCodeBetweenPos=(_0x49b021,_0x3e353b,_0x4775d6=!![],_0x26e418=!![])=>{const _0x6b7cc5=_0x337c74,_0x231d63={'BSCTG':function(_0x759bb2,_0x2d56a4){return _0x759bb2+_0x2d56a4;}};let _0x3d5121=_0x4775d6?-0x1:0x0;const _0x484dbc=_0x26e418?0x1:0x0;let _0x76999c=_0x231d63[_0x6b7cc5(0x190)](_0x49b021[_0x6b7cc5(0x198)](0x0,_0x231d63[_0x6b7cc5(0x190)](_0x3e353b[_0x6b7cc5(0x192)],_0x3d5121)),_0x49b021['slice'](_0x3e353b[_0x6b7cc5(0x18b)]+_0x484dbc));return _0x76999c;};exports[_0x337c74(0x189)]=removeCodeBetweenPos;

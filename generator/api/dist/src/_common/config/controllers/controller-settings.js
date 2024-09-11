@@ -1,15 +1,1 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const throw_error_wrapper_1 = __importDefault(require("../server/request-api/throw-error-wrapper"));
-const defaultOptions = { error_wrapper: true };
-const controllerSettings = (controllers, middlewareOptions = defaultOptions) => {
-    for (const key in controllers) {
-        if (middlewareOptions.error_wrapper)
-            controllers[key] = (0, throw_error_wrapper_1.default)((controllers[key]));
-    }
-    return controllers;
-};
-exports.default = controllerSettings;
+'use strict';const _0x20bd81=_0x5cb7;(function(_0xecbef,_0x1e7bd1){const _0x1665b3=_0x5cb7,_0x37cbcb=_0xecbef();while(!![]){try{const _0x2f0319=parseInt(_0x1665b3(0xeb))/0x1*(parseInt(_0x1665b3(0xf1))/0x2)+parseInt(_0x1665b3(0xe3))/0x3+parseInt(_0x1665b3(0xf0))/0x4*(parseInt(_0x1665b3(0xe6))/0x5)+-parseInt(_0x1665b3(0xec))/0x6+-parseInt(_0x1665b3(0xe5))/0x7*(parseInt(_0x1665b3(0xed))/0x8)+-parseInt(_0x1665b3(0xee))/0x9+-parseInt(_0x1665b3(0xf2))/0xa*(-parseInt(_0x1665b3(0xe8))/0xb);if(_0x2f0319===_0x1e7bd1)break;else _0x37cbcb['push'](_0x37cbcb['shift']());}catch(_0x2317a4){_0x37cbcb['push'](_0x37cbcb['shift']());}}}(_0x4e8b,0x1e63e));function _0x5cb7(_0x45002b,_0x9d6af7){const _0x4e8b49=_0x4e8b();return _0x5cb7=function(_0x5cb74b,_0x50b37b){_0x5cb74b=_0x5cb74b-0xe2;let _0x3c4134=_0x4e8b49[_0x5cb74b];return _0x3c4134;},_0x5cb7(_0x45002b,_0x9d6af7);}function _0x4e8b(){const _0x3e529d=['405993BdJnQo','__importDefault','20335Gyqkqu','4090wgwcDU','error_wrapper','1199EPDDqg','default','defineProperty','4877kQrlbV','1078722YUqrZx','536yErehp','18612ylTdSz','__esModule','316XfvMdz','42rMdYmz','18220nmyWUm','../server/request-api/throw-error-wrapper'];_0x4e8b=function(){return _0x3e529d;};return _0x4e8b();}var __importDefault=this&&this[_0x20bd81(0xe4)]||function(_0xc81c69){const _0x1d0e0b=_0x20bd81;return _0xc81c69&&_0xc81c69[_0x1d0e0b(0xef)]?_0xc81c69:{'default':_0xc81c69};};Object[_0x20bd81(0xea)](exports,_0x20bd81(0xef),{'value':!![]});const throw_error_wrapper_1=__importDefault(require(_0x20bd81(0xe2))),defaultOptions={'error_wrapper':!![]},controllerSettings=(_0x2603f2,_0x3ff7bb=defaultOptions)=>{const _0x1bff3a=_0x20bd81;for(const _0x5512e9 in _0x2603f2){if(_0x3ff7bb[_0x1bff3a(0xe7)])_0x2603f2[_0x5512e9]=(0x0,throw_error_wrapper_1[_0x1bff3a(0xe9)])(_0x2603f2[_0x5512e9]);}return _0x2603f2;};exports[_0x20bd81(0xe9)]=controllerSettings;

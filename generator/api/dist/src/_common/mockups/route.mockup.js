@@ -1,16 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.express_endpoint = exports.module_route = void 0;
-const module_route = (moduleName) => `//<IMPORTS>
-import { Router } from "express";
-import { controller, validation } from "../${moduleName}.controller";
-
-const router = Router();
-
-//<ROUTES>
-
-
-export default router;`;
-exports.module_route = module_route;
-const express_endpoint = (endpoint = "/", requestType, controllerName) => `router.${requestType}("${endpoint}", validation.${controllerName}, controller.${controllerName});`;
-exports.express_endpoint = express_endpoint;
+'use strict';function _0x2d04(){const _0x68146=['20rdeOLR','359982Cwxagl',',\x20controller.','836488fzuSbe','module_route','435128HqnqSI','__esModule','express_endpoint','\x22,\x20validation.','.controller\x22;\x0a\x0aconst\x20router\x20=\x20Router();\x0a\x0a//<ROUTES>\x0a\x0a\x0aexport\x20default\x20router;','5317770bEnjhx','63417QIYFww','3722390uNrUzI','router.','defineProperty','91uMBfGs','668259GyJPEp'];_0x2d04=function(){return _0x68146;};return _0x2d04();}const _0x24422d=_0x57b3;function _0x57b3(_0x2bb958,_0x6f1be0){const _0x2d04ad=_0x2d04();return _0x57b3=function(_0x57b35e,_0x2b85c0){_0x57b35e=_0x57b35e-0x19d;let _0x3a92b7=_0x2d04ad[_0x57b35e];return _0x3a92b7;},_0x57b3(_0x2bb958,_0x6f1be0);}(function(_0x302ae4,_0x2ca83b){const _0x308d14=_0x57b3,_0x47f8f5=_0x302ae4();while(!![]){try{const _0x7f7c21=-parseInt(_0x308d14(0x1a7))/0x1+parseInt(_0x308d14(0x1a9))/0x2+parseInt(_0x308d14(0x1a0))/0x3*(-parseInt(_0x308d14(0x1a6))/0x4)+parseInt(_0x308d14(0x1a1))/0x5+-parseInt(_0x308d14(0x19f))/0x6+parseInt(_0x308d14(0x1a4))/0x7*(parseInt(_0x308d14(0x1ab))/0x8)+-parseInt(_0x308d14(0x1a5))/0x9;if(_0x7f7c21===_0x2ca83b)break;else _0x47f8f5['push'](_0x47f8f5['shift']());}catch(_0x2c6548){_0x47f8f5['push'](_0x47f8f5['shift']());}}}(_0x2d04,0x6c4be));Object[_0x24422d(0x1a3)](exports,_0x24422d(0x1ac),{'value':!![]}),exports[_0x24422d(0x1ad)]=exports[_0x24422d(0x1aa)]=void 0x0;const module_route=_0x33ec56=>'//<IMPORTS>\x0aimport\x20{\x20Router\x20}\x20from\x20\x22express\x22;\x0aimport\x20{\x20controller,\x20validation\x20}\x20from\x20\x22../'+_0x33ec56+_0x24422d(0x19e);exports['module_route']=module_route;const express_endpoint=(_0x29b5f4='/',_0x54c0e5,_0x59da52)=>_0x24422d(0x1a2)+_0x54c0e5+'(\x22'+_0x29b5f4+_0x24422d(0x19d)+_0x59da52+_0x24422d(0x1a8)+_0x59da52+');';exports[_0x24422d(0x1ad)]=express_endpoint;

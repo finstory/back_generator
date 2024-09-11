@@ -6,16 +6,10 @@ import { selectUser, userActions, userSelector } from "@redux";
 
 export const Test = () => {
     const { routeRx, routeRx$ } = useRouteRx();
-    const { someMethod } = S.user;
 
     const users = userSelector(user => user.users);
     const { increment } = userActions();
     // increment()
-    useEffect(() => {
-        someMethod()
-        // routeRx.lastName.set([])
-        console.log(routeRx$.lastName)
-    }, [JSON.stringify(routeRx$.lastName)])
 
 
     return (
@@ -35,10 +29,7 @@ export const Test = () => {
 
         >
             <button
-                onClick={() => {
-                    routeRx.lastName.set([...routeRx.lastName.get(), { name: 'me', active: false }])
-                    // console.log(routeRx.lastName.get())
-                }}
+
                 style={{
                     padding: '2rem',
                     fontSize: '1rem',
@@ -46,9 +37,7 @@ export const Test = () => {
                     color: 'white'
                 }}>OTHER</button>
             <button
-                onClick={() => {
-                    routeRx.name.set("FACCsdsdU")
-                }}
+
                 style={{
                     padding: '2rem',
                     fontSize: '1rem',

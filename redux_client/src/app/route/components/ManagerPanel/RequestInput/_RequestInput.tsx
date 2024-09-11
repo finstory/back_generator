@@ -2,14 +2,16 @@ import { featureNotAvailable } from '@/_common/_plugins/toast-alerts';
 import { BGradient, Button, Input, Text } from '@/components';
 import { routeSelector, selectRoute } from '@/integrations/redux/slices/route.slice';
 import { userSelector } from '@/integrations/redux/slices/user.slice';
+import { RootState } from '@/integrations/redux/store';
 import React, { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 interface IProps {
   _scss: CSSModuleClasses;
 }
 
 const RequestInput: FC<IProps> = ({ _scss }) => {
-  const moduleName = routeSelector(route => route.routeManager.moduleName);
+  const moduleName = useSelector<RootState>(state => state.route.routeManager.moduleName) as RootState["route"]["routeManager"]["moduleName"];
   const route = selectRoute.findRouteSelector();
   const [queryParams, setQueryParams] = useState("");
 

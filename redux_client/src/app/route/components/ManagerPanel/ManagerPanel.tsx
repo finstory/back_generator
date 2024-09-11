@@ -9,6 +9,8 @@ import ParamsSelector from "./ParamsSelector/_ParamsSelector";
 import PropertiesList from "./PropertiesList/_PropertiesList";
 import { IRoute } from "@/app/module/_interfaces/module.interface";
 import { routeSelector, selectRoute } from "@/integrations/redux/slices/route.slice";
+import { RootState } from "@/integrations/redux/store";
+import { useSelector } from "react-redux";
 
 
 
@@ -23,7 +25,7 @@ export const ManagerPanel: FC = () => {
     //     if (routeId) setRoute(selectRoute(moduleName, routeId));
 
     // }, [routeId, modulesList])
-    const moduleName$ = routeSelector(route => route.routeManager.moduleName);
+    const moduleName$ = useSelector<RootState>(state => state.route.routeManager.moduleName) as RootState["route"]["routeManager"]["moduleName"];
     const route$ = selectRoute.findRouteSelector();
 
     return (

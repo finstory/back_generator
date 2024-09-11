@@ -13,7 +13,7 @@ class UserService extends BasicInjectable {
     otherMethod = () => {
         try {
             const { routeRx } = useRouteRx();
-            if (routeRx.activeMenuModal.get()) { this._action.user.increment(); }
+       
             console.log(this._state.user.name);
 
             this._action.user.increment

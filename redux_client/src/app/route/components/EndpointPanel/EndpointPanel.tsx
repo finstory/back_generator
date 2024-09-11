@@ -3,14 +3,9 @@ import { Text, IText, DGBorder, Button, IDGBorder } from "@components";
 import scss from "@route/_scss/endpoint_panel/endpoint_panel.module.scss";
 import { Title } from "./Title/_Title";
 import { EndpointDir } from "./EndpointDir/_EndpointDir";
-import S from "@/_common/services/main.service";
 
 
 export const EndpointPanel: FC = () => {
-  const { fetchAllModules } = S.module;
-  useEffect(() => {
-    fetchAllModules();
-  }, [])
 
   return (
     <DGBorder className={scss.endpoint_panel}

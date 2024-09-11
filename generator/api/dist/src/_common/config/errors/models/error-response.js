@@ -1,14 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class ErrorResponse extends Error {
-    constructor(type, message, status, payload) {
-        super();
-        this.name = "ErrorResponse";
-        this.type = type;
-        this.status = status;
-        this.message = message;
-        this.payload = payload;
-        Error.captureStackTrace(this, this.stack);
-    }
-}
-exports.default = ErrorResponse;
+'use strict';function _0x5b51(_0x3df6e5,_0x3c0d93){var _0x20817c=_0x2081();return _0x5b51=function(_0x5b51f7,_0x3cfcd3){_0x5b51f7=_0x5b51f7-0xd0;var _0x234091=_0x20817c[_0x5b51f7];return _0x234091;},_0x5b51(_0x3df6e5,_0x3c0d93);}var _0x4605c0=_0x5b51;(function(_0x163d0b,_0x2dd2ba){var _0x7918ab=_0x5b51,_0x57989a=_0x163d0b();while(!![]){try{var _0x399332=parseInt(_0x7918ab(0xd2))/0x1+-parseInt(_0x7918ab(0xdf))/0x2*(-parseInt(_0x7918ab(0xd5))/0x3)+-parseInt(_0x7918ab(0xdb))/0x4+-parseInt(_0x7918ab(0xe0))/0x5*(parseInt(_0x7918ab(0xdc))/0x6)+-parseInt(_0x7918ab(0xd9))/0x7+-parseInt(_0x7918ab(0xd6))/0x8*(parseInt(_0x7918ab(0xd7))/0x9)+parseInt(_0x7918ab(0xe1))/0xa*(parseInt(_0x7918ab(0xd0))/0xb);if(_0x399332===_0x2dd2ba)break;else _0x57989a['push'](_0x57989a['shift']());}catch(_0xe6bac2){_0x57989a['push'](_0x57989a['shift']());}}}(_0x2081,0x84d06));function _0x2081(){var _0x5bf646=['giAaW','130092aPiYqY','120CrDRuz','624051UjdZXd','message','2687223RayGfe','ErrorResponse','4239228gBiceX','1326RpJINW','defineProperty','1|6|3|0|4|2|5','10nEelvT','20635yKqlVW','10XhVSJn','payload','split','captureStackTrace','default','40144841DYioCS','type','73503kQiyqM','name'];_0x2081=function(){return _0x5bf646;};return _0x2081();}Object[_0x4605c0(0xdd)](exports,'__esModule',{'value':!![]});class ErrorResponse extends Error{constructor(_0x281b33,_0x5b168f,_0x434084,_0x26c907){var _0xf2ac39=_0x4605c0,_0x510993={'fJozF':_0xf2ac39(0xde),'giAaW':_0xf2ac39(0xda)},_0x1f733a=_0x510993['fJozF'][_0xf2ac39(0xe3)]('|'),_0x12afc4=0x0;while(!![]){switch(_0x1f733a[_0x12afc4++]){case'0':this['status']=_0x434084;continue;case'1':super();continue;case'2':this[_0xf2ac39(0xe2)]=_0x26c907;continue;case'3':this[_0xf2ac39(0xd1)]=_0x281b33;continue;case'4':this[_0xf2ac39(0xd8)]=_0x5b168f;continue;case'5':Error[_0xf2ac39(0xe4)](this,this['stack']);continue;case'6':this[_0xf2ac39(0xd3)]=_0x510993[_0xf2ac39(0xd4)];continue;}break;}}}exports[_0x4605c0(0xe5)]=ErrorResponse;

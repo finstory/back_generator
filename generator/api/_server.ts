@@ -1,9 +1,7 @@
 import colors from 'colors';
 import server, { asyncInitial } from '@config/server';
-import mongoDB from "@config/db/mongoDB/connection";
 import test from '@/test';
 import envs from '@envs';
-import jsonDB from '@/_common/db/json';
 import { check } from '@/_common/config/security';
 
 const ASYNC_INITIAL = true;
@@ -21,3 +19,6 @@ const upServer = async () => {
 }
 
 upServer();
+
+//% TO COMPILE DIST:
+//--output myApp --targets node16-win-x64

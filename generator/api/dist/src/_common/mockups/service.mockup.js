@@ -1,17 +1,1 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.module_service = void 0;
-const module_service = (moduleName) => {
-    const UpModuleName = moduleName.charAt(0).toUpperCase() + moduleName.slice(1);
-    return `//<IMPORTS>
-import { AllServices as S, BasicInject, BasicInjectable } from "../config/services/service-injector.ts";
-import throwError from "../config/errors/throw-error.ts";
-
-class ${UpModuleName}Service extends BasicInjectable {
-
-}
-
-
-export default ${UpModuleName}Service;`;
-};
-exports.module_service = module_service;
+'use strict';const _0x2174bc=_0xc10a;function _0xc10a(_0x4a635f,_0x3fda41){const _0x342e74=_0x342e();return _0xc10a=function(_0xc10a92,_0x956448){_0xc10a92=_0xc10a92-0xeb;let _0x3f3bef=_0x342e74[_0xc10a92];return _0x3f3bef;},_0xc10a(_0x4a635f,_0x3fda41);}function _0x342e(){const _0x5a5a9b=['charAt','22872mkBkPf','298IKGeyc','module_service','15HZMGwp','__esModule','1417530FtnyAW','slice','31188MdvGjg','1209QMcGSF','859840gmXlZW','toUpperCase','119hdVdRq','Service;','//<IMPORTS>\x0aimport\x20{\x20AllServices\x20as\x20S,\x20BasicInject,\x20BasicInjectable\x20}\x20from\x20\x22../config/services/service-injector.ts\x22;\x0aimport\x20throwError\x20from\x20\x22../config/errors/throw-error.ts\x22;\x0a\x0aclass\x20','Service\x20extends\x20BasicInjectable\x20{\x0a\x0a}\x0a\x0a\x0aexport\x20default\x20','494592dOfGMc','165618PqLCGt'];_0x342e=function(){return _0x5a5a9b;};return _0x342e();}(function(_0x4bb70a,_0x1a7d51){const _0x3ccf7f=_0xc10a,_0x5a5881=_0x4bb70a();while(!![]){try{const _0x571b59=-parseInt(_0x3ccf7f(0xf5))/0x1*(-parseInt(_0x3ccf7f(0xee))/0x2)+-parseInt(_0x3ccf7f(0xfc))/0x3+-parseInt(_0x3ccf7f(0xf4))/0x4*(-parseInt(_0x3ccf7f(0xf0))/0x5)+-parseInt(_0x3ccf7f(0xed))/0x6*(-parseInt(_0x3ccf7f(0xf8))/0x7)+-parseInt(_0x3ccf7f(0xf6))/0x8+-parseInt(_0x3ccf7f(0xeb))/0x9+parseInt(_0x3ccf7f(0xf2))/0xa;if(_0x571b59===_0x1a7d51)break;else _0x5a5881['push'](_0x5a5881['shift']());}catch(_0x24a19a){_0x5a5881['push'](_0x5a5881['shift']());}}}(_0x342e,0x1d22f));Object['defineProperty'](exports,_0x2174bc(0xf1),{'value':!![]}),exports['module_service']=void 0x0;const module_service=_0xe08c6e=>{const _0x3aeb00=_0x2174bc,_0x163511=_0xe08c6e[_0x3aeb00(0xec)](0x0)[_0x3aeb00(0xf7)]()+_0xe08c6e[_0x3aeb00(0xf3)](0x1);return _0x3aeb00(0xfa)+_0x163511+_0x3aeb00(0xfb)+_0x163511+_0x3aeb00(0xf9);};exports[_0x2174bc(0xef)]=module_service;
